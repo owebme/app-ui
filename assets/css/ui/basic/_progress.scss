@@ -1,0 +1,67 @@
+.progress {
+    @extend .fontFamily-default;
+    @extend .nowrap;
+
+    &-item {
+        @extend .pos-rel;
+        @include flex("row", "flex-start", "center");
+        @extend .ptb-xs;
+        @extend .w100p;
+
+        &:first-child {
+            @extend .pt0;
+        }
+        &:before {
+            content:"";
+            @extend .pos-bl;
+            @extend .w100p;
+            @extend .bg-smoke;
+            height:2px;
+        }
+    }
+    &-title {
+        @extend .fontWeight-8;
+        @extend .text-left;
+        @extend .w90p;
+    }
+    &-score {
+        @extend .c-gray;
+        @extend .fontWeight-normal;
+        @extend .text-right;
+        @extend .w10p;
+    }
+    &-line {
+        @extend .pos-bl;
+        @extend .w100p;
+        @extend .bg-blue;
+        height:2px;
+    }
+    &-xl {
+        .progress {
+            &-item {
+                @extend .fontSize-34;
+            }
+        }
+    }
+    &-l {
+        .progress {
+            &-item {
+                @extend .fontSize-24;
+            }
+        }
+    }
+    &-m {
+        .progress {
+            &-item {
+                @extend .fontSize-20;
+            }
+        }
+    }
+    &-s {
+        .progress {
+            &-item {
+                @extend .fontSize-18;
+            }
+        }
+    }
+}

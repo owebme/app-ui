@@ -1,0 +1,35 @@
+@each $icon in (
+    loading, loading_white, loading_mini,
+    close, close_white, close_strong, close_strong_white,
+    edit, edit_muted, edit_white, basket, print, print_white, search,
+    calendar, calendarNumber, date_change, date_change_fill, date_from, date_to,
+    important, plus, plus_white, cog, cogs, settings, menu, more_h,
+    email, sendEmail, link_source, link_action, visible, unvisible, location, time, time_muted,
+    writeEmail, cursor_fill, alarm, alarm_fill, alarm_white, events, fire, fire_muted,
+    help_black, help_white, columns, columns_white, csv, json,
+    arrowLeft, arrowLeft_white, arrowLeft_gray, arrowRight, arrowRight_white, arrowRight_gray,
+    checkbox, checkbox_gray, checkbox_big, checkbox_big_white,
+    check, check_gray, check_muted, check_white, check_black, remove, remove_fill, remove_white,
+    sortUp, sortUp_muted, sortDown, sortDown_muted,
+    phone, messenger, reviews, userAdd, tag, tag_white, tagAdd, tagAdd_white,
+    facebook_white, vkontakte_white, odnoklassniki_white, twitter_white,
+    yandex, google, rambler, mailru, yahoo, bing
+){
+    .ui-icon-#{$icon} {
+        @if $icon == 'rambler' or $icon == 'mailru' {
+            background:url('/assets/images/ui/ui-#{$icon}.png') no-repeat 0 0 / cover;
+        }
+        @else {
+            background:url('/assets/images/ui/ui-#{$icon}.svg') no-repeat 0 0 / cover;
+        }
+    }
+}
+@mixin ui-icon($icon, $width: false, $height: false) {
+    @if $width {
+        width:#{$width};
+    }
+    @if $height {
+        height:#{$height};
+    }
+    @extend .ui-icon-#{$icon};
+}

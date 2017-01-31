@@ -1,0 +1,118 @@
+.checkbox {
+    @include accelerate();
+    @extend .pos-rel;
+    @extend .display-inlineBlock;
+    @extend .userSelect-none;
+    @extend .text-left;
+    @extend .c-gray;
+    @extend .nowrap;
+    @extend .cursor-pointer;
+    @extend .pl45;
+    line-height:30px;
+
+    .checkbox-control {
+        @include accelerate();
+        @extend .w30;
+        @extend .h30;
+
+        &:after {
+            @include accelerate();
+            width:22px;
+            height:22px;
+        }
+    }
+    &.disabled {
+        @extend .pointerEvents-none;
+
+        .checkbox-control {
+            @extend .bg-smoke;
+
+            &:before {
+                @extend .bg-smoke;
+            }
+            &:after {
+                @extend .scale-0;
+            }
+        }
+    }
+    &.small {
+        @extend .pl30;
+        line-height:20px;
+
+        .checkbox-control {
+            @extend .w20;
+            @extend .h20;
+
+            &:after {
+                width:14px;
+                height:14px;
+            }
+        }
+    }
+    &:hover {
+        .checkbox-control {
+            @extend .bg-smoke;
+        }
+    }
+    &-control {
+        @extend .flex-centered;
+        @extend .pos-tl;
+        @extend .bg-white;
+        @extend .borderRadius-circle;
+        @extend .willChange-transform;
+        box-shadow:inset 0 0 0 2px $smoke;
+        transition:transform .5s $cubic089;
+
+        &:before {
+            @include accelerate();
+            @extend .content-empty;
+            @include abs();
+            @extend .borderRadius-circle;
+            @extend .willChange-transform;
+            @extend .bg-smoke;
+            @extend .scale-0;
+            transition:transform .35s $cubic089, background-color 0s .35s;
+        }
+        &:after {
+            @extend .content-empty;
+            @extend .display-inlineBlock;
+            @extend .opacity-0;
+            transform:scale3d(0.5, 0, 1);
+            @extend .willChange-tp;
+            transition:opacity .5s $cubic089, transform .5s $cubic089;
+            @include ui-icon(check_white);
+        }
+    }
+    input {
+        @extend .pos-abs;
+        @extend .opacity-0;
+        @extend .zIndex--1;
+    }
+    input:checked ~ {
+        .checkbox-control {
+            &:before {
+                @extend .bg-blueLight;
+                @extend .scale-100;
+                transition:transform .5s $cubic089;
+            }
+            &:after {
+                @extend .opacity-100;
+                @extend .scale3d-100;
+                transition:opacity .35s $cubic089 .2s, transform .35s $cubic089 .2s;
+            }
+        }
+    }
+    &[data-color="white"] {
+        .checkbox-control:after {
+            @include ui-icon(check);
+        }
+        input:checked ~ {
+            .checkbox-control {
+                &:before {
+                    @extend .bg-white;
+                    @extend .scale-100;
+                }
+            }
+        }
+    }
+}

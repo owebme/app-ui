@@ -1,0 +1,124 @@
+<root-main class="app">
+
+    <aside class="sidebar { openMenu : openMenu } col-xs-24 col-sm-7 col-md-6 col-lg-5">
+        <div class="sidebar__inner">
+            <a href="#/" class="sidebar__header">
+                <div class="sidebar__header__title">StyleGuide</div>
+                <div onClick={ showMenu } class="visible-xs sidebar__header__menu"></div>
+            </a>
+            <nav class="nav { hidden-xs : !openMenu }">
+                <div onClick={ hideMenu } class="visible-xs nav__close"></div>
+                <div class="nav__item { active : active || parentSection == get.uri(title) && active !== false }" each={ tree } no-reorder>
+                    <div onClick={ showItems } class="nav__title link">{ title }</div>
+                    <div if={ items && items.length } class="nav__items">
+                        <a each={ item in items } no-reorder href="{ get.link(title, item) }" class="nav__subItem link { active : parentSection == get.uri(title) && section == get.uri(item) }">{ item }</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </aside>
+    <section-content class="content col-xs-offset-0 col-sm-offset-7 col-md-offset-6 col-lg-offset-5 col-sm-17 col-md-18 col-lg-19"></section-content>
+
+<script>
+
+    window.$$ = window.jQuery || window.Zepto;
+
+    var $ = this;
+
+    $.parentSection = null;
+    $.section = null;
+    $.openMenu = false;
+
+    this.on("mount", function(){
+
+        var $body = $$("body"),
+            content = $$($.root)[0];
+
+        var router = {
+
+            base: "#/",
+
+            init: function(){
+
+                riot.route(function(parent, section) {
+                    if (!parent){
+                        riot.route('overview/introduction');
+                    }
+                    else {
+                        $.parentSection = parent;
+                        $.section = section;
+                        var tag = parent + '-' + section;
+                    }
+                    router.mount(tag);
+                    $.openMenu = false;
+                    $.update();
+                });
+
+                riot.route.base(this.base);
+                riot.route.start(true);
+            },
+
+            mount: function(tag){
+                var section = riot.mount("section-content", tag)[0];
+                if (!section){
+                    riot.mount("section-content", "section-404");
+                }
+                content.scrollTop = 0;
+                $body.scrollTop(0);
+            }
+        };
+
+        router.init();
+    });
+
+    $.tree = [
+        {
+            title: 'Overview',
+            items: ['Introduction', 'Code Guidelines']
+        },
+        {
+            title: 'Design',
+            items: ['Color Scheme', 'Typography', 'Animation', 'Border Radius', 'Box Shadow', 'Layout', 'Icons']
+        },
+        {
+            title: 'Components',
+            items: ['Buttons', 'Form elements', 'Datepicker', 'Clockpicker', 'Grid', 'Links', 'Lists', 'Popups', 'Dropmenu']
+        },
+        {
+            title: 'Utility',
+            items: ['Aspect ratio', 'Center elements', 'Flexbox', 'Layout', 'Text operations']
+        }
+    ];
+
+    $.get = {
+        link: function(parent, title){
+            return "#/" + this.uri(parent) + "/" + this.uri(title);
+        },
+        uri: function(title){
+            return title.toLowerCase().replace(/\s/, "-");
+        }
+    }
+
+    $.showItems = function(e){
+        var title = this._item.title;
+
+        this._item.active = !this._item.active;
+
+        $.tree.forEach(function(item, i){
+            if (item.title != title){
+                item.active = false;
+            }
+        });
+    };
+
+    $.showMenu = function(e){
+        $.openMenu = true;
+    };
+
+    $.hideMenu = function(e){
+        $.openMenu = false;
+    };
+
+</script>
+
+</root-main>

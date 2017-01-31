@@ -1,0 +1,56 @@
+.arrow-pointer {
+    @extend .pos-rel;
+    @extend .w25;
+
+    &:before {
+        @include accelerate();
+        @extend .content-empty;
+        @extend .pos-abs;
+        @extend .w25;
+        @extend .h25;
+        border:2px solid;
+        border-left:none;
+        border-bottom:none;
+        @extend .willChange-tp;
+    }
+    &-up:before {
+        transform:translate3d(0, 125%, 0) rotate(-45deg);
+        animation:animPointer-up 1.5s ease-in-out infinite;
+    }
+    &-down:before {
+        transform:translate3d(0, -125%, 0) rotate(135deg);
+        animation:animPointer-down 1.5s ease-in-out infinite;
+    }
+    &-left:before {
+        transform:translate3d(125%, 0, 0) rotate(-135deg);
+        animation:animPointer-left 1.5s ease-in-out infinite;
+    }
+    &-right:before {
+        transform:translate3d(-125%, 0, 0) rotate(45deg);
+        animation:animPointer-right 1.5s ease-in-out infinite;
+    }
+}
+@keyframes animPointer-up {
+    to {
+        transform:translate3d(0, 0, 0) rotate(-45deg);
+        opacity:0;
+    }
+}
+@keyframes animPointer-down {
+    to {
+        transform:translate3d(0, 0, 0) rotate(135deg);
+        opacity:0;
+    }
+}
+@keyframes animPointer-left {
+    to {
+        transform:translate3d(0, 0, 0) rotate(-135deg);
+        opacity:0;
+    }
+}
+@keyframes animPointer-right {
+    to {
+        transform:translate3d(0, 0, 0) rotate(45deg);
+        opacity:0;
+    }
+}

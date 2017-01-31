@@ -1,0 +1,72 @@
+<section-notify class="notify-wrapper" data-active={ active } data-pos={ opts.pos ? opts.pos : "top-left" }>
+
+    <div onClick={ hide } name="notify" class="notify { opts.size ? 'notify-' + opts.size : 'notify-m' }" data-color={ opts.color ? opts.color : "primary" } style="{ opts.width ? 'width:' + opts.width : null }">{ opts.text }</div>
+
+<script>
+
+    var $ = this;
+
+    $.active = false;
+    $.timeout = 2;
+    $.interval = null;
+
+    $.opts = {
+        pos: "top-left"
+    };
+
+    $.on("mount", function(){
+        setTimeout(function(){
+            $.root.style.display = "block";
+        }, 20);
+    });
+
+    $.show = function(opts){
+        clearTimeout($.interval);
+
+        if (typeof opts.timeout === "undefined"){
+            if (!opts.color) opts.timeout = 1;
+        }
+        if ($.active) $.autoHide(opts);
+
+        if (opts.pos != $.opts.pos){
+            $.update({
+                opts: opts
+            });
+            setTimeout(function(){
+                $.update({
+                    active: true
+                });
+            }, 200);
+        }
+        else {
+            $.update({
+                opts: opts,
+                active: true
+            });
+        }
+
+        return new Promise(function(resolve, reject){
+            _.onEndTransition($.notify, function(){
+                $.autoHide(opts);
+                return resolve();
+            });
+        });
+    };
+
+    $.autoHide = function(opts){
+        if (opts.timeout !== false){
+            $.interval = setTimeout(function(){
+                $.hide();
+            }, opts.timeout ? opts.timeout * 1000 : $.timeout * 1000)
+        }
+    };
+
+    $.hide = function(){
+        $.update({
+            active: false
+        });
+    };
+
+</script>
+
+</section-notify>

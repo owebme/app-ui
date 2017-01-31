@@ -1,0 +1,20 @@
+h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
+	@extend .c-blueLight;
+	@extend .fontFamily-helvetica;
+	@extend .fontWeight-bold;
+}
+h1, .h1 {
+	@extend .fontSize-32;
+}
+h2, .h2 {
+	@extend .fontSize-28;
+}
+h3, .h3 {
+	@extend .fontSize-24;
+}
+h4, .h4 {
+	@extend .fontSize-20;
+}
+sup, sub {
+	font-size:75%;
+}

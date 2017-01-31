@@ -1,0 +1,27 @@
+.caret {
+    &:after {
+        @include accelerate();
+        @extend .content-empty;
+        @extend .display-inlineBlock;
+        @extend .vAlign-middle;
+        border-bottom:none;
+    }
+    &-xl:after {
+        @extend .ml-xs;
+        border-top:15px solid $blue;
+        border-right:15px solid transparent;
+        border-left:15px solid transparent;
+    }
+    &-l:after {
+        @extend .ml-xs;
+        border-top:10px solid $blue;
+        border-right:10px solid transparent;
+        border-left:10px solid transparent;
+    }
+    &-m:after {
+        @extend .ml-xxs;
+        border-top:5px solid $blue;
+        border-right:5px solid transparent;
+        border-left:5px solid transparent;
+    }
+}

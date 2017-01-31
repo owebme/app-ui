@@ -1,0 +1,17 @@
+.list {
+    @extend .pl-m;
+
+    > li {
+        @extend .ml-m;
+
+        &:not(:last-child) {
+            @extend .mb-m;
+        }
+    }
+    &-order {
+        list-style-type:decimal;
+    }
+    &-unorder {
+        list-style-type:disc;
+    }
+}

@@ -1,0 +1,719 @@
+<components-form-elements>
+
+    <h2 class="mb-xl">Form Elements</h2>
+
+    <h4 class="mb-xxs">Input sizes</h4>
+    <p class="fontSize-16 mb-l">Input fields come in four sizes which can be applied with <span class="text-code">.input-xl</span>, <span class="text-code">.input-l</span>, <span class="text-code">.input-m</span> and <span class="text-code">.input-s</span> on the <span class="text-code">.input</span> component itself.</p>
+
+    <div class="rows borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-12 p-m text-center borderStyle-solid borderColor-smoke d-borderRightWidth-1 borderBottomWidth-1">
+                <div class="flex-centered h60 mt-xs mb-s plr-l md-plr-m xs-plr-s">
+                    <input class="input input-xl" type="text" placeholder="Placeholder text">
+                </div>
+                <p class="lineHeight-s fontSize-14 fontWeight-3 c-grayLight">Extra Large Input</p>
+            </div>
+            <div class="col-md-12 p-m text-center borderStyle-solid borderColor-smoke borderBottomWidth-1">
+                <div class="flex-centered h60 mt-xs mb-s plr-l md-plr-m xs-plr-s">
+                    <input class="input input-l" type="text" placeholder="Placeholder text">
+                </div>
+                <p class="lineHeight-s fontSize-14 fontWeight-3 c-grayLight">Large Input</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 p-m text-center borderStyle-solid borderColor-smoke d-borderRightWidth-1 xs-borderBottomWidth-1">
+                <div class="flex-centered h60 mt-xs mb-s plr-xl md-plr-l xs-plr-m">
+                    <input class="input input-m" type="text" placeholder="Placeholder text">
+                </div>
+                <p class="lineHeight-s fontSize-14 fontWeight-3 c-grayLight">Medium Input</p>
+            </div>
+            <div class="col-md-12 p-m text-center">
+                <div class="flex-centered h60 mt-xs mb-s plr-xl md-plr-l xs-plr-m">
+                    <input class="input input-s" type="text" placeholder="Placeholder text">
+                </div>
+                <p class="lineHeight-s fontSize-14 fontWeight-3 c-grayLight">Small Input</p>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ inputSizes() }</code></pre>
+        <script>
+            this.inputSizes = function(){
+                return '<input class="input input-xl" type="text">\n'+
+                '<input class="input input-l" type="text">\n'+
+                '<input class="input input-m" type="text">\n'+
+                '<input class="input input-s" type="text">';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Input with icon</h4>
+    <p class="fontSize-16 mb-l">Inputs with icons are wrapped in a parent component <span class="text-code">.input-group-icon</span> which has to have the input size applied to with an additional class. For example, <span class="text-code">.input-m</span> will have a parent element with a class .uiIcon-m. The icon has to be placed straight after the input and should be an inline SVG.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="p-m">
+                    <div class="input-group input-group-icon">
+                        <input class="input input-m" type="text" placeholder="Placeholder text">
+                        <div class="input-icon">
+                            <svg class="input-svg" viewBox="3 -3 24 24"><path class="input-svg-color" d="M15 11.9c-.9 0-1.7-.2-2.3-.7l-5.7-4.4v8.1c0 .1 0 .3.1.4.1.1.2.2.3.2 2.5.4 5 .5 7.5.5s5-.2 7.5-.5c.1 0 .3-.1.4-.2.2-.1.2-.3.2-.4v-8.1l-5.7 4.4c-.6.5-1.4.7-2.3.7zm-1.3-2.3c.3.3.8.4 1.3.4s1-.1 1.3-.4l6.1-4.7c.3-.3.5-.6.6-1v-.8c0-.1 0-.3-.1-.4-.1-.1-.2-.2-.4-.2-2.5-.3-5-.5-7.5-.5s-5 .2-7.5.5c-.1 0-.2.1-.3.2-.2.1-.2.3-.2.4v.9c.1.3.3.6.6 1l6.1 4.6z"></path></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ inputWithIcon() }</code></pre>
+        <script>
+            this.inputWithIcon = function(){
+                return '<div class="input-group input-group-icon">\n'+
+                        '    <input class="input input-m" type="text" placeholder="...">\n'+
+                        '    <div class="input-icon">\n'+
+                        '        <svg class="input-svg">...</svg>\n'+
+                        '    </div>\n'+
+                        '</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Disabled input</h4>
+    <p class="fontSize-16 mb-l">Disabled inputs recieve an <span class="text-code">disabled</span> attribute.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="p-m">
+                    <input class="input input-m" type="text" placeholder="Placeholder text" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ disabledInput() }</code></pre>
+        <script>
+            this.disabledInput = function(){
+                return '<input class="input input-m" type="text" disabled>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Input with context</h4>
+    <p class="fontSize-16 mb-l">Sometimes there might be the need for pre-set context to inputs, for example when requesting a website — it should always start with <span class="text-code">http://</span> or just <span class="text-code">www</span>.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="p-m">
+                    <div class="mb-m">
+                        <div class="input-group">
+                            <div class="input-context-m">http://</div>
+                            <input class="input input-m" type="text" placeholder="Enter something">
+                        </div>
+                    </div>
+                    <div class="mb-m">
+                        <div class="input-group">
+                            <input class="input input-m" type="text" placeholder="Enter something">
+                            <div class="input-context-m">@yuap.ru</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="input-group">
+                            <div class="input-context-m">http://</div>
+                            <input class="input input-m" type="text" placeholder="Enter something">
+                            <div class="input-context-m">@yuap.ru</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ inputWithContext() }</code></pre>
+        <script>
+            this.inputWithContext = function(){
+                return '<div class="input-group">\n'+
+                        '    <input class="input input-m" type="text">\n'+
+                        '    <div class="input-context-m">@yuap.ru</div>\n'+
+                        '</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Textarea</h4>
+    <p class="fontSize-16 mb-l">Тextareas come in four sizes which can be applied with <span class="text-code">.textarea-xl</span>, <span class="text-code">.textarea-l</span>, <span class="text-code">.textarea-m</span> and <span class="text-code">.textarea-s</span> on the <span class="text-code">.textarea</span> component itself.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="p-m">
+                    <textarea class="textarea textarea-m" placeholder="Write a comment..."></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ textarea() }</code></pre>
+        <script>
+            this.textarea = function(){
+                return '<textarea class="textarea textarea-m"></textarea>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Textarea with icon</h4>
+    <p class="fontSize-16 mb-l">Textareas with icons are wrapped in a parent component <span class="text-code">.input-group-icon</span> which has to have the textarea size applied to with an additional class. For example, <span class="text-code">.textarea-m</span> will have a parent element with a class .uiIcon--m. The icon has to be placed straight after the input and should be an inline SVG.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="p-m">
+                    <div class="input-group input-group-icon">
+                        <textarea class="textarea textarea-m" placeholder="Write a comment..."></textarea>
+                        <div class="input-icon">
+                            <svg class="input-svg" viewBox="3 -3 24 24"><path class="input-svg-color" d="M15 11.9c-.9 0-1.7-.2-2.3-.7l-5.7-4.4v8.1c0 .1 0 .3.1.4.1.1.2.2.3.2 2.5.4 5 .5 7.5.5s5-.2 7.5-.5c.1 0 .3-.1.4-.2.2-.1.2-.3.2-.4v-8.1l-5.7 4.4c-.6.5-1.4.7-2.3.7zm-1.3-2.3c.3.3.8.4 1.3.4s1-.1 1.3-.4l6.1-4.7c.3-.3.5-.6.6-1v-.8c0-.1 0-.3-.1-.4-.1-.1-.2-.2-.4-.2-2.5-.3-5-.5-7.5-.5s-5 .2-7.5.5c-.1 0-.2.1-.3.2-.2.1-.2.3-.2.4v.9c.1.3.3.6.6 1l6.1 4.6z"></path></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ textareaWithIcon() }</code></pre>
+        <script>
+        this.textareaWithIcon = function(){
+            return '<div class="input-group input-group-icon">\n'+
+                    '    <input class="textarea textarea-m" type="text" placeholder="..."></textarea>\n'+
+                    '    <div class="input-icon">\n'+
+                    '        <svg class="input-svg">...</svg>\n'+
+                    '    </div>\n'+
+                    '</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Input rounded</h4>
+    <p class="fontSize-16 mb-l">Input fields come in four sizes which can be applied with <span class="text-code">.input-xl</span>, <span class="text-code">.input-l</span>, <span class="text-code">.input-m</span> and <span class="text-code">.input-s</span> on the <span class="text-code">.input</span> component itself.</p>
+
+    <div class="rows borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-12 p-m text-center borderStyle-solid borderColor-smoke d-borderRightWidth-1 borderBottomWidth-1">
+                <div class="flex-centered h60 mt-xs mb-s plr-l md-plr-m xs-plr-s">
+                    <input class="input input-xl input-rounded" type="text" placeholder="Placeholder text">
+                </div>
+                <p class="lineHeight-s fontSize-14 fontWeight-3 c-grayLight">Extra Large Input</p>
+            </div>
+            <div class="col-md-12 p-m text-center borderStyle-solid borderColor-smoke borderBottomWidth-1">
+                <div class="flex-centered h60 mt-xs mb-s plr-l md-plr-m xs-plr-s">
+                    <input class="input input-l input-rounded" type="text" placeholder="Placeholder text">
+                </div>
+                <p class="lineHeight-s fontSize-14 fontWeight-3 c-grayLight">Large Input</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 p-m text-center borderStyle-solid borderColor-smoke d-borderRightWidth-1 xs-borderBottomWidth-1">
+                <div class="flex-centered h60 mt-xs mb-s plr-xl md-plr-l xs-plr-m">
+                    <input class="input input-m input-rounded" type="text" placeholder="Placeholder text">
+                </div>
+                <p class="lineHeight-s fontSize-14 fontWeight-3 c-grayLight">Medium Input</p>
+            </div>
+            <div class="col-md-12 p-m text-center">
+                <div class="flex-centered h60 mt-xs mb-s plr-xl md-plr-l xs-plr-m">
+                    <input class="input input-s input-rounded" type="text" placeholder="Placeholder text">
+                </div>
+                <p class="lineHeight-s fontSize-14 fontWeight-3 c-grayLight">Small Input</p>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ inputRounded() }</code></pre>
+        <script>
+            this.inputRounded = function(){
+                return '<input class="input input-xl input-rounded" type="text">\n'+
+                '<input class="input input-l input-rounded" type="text">\n'+
+                '<input class="input input-m input-rounded" type="text">\n'+
+                '<input class="input input-s input-rounded" type="text">';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Select menu</h4>
+    <p class="fontSize-16 mb-l">Select menus come in fours sizes which are applied with <span class="text-code">.select-xl</span>, <span class="text-code">.select-l</span>, <span class="text-code">.select-m</span> and <span class="text-code">.select-s</span> on the <span class="text-code">.select</span> wrapper component.</p>
+
+    <div class="overflow-hidden borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-12 p-m text-center borderStyle-solid borderColor-smoke borderRightWidth-1 borderBottomWidth-1">
+                <div class="flex-centered h60 mt-xs mb-s plr-l md-plr-m xs-plr-s">
+                    <div class="select select-xl">
+                        <select>
+                            <option>Placeholder text</option>
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                            <option>Option 4</option>
+                            <option>Option 5</option>
+                        </select>
+                    </div>
+                </div>
+                <p class="lineHeight-s fontSize-14 fontWeight-3 c-grayLight">Extra Large Select Menu</p>
+            </div>
+            <div class="col-md-12 p-m text-center borderStyle-solid borderColor-smoke borderBottomWidth-1">
+                <div class="flex-centered h60 mt-xs mb-s plr-l md-plr-m xs-plr-s">
+                    <div class="select select-l">
+                        <select>
+                            <option>Placeholder text</option>
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                            <option>Option 4</option>
+                            <option>Option 5</option>
+                        </select>
+                    </div>
+                </div>
+                <p class="lineHeight-s fontSize-14 fontWeight-3 c-grayLight">Large Select Menu</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 p-m text-center borderStyle-solid borderColor-smoke borderRightWidth-1">
+                <div class="flex-centered h60 mt-xs mb-s plr-xl md-plr-l xs-plr-m">
+                    <div class="select select-m">
+                        <select>
+                            <option>Placeholder text</option>
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                            <option>Option 4</option>
+                            <option>Option 5</option>
+                        </select>
+                    </div>
+                </div>
+                <p class="lineHeight-s fontSize-14 fontWeight-3 c-grayLight">Medium Select Menu</p>
+            </div>
+            <div class="col-md-12 p-m text-center">
+                <div class="flex-centered h60 mt-xs mb-s plr-xl md-plr-l xs-plr-m">
+                    <div class="select select-s">
+                        <select>
+                            <option>Placeholder text</option>
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                            <option>Option 4</option>
+                            <option>Option 5</option>
+                        </select>
+                    </div>
+                </div>
+                <p class="lineHeight-s fontSize-14 fontWeight-3 c-grayLight">Small Select Menu</p>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ selectMenu() }</code></pre>
+        <script>
+            this.selectMenu = function(){
+                return '<div class="select select-m">\n'+
+                        '    <select></select>\n'+
+                        '</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Select rounded</h4>
+    <p class="fontSize-16 mb-l">Select menus come in fours sizes which are applied with <span class="text-code">.select-xl</span>, <span class="text-code">.select-l</span>, <span class="text-code">.select-m</span> and <span class="text-code">.select-s</span> on the <span class="text-code">.select</span> wrapper component.</p>
+
+    <div class="overflow-hidden borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-12 p-m text-center borderStyle-solid borderColor-smoke borderRightWidth-1 borderBottomWidth-1">
+                <div class="flex-centered h60 mt-xs mb-s plr-l md-plr-m xs-plr-s">
+                    <div class="select select-xl select-rounded">
+                        <select>
+                            <option>Placeholder text</option>
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                            <option>Option 4</option>
+                            <option>Option 5</option>
+                        </select>
+                    </div>
+                </div>
+                <p class="lineHeight-s fontSize-14 fontWeight-3 c-grayLight">Extra Large Select Menu</p>
+            </div>
+            <div class="col-md-12 p-m text-center borderStyle-solid borderColor-smoke borderBottomWidth-1">
+                <div class="flex-centered h60 mt-xs mb-s plr-l md-plr-m xs-plr-s">
+                    <div class="select select-l select-rounded">
+                        <select>
+                            <option>Placeholder text</option>
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                            <option>Option 4</option>
+                            <option>Option 5</option>
+                        </select>
+                    </div>
+                </div>
+                <p class="lineHeight-s fontSize-14 fontWeight-3 c-grayLight">Large Select Menu</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 p-m text-center borderStyle-solid borderColor-smoke borderRightWidth-1">
+                <div class="flex-centered h60 mt-xs mb-s plr-xl md-plr-l xs-plr-m">
+                    <div class="select select-m select-rounded">
+                        <select>
+                            <option>Placeholder text</option>
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                            <option>Option 4</option>
+                            <option>Option 5</option>
+                        </select>
+                    </div>
+                </div>
+                <p class="lineHeight-s fontSize-14 fontWeight-3 c-grayLight">Medium Select Menu</p>
+            </div>
+            <div class="col-md-12 p-m text-center">
+                <div class="flex-centered h60 mt-xs mb-s plr-xl md-plr-l xs-plr-m">
+                    <div class="select select-s select-rounded">
+                        <select>
+                            <option>Placeholder text</option>
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                            <option>Option 4</option>
+                            <option>Option 5</option>
+                        </select>
+                    </div>
+                </div>
+                <p class="lineHeight-s fontSize-14 fontWeight-3 c-grayLight">Small Select Menu</p>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ selectRounded() }</code></pre>
+        <script>
+            this.selectRounded = function(){
+                return '<div class="select select-m select-rounded">\n'+
+                        '    <select></select>\n'+
+                        '</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Checkbox</h4>
+    <p class="fontSize-16 mb-l">Checkboxes come in two sizes which are applied with <span class="text-code">.checkbox</span> and <span class="text-code">.checkbox.small</span>. Original implementation from WTF, forms? by @mdo. Check this custom checkboxCheck this custom checkbox.</p>
+
+    <div class="overflow-hidden borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-12 d-borderRightWidth-1 xs-borderBottomWidth-1 borderStyle-solid borderColor-smoke">
+                <div class="p-m xs-plr0 text-center">
+                    <div class="flex-centered h60">
+                        <label class="checkbox">
+                            <input type="checkbox">
+                            <span class="checkbox-control"></span>
+                            <span class="fontWeight-3 fontSize-16">Check this custom checkbox</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="p-m xs-plr0 text-center">
+                    <div class="flex-centered h60">
+                        <label class="checkbox small">
+                            <input type="checkbox">
+                            <span class="checkbox-control"></span>
+                            <span class="fontWeight-3 fontSize-14">Check this custom checkbox</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ checkbox() }</code></pre>
+        <script>
+            this.checkbox = function(){
+                return '<label class="checkbox">\n'+
+                        '    <input type="checkbox" />\n'+
+                        '    <span class="checkbox-control"></span>\n'+
+                        '    Check this custom checkbox\n'+
+                        '</label>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Switcher</h4>
+    <p class="fontSize-16 mb-l">Checkboxes come in two sizes which are applied with .form-control--m and .form-control--s on the .form-control wrapper element. Original implementation from WTF, forms? by @mdo. Check this custom checkboxCheck this custom checkbox.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-xs-12 borderRightWidth-1 borderStyle-solid borderColor-smoke">
+                <div class="p-m text-center">
+                    <div class="flex-centered h60">
+                        <ui-switcher value="true"></ui-switcher>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="p-m text-center">
+                    <div class="flex-centered h60">
+                        <ui-switcher value="true" small></ui-switcher>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ switcher() }</code></pre>
+        <script>
+            this.switcher = function(){
+                return '<input type="checkbox" class="switcher" checked="checked">';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Switcher green</h4>
+    <p class="fontSize-16 mb-l">Checkboxes come in two sizes which are applied with .form-control--m and .form-control--s on the .form-control wrapper element. Original implementation from WTF, forms? by @mdo. Check this custom checkboxCheck this custom checkbox.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-xs-12 borderRightWidth-1 borderStyle-solid borderColor-smoke">
+                <div class="p-m text-center">
+                    <div class="flex-centered h60">
+                        <ui-switcher value="true" color="green"></ui-switcher>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="p-m text-center">
+                    <div class="flex-centered h60">
+                        <ui-switcher value="true" color="green" small></ui-switcher>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ switcherColors() }</code></pre>
+        <script>
+            this.switcherColors = function(){
+                return '<input type="checkbox" class="switcher green" checked="checked">';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Switcher disabled</h4>
+    <p class="fontSize-16 mb-l">Checkboxes come in two sizes which are applied with .form-control--m and .form-control--s on the .form-control wrapper element. Original implementation from WTF, forms? by @mdo. Check this custom checkboxCheck this custom checkbox.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-xs-12 borderRightWidth-1 borderStyle-solid borderColor-smoke">
+                <div class="p-m text-center">
+                    <div class="flex-centered h60">
+                        <ui-switcher value="false" disabled></ui-switcher>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="p-m text-center">
+                    <div class="flex-centered h60">
+                        <ui-switcher value="false" disabled small></ui-switcher>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ switcherDisabled() }</code></pre>
+        <script>
+            this.switcherDisabled = function(){
+                return '<input type="checkbox" class="switcher" checked="checked" disabled>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Switcher on dark background</h4>
+    <p class="fontSize-16 mb-l">This is the reversed version of ghost buttons which is meant to be used on dark backgrounds or reversed themes. The color options are specified with an additional class <span class="text-code">.btn-white-hover</span>.</p>
+
+    <div class="bg-blue borderRadiusTop-m">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="p-m">
+                    <div class="flex-centered h60">
+                        <ui-switcher color="white" value="true"></ui-switcher>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="p-m">
+                    <div class="flex-centered h60">
+                        <ui-switcher color="white" value="false" small></ui-switcher>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ whiteSwitcher() }</code></pre>
+        <script>
+            this.whiteSwitcher = function(){
+                return '<button class="btn btn-m btn-white-hover" type="button">Button</button>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Range slider</h4>
+    <p class="fontSize-16 mb-l">Range sliders come in one size and two styles applied with <span class="text-code">.range-primary</span>, <span class="text-code">.range-green</span> and <span class="text-code">.range-red</span>.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-xs-24 col-sm-12 borderRightWidth-1 borderStyle-solid borderColor-smoke">
+                <div class="p-m text-center">
+                    <div class="flex-centered w100p h40">
+                        <input type="range" class="range range-m range-primary" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-24 col-sm-12">
+                <div class="p-m text-center">
+                    <div class="flex-centered w100p h40">
+                        <input type="range" class="range range-m range-green" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ rangeSlider() }</code></pre>
+        <script>
+            this.rangeSlider = function(){
+                return '<input type="range" class="range range-m range-primary">\n'+
+                '<input type="range" class="range range-m range-green">';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Range slider sizes</h4>
+    <p class="fontSize-16 mb-l">Range sliders come in one size and two styles applied with <span class="text-code">.range-gray</span>, <span class="text-code">.range-green</span> and <span class="text-code">.range-red</span>.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-12 p-m text-center borderStyle-solid borderColor-smoke d-borderRightWidth-1 borderBottomWidth-1">
+                <div class="flex-centered h60 mt-xs mb-s plr-m xsm-plr-xs">
+                    <input type="range" class="range range-xl range-primary" />
+                </div>
+                <p class="lineHeight-s fontSize-14 fontWeight-3 c-grayLight">Extra Large Slider</p>
+            </div>
+            <div class="col-md-12 p-m text-center borderStyle-solid borderColor-smoke borderBottomWidth-1">
+                <div class="flex-centered h60 mt-xs mb-s plr-m xsm-plr-xs">
+                    <input type="range" class="range range-l range-primary" />
+                </div>
+                <p class="lineHeight-s fontSize-14 fontWeight-3 c-grayLight">Large Slider</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 p-m text-center borderStyle-solid borderColor-smoke d-borderRightWidth-1 xs-borderBottomWidth-1">
+                <div class="flex-centered h60 mt-xs mb-s plr-m xsm-plr-xs">
+                    <input type="range" class="range range-m range-primary" />
+                </div>
+                <p class="lineHeight-s fontSize-14 fontWeight-3 c-grayLight">Medium Slider</p>
+            </div>
+            <div class="col-md-12 p-m text-center">
+                <div class="flex-centered h60 mt-xs mb-s plr-m xsm-plr-xs">
+                    <input type="range" class="range range-s range-primary" />
+                </div>
+                <p class="lineHeight-s fontSize-14 fontWeight-3 c-grayLight">Small Slider</p>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ rangeSliderSizes() }</code></pre>
+        <script>
+            this.rangeSliderSizes = function(){
+                return '<input type="range" class="range range-xl range-primary">\n'+
+                '<input type="range" class="range range-l range-primary">\n'+
+                '<input type="range" class="range range-m range-primary">\n'+
+                '<input type="range" class="range range-s range-primary">';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Tags elements</h4>
+    <p class="fontSize-16 mb-l">Checkboxes come in two sizes which are applied with .form-control--m and .form-control--s on the .form-control wrapper element. Original implementation from WTF, forms? by @mdo. Check this custom checkboxCheck this custom checkbox.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-24">
+                <div class="p-m clear">
+                    <div class="tag xs-mb-s xs-mr-m">
+                        <span class="tag-text">Tag one</span>
+                    </div>
+                    <div class="tag xs-mb-s">
+                        <span class="tag-text">Tag two</span>
+                    </div>
+                    <div class="tag xs-mr-m">
+                        <span class="tag-text">Tag three</span>
+                    </div>
+                    <div class="tag add"></div>
+                    <div class="tag edit">
+                        <span class="tag-count">3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ tagsElements() }</code></pre>
+        <script>
+            this.tagsElements = function(){
+                return '<div class="tag">\n'+
+                    '    <span class="tag-text">Tag one</span>\n'+
+                    '</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Pagination</h4>
+    <p class="fontSize-16 mb-l">Checkboxes come in two sizes which are applied with .form-control--m and .form-control--s on the .form-control wrapper element. Original implementation from WTF, forms? by @mdo. Check this custom checkboxCheck this custom checkbox.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-24">
+                <div class="p-m clear xs-plr0">
+                    <ul class="pagination">
+                        <li class="pagination-btn prev disabled"></li>
+                        <li class="pagination-btn">1</li>
+                        <li class="pagination-btn">2</li>
+                        <li class="pagination-btn active">3</li>
+                        <li class="pagination-btn">4</li>
+                        <li class="pagination-btn">5</li>
+                        <li class="pagination-btn next"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ pagination() }</code></pre>
+        <script>
+            this.pagination = function(){
+                return '<ul class="pagination">\n'+
+                        '    <li class="pagination-btn prev"></li>\n'+
+                        '    <li class="pagination-btn">...</li>\n'+
+                        '    <li class="pagination-btn active">...</li>\n'+
+                        '    <li class="pagination-btn">...</li>\n'+
+                        '    <li class="pagination-btn next"></li>\n'+
+                        '</ul>';
+            };
+        </script>
+    </div>
+
+<script>
+
+    this.on("mount", function(){
+        $$('pre > code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+
+</script>
+
+</components-form-elements>

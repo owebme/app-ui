@@ -1,0 +1,75 @@
+.pagination {
+    @extend .flex-centered;
+    @extend .inline;
+    @extend .userSelect-none;
+}
+.pagination-btn {
+    @extend .pos-rel;
+    @extend .display-inlineBlock;
+    @extend .c-blue;
+    @extend .outline-none;
+    @extend .cursor-pointer;
+    @extend .text-center;
+    @extend .borderRadius-circle;
+    @extend .w35;
+    @extend .h35;
+    font-size:15px;
+    line-height:35px;
+    margin:0 2px;
+
+    &.prev,
+    &.next {
+        @extend .flex-centered;
+        @extend .opacity-80;
+        transition:transform 0.2s $cubic215, opacity 0.2s $cubic215;
+
+        &:active:not(.disabled) {
+            transform:translate3d(0, 1px, 0) scale(0.8);
+        }
+        &:hover {
+            @extend .opacity-100;
+        }
+        a {
+            @extend .display-none;
+        }
+        &.disabled,
+        &.disabled:hover {
+            @extend .opacity-60;
+        }
+    }
+    &.prev:after,
+    &.next:after {
+        @extend .content-empty;
+        @extend .display-block;
+        width:24px;
+        height:24px;
+        margin-top:1px;
+    }
+    &.prev:after {
+        @include ui-icon(arrowLeft);
+
+        &.disabled {
+            @include ui-icon(arrowLeft_gray);
+        }
+    }
+    &.next:after {
+        @include ui-icon(arrowRight);
+
+        &.disabled {
+            @include ui-icon(arrowRight_gray);
+        }
+    }
+    &.active {
+        @extend .c-white;
+        @extend .fontSize-16;
+        @extend .lineHeight-xl;
+        @extend .bg-blue;
+    }
+    &.disabled {
+        @extend .cursor-default;
+    }
+    &:hover:not(.disabled, .active) {
+        @extend .c-blue;
+        @extend .fontWeight-bold;
+    }
+}

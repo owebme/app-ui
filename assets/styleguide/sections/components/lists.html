@@ -1,0 +1,69 @@
+<components-lists>
+
+    <h2 class="mb-xl">Lists</h2>
+
+    <h4 class="mb-xxs">Ordered list</h4>
+    <p class="fontSize-16 mb-l">Use <span class="text-code">&lt;ol&gt;</span> with <span class="text-code">.list-order</span> when the list order is relevant.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m">
+            <ol class="list list-order c-blackLight mtb-xs lineHeight-m">
+                <li each={ item, i in list } no-reorder>
+                    <span if={ i == 0 || i == 3 || i == 6 || i == 9 }>This is a list item</span>
+                    <span if={ i == 1 || i == 4 || i == 7 }>This is another list item</span>
+                    <span if={ i == 2 || i == 5 || i == 8 }>Yep, another list item</span>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ orderedList() }</code></pre>
+        <script>
+            this.list = new Array(10);
+            this.orderedList = function(){
+                return '<ol class="list list-order">\n'+
+                        '    <li>...</li>\n'+
+                        '    <li>...</li>\n'+
+                        '</ol>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Unordered list</h4>
+    <p class="fontSize-16 mb-l">Use <span class="text-code">&lt;ul&gt;</span> with <span class="text-code">.list-unorder</span> when the list order is irrelevant.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m">
+            <ol class="list list-unorder c-blackLight mtb-xs lineHeight-m">
+                <li each={ item, i in list } no-reorder>
+                    <span if={ i == 0 || i == 3 || i == 6 || i == 9 }>This is a list item</span>
+                    <span if={ i == 1 || i == 4 || i == 7 }>This is another list item</span>
+                    <span if={ i == 2 || i == 5 || i == 8 }>Yep, another list item</span>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1">
+        <pre><code class="hljs">{ unorderedList() }</code></pre>
+        <script>
+            this.list = new Array(10);
+            this.unorderedList = function(){
+                return '<ol class="list list-unorder">\n'+
+                        '    <li>...</li>\n'+
+                        '    <li>...</li>\n'+
+                        '</ol>';
+            };
+        </script>
+    </div>
+
+<script>
+
+    this.on("mount", function(){
+        $$('pre > code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+
+</script>
+
+</components-lists>

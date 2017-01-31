@@ -1,0 +1,180 @@
+<components-links>
+
+    <h2 class="mb-xl">Links</h2>
+
+    <h4 class="mb-xxs">Blue link</h4>
+    <p class="fontSize-16 mb-l">This is the default, most common link style.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m">
+            <a class="link link-primary link-underline">Default blue link</a>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ blueLinks() }</code></pre>
+        <script>
+            this.blueLinks = function(){
+                return '<a class="link link-primary link-underline" href="#">...</a>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Gray link</h4>
+    <p class="fontSize-16 mb-l">For links that have to match the main body text. To be used on light backgrounds.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m">
+            <a class="link link-gray link-underline">Gray link</a>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ grayLinks() }</code></pre>
+        <script>
+            this.grayLinks = function(){
+                return '<a class="link link-gray link-underline" href="#">...</a>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">White link</h4>
+    <p class="fontSize-16 mb-l">For subtle or infrequently used links. To be used on dark backgrounds.</p>
+
+    <div class="bg-blue borderRadiusTop-m">
+        <div class="p-m">
+            <a class="link link-white">White link</a>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ whiteLink() }</code></pre>
+        <script>
+            this.whiteLink = function(){
+                return '<a class="link link-white" href="#">...</a>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Gray links hover</h4>
+    <p class="fontSize-16 mb-l">Some links need a visual warning to prevent harmful, unintentional actions.</p>
+
+    <div class="hidden-xs borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m">
+            <div class="display-inlineBlock mr-m">
+                <a class="link link-primary-hover link-underline">Link primary</a>
+            </div>
+            <div class="display-inlineBlock mr-m">
+                <a class="link link-success-hover link-underline">Link success</a>
+            </div>
+            <div class="display-inlineBlock mr-m">
+                <a class="link link-danger-hover link-underline">Link danger</a>
+            </div>
+            <div class="display-inlineBlock mr-m">
+                <a class="link link-warning-hover link-underline">Link warning</a>
+            </div>
+        </div>
+    </div>
+    <div class="visible-xs rows borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m text-center">
+        <div class="row borderStyle-solid borderBottomWidth-1 borderColor-smoke">
+            <div class="col-xs-12 borderStyle-solid borderRightWidth-1 borderColor-smoke">
+                <div class="display-inlineBlock ptb-l">
+                    <a class="link link-primary-hover link-underline">Link primary</a>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="display-inlineBlock ptb-l">
+                    <a class="link link-success-hover link-underline">Link success</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 borderStyle-solid borderRightWidth-1 borderColor-smoke">
+                <div class="display-inlineBlock ptb-l">
+                    <a class="link link-danger-hover link-underline">Link danger</a>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="display-inlineBlock ptb-l">
+                    <a class="link link-warning-hover link-underline">Link warning</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ linksHover() }</code></pre>
+        <script>
+            this.linksHover = function(){
+                return '<a class="link link-primary-hover link-underline" href="#">...</a>\n'+
+                        '<a class="link link-success-hover link-underline" href="#">...</a>\n'+
+                        '<a class="link link-danger-hover link-underline" href="#">...</a>\n'+
+                        '<a class="link link-warning-hover link-underline" href="#">...</a>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Colourful links</h4>
+    <p class="fontSize-16 mb-l">Colourful and friendly links used on the blog to differenciate categories.</p>
+
+    <div class="hidden-xs borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m">
+            <div class="display-inlineBlock mr-m">
+                <a class="link link-primary link-underline">Link primary</a>
+            </div>
+            <div class="display-inlineBlock mr-m">
+                <a class="link link-success link-underline">Link success</a>
+            </div>
+            <div class="display-inlineBlock mr-m">
+                <a class="link link-danger link-underline">Link danger</a>
+            </div>
+            <div class="display-inlineBlock mr-m">
+                <a class="link link-warning link-underline">Link warning</a>
+            </div>
+        </div>
+    </div>
+    <div class="visible-xs rows borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m text-center">
+        <div class="row borderStyle-solid borderBottomWidth-1 borderColor-smoke">
+            <div class="col-xs-12 borderStyle-solid borderRightWidth-1 borderColor-smoke">
+                <div class="display-inlineBlock ptb-l">
+                    <a class="link link-primary link-underline">Link primary</a>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="display-inlineBlock ptb-l">
+                    <a class="link link-success link-underline">Link success</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 borderStyle-solid borderRightWidth-1 borderColor-smoke">
+                <div class="display-inlineBlock ptb-l">
+                    <a class="link link-danger link-underline">Link danger</a>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="display-inlineBlock ptb-l">
+                    <a class="link link-warning link-underline">Link warning</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ colourfulLinks() }</code></pre>
+        <script>
+            this.colourfulLinks = function(){
+                return '<a class="link link-primary link-underline" href="#">...</a>\n'+
+                        '<a class="link link-success link-underline" href="#">...</a>\n'+
+                        '<a class="link link-danger link-underline" href="#">...</a>\n'+
+                        '<a class="link link-warning link-underline" href="#">...</a>';
+            };
+        </script>
+    </div>
+
+<script>
+
+    this.on("mount", function(){
+        $$('pre > code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+
+</script>
+
+</components-links>

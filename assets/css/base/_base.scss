@@ -1,0 +1,91 @@
+$roboto: "Roboto", Helvetica Neue, Helvetica, Arial, sans-serif;
+$arial: "Arial", sans-serif;
+$default: -apple-system,BlinkMacSystemFont,Roboto,Open Sans,Helvetica Neue,sans-serif;
+$helvetica: "HelveticaNeue", sans-serif;
+
+$w1600: 1600px;
+$w1200: 1200px;
+$w1024: 1024px;
+$w992: 992px;
+$w991: 991px;
+$w768: 768px;
+$w767: 767px;
+$w480: 480px;
+$w400: 400px;
+$w320: 320px;
+
+$black: #1b1b1b;
+$blackLight: #26272d;
+$blackDark: #070e19;
+$link: #2a5885;
+$linkDark: #285473;
+$white: #ffffff;
+$gray: #828282;
+$grayDark: #666666;
+$grayLight: #939393;
+$grayLighten: #b3b3b3;
+$smoke: #e8edf4;
+$smokeLight: #edeef0;
+$smokeDark: #dae1e8;
+$smokeDarken: #d3d9de;
+$smokeBorder: #c9d7df;
+$snow: #fafbfc;
+$snowDark: #f0f2f4;
+$blue: #507299;
+$blueLight: #577ca1;
+$blueLighten: #7293B6;
+$blueDark: #42648b;
+$blueDarken: #305075;
+$primary: #5e81a8;
+$water: #d4e7fa;
+$waterLight: #e5ebf1;
+$waterDark: #6590C7;
+$yellow: #F5AF36;
+$yellowDark: darken(#F5AF36,9%);
+$brown: #c1a16b;
+$red: #E57373;
+$redDark: darken(#E57373,9%);
+$orange: #ff734c;
+$orangeDark: darken(#ff734c,9%);
+$violet: #BA68C8;
+$violetDark: darken(#BA68C8,9%);
+$green: #78af7a;
+$greenLight: #8ac176;
+$greenDark: darken(#78af7a,9%);
+
+
+$cubic215: cubic-bezier(.215,.61,.355,1);
+$cubic214: cubic-bezier(.214,.197,.266,1);
+$cubic57: cubic-bezier(.57,.06,.05,.95);
+$cubic55: cubic-bezier(.55,0,.1,1);
+$cubic645: cubic-bezier(.645,.045,.355,1);
+$cubic34: cubic-bezier(.34,.1,.34,1);
+$cubic25: cubic-bezier(.25,.46,.45,.94);
+$cubic2501: cubic-bezier(.25,.1,.25,1);
+$cubic22: cubic-bezier(.22,.44,0,1);
+$cubic28: cubic-bezier(.28,.11,.32,1);
+$cubic42: cubic-bezier(.42,0,.05,1);
+$cubic345: cubic-bezier(.345,.000,.050,.995);
+$cubic089: cubic-bezier(0,.89,.44,1);
+$cubic075: cubic-bezier(.075,.82,.165,1);
+
+$cubic145: cubic-bezier(.145,.82,.34,1.015);
+
+// .pushright, .pushleft
+$cubic272: cubic-bezier(.272,.224,.265,.975);
+// .pushleft.out, .pushleft.in {animation-duration: 420ms;}
+// translateX(-30%)
+
+$cubic205: cubic-bezier(.205,.735,.635,1.01);
+$bounce: cubic-bezier(.175,.885,.32,1.275);
+$bounceForce: cubic-bezier(.3,0,0,1.3);
+$bounceSoft: cubic-bezier(.175,.885,.32,1.1125);
+$bounceSofter: cubic-bezier(.175,.885,.32,1.05);
+$cubic68: cubic-bezier(.68,-.55,.265,1.55);
+
+$cubic19: cubic-bezier(.19,1,.22,1);
+$cubic34b: cubic-bezier(.34,.61,.7,1);
+$cubic23: cubic-bezier(.23,1,.32,1);
+$cubic40: cubic-bezier(.4,0,.22,1);
+$cubic32: cubic-bezier(.32,.07,.41,1);
+$cubic60: cubic-bezier(.6,0,.48,1);

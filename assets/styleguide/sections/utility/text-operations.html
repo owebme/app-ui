@@ -1,0 +1,32 @@
+<utility-text-operations>
+
+    <h2 class="mb-xl">Text operations</h2>
+
+    <h4 class="mb-xxs">Truncate text</h4>
+    <p class="fontSize-16 mb-l">When text overflows its container, truncate the text and append 3 dots.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m c-blackLight">
+            <p class="text-truncate">This text overflows its parent element and therefore will be truncated and three dots will be appended. This text overflows its parent element and therefore will be truncated and three dots will be appended.</p>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ truncateText() }</code></pre>
+        <script>
+            this.truncateText = function(){
+                return '<p class="text-truncate">...</p>';
+            };
+        </script>
+    </div>
+
+<script>
+
+    this.on("mount", function(){
+        $$('pre > code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+
+</script>
+
+</utility-text-operations>

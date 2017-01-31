@@ -1,0 +1,175 @@
+.switcher {
+    @include accelerate();
+    @extend .pos-rel;
+    @extend .display-inlineBlock;
+    @extend .text-left;
+    @extend .userSelect-none;
+    @extend .w60;
+    @extend .overflow-hidden;
+    @extend .cursor-pointer;
+    border-radius:30px;
+    -webkit-mask:url("/assets/images/mask.png") 0 0 no-repeat;
+    -webkit-mask-size:60px 28px;
+    mask:url("/assets/images/mask.png") 0 0 no-repeat;
+    box-shadow:0 0 0 2px $smoke;
+
+    &.disabled {
+        @extend .cursor-default;
+        @extend .pointerEvents-none;
+
+        .switch-label {
+            background:$white;
+            @extend .opacity-60;
+            @extend .boxShadow-none;
+        }
+    }
+    &.disabled,
+    &:not([active="true"]){
+        .switch-left,
+        .switch-right {
+            @extend .bg-smoke;
+            @extend .c-grayDark;
+        }
+    }
+    &[active="true"] > .switch {
+        @extend .transform-default;
+    }
+    .m-no-touch &[active="true"]:hover .switch-label {
+        margin:3px -19px;
+        width:26px;
+    }
+    .m-no-touch &:hover .switch-label {
+        margin:3px -15px;
+        width:26px;
+    }
+    &.green {
+        .switch-left,
+        .switch-right {
+            @extend .bg-green;
+        }
+    }
+    &.white {
+        -webkit-mask:none;
+        box-shadow:0 0 0 1px rgba($white,.3);
+
+        .switch-left,
+        .switch-right {
+            @extend .bg-none;
+        }
+        &:not([active="true"]){
+            .switch-left,
+            .switch-right {
+                @extend .bg-none;
+                @extend .c-white;
+            }
+        }
+        &.disabled {
+            .switch-label {
+                @extend .opacity-50;
+            }
+            .switch-left,
+            .switch-right {
+                @extend .opacity-70;
+            }
+        }
+    }
+    &.small {
+        width:48px;
+
+        &[active="true"] > .switch {
+            @extend .transform-default;
+        }
+        .switch {
+            transform:translate3d(-26px, 0, 0);
+
+            &-label {
+                width:16px;
+                height:16px;
+                margin:3px -21px;
+            }
+            &-left,
+            &-right {
+                @extend .fontFamily-default;
+                font-size:10px;
+                height:22px;
+                text-indent:-17px;
+
+                .d-no-macOS & {
+                    padding-top:3px;
+                }
+            }
+            &-right {
+                text-indent:-33px;
+            }
+        }
+        .m-no-touch &[active="true"]:hover .switch-label {
+            margin:3px -24px;
+            width:19px;
+        }
+        .m-no-touch &:hover .switch-label {
+            margin:3px -21px;
+            width:19px;
+        }
+    }
+}
+.switch {
+    @include accelerate();
+    @extend .pos-rel;
+    @extend .w100;
+    @extend .fontFamily-helvetica;
+    will-change:transform;
+    transition:transform 0.25s ease-out;
+    transform:translate3d(-32px, 0, 0);
+
+    &-left,
+    &-right {
+        will-change:color, background-color;
+        background-color:$primary;
+        transition:color .08s, background-color .08s;
+    }
+    &-label {
+        @include accelerate();
+        @extend .pos-rel;
+        @extend .bg-white;
+        @extend .float-left;
+        @extend .vAlign-middle;
+        @extend .p0;
+        @extend .cursor-pointer;
+        background:linear-gradient(to bottom, white 0%, #f1f1f2 100%);
+        background-size:150% 150%;
+        box-shadow:0 1px 1px #FFFFFF inset, 0 1px 1px rgba(0, 0, 0, 0.25);
+        width:22px;
+        height:22px;
+        margin:3px -15px;
+        border-radius:12px;
+        will-change:margin, width;
+        transition:margin 0.25s ease-out, width 0.25s ease-out;
+        z-index:2;
+    }
+    &-input {
+        @extend .display-none;
+    }
+    &-left,
+    &-right {
+        @extend .flex-centered;
+        @extend .pos-rel;
+        @extend .float-left;
+        @extend .m0;
+        @extend .w50p;
+        @extend .text-center;
+        @extend .fontWeight-normal;
+        @extend .c-white;
+        font-size:11px;
+        height:28px;
+        text-indent:-10px;
+        z-index:1;
+    }
+    &-left {
+        border-left:1px solid transparent;
+        border-radius:30px 0 0 30px;
+    }
+    &-right {
+        border-radius:0 30px 30px 0;
+        text-indent:-3px;
+    }
+}

@@ -1,0 +1,93 @@
+.sidebar {
+    position:fixed;
+    top:0;
+    left:0;
+    height:100%;
+    @extend .d-borderRightWidth-1;
+    @extend .borderStyle-solid;
+    @extend .borderColor-smoke;
+    @extend .userSelect-none;
+    @extend .overflow-auto;
+    -webkit-overflow-scrolling:touch;
+
+    &__inner {
+        @extend .pb-xl;
+    }
+    &__header {
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        @extend .p-l;
+
+        &:before {
+            @extend .content-empty;
+            width:64px;
+            height:64px;
+            background:url(/assets/images/logotype.png);
+            // width:64px;
+            // height:36px;
+            // background:url(/assets/images/logotype.svg);
+            @extend .bg-cover;
+            @extend .mb-m;
+        }
+        &__title {
+            @extend .c-gray;
+            @extend .text-uppercase;
+            @extend .fontSize-xxs;
+            @extend .letterSpacing-xxl;
+        }
+        &__menu {
+            display:block;
+            @include ui-icon(menu, 28px, 28px);
+        }
+    }
+}
+
+@media screen and (max-width: $w767) {
+    .app {
+        .sidebar {
+            padding:0;
+            height:80px;
+            overflow:hidden;
+            z-index:1;
+
+            &.openMenu {
+                width:100%;
+                height:100%;
+            }
+            &__header {
+                display:flex;
+                flex-direction:row;
+                justify-content:center;
+                align-items:center;
+                position:fixed;
+                top:0;
+                left:0;
+                width:100%;
+                height:100%;
+                padding:0;
+                height:70px;
+                background-color:rgba(#fff,.97);
+                text-align:right;
+                box-shadow:0 1px 2px 0 rgba(31,45,61,.15);
+
+                &:before {
+                    display:none;
+                }
+                &__title {
+                    width:calc(100% - 80px);
+                    font-size:12px;
+                    text-align:left;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: $w320) {
+    .sidebar {
+        &__header {
+            height:64px;
+        }
+    }
+}

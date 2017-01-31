@@ -1,0 +1,90 @@
+<overview-code-guidelines>
+
+    <h2 class="mb-xl">Code guidelines</h2>
+
+    <div class="mb-xl">
+        <p class="fontSize-16 lineHeight-l c-gray mb-m">The majority of the styleguide is built using single-purpose classes. Single-purpose classes are CSS classes which declare a single value for a single style property, therefore performing a single purpose. The primary benefit here is that when you see a single-purpose class in HTML, you know exactly how it affects that markup but more importantly, you can change it without affecting any other views.</p>
+        <p class="fontSize-16 lineHeight-l c-gray mb-m">You can use these single-purpose CSS classes anywhere you wish and as often as you wish, whether that means inside a component or directly in a view template.</p>
+        <p class="fontSize-16 lineHeight-l c-gray">These single-purpose classes make up about 80% of the syleguide codebase. The rest is made up of a set of reusable utility classes for performing common tasks and inline styles, for non reusable, view specific styles.</p>
+    </div>
+
+    <div class="mb-xl">
+        <h4 class="mb-xxs">File naming</h4>
+        <p class="fontSize-16 mb-m">All folder names should be plural. All component filenames should be singular.</p>
+        <div class="code-preview">
+            <pre><code class="hljs">/* Do */
+@import 'button.scss';
+@import 'font-size.scss';
+
+/* Don't */
+@import 'buttons.scss';
+@import 'font-sizes.scss';</code></pre>
+        </div>
+    </div>
+
+    <div class="mb-xl">
+        <h4 class="mb-xxs">Class naming</h4>
+        <p class="fontSize-16 mb-m">Each of our CSS classes adhere to a strict naming convention. Once you take a few minutes to understand the naming convention, you will be able to guess any CSS class name easily.</p>
+        <div class="code-preview">
+            <pre><code class="hljs">/* stylePropertyName-valueName */
+.float-left           \{ float: left; \}
+.textAlign-center     \{ text-align: center; \}
+.verticalAlign-middle \{ vertical-align: middle; \}</code></pre>
+        </div>
+    </div>
+
+    <div class="mb-xl">
+        <h4 class="mb-xxs">Scales</h4>
+        <p class="fontSize-16 mb-m">Style properties which accept custom values often adhere to a scale. There are 3 types of scale: size scale, lightness scale and fixed scale.
+</p>
+        <div class="code-preview">
+            <pre><code class="hljs">/* Size scale */
+.fontSize-20   \{ font-size: 40px; \}
+.fontSize-18    \{ font-size: 32px; \}
+.fontSize-16    \{ font-size: 16px; \}
+.fontSize-14    \{ font-size: 14px; \}
+.fontSize-12   \{ font-size: 12px; \}
+
+/* Lightness scale */
+.color-blue-xd \{ color: ExtraDarkBlue; \}
+.color-blue-d  \{ color: DarkBlue; \}
+.color-blue    \{ color: blue; \}
+.color-blue-l  \{ color: LightBlue; \}
+.color-blue-xl \{ color: ExtraLightBlue; \}
+
+/* Fixed scale */
+.fontWeight-1  \{ font-weight: 100; \}
+.fontWeight-2  \{ font-weight: 200; \}
+.fontWeight-3  \{ font-weight: 300; \}
+.fontWeight-4  \{ font-weight: 400; \}
+.fontWeight-5  \{ font-weight: 500; \}
+.fontWeight-6  \{ font-weight: 600; \}
+.fontWeight-7  \{ font-weight: 700; \}
+.fontWeight-8  \{ font-weight: 800; \}
+.fontWeight-9  \{ font-weight: 900; \}</code></pre>
+        </div>
+    </div>
+
+    <div class="mb-xl">
+        <h4 class="mb-xxs">Responsive classes</h4>
+        <p class="fontSize-16 mb-m">Most classes have responsive variations. We have 4 responsive breakpoints, so there is a separate class for each breakpoint. These classes follow a simple size scale. To apply a breakpoint to a class, just prefix the class with <span class="text-code">.breakPointS-</span>, <span class="text-code">.breakPointM-</span>, <span class="text-code">.breakPointL-</span> or <span class="text-code">.breakPointXL-.</span></p>
+        <div class="code-preview">
+            <pre><code class="hljs">/* stylePropertyName-valueName */
+.breakPointS-float-left  \{ float: left; \}
+.breakPointM-float-left  \{ float: left; \}
+.breakPointL-float-left  \{ float: left; \}
+.breakPointXL-float-left \{ float: left; \}</code></pre>
+        </div>
+    </div>
+
+<script>
+
+    this.on("mount", function(){
+        $$('pre > code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+
+</script>
+
+</overview-code-guidelines>

@@ -1,0 +1,106 @@
+<components-grid>
+
+    <h2 class="mb-xl">Grid</h2>
+
+    <h4 class="mb-xxs">Page wrap</h4>
+    <p class="fontSize-16 mb-l">Page wrap is a wrapper for the whole page. There are 3 different widths, defined by an additional class <span class="text-code">.pageWrap-s</span>, <span class="text-code">.pageWrap-m</span>, <span class="text-code">.pageWrap-l</span>.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-24">
+                <div class="p-m">
+                    <div class="pageWrap pageWrap-s mb-m">
+                        <div class="p-xs bg-smoke borderRadius-s"></div>
+                    </div>
+                    <div class="pageWrap pageWrap-m">
+                        <div class="p-xs bg-smoke borderRadius-s"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ pageWrap() }</code></pre>
+        <script>
+            this.pageWrap = function(){
+                return '<div class="pageWrap pageWrap-s">...</div>\n'+
+                        '<div class="pageWrap pageWrap-m">...</div>\n'+
+                        '<div class="pageWrap pageWrap-l">...</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Basic grid</h4>
+    <p class="fontSize-16 mb-l">We use grids exclusively for layouts which require a number of columns of equal width. Grids can have 1-12 columns, specified by a class .grid--1, .grid--2, .grid--3, .grid--4, .grid--5or .grid--6. There are also two special case grids with uneven widths which can be initialized by using classes .grid--6-4 and .grid--7-3.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m">
+            <div class="row mb-m">
+                <div each={ item in new Array(1) } no-reorder class="col-xs-24">
+                    <div class="p-xs bg-smoke borderRadius-s"></div>
+                </div>
+            </div>
+            <div class="row mb-m">
+                <div each={ item in new Array(2) } no-reorder class="col-xs-12">
+                    <div class="p-xs bg-smoke borderRadius-s"></div>
+                </div>
+            </div>
+            <div class="row mb-m">
+                <div each={ item in new Array(3) } no-reorder class="col-xs-8">
+                    <div class="p-xs bg-smoke borderRadius-s"></div>
+                </div>
+            </div>
+            <div class="row mb-m">
+                <div each={ item in new Array(4) } no-reorder class="col-xs-6">
+                    <div class="p-xs bg-smoke borderRadius-s"></div>
+                </div>
+            </div>
+            <div class="row mb-m">
+                <div each={ item in new Array(6) } no-reorder class="col-xs-4">
+                    <div class="p-xs bg-smoke borderRadius-s"></div>
+                </div>
+            </div>
+            <div class="row mb-m xs-mb0">
+                <div each={ item in new Array(8) } no-reorder class="col-xs-3">
+                    <div class="p-xs bg-smoke borderRadius-s"></div>
+                </div>
+            </div>
+            <div class="hidden-xs row">
+                <div each={ item in new Array(12) } no-reorder class="col-xs-2">
+                    <div class="p-xs bg-smoke borderRadius-s"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1">
+        <pre><code class="hljs">{ basicGrid() }</code></pre>
+        <script>
+            this.basicGrid = function(){
+                return '<div class="row">\n'+
+                        '    <div class="col-md-24">\n'+
+                        '        ...\n'+
+                        '    </div>\n'+
+                        '</div>\n\n'+
+                        '<div class="row">\n'+
+                        '    <div class="col-md-12">\n'+
+                        '        ...\n'+
+                        '    </div>\n'+
+                        '    <div class="col-md-12">\n'+
+                        '        ...\n'+
+                        '    </div>\n'+
+                        '</div>';
+            };
+        </script>
+    </div>
+
+<script>
+
+    this.on("mount", function(){
+        $$('pre > code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+
+</script>
+
+</components-grid>

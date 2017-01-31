@@ -1,0 +1,49 @@
+<utility-center-elements>
+
+    <h2 class="mb-xl">Center Elements</h2>
+
+    <h4 class="mb-xxs">Horizontally center</h4>
+    <p class="fontSize-16 mb-l">Center an element horizontally. The element must have a width declared.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m">
+            <div class="centered bg-smoke borderRadius-m w100 h100"></div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ centered() }</code></pre>
+        <script>
+            this.centered = function(){
+                return '<div class="centered">...</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Vertically center</h4>
+    <p class="fontSize-16 mb-l">Center an element vertically. As the element increases or decreases in height, it will remain vertically centered inside its container.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m flex-centered c-blackLight" style="height:400px;">
+            <div style="width:200px;">Click and type to see how the text magically centers itself vertically in the parent container.</div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ flexCentered() }</code></pre>
+        <script>
+            this.flexCentered = function(){
+                return '<div class="flex-centered">...</div>';
+            };
+        </script>
+    </div>
+
+<script>
+
+    this.on("mount", function(){
+        $$('pre > code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+
+</script>
+
+</utility-center-elements>

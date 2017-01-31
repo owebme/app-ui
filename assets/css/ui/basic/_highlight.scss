@@ -1,0 +1,59 @@
+.code-preview {
+    background-color:#fbfbfc;
+    border:1px solid $smoke;
+    overflow:auto;
+    font-size:13px;
+    line-height:22px;
+    @extend .w100p;
+    @extend .p-m;
+    @extend .borderRadius-m;
+}
+code, kbd, pre, samp {
+    font-family:Menlo, Monaco, Courier, monospace;
+}
+pre {
+    overflow:auto;
+    word-break:normal;
+    white-space:nowrap;
+}
+code {
+	color:$gray;
+	white-space:pre-wrap;
+}
+.hljs {
+    display:block;
+    color:$gray;
+
+    &-comment {
+        color:$grayLighten;
+        font-style:italic;
+    }
+    &-addition,
+    &-keyword,
+    &-selector-tag,
+    &-attr,
+    &-attribute,
+    &-class .hljs-title,
+    &-template-variable,
+    &-type,
+    &-variable {
+        color:$greenDark;
+    }
+    &-doctag,
+    &-literal,
+    &-meta .hljs-meta-string,
+    &-number,
+    &-regexp,
+    &-string,
+    &-value {
+        color:$redDark;
+    }
+    &-class,
+    &-name,
+    &-section,
+    &-selector-class,
+    &-selector-id,
+    &-title {
+        color:$blackLight;
+    }
+}

@@ -1,0 +1,89 @@
+<utility-layout>
+
+    <h2 class="mb-xl">Layout</h2>
+
+    <h4 class="mb-xxs">Clearfix</h4>
+    <p class="fontSize-16 mb-l">When child elements are floated, their parent element will collapse. To expand the parent again, you must clear those floats with a clearfix. Open dev tools and remove the <span class="text-code">.clear</span> class from the parent to see how the layout collapses.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m">
+            <div class="clear">
+                <div class="bg-smoke borderRadius-m w100 h100 float-left"></div>
+                <div class="bg-smoke borderRadius-m w100 h100 float-right"></div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ clearfix() }</code></pre>
+        <script>
+            this.clearfix = function(){
+                return '<div class="clear">...</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Inline</h4>
+    <p class="fontSize-16 mb-l">Place multiple elements inline. If you need to space the elements apart, handle that with additional margin classes.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m">
+            <div class="inline mb-m">
+                <div class="bg-snowDark w100 h100 borderRadiusLeft-m"></div>
+                <div class="bg-smokeDark w100 h100"></div>
+                <div class="hidden-xs bg-grayLight w100 h100 borderRadiusRight-m"></div>
+            </div>
+            <div class="inline mb-m">
+                <div class="bg-snowDark w100 h100 borderRadius-m mr-m"></div>
+                <div class="bg-smokeDark w100 h100 borderRadius-m mr-m"></div>
+                <div class="hidden-xs bg-grayLight w100 h100 borderRadius-m mr-m"></div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ inline() }</code></pre>
+        <script>
+            this.inline = function(){
+                return '<div class="inline">...</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Positioning</h4>
+    <p class="fontSize-16 mb-l">Pin an element relative to its closet relative parent. Or fix an element relative to the viewport.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m">
+            <div class="pos-rel" style="height:300px;">
+                <div class="pos-tl bg-smoke borderRadius-m w100 h100"></div>
+                <div class="pos-tr bg-smoke borderRadius-m w100 h100"></div>
+                <div class="pos-bl bg-smoke borderRadius-m w100 h100"></div>
+                <div class="pos-br bg-smoke borderRadius-m w100 h100"></div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ positioning() }</code></pre>
+        <script>
+            this.positioning = function(){
+                return '<!-- Absolutely pin an element to its closest relative parent -->\n'+
+                        '<div class="pos-rel">\n'+
+                        '    <div class="pos-tl"></div>\n'+
+                        '    <div class="pos-tr"></div>\n'+
+                        '    <div class="pos-bl"></div>\n'+
+                        '    <div class="pos-br"></div>\n'+
+                        '</div>';
+            };
+        </script>
+    </div>
+
+<script>
+
+    this.on("mount", function(){
+        $$('pre > code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+
+</script>
+
+</utility-layout>

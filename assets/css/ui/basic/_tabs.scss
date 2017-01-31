@@ -1,0 +1,57 @@
+.tab {
+    @include accelerate();
+    @extend .pos-rel;
+    @extend .display-inlineBlock;
+    @extend .vAlign-middle;
+    @extend .fontFamily-default;
+    @extend .userSelect-none;
+    @extend .nowrap;
+    @extend .outline-none;
+    @extend .border-none;
+    @extend .cursor-pointer;
+    @extend .borderRadius-xxl;
+    @extend .link;
+    @extend .text-uppercase;
+    @extend .transition-default;
+    color:$gray;
+
+    &:after {
+        @extend .content-empty;
+        @extend .pos-bl;
+        @extend .w100p;
+        @extend .bg-blue;
+        height:3px;
+        transition:transform 0.15s ease-in-out;
+        transform:translate3d(0, 0, 0) scale3d(0, 0, 1);
+    }
+    &-active {
+        @extend .cursor-default;
+    }
+    &-active,
+    &:hover {
+        @extend .c-blue;
+
+        &:after {
+            transform:translate3d(0, 0, 0) scale3d(1.3, 1, 1);
+        }
+    }
+    &:not(.tab-active):active {
+        transform:translate3d(0, 2px, 0) scale(0.95);
+    }
+    &-xl {
+        font-size:16.5px;
+        padding-bottom:10px;
+    }
+    &-l {
+        font-size:15.5px;
+        padding-bottom:8px;
+    }
+    &-m {
+        font-size:14.5px;
+        padding-bottom:8px;
+    }
+    &-s {
+        font-size:13px;
+        padding-bottom:5px;
+    }
+}

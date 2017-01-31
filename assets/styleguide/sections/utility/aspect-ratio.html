@@ -1,0 +1,99 @@
+<utility-aspect-ratio>
+
+    <h2 class="mb-xl">Aspect Ratio</h2>
+
+    <h4 class="mb-xxs">Square aspect ratio</h4>
+    <p class="fontSize-16 mb-l">To be used with classes <span class="text-code">.aspectRatio-100</span> and inner class <span class="text-code">.aspectRatio-content</span>.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m">
+            <div class="aspectRatio-100 centered bg-smoke borderRadius-m" style="width:250px;">
+                <div class="aspecRatio-content"></div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ aspectRatio100() }</code></pre>
+        <script>
+            this.aspectRatio100 = function(){
+                return '<div class="aspectRatio-100">\n'+
+                        '    <div class="aspectRatio-content">...</div>\n'+
+                        '</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">75% aspect ratio</h4>
+    <p class="fontSize-16 mb-l">To be used with class <span class="text-code">.aspectRatio-75</span>.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m">
+            <div class="aspectRatio-75 centered bg-smoke borderRadius-m" style="width:250px;">
+                <div class="aspecRatio-content"></div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ aspectRatio75() }</code></pre>
+        <script>
+            this.aspectRatio75 = function(){
+                return '<div class="aspectRatio-75">\n'+
+                        '    <div class="aspectRatio-content">...</div>\n'+
+                        '</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">60% aspect ratio</h4>
+    <p class="fontSize-16 mb-l">To be used with class <span class="text-code">.aspectRatio-60</span>.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m">
+            <div class="aspectRatio-60 centered bg-smoke borderRadius-m" style="width:250px;">
+                <div class="aspecRatio-content"></div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ aspectRatio60() }</code></pre>
+        <script>
+            this.aspectRatio60 = function(){
+                return '<div class="aspectRatio-60">\n'+
+                        '    <div class="aspectRatio-content">...</div>\n'+
+                        '</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">16:9 aspect ratio</h4>
+    <p class="fontSize-16 mb-l">To be used with class <span class="text-code">.aspectRatio-169</span>.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m">
+            <div class="aspectRatio-169 centered bg-smoke borderRadius-m" style="width:250px;">
+                <div class="aspecRatio-content"></div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ aspectRatio169() }</code></pre>
+        <script>
+            this.aspectRatio169 = function(){
+                return '<div class="aspectRatio-169">\n'+
+                        '    <div class="aspectRatio-content">...</div>\n'+
+                        '</div>';
+            };
+        </script>
+    </div>
+
+<script>
+
+    this.on("mount", function(){
+        $$('pre > code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+
+</script>
+
+</utility-aspect-ratio>

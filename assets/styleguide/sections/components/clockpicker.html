@@ -1,0 +1,44 @@
+<components-clockpicker>
+
+    <h2 class="mb-xl">Clockpicker</h2>
+
+    <h4 class="mb-xxs">Change clock</h4>
+    <p class="fontSize-16 mb-l">Page wrap is a wrapper for the whole page. There are 3 different widths, defined by an additional class .pageWrap--s, .pageWrap--m, .pageWrap--l.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m" style="margin-bottom:340px">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="p-m">
+                    <div class="input-group input-group-icon">
+                        <input class="input input-m clockPicker" type="text" placeholder="Change clock" readonly="">
+                        <div class="input-icon">
+                            <svg class="input-svg input-svg-xs input-svg-active" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24">
+                                <path class="input-svg-color" d="M 12 0 C 5.373 0 0 5.373 0 12 C 0 18.627 5.373 24 12 24 C 18.627 24 24 18.627 24 12 C 24 5.373 18.627 0 12 0 z M 12 2 C 17.523 2 22 6.477 22 12 C 22 17.523 17.523 22 12 22 C 6.477 22 2 17.523 2 12 C 2 6.477 6.477 2 12 2 z M 10.9375 3.875 L 10.5 12.0625 L 10.59375 12.9375 L 16.75 18.375 L 17.71875 17.375 L 12.625 11.96875 L 12.1875 3.875 L 10.9375 3.875 z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+
+    var $ = this;
+
+    this.on("mount", function(){
+        $.clockpicker = $$(this.root).find(".clockPicker");
+        $.clockpicker.clockpicker({
+            parentEl: '.app',
+            donetext: 'Применить',
+            align: 'left'
+        });
+    });
+
+    this.on("unmount", function(){
+        $.clockpicker.clockpicker('remove');
+    });
+
+</script>
+
+</components-clockpicker>

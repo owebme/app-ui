@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,300,500,700&subset=cyrillic-ext,latin');
+@import 'fonts/HelveticaNeue/style';
+
+.fontFamily-helvetica {
+    font-family:$helvetica;
+}
+.fontFamily-roboto {
+    font-family:$roboto;
+}
+.fontFamily-default {
+    font-family:$default;
+}

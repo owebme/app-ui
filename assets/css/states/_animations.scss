@@ -1,0 +1,193 @@
+.anim {
+    opacity:0.0009;
+    @include accelerate();
+    @extend .willChange-tp;
+
+    &-scale {
+        transform:translate3d(0, 0, 0) scale(1.5);
+        transition-timing-function:$bounceSoft;
+        transition-duration:.7s;
+
+        &-soft {
+            transform:translate3d(0, 0, 0) scale(0.95);
+            transition-timing-function:$cubic32;
+            transition-duration:.7s;
+        }
+        &-zoom {
+            @extend .anim-scale;
+            transform:translate3d(0, 0, 0) scale(0.7);
+        }
+        &-ease {
+            transform:translate3d(0, 0, 0) scale(0.85);
+            transition-timing-function:$cubic345;
+            transition-duration:.4s;
+        }
+    }
+    &-fadeIn {
+        transition-timing-function:$cubic40;
+        transition-duration:.4s;
+    }
+    &-bt-ease {
+        transform:translate3d(0, 5vw, 0);
+        transition-timing-function:$cubic345;
+        transition-duration:.5s;
+    }
+    &-showLeft,
+    &-lr {
+        transform:translate3d(-2vw, 0, 0);
+        transition-timing-function:$bounce;
+        transition-duration:.7s;
+    }
+    &-showLeft-soft,
+    &-lr-soft {
+        transform:translate3d(-100px, 0, 0);
+        transition-timing-function:$cubic2501;
+        transition-duration:1s;
+    }
+    &-showRight,
+    &-rl {
+        transform:translate3d(2vw, 0, 0);
+        transition-timing-function:$bounce;
+        transition-duration:.7s;
+    }
+    &-showRight-soft,
+    &-rl-soft {
+        transform:translate3d(100px, 0, 0);
+        transition-timing-function:$cubic2501;
+        transition-duration:1s;
+    }
+    &-showUp,
+    &-tb {
+        transform:translate3d(0, -2vw, 0);
+        transition-timing-function:$bounce;
+        transition-duration:.7s;
+    }
+    &-showUp-soft,
+    &-tb-soft {
+        transform:translate3d(0, -100px, 0);
+        transition-timing-function:$cubic2501;
+        transition-duration:1s;
+    }
+    &-showDown,
+    &-bt {
+        transform:translate3d(0, 2vw, 0);
+        transition-timing-function:$bounce;
+        transition-duration:.7s;
+    }
+    &-showDown-soft,
+    &-bt-soft {
+        transform:translate3d(0, 100px, 0);
+        transition-timing-function:$cubic2501;
+        transition-duration:1s;
+    }
+    &-tb-full {
+        opacity:1;
+        transform:translate3d(0, -101%, 0);
+        transition-timing-function:$cubic40;
+        transition-duration:.5s;
+    }
+    &-bt-full {
+        opacity:1;
+        transform:translate3d(0, 101%, 0);
+        transition-timing-function:$cubic40;
+        transition-duration:.5s;
+    }
+    &-lr-full {
+        opacity:1;
+        transform:translate3d(-101%, 0, 0);
+        transition-timing-function:$cubic40;
+        transition-duration:.5s;
+    }
+    &-rl-full {
+        opacity:1;
+        transform:translate3d(101%, 0, 0);
+        transition-timing-function:$cubic40;
+        transition-duration:.5s;
+    }
+    &-showRight-rotate {
+        transform:translate3d(200%, 0, 0) rotate(-10deg);
+        transition-timing-function:$bounceSofter;
+        transition-duration:.5s;
+    }
+    @each $title, $time in (none: 0s, xs: .2s, s: .3s, m: .5s, l: .7s, xl: 1s){
+        &-duration-#{$title},
+        &[duration-hide="#{$title}"],
+        &[data-duration="#{$title}"] {
+            transition-duration:$time;
+        }
+    }
+    @each $title, $time in (none: 0s, xs: .2s, s: .4s, m: .6s, l: .8s, xl: 1s){
+        &-delay-#{$title},
+        &[delay-hide="#{$title}"],
+        &[data-delay="#{$title}"] {
+            transition-delay:$time;
+        }
+    }
+    @for $i from 1 through 5 {
+        &-group#{$i} {
+            @extend .anim;
+        }
+    }
+}
+@for $i from 1 through 5 {
+    .showAnim-group#{$i} {
+        .anim-group#{$i} {
+            @extend .animated;
+
+            &.anim-tb-full,
+            &.anim-bt-full,
+            &.anim-lr-full,
+            &.anim-rl-full {
+                transition-duration:.6s;
+                transition-timing-function:$cubic645;
+            }
+            @each $title, $time in (none: 0s, xs: .2s, s: .3s, m: .5s, l: .7s, xl: 1s){
+                &[duration-show="#{$title}"] {
+                    transition-duration:$time;
+                }
+            }
+            @each $title, $time in (none: 0s, xs: .2s, s: .4s, m: .6s, l: .8s, xl: 1s){
+                &[delay-show="#{$title}"] {
+                    transition-delay:$time;
+                }
+            }
+        }
+    }
+}
+.showAnim {
+    .anim-tb-full,
+    .anim-bt-full,
+    .anim-lr-full,
+    .anim-rl-full {
+        transition-duration:.6s;
+        transition-timing-function:$cubic645;
+    }
+    .anim:not(.anim-fadeIn) {
+        @extend .animated;
+    }
+    .anim-fadeIn {
+        @extend .opacity-100;
+    }
+    .anim {
+        @each $title, $time in (none: 0s, xs: .2s, s: .3s, m: .5s, l: .7s, xl: 1s){
+            &[duration-show="#{$title}"] {
+                transition-duration:$time;
+            }
+        }
+        @each $title, $time in (none: 0s, xs: .2s, s: .4s, m: .6s, l: .8s, xl: 1s){
+            &[delay-show="#{$title}"] {
+                transition-delay:$time;
+            }
+        }
+    }
+}
+.anim.animated,
+.animated,
+.notAnim .anim,
+.notAnim-scroll .anim-scroll {
+    @extend .opacity-100;
+    @extend .transform-default;
+}
+.animation-none {
+    animation:none;
+}

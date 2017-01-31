@@ -1,0 +1,115 @@
+<utility-flexbox>
+
+    <h2 class="mb-xl">Flexbox</h2>
+
+    <h4 class="mb-xxs">Row horizontally centered</h4>
+    <p class="fontSize-16 mb-l">Center an element horizontally. The element must have a width declared.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m flex-row-centered">
+            <div class="hidden-xs bg-smoke borderRadius-m w100 h100 mlr-l"></div>
+            <div class="hidden-xs bg-smoke borderRadius-m w100 h100 mlr-l"></div>
+            <div class="bg-smoke borderRadius-m w100 h100 mlr-l xs-mlr-s"></div>
+            <div class="bg-smoke borderRadius-m w100 h100 mlr-l xs-mlr-s"></div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ flexRowCentered() }</code></pre>
+        <script>
+            this.flexRowCentered = function(){
+                return '<div class="flex-row-centered">...</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Row between horizontally centered</h4>
+    <p class="fontSize-16 mb-l">Center an element horizontally. The element must have a width declared.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m flex-row-between-center">
+            <div class="hidden-xs bg-smoke borderRadius-m w100 h100"></div>
+            <div class="hidden-xs bg-smoke borderRadius-m w100 h100"></div>
+            <div class="bg-smoke borderRadius-m w100 h100"></div>
+            <div class="bg-smoke borderRadius-m w100 h100"></div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ flexRowBetweenCenter() }</code></pre>
+        <script>
+            this.flexRowBetweenCenter = function(){
+                return '<div class="flex-row-between-center">...</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Row stretch horizontally centered</h4>
+    <p class="fontSize-16 mb-l">Center an element horizontally. The element must have a width declared.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m flex-row-center-stretch" style="height:200px">
+            <div class="hidden-xs bg-smoke borderRadius-m w100 mlr-l"></div>
+            <div class="hidden-xs bg-smoke borderRadius-m w100 mlr-l"></div>
+            <div class="bg-smoke borderRadius-m w100 mlr-l xs-mlr-s"></div>
+            <div class="bg-smoke borderRadius-m w100 mlr-l xs-mlr-s"></div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ flexRowCenterStretch() }</code></pre>
+        <script>
+            this.flexRowCenterStretch = function(){
+                return '<div class="flex-row-center-stretch">...</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Row position top horizontally centered</h4>
+    <p class="fontSize-16 mb-l">Center an element horizontally. The element must have a width declared.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m flex-row-center-top" style="height:200px">
+            <div class="hidden-xs bg-smoke borderRadius-m w100 h100 mlr-l"></div>
+            <div class="hidden-xs bg-smoke borderRadius-m w100 h100 mlr-l"></div>
+            <div class="bg-smoke borderRadius-m w100 h100 mlr-l xs-mlr-s"></div>
+            <div class="bg-smoke borderRadius-m w100 h100 mlr-l xs-mlr-s"></div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ flexRowCenterTop() }</code></pre>
+        <script>
+            this.flexRowCenterTop = function(){
+                return '<div class="flex-row-center-top">...</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Row position bottom horizontally centered</h4>
+    <p class="fontSize-16 mb-l">Center an element horizontally. The element must have a width declared.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m flex-row-center-bottom" style="height:200px">
+            <div class="hidden-xs bg-smoke borderRadius-m w100 h100 mlr-l"></div>
+            <div class="hidden-xs bg-smoke borderRadius-m w100 h100 mlr-l"></div>
+            <div class="bg-smoke borderRadius-m w100 h100 mlr-l xs-mlr-s"></div>
+            <div class="bg-smoke borderRadius-m w100 h100 mlr-l xs-mlr-s"></div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ flexRowCenterBottom() }</code></pre>
+        <script>
+            this.flexRowCenterBottom = function(){
+                return '<div class="flex-row-center-bottom">...</div>';
+            };
+        </script>
+    </div>
+
+<script>
+
+    this.on("mount", function(){
+        $$('pre > code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+
+</script>
+
+</utility-flexbox>

@@ -1,0 +1,57 @@
+.loader {
+    @include abs(fixed);
+    @extend .opacity-0;
+    @extend .visibility-hidden;
+    @extend .bg-blue;
+    @extend .zIndex-102;
+    @extend .willChange-opacity;
+
+    &-spinner {
+        @include accelerate(true);
+    	@include abs_50(80, 80);
+        @extend .willChange-transform;
+    	clip:rect(0, 80px, 80px, 40px);
+
+        &:after {
+            @include accelerate(true);
+    		@extend .content-empty;
+            @extend .pos-abs;
+            @extend .borderRadius-circle;
+            @extend .w80;
+            @extend .h80;
+            @extend .willChange-transform;
+    		clip:rect(0, 80px, 80px, 40px);
+            box-shadow:inset #fff 0 0 0 2px;
+    	}
+    }
+    &[data-show="true"]{
+        @extend .opacity-100;
+        @extend .visibility-visible;
+        transition:opacity 0.2s ease-out, visibility 0s;
+
+        .loader-spinner {
+            animation:loader-animate1 1.1s linear infinite;
+
+            &:after {
+                animation:loader-animate2 1.1s ease-in-out infinite;
+            }
+        }
+    }
+}
+
+@keyframes loader-animate1 {
+	0% {
+		transform:rotate(0);
+	}
+	100% {
+		transform:rotate(220deg);
+	}
+}
+@keyframes loader-animate2 {
+	0% {
+		transform:rotate(-140deg);
+	}
+	100% {
+		transform:rotate(140deg);
+	}
+}

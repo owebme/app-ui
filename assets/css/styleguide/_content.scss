@@ -1,0 +1,47 @@
+.content {
+    display:block;
+    padding:102px 80px 80px 100px;
+    color:$gray;
+    max-width:100%;
+}
+
+@media screen and (min-width: $w1200) {
+    .content {
+        max-width:1000px;
+    }
+}
+@media screen and (min-width: $w768) and (max-width: $w1024) {
+    .content {
+        padding-left:80px;
+        padding-right:60px;
+    }
+}
+@media screen and (min-width: $w768) and (max-width: $w991) {
+    .content {
+        padding-left:60px;
+        padding-right:40px;
+    }
+}
+@media screen and (max-width: $w991) {
+    h2 {
+        text-align:center;
+    }
+    .content {
+        padding:190px 40px 60px 40px;
+    }
+}
+@media screen and (max-width: $w767) {
+    .content {
+        overflow:auto;
+    }
+}
+@media screen and (max-width: $w400) {
+    .content {
+        padding:190px 25px 60px 25px;
+    }
+}
+@media screen and (max-width: $w320) {
+    .content {
+        padding:184px 18px 60px 18px;
+    }
+}

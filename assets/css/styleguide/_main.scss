@@ -1,0 +1,26 @@
+body {
+	color:$gray;
+	font-family:$default;
+}
+.app {
+	display:block;
+}
+
+/* All phones besides iPhone and all tablet devices */
+@media screen and (max-width: $w1024) {
+	.d-phone.d-no-ios,
+	.m-touch.d-no-phone {
+		body {
+			overflow:hidden;
+		}
+		.app {
+			position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+			overflow:auto;
+			-webkit-overflow-scrolling:touch;
+		}
+	}
+}

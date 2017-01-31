@@ -1,0 +1,29 @@
+.loader-ajax {
+    @extend .flex-centered;
+    @extend .pointerEvents-none;
+    @extend .pos-fixed;
+    @extend .t-s;
+    @extend .l0;
+    @extend .ml-l;
+    @extend .xs-ml-m;
+    @extend .opacity-0;
+    @extend .willChange-opacity;
+    @extend .zIndex-100;
+
+    &[data-show="true"]{
+        @extend .opacity-100;
+        transition:opacity 0s 0.1s;
+
+        .loader-ajax-spinner {
+            @extend .spinner-mini-anim;
+        }
+    }
+    &[data-color="white"]{
+        .loader-ajax-spinner {
+            @extend .spinner-mini-white;
+        }
+    }
+    &-spinner {
+        @extend .spinner-mini;
+    }
+}

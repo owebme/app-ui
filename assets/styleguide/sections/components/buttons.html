@@ -1,0 +1,667 @@
+<components-buttons>
+
+    <h2 class="mb-xl">Buttons</h2>
+
+    <h4 class="mb-xxs">Button sizes</h4>
+    <p class="fontSize-16 mb-l">Define a button size with <span class="text-code">.btn-xs</span>, <span class="text-code">.btn-s</span>, <span class="text-code">.btn-m</span>, <span class="text-code">.btn-l</span> or <span class="text-code">.btn-xl</span>. The default button size is <span class="text-code">.btn-m</span>.</p>
+
+    <div class="rows borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button class="btn btn-xl btn-primary" type="button">Button</button>
+                </div>
+                <p class="fontSize-14 lineHeight-s fontWeight-3 c-grayLight">Extra Large Button</p>
+            </div>
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button class="btn btn-l btn-primary" type="button">Button</button>
+                </div>
+                <p class="fontSize-14 fontWeight-3 c-grayLight">Large Button</p>
+            </div>
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button class="btn btn-m btn-primary" type="button">Button</button>
+                </div>
+                <p class="fontSize-14 fontWeight-3 c-grayLight">Medium Button</p>
+            </div>
+            <div class="col-md-6 text-center p-m">
+                <div class="flex-centered h100">
+                    <button class="btn btn-s btn-primary" type="button">Button</button>
+                </div>
+                <p class="fontSize-14 fontWeight-3 c-grayLight">Small Button</p>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ buttonSizes() }</code></pre>
+        <script>
+            this.buttonSizes = function(){
+                return '<button class="btn btn-xl btn-primary">...</button>\n'+
+                '<button class="btn btn-l btn-primary">...</button>\n'+
+                '<button class="btn btn-m btn-primary">...</button>\n'+
+                '<button class="btn btn-s btn-primary">...</button>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Fill button</h4>
+    <p class="fontSize-16 mb-l">Fill buttons should be used to signify necessary or mandatory actions. There are two color options, specified with an additional class <span class="text-code">.btn-primary</span>, <span class="text-code">.btn-success</span>, <span class="text-code">.btn-danger</span> or <span class="text-code">.btn-warning</span>.</p>
+
+    <div class="hidden-xs borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-24 inline">
+                <div class="p-m">
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-primary" type="button">Primary</button>
+                    </div>
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-success" type="button">Success</button>
+                    </div>
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-danger" type="button">Danger</button>
+                    </div>
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-warning" type="button">Warning</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="visible-xs overflow-hidden borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m text-center">
+        <div class="row borderStyle-solid borderBottomWidth-1 borderColor-smoke">
+            <div class="col-xs-12 borderStyle-solid borderRightWidth-1 borderColor-smoke">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-primary" type="button">Primary</button>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-success" type="button">Success</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 borderStyle-solid borderRightWidth-1 borderColor-smoke">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-danger" type="button">Danger</button>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-warning" type="button">Warning</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ fillButton() }</code></pre>
+        <script>
+            this.fillButton = function(){
+                return '<button class="btn btn-m btn-primary" type="button">Primary</button>\n'+
+                '<button class="btn btn-m btn-success" type="button">Success</button>\n'+
+                '<button class="btn btn-m btn-danger" type="button">Danger</button>\n'+
+                '<button class="btn btn-m btn-warning" type="button">Warning</button>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Outline button</h4>
+    <p class="fontSize-16 mb-l">Outline buttons should be used to signify optional, infrequent or subtle actions. The color options are specified with an additional class <span class="text-code">.btn-primary-hover</span>, <span class="text-code">.btn-success-hover</span>, <span class="text-code">.btn-danger-hover</span>, etc.</p>
+
+    <div class="hidden-xs borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-24 inline">
+                <div class="p-m">
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-primary-hover" type="button">Primary</button>
+                    </div>
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-success-hover" type="button">Success</button>
+                    </div>
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-danger-hover" type="button">Danger</button>
+                    </div>
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-warning-hover" type="button">Warning</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="visible-xs overflow-hidden borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m text-center">
+        <div class="row borderStyle-solid borderBottomWidth-1 borderColor-smoke">
+            <div class="col-xs-12 borderStyle-solid borderRightWidth-1 borderColor-smoke">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-primary-hover" type="button">Primary</button>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-success-hover" type="button">Success</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 borderStyle-solid borderRightWidth-1 borderColor-smoke">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-danger-hover" type="button">Danger</button>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-warning-hover" type="button">Warning</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ outlineButton() }</code></pre>
+        <script>
+            this.outlineButton = function(){
+                return '<button class="btn btn-m btn-primary-hover" type="button">Primary</button>\n'+
+                '<button class="btn btn-m btn-success-hover" type="button">Success</button>\n'+
+                '<button class="btn btn-m btn-danger-hover" type="button">Danger</button>\n'+
+                '<button class="btn btn-m btn-warning-hover" type="button">Warning</button>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Default button</h4>
+    <p class="fontSize-16 mb-l">Default buttons receive an <span class="text-code">.btn-default</span> class.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m">
+            <div class="display-inlineBlock mr-m">
+                <button class="btn btn-m btn-default" type="button">Button</button>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ defaultButton() }</code></pre>
+        <script>
+            this.defaultButton = function(){
+                return '<button class="btn btn-m btn-default" type="button">Button</button>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Default button hover</h4>
+    <p class="fontSize-16 mb-l">Default buttons should be used to signify optional, infrequent or subtle actions. The color options are specified with an additional class <span class="text-code">.btn-default-hover-primary</span>, <span class="text-code">.btn-default-hover-success</span>, <span class="text-code">.btn-default-hover-danger</span>, etc.</p>
+
+    <div class="hidden-xs borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-24 inline">
+                <div class="p-m">
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-default-hover-primary" type="button">Primary</button>
+                    </div>
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-default-hover-success" type="button">Success</button>
+                    </div>
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-default-hover-danger" type="button">Danger</button>
+                    </div>
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-default-hover-warning" type="button">Warning</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="visible-xs overflow-hidden borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m text-center">
+        <div class="row borderStyle-solid borderBottomWidth-1 borderColor-smoke">
+            <div class="col-xs-12 borderStyle-solid borderRightWidth-1 borderColor-smoke">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-default-hover-primary" type="button">Primary</button>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-default-hover-success" type="button">Success</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 borderStyle-solid borderRightWidth-1 borderColor-smoke">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-default-hover-danger" type="button">Danger</button>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-default-hover-warning" type="button">Warning</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ defaultButtonHover() }</code></pre>
+        <script>
+            this.defaultButtonHover = function(){
+                return '<button class="btn btn-m btn-default-hover-primary" type="button">Primary</button>\n'+
+                '<button class="btn btn-m btn-default-hover-success" type="button">Success</button>\n'+
+                '<button class="btn btn-m btn-default-hover-danger" type="button">Danger</button>\n'+
+                '<button class="btn btn-m btn-default-hover-warning" type="button">Warning</button>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Link button</h4>
+    <p class="fontSize-16 mb-l">Link buttons should be used to signify optional, infrequent or subtle actions. The color options are specified with an additional class <span class="text-code">.btn-primary-hover</span>, <span class="text-code">.btn-success-hover</span>, <span class="text-code">.btn-danger-hover</span>, etc.</p>
+
+    <div class="hidden-xs borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-24 inline">
+                <div class="p-m">
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-link-primary btn-link-underline" type="button">Primary</button>
+                    </div>
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-link-success btn-link-underline" type="button">Success</button>
+                    </div>
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-link-danger btn-link-underline" type="button">Danger</button>
+                    </div>
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-link-warning btn-link-underline" type="button">Warning</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="visible-xs overflow-hidden borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m text-center">
+        <div class="row borderStyle-solid borderBottomWidth-1 borderColor-smoke">
+            <div class="col-xs-12 borderStyle-solid borderRightWidth-1 borderColor-smoke">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-link-primary btn-link-underline" type="button">Primary</button>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-link-success btn-link-underline" type="button">Success</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 borderStyle-solid borderRightWidth-1 borderColor-smoke">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-link-danger btn-link-underline" type="button">Danger</button>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-link-warning btn-link-underline" type="button">Warning</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ linkButton() }</code></pre>
+        <script>
+            this.linkButton = function(){
+                return '<button class="btn btn-m btn-link-primary" type="button">Primary</button>\n'+
+                '<button class="btn btn-m btn-link-success" type="button">Success</button>\n'+
+                '<button class="btn btn-m btn-link-danger" type="button">Danger</button>\n'+
+                '<button class="btn btn-m btn-link-warning" type="button">Warning</button>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Link gray button</h4>
+    <p class="fontSize-16 mb-l">Link buttons should be used to signify optional, infrequent or subtle actions. The color options are specified with an additional class <span class="text-code">.btn-primary-hover</span>, <span class="text-code">.btn-success-hover</span>, <span class="text-code">.btn-danger-hover</span>, etc.</p>
+
+    <div class="hidden-xs borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-24 inline">
+                <div class="p-m">
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-link-primary-hover btn-link-underline" type="button">Primary</button>
+                    </div>
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-link-success-hover btn-link-underline" type="button">Success</button>
+                    </div>
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-link-danger-hover btn-link-underline" type="button">Danger</button>
+                    </div>
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-link-warning-hover btn-link-underline" type="button">Warning</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="visible-xs overflow-hidden borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m text-center">
+        <div class="row borderStyle-solid borderBottomWidth-1 borderColor-smoke">
+            <div class="col-xs-12 borderStyle-solid borderRightWidth-1 borderColor-smoke">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-link-primary-hover btn-link-underline" type="button">Primary</button>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-link-success-hover btn-link-underline" type="button">Success</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 borderStyle-solid borderRightWidth-1 borderColor-smoke">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-link-danger-hover btn-link-underline" type="button">Danger</button>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-link-warning-hover btn-link-underline" type="button">Warning</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ linkGrayButton() }</code></pre>
+        <script>
+            this.linkGrayButton = function(){
+                return '<button class="btn btn-m btn-link-primary" type="button">Primary</button>\n'+
+                '<button class="btn btn-m btn-link-success" type="button">Success</button>\n'+
+                '<button class="btn btn-m btn-link-danger" type="button">Danger</button>\n'+
+                '<button class="btn btn-m btn-link-warning" type="button">Warning</button>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Rounded button</h4>
+    <p class="fontSize-16 mb-l">Rounded buttons should be used to signify optional, infrequent or subtle actions. The color options are specified with an additional class <span class="text-code">.btn-primary-hover</span>, <span class="text-code">.btn-success-hover</span>, <span class="text-code">.btn-danger-hover</span>, etc.</p>
+
+    <div class="rows borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button class="btn btn-xl btn-primary btn-rounded" type="button">Button</button>
+                </div>
+                <p class="fontSize-14 lineHeight-s fontWeight-3 c-grayLight">Extra Large Button</p>
+            </div>
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button class="btn btn-l btn-primary btn-rounded" type="button">Button</button>
+                </div>
+                <p class="fontSize-14 fontWeight-3 c-grayLight">Large Button</p>
+            </div>
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button class="btn btn-m btn-primary btn-rounded" type="button">Button</button>
+                </div>
+                <p class="fontSize-14 fontWeight-3 c-grayLight">Medium Button</p>
+            </div>
+            <div class="col-md-6 text-center p-m">
+                <div class="flex-centered h100">
+                    <button class="btn btn-s btn-primary btn-rounded" type="button">Button</button>
+                </div>
+                <p class="fontSize-14 fontWeight-3 c-grayLight">Small Button</p>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ roundedButton() }</code></pre>
+        <script>
+            this.roundedButton = function(){
+                return '<button class="btn btn-m btn-primary btn-rounded" type="button">Primary</button>\n'+
+                '<button class="btn btn-m btn-primary btn-rounded" type="button">Success</button>\n'+
+                '<button class="btn btn-m btn-primary btn-rounded" type="button">Danger</button>\n'+
+                '<button class="btn btn-m btn-primary btn-rounded" type="button">Warning</button>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Uppercase button</h4>
+    <p class="fontSize-16 mb-l">Uppercase buttons receive an <span class="text-code">.btn-upper</span> class.</p>
+
+    <div class="rows borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button class="btn btn-xl btn-upper btn-primary-hover" type="button">Button</button>
+                </div>
+                <p class="fontSize-14 lineHeight-s fontWeight-3 c-grayLight">Extra Large Button</p>
+            </div>
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button class="btn btn-l btn-upper btn-primary-hover" type="button">Button</button>
+                </div>
+                <p class="fontSize-14 fontWeight-3 c-grayLight">Large Button</p>
+            </div>
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button class="btn btn-m btn-upper btn-primary-hover" type="button">Button</button>
+                </div>
+                <p class="fontSize-14 fontWeight-3 c-grayLight">Medium Button</p>
+            </div>
+            <div class="col-md-6 text-center p-m">
+                <div class="flex-centered h100">
+                    <button class="btn btn-s btn-upper btn-primary-hover" type="button">Button</button>
+                </div>
+                <p class="fontSize-14 fontWeight-3 c-grayLight">Small Button</p>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ uppercaseButton() }</code></pre>
+        <script>
+            this.uppercaseButton = function(){
+                return '<button class="btn btn-xl btn-upper btn-primary-hover" type="button">Button</button>\n'+
+                '<button class="btn btn-l btn-upper btn-primary-hover" type="button">Button</button>\n'+
+                '<button class="btn btn-m btn-upper btn-primary-hover" type="button">Button</button>\n'+
+                '<button class="btn btn-s btn-upper btn-primary-hover" type="button">Button</button>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">White button on dark background</h4>
+    <p class="fontSize-16 mb-l">This is the reversed version of ghost buttons which is meant to be used on dark backgrounds or reversed themes. The color options are specified with an additional class <span class="text-code">.btn-white-hover</span>.</p>
+
+    <div class="bg-blue borderRadiusTop-m">
+        <div class="p-m">
+            <button class="btn btn-m btn-white-hover" type="button">Button</button>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ whiteButton() }</code></pre>
+        <script>
+            this.whiteButton = function(){
+                return '<button class="btn btn-m btn-white-hover" type="button">Button</button>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Disabled button</h4>
+    <p class="fontSize-16 mb-l">Disabled buttons receive an <span class="text-code">.btn-disabled</span> class and a disabled attribute.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m">
+            <button class="btn btn-m btn-disabled" type="button">Disabled</button>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ disabledButton() }</code></pre>
+        <script>
+            this.disabledButton = function(){
+                return '<button class="btn btn-m btn-disabled" type="button">Disabled</button>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Waiting button</h4>
+    <p class="fontSize-16 mb-l">Waiting buttons receive an <span class="text-code">.btn-loading</span> class.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="p-m">
+            <button class="btn btn-m btn-loading" type="button">Loading...</button>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ waitingButton() }</code></pre>
+        <script>
+            this.waitingButton = function(){
+                return '<button class="btn btn-m btn-loading" type="button">Loading...</button>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Button with icon</h4>
+    <p class="fontSize-16 mb-l">Buttons with icons are wrapped in a parent component.uiIcon which has to have the button size applied to with an additional class. For example,.button--m will have a parent element with a class .uiIcon--m. The icon has to be placed straight after the button and should be an inline SVG.</p>
+
+    <div class="hidden-xs borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-24 inline">
+                <div class="p-m">
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-primary-hover" type="button"><svg class="btn-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><path class="btn-svg-color" d="M87.754,45.284H54.716V12.246c0-2.605-2.111-4.716-4.716-4.716c-1.302,0-2.481,0.528-3.334,1.382 c-0.853,0.853-1.381,2.032-1.382,3.334v33.038l-33.038,0c-1.302,0-2.481,0.528-3.334,1.382C8.058,47.519,7.53,48.698,7.53,50 c0,2.605,2.111,4.716,4.716,4.716l33.038,0l0,33.038c0,2.605,2.111,4.716,4.716,4.716c2.604,0,4.716-2.112,4.716-4.716l0-33.038 h33.038c2.604,0,4.716-2.112,4.716-4.716C92.47,47.395,90.359,45.284,87.754,45.284z"></path></svg>Button</button>
+                    </div>
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-success-hover" type="button"><svg class="btn-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><path class="btn-svg-color" d="M87.754,45.284H54.716V12.246c0-2.605-2.111-4.716-4.716-4.716c-1.302,0-2.481,0.528-3.334,1.382 c-0.853,0.853-1.381,2.032-1.382,3.334v33.038l-33.038,0c-1.302,0-2.481,0.528-3.334,1.382C8.058,47.519,7.53,48.698,7.53,50 c0,2.605,2.111,4.716,4.716,4.716l33.038,0l0,33.038c0,2.605,2.111,4.716,4.716,4.716c2.604,0,4.716-2.112,4.716-4.716l0-33.038 h33.038c2.604,0,4.716-2.112,4.716-4.716C92.47,47.395,90.359,45.284,87.754,45.284z"></path></svg>Button</button>
+                    </div>
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-danger-hover" type="button"><svg class="btn-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><path class="btn-svg-color" d="M87.754,45.284H54.716V12.246c0-2.605-2.111-4.716-4.716-4.716c-1.302,0-2.481,0.528-3.334,1.382 c-0.853,0.853-1.381,2.032-1.382,3.334v33.038l-33.038,0c-1.302,0-2.481,0.528-3.334,1.382C8.058,47.519,7.53,48.698,7.53,50 c0,2.605,2.111,4.716,4.716,4.716l33.038,0l0,33.038c0,2.605,2.111,4.716,4.716,4.716c2.604,0,4.716-2.112,4.716-4.716l0-33.038 h33.038c2.604,0,4.716-2.112,4.716-4.716C92.47,47.395,90.359,45.284,87.754,45.284z"></path></svg>Button</button>
+                    </div>
+                    <div class="display-inlineBlock mr-m">
+                        <button class="btn btn-m btn-warning-hover" type="button"><svg class="btn-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><path class="btn-svg-color" d="M87.754,45.284H54.716V12.246c0-2.605-2.111-4.716-4.716-4.716c-1.302,0-2.481,0.528-3.334,1.382 c-0.853,0.853-1.381,2.032-1.382,3.334v33.038l-33.038,0c-1.302,0-2.481,0.528-3.334,1.382C8.058,47.519,7.53,48.698,7.53,50 c0,2.605,2.111,4.716,4.716,4.716l33.038,0l0,33.038c0,2.605,2.111,4.716,4.716,4.716c2.604,0,4.716-2.112,4.716-4.716l0-33.038 h33.038c2.604,0,4.716-2.112,4.716-4.716C92.47,47.395,90.359,45.284,87.754,45.284z"></path></svg>Button</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="visible-xs overflow-hidden borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m text-center">
+        <div class="row borderStyle-solid borderBottomWidth-1 borderColor-smoke">
+            <div class="col-xs-12 borderStyle-solid borderRightWidth-1 borderColor-smoke">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-primary-hover" type="button"><svg class="btn-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><path class="btn-svg-color" d="M87.754,45.284H54.716V12.246c0-2.605-2.111-4.716-4.716-4.716c-1.302,0-2.481,0.528-3.334,1.382 c-0.853,0.853-1.381,2.032-1.382,3.334v33.038l-33.038,0c-1.302,0-2.481,0.528-3.334,1.382C8.058,47.519,7.53,48.698,7.53,50 c0,2.605,2.111,4.716,4.716,4.716l33.038,0l0,33.038c0,2.605,2.111,4.716,4.716,4.716c2.604,0,4.716-2.112,4.716-4.716l0-33.038 h33.038c2.604,0,4.716-2.112,4.716-4.716C92.47,47.395,90.359,45.284,87.754,45.284z"></path></svg>Button</button>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-success-hover" type="button"><svg class="btn-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><path class="btn-svg-color" d="M87.754,45.284H54.716V12.246c0-2.605-2.111-4.716-4.716-4.716c-1.302,0-2.481,0.528-3.334,1.382 c-0.853,0.853-1.381,2.032-1.382,3.334v33.038l-33.038,0c-1.302,0-2.481,0.528-3.334,1.382C8.058,47.519,7.53,48.698,7.53,50 c0,2.605,2.111,4.716,4.716,4.716l33.038,0l0,33.038c0,2.605,2.111,4.716,4.716,4.716c2.604,0,4.716-2.112,4.716-4.716l0-33.038 h33.038c2.604,0,4.716-2.112,4.716-4.716C92.47,47.395,90.359,45.284,87.754,45.284z"></path></svg>Button</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 borderStyle-solid borderRightWidth-1 borderColor-smoke">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-danger-hover" type="button"><svg class="btn-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><path class="btn-svg-color" d="M87.754,45.284H54.716V12.246c0-2.605-2.111-4.716-4.716-4.716c-1.302,0-2.481,0.528-3.334,1.382 c-0.853,0.853-1.381,2.032-1.382,3.334v33.038l-33.038,0c-1.302,0-2.481,0.528-3.334,1.382C8.058,47.519,7.53,48.698,7.53,50 c0,2.605,2.111,4.716,4.716,4.716l33.038,0l0,33.038c0,2.605,2.111,4.716,4.716,4.716c2.604,0,4.716-2.112,4.716-4.716l0-33.038 h33.038c2.604,0,4.716-2.112,4.716-4.716C92.47,47.395,90.359,45.284,87.754,45.284z"></path></svg>Button</button>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="display-inlineBlock ptb-l">
+                    <button class="btn btn-m btn-warning-hover" type="button"><svg class="btn-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><path class="btn-svg-color" d="M87.754,45.284H54.716V12.246c0-2.605-2.111-4.716-4.716-4.716c-1.302,0-2.481,0.528-3.334,1.382 c-0.853,0.853-1.381,2.032-1.382,3.334v33.038l-33.038,0c-1.302,0-2.481,0.528-3.334,1.382C8.058,47.519,7.53,48.698,7.53,50 c0,2.605,2.111,4.716,4.716,4.716l33.038,0l0,33.038c0,2.605,2.111,4.716,4.716,4.716c2.604,0,4.716-2.112,4.716-4.716l0-33.038 h33.038c2.604,0,4.716-2.112,4.716-4.716C92.47,47.395,90.359,45.284,87.754,45.284z"></path></svg>Button</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ buttonWithIcon() }</code></pre>
+        <script>
+            this.buttonWithIcon = function(){
+                return '<button class="btn btn-m btn-primary-hover" type="button">\n'+
+                '    <svg class="btn-svg">...</svg>\n'+
+                '    ...\n'+
+                '</button>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Button with one icon</h4>
+    <p class="fontSize-16 mb-l">Unlike the button with icon, the button with one icon doesn't have a parent componet but instead has the.uiIcon class added alongside.uiIcon--m and.button--m classes.</p>
+
+    <div class="rows borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button class="btn btn-xl btn-icon btn-primary" type="button"><svg class="btn-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><path class="btn-svg-color" d="M87.754,45.284H54.716V12.246c0-2.605-2.111-4.716-4.716-4.716c-1.302,0-2.481,0.528-3.334,1.382 c-0.853,0.853-1.381,2.032-1.382,3.334v33.038l-33.038,0c-1.302,0-2.481,0.528-3.334,1.382C8.058,47.519,7.53,48.698,7.53,50 c0,2.605,2.111,4.716,4.716,4.716l33.038,0l0,33.038c0,2.605,2.111,4.716,4.716,4.716c2.604,0,4.716-2.112,4.716-4.716l0-33.038 h33.038c2.604,0,4.716-2.112,4.716-4.716C92.47,47.395,90.359,45.284,87.754,45.284z"></path></svg></button>
+                </div>
+            </div>
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button class="btn btn-l btn-icon btn-primary-hover" type="button"><svg class="btn-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><path class="btn-svg-color" d="M87.754,45.284H54.716V12.246c0-2.605-2.111-4.716-4.716-4.716c-1.302,0-2.481,0.528-3.334,1.382 c-0.853,0.853-1.381,2.032-1.382,3.334v33.038l-33.038,0c-1.302,0-2.481,0.528-3.334,1.382C8.058,47.519,7.53,48.698,7.53,50 c0,2.605,2.111,4.716,4.716,4.716l33.038,0l0,33.038c0,2.605,2.111,4.716,4.716,4.716c2.604,0,4.716-2.112,4.716-4.716l0-33.038 h33.038c2.604,0,4.716-2.112,4.716-4.716C92.47,47.395,90.359,45.284,87.754,45.284z"></path></svg></button>
+                </div>
+            </div>
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button class="btn btn-m btn-icon btn-primary-hover" type="button"><svg class="btn-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><path class="btn-svg-color" d="M87.754,45.284H54.716V12.246c0-2.605-2.111-4.716-4.716-4.716c-1.302,0-2.481,0.528-3.334,1.382 c-0.853,0.853-1.381,2.032-1.382,3.334v33.038l-33.038,0c-1.302,0-2.481,0.528-3.334,1.382C8.058,47.519,7.53,48.698,7.53,50 c0,2.605,2.111,4.716,4.716,4.716l33.038,0l0,33.038c0,2.605,2.111,4.716,4.716,4.716c2.604,0,4.716-2.112,4.716-4.716l0-33.038 h33.038c2.604,0,4.716-2.112,4.716-4.716C92.47,47.395,90.359,45.284,87.754,45.284z"></path></svg></button>
+                </div>
+            </div>
+            <div class="col-md-6 text-center p-m">
+                <div class="flex-centered h100">
+                    <button class="btn btn-s btn-icon btn-primary-hover" type="button"><svg class="btn-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><path class="btn-svg-color" d="M87.754,45.284H54.716V12.246c0-2.605-2.111-4.716-4.716-4.716c-1.302,0-2.481,0.528-3.334,1.382 c-0.853,0.853-1.381,2.032-1.382,3.334v33.038l-33.038,0c-1.302,0-2.481,0.528-3.334,1.382C8.058,47.519,7.53,48.698,7.53,50 c0,2.605,2.111,4.716,4.716,4.716l33.038,0l0,33.038c0,2.605,2.111,4.716,4.716,4.716c2.604,0,4.716-2.112,4.716-4.716l0-33.038 h33.038c2.604,0,4.716-2.112,4.716-4.716C92.47,47.395,90.359,45.284,87.754,45.284z"></path></svg></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ buttonWithOneIcon() }</code></pre>
+        <script>
+            this.buttonWithOneIcon = function(){
+                return '<button class="btn btn-m btn-icon btn-primary" type="button">\n'+
+                '    <svg class="btn-svg">...</svg>\n'+
+                '    ...\n'+
+                '</button>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Button group</h4>
+    <p class="fontSize-16 mb-l">Button groups consist of an inline set of ghost buttons. Useful for action bars.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="inline p-m xs-plr0 text-center">
+            <div class="btn-group">
+                <button class="btn btn-m btn-primary-hover" type="button">Button</button>
+                <button class="btn btn-m btn-primary-hover" type="button">Button</button>
+                <button class="btn btn-m btn-primary-hover" type="button">Button</button>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ buttonGroup() }</code></pre>
+        <script>
+            this.buttonGroup = function(){
+                return '<div class="btn-group">\n'+
+                '    <button class="btn btn-m btn-primary-hover" type="button">Button</button>\n'+
+                '    <button class="btn btn-m btn-primary-hover" type="button">Button</button>\n'+
+                '    <button class="btn btn-m btn-primary-hover" type="button">Button</button>\n'+
+                '</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Button badges</h4>
+    <p class="fontSize-16 mb-l">Button groups consist of an inline set of ghost buttons. Useful for action bars.</p>
+
+    <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="inline p-m xs-plr0 text-center">
+            <div class="btn-group">
+                <button class="btn btn-m btn-default" type="button">Button<div class="btn-badge btn-badge-white">2</div></button>
+                <button class="btn btn-m btn-primary" type="button">Button<div class="btn-badge btn-badge-danger">3</div></button>
+                <button class="btn btn-m btn-primary" type="button">Button<div class="btn-badge btn-badge-success">1</div></button>
+                <button class="btn btn-m btn-primary" type="button">Button<div class="btn-badge btn-badge-warning">4</div></button>
+                <div class="btn btn-m btn-default">Button<div class="btn-badge btn-badge-info">7</div></div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ buttonBadges() }</code></pre>
+        <script>
+            this.buttonBadges = function(){
+                return '<button class="btn btn-m btn-primary" type="button">Button<div class="btn-badge btn-badge-danger">2</div></button>';
+            };
+        </script>
+    </div>
+
+<script>
+
+    this.on("mount", function(){
+        $$('pre > code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+
+</script>
+
+</components-buttons>

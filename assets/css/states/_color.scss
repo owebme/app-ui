@@ -1,0 +1,214 @@
+$i:0;
+@each $color in (#9471DB, #4D71DB, #FFB84D, #B871B8, #71B84D, #FFDB71, #4DB8B8, #4DB8DB, #DB94DB, #FFACC5, #FF944D, #B8DB4D, #FF7194, #6AD19F){
+    $i: $i + 1;
+    .color__bg#{$i} {
+        background-color:$color;
+    }
+    svg[fill-color="fill#{$i}"]{
+        path, rect, polygon, circle {
+            fill:$color;
+        }
+    }
+}
+@each $title, $color in (white: $white, blue: $blue, blueLight: $blueLight, blueLighten: $blueLighten, blueDark: $blueDark, blueDarken: $blueDarken, water: $water, waterLight: $waterLight, waterDark: $waterDark, brown: $brown, red: $red, redDark: $redDark, yellow: $yellow, yellowDark: $yellowDark, orange: $orange, orangeDark: $orangeDark, violet: $violet, violetDark: $violetDark, green: $green, greenLight: $greenLight, greenDark: $greenDark, black: $black, blackDark: $blackDark, blackLight: $blackLight, gray: $gray, grayDark: $grayDark, grayLight: $grayLight, grayLighten: $grayLighten, smoke: $smoke, smokeLight: $smokeLight, smokeDark: $smokeDark, smokeDarken: $smokeDarken, snow: $snow, snowDark: $snowDark){
+    .bg-#{$title},
+    .text-strike[data-color=#{$title}]:after {
+        background-color:$color;
+    }
+    .bg-#{$title}-transparent {
+        background-color:rgba($color,.1);
+    }
+    .c-#{$title} {
+        color:$color;
+    }
+    .fill-#{$title} {
+        fill:$color;
+    }
+    .borderColor-#{$title} {
+        border-color:$color;
+    }
+    .borderColor-#{$title}-transparent {
+        border-color:rgba($color,.1);
+    }
+    svg[fill-color="#{$title}"]{
+        path, rect, polygon, circle {
+            fill:$color;
+        }
+    }
+}
+@each $title, $color, $hover in (primary, $link, $linkDark), (info, $blueLight, $blue), (success, $green, $greenDark), (danger, $red, $redDark), (warning, $yellow, $yellowDark), (gray, $gray, $grayDark), (white, rgba($white,.7), $white){
+    .link-#{$title} {
+		color:$color;
+
+	    &:hover,
+        &-hover:hover {
+            color:$hover;
+	    }
+        &-hover {
+            color:$gray;
+        }
+    }
+}
+.link-underline:hover,
+.btn-link-underline:hover {
+    text-decoration:underline;
+}
+@each $title, $color in (primary: $primary, info: $blueLight, success: $green, danger: $red, warning: $yellow, dark: $black){
+    .btn-#{$title} {
+        color:$white;
+        background-color:$color;
+
+        .btn-svg-color {
+            fill:$white;
+        }
+        &:hover {
+            background-color:lighten($color,3%);
+        }
+    }
+    .btn-link-#{$title} {
+        color:$color;
+        @extend .bg-none;
+
+        .btn-svg-color {
+            fill:$color;
+        }
+    }
+    .btn-link-#{$title}-hover {
+        color:$gray;
+        @extend .bg-none;
+
+        .btn-svg-color {
+            fill:$gray;
+        }
+        &:hover {
+            color:$color;
+
+            .btn-svg-color {
+                fill:$color;
+            }
+        }
+    }
+    .btn-#{$title}-hover {
+        color:$color;
+        background-color:transparent;
+        box-shadow:inset 0 0 0 1px $color;
+
+        .btn-svg-color {
+            fill:$color;
+        }
+        &:hover {
+            color:#fff;
+            background-color:$color;
+            box-shadow:none;
+
+            .btn-svg-color {
+                fill:#fff;
+            }
+        }
+    }
+    .btn-default-hover-#{$title} {
+        color:$white;
+        box-shadow:inset 0 0 0 1px $blue;
+        background-color:$blue;
+
+        &:hover {
+            background-color:$color;
+            box-shadow:none;
+        }
+    }
+    .notify[data-color=#{$title}] {
+        background-color:$color;
+        box-shadow:0 12px 20px -10px rgba($color,.28), 0 4px 20px 0px rgba($color,.12), 0 7px 8px -5px rgba($color,.2);
+    }
+    .arrow-pointer[data-color=#{$title}]:before {
+        border-color:$color;
+    }
+}
+@each $title, $color in (info: $waterDark, success: $green, danger: $orange, warning: $yellow){
+    .btn-badge-#{$title} {
+        background-color:$color;
+    }
+}
+@each $title, $color in (primary: $primary, green: $green, red: $red){
+    input.range-#{$title}[type=range]::-webkit-slider-thumb {
+        background-color:$color;
+    }
+    input.range-#{$title}[type=range]::-moz-range-thumb {
+        background-color:$color;
+    }
+    input.range-#{$title}[type=range]::-ms-thumb {
+        background-color:$color;
+    }
+}
+.btn-default {
+    @extend .btn-primary-hover;
+
+    &-hover-white {
+        @extend .btn-primary;
+
+        &:hover {
+            color:$blue;
+            background-color:$white;
+            box-shadow:none;
+        }
+    }
+}
+.btn-badge-white {
+    @extend .bg-white;
+    @extend .c-blue;
+}
+.btn-white {
+    color:$black;
+    box-shadow:none;
+    background-color:$white;
+
+    .btn-svg-color {
+        fill:$black;
+    }
+    &:hover {
+        color:$blue;
+        background-color:$snow;
+    }
+}
+.btn-white-hover {
+    color:$white;
+    box-shadow:inset 0 0 0 1px rgba($white,.3);
+    background-color:transparent;
+
+    .btn-svg-color {
+        fill:$white;
+    }
+    &:hover {
+        color:$black;
+        box-shadow:none;
+        background-color:$white;
+
+        .btn-svg-color {
+            fill:$black;
+        }
+    }
+}
+.arrow-pointer[data-color="white"]:before {
+    border-color:$white;
+}
+.bg-overlay {
+    background-color:rgba(40,47,51,.76);
+}
+.bg-radial-blue {
+    background:radial-gradient(rgba($blue,.0), $blue);
+}
+.bg-radial-black {
+    background:radial-gradient(rgba($black,.0), $black);
+}
+.bg-gradient-tb-white {
+	background:linear-gradient(to bottom, #fff, rgba(#fff,0));
+}
+.bg-gradient-bt-white {
+	background:linear-gradient(to top, #fff, rgba(#fff,0));
+}
+.bg-gradient-lr-white {
+	background:linear-gradient(to right, #fff, rgba(#fff,0));
+}
+.bg-gradient-rl-white {
+	background:linear-gradient(to left, #fff, rgba(#fff,0));
+}

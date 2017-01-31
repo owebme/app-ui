@@ -1,0 +1,170 @@
+<photo-upload class="oScreen zIndex-10" data-color="blue" data-open="{ active }">
+
+    <div if={ !uploaded } class="pos-rel visible-sm visible-xs anim anim-fadeIn zIndex-1 { animated : active }" data-duration="s" delay-show="xs">
+        <div onClick={ hide } onUpdate="none" class="button__close" data-color="white"></div>
+    </div>
+
+    <div class="editable__photo__wrapper">
+        <div class="container anim anim-bt-ease { animated : active }" data-duration="m">
+            <div class="editable__photo__container col-sm-offset-0 col-sm-24 col-md-offset-1 col-md-22 col-lg-offset-4 col-lg-20" data-uploaded="{ uploaded }">
+
+                <div class="row image-editor">
+                    <div class="{ uploaded ? 'col-xs-24 col-sm-15 col-md-13 col-lg-12' : 'col-md-24 col-lg-20 text-center' }">
+                        <div name="imagePreviewEl" class="editable__photo cropit-preview { editable__photo--empty : !uploaded }">
+                            <input name="upload" type="file" class="editable__photo__input cropit-image-input { display-none : uploaded }">
+                            <div if={ app.device.isMobile } class="editable__photo__text">Выбрать файл</div>
+                            <div if={ !app.device.isMobile } class="editable__photo__text">
+                                Выберите файл
+                                <div class="editable__photo__text__or">или</div>
+                                перетащите его сюда
+                            </div>
+                        </div>
+                    </div>
+                    <div class="editable__photo__control col-xs-24 col-sm-9 col-md-10 col-lg-10 text-left { display-none : !uploaded }">
+                        <div class="pl-s pt-l sm-pl-m xs-p0">
+                            <button class="btn btn-m btn-white-hover btn-strong btn-upper btn-uploadImage mb-l hidden-xs">Другой файл...</button>
+                            <div class="c-white fontSize-24 fontFamily-futura mb-m">Масштабирование</div>
+                            <div class="mb-l">
+                                <input type="range" class="editable__photo__slider cropit-image-zoom-input">
+                            </div>
+                            <div class="nowrap-xs nowrap-md">
+                                <button onClick={ hide } onUpdate="none" class="btn btn-l btn-white-hover btn-strong btn-upper sm-mb-m" type="button">Отменить</button>
+                                <button onClick={ onSave } onUpdate="none" class="btn btn-l btn-white-hover btn-strong btn-upper ml-xs sm-ml0" type="button">Сохранить</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+<script>
+
+    var $ = this,
+    $scope = $$($.root);
+
+    $.active = false;
+
+    $.config = {
+        export: {
+            type: "image/jpeg",
+            quality: 0.9,
+            originalSize: true,
+            maxZoom: 1.5
+        }
+    };
+
+    $.on("mount", function(){
+        if ($.imageEditor) return;
+
+        $.imageEditor = $scope.find('.image-editor');
+
+        $.imageEditor.cropit({
+            onImageLoaded: function(){
+                if (!$.uploaded){
+                    $.update({
+                        uploaded: true
+                    });
+                }
+                $.upload.value = "";
+            }
+        });
+
+        if (app.config && app.config.profile && app.config.profile.photo){
+            $.init({
+                minWidth: app.config.profile.photo.minWidth,
+                maxHeight: app.config.profile.photo.maxHeight
+            });
+        }
+
+        $scope.find('.btn-uploadImage').on("click", function(){
+            $$($.upload).trigger("click");
+        });
+    });
+
+    $.init = function(options, force){
+        if (!force && ($.imagePreview || !options)) return;
+
+        $.imagePreview = $$($.imagePreviewEl);
+        $.config.minWidth = options.minWidth;
+        $.config.maxHeight = options.maxHeight;
+
+        $.setInterval = setInterval(function(){
+            if ($.imageEditor && $.imageEditor.data){
+                clearInterval($.setInterval);
+                $.init.config($.imageEditor.data().cropit);
+            }
+        }, 300);
+    };
+
+    $.init.config = function(cropit){
+        cropit.options.maxHeight = $.config.maxHeight;
+        cropit.options.onSmallImage = function(size){
+            alert('Загружаемое фото слишком маленькое, минимально допустимый размер по ширине ' + $.config.minWidth + 'px');
+            $.upload.value = "";
+        };
+        cropit.previewSize = {
+            "width": $.config.minWidth,
+            "height": $.config.maxHeight
+        };
+    };
+
+    $.show = function(callback, options){
+        if ($.active) return;
+
+        if (options) $.init(options, true);
+
+        $.update({
+            active: true,
+            uploaded: false,
+            callback: callback ? callback : null
+        });
+
+        if (!app.device.isPhone){
+            $scope.on("click", function(e){
+                if ($.uploaded) $scope.off("click");
+                else if (e.target.tagName.toLowerCase() != "input"){
+                    $.hide();
+                }
+            });
+        }
+    };
+
+    $.onSave = function(e){
+        if ($.saved) return;
+
+        $.saved = true;
+
+        var $btn = $$(e.currentTarget);
+
+        $btn.addClass("btn-loading");
+
+        setTimeout(function(){
+            var imageData = $.imageEditor.cropit(
+                'export',
+                $.config.export
+            );
+
+            setTimeout(function(){
+                $.saved = false;
+                $btn.removeClass("btn-loading");
+                $.hide();
+            }, 300);
+
+            $.callback(imageData);
+        }, 5);
+    };
+
+    $.hide = function(){
+        $scope.off("click");
+        $.upload.value = "";
+
+        $.update({
+            active: false
+        })
+    };
+
+</script>
+
+</photo-upload>

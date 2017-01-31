@@ -1,0 +1,91 @@
+.nav {
+    &__title {
+        display:block;
+        padding:20px 40px 15px 40px;
+        @extend .fontSize-16;
+        @extend .fontFamily-default;
+        @extend .fontWeight-7;
+        color:$blackLight;
+        text-transform:uppercase;
+        cursor:pointer;
+
+        &:after {
+            content:"";
+            display:inline-block;
+            vertical-align:middle;
+            margin-left:10px;
+            margin-top:-2px;
+            border-top:5px solid $blue;
+            border-right:5px solid transparent;
+            border-bottom:none;
+            backface-visibility:hidden;
+            border-left:5px solid transparent;
+
+            .active & {
+                transform:rotate(180deg);
+            }
+        }
+        &:hover {
+            color:$blue;
+        }
+    }
+    &__items {
+        display:none;
+        @extend .pb-s;
+
+        .active & {
+            display:block;
+        }
+    }
+    &__subItem {
+        display:block;
+        padding:10px 40px;
+        @extend .fontSize-16;
+        color:$grayDark;
+
+        &.active,
+        &:hover {
+            color:$blue;
+        }
+    }
+    &__close {
+        position:absolute;
+        top:15px;
+        right:15px;
+        @include ui-icon(close_strong, 48px, 48px);
+    }
+}
+
+@media screen and (max-width: $w767) {
+    .app {
+        .nav {
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            padding:80px 10px 40px;
+            background-color:#fff;
+            overflow:auto;
+            -webkit-overflow-scrolling:touch;
+            z-index:2;
+
+            &.hidden-xs {
+                pointer-events:none;
+            }
+            &__title {
+                font-size:20px;
+                line-height:26px;
+                padding-bottom:16px;
+                padding-left:39px;
+            }
+            &__subItem {
+                font-size:18px;
+                line-height:26px;
+            }
+            &__items {
+                padding-bottom:10px;
+            }
+        }
+    }
+}

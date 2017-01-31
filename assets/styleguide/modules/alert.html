@@ -1,0 +1,70 @@
+<section-alert class="alert" data-open="{ active }">
+
+    <div name="wrapper" class="alert__wrapper">
+        <div class="alert__header">
+            <h3 class="alert__title">{ data.title }</h3>
+            <p if={ data.subtitle } class="alert__subtitle">{ data.subtitle }</p>
+        </div>
+        <div class="alert__buttons">
+            <div onClick={ onCancel } onUpdate="none" class="alert__button { alert__button--active : data.button === "cancel" }">{ data.cancel && data.cancel.title ? data.cancel.title : "Отмена" }</div>
+            <div onClick={ onSuccess } onUpdate="none" class="alert__button { alert__button--active : data.button === "success" }">{ data.success && data.success.title ? data.success.title : "OK" }</div>
+        </div>
+    </div>
+
+<script>
+
+    var $ = this,
+    $scope = $$($.root);
+
+    $.active = false;
+
+    $.data = {
+        title: null,
+        subtitle: null
+    };
+
+    $.show = function(data){
+        if (data){
+            $.update({
+                active: true,
+                data: data
+            })
+        }
+    };
+
+    $.onSuccess = function(){
+        if ($.data.success && typeof $.data.success.callback === "function"){
+            $.data.success.callback();
+        }
+        $.data.button = "success";
+        $.update({
+            active: false
+        })
+    };
+
+    $.onCancel = function(){
+        if ($.data.cancel && typeof $.data.cancel.callback === "function"){
+            $.data.cancel.callback();
+        }
+        $.data.button = "cancel";
+        $.update({
+            active: false
+        })
+    };
+
+    $.handleClickOutside = function(e){
+        if (!$.wrapper.contains(e.target)) $.onCancel();
+    };
+
+    $.on("updated", function(){
+        if ($.active){
+            document.addEventListener('click', $.handleClickOutside);
+        }
+        else {
+            document.removeEventListener('click', $.handleClickOutside)
+        }
+    });
+
+</script>
+
+</section-alert>

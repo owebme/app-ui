@@ -1,0 +1,124 @@
+.tag {
+    @extend .pos-rel;
+    @extend .float-left;
+    @extend .flex-centered;
+    @extend .pl-xs;
+    @extend .pr-xs;
+    @extend .h35;
+    @extend .borderRadius-xxl;
+    @extend .bg-snow;
+    @extend .borderWidth-1;
+    @extend .borderStyle-solid;
+    @extend .borderColor-smokeDark;
+    @extend .c-grayDark;
+    @extend .fontFamily-default;
+    @extend .fontWeight-normal;
+    @extend .userSelect-none;
+    @extend .cursor-pointer;
+    font-size:13px;
+    margin-right:6px;
+    margin-bottom:5px;
+    @include accelerate(true);
+    will-change:background, border-color, color, transform;
+    @extend .transition-default;
+
+    &-count {
+        @extend .flex-centered;
+        @extend .pos-abs;
+        @extend .borderRadius-circle;
+        @extend .fontFamily-roboto;
+        @extend .fontWeight-bold;
+        @extend .fontSize-12;
+        @extend .bg-white;
+        top:-7px;
+        left:-2px;
+        width:18px;
+        height:18px;
+        color:rgba($blue,.8);
+        border:1px solid rgba($blue,.8);
+    }
+    &-text {
+        @extend .display-inlineBlock;
+        @extend .vAlign-middle;
+        @include textEllipsis(140px);
+    }
+    &-remove {
+        @extend .display-inlineBlock;
+        @include ui-icon(remove, 21px, 21px);
+        margin-left:6px;
+        margin-right:-2px;
+    }
+    &:before {
+        @extend .content-empty;
+        @extend .display-inlineBlock;
+        @extend .vAlign-middle;
+        @include ui-icon(tag, 21px, 21px);
+        margin-right:8px;
+    }
+    &-icon {
+        @extend .p0;
+        @extend .borderRadius-circle;
+        width:35px;
+
+        &:before {
+            @extend .mr0;
+        }
+    }
+    &.new {
+        @extend .tag-icon;
+
+        &:before {
+            @include ui-icon(tagAdd);
+        }
+        &:hover:before {
+            @include ui-icon(tagAdd_white);
+        }
+    }
+    &.add {
+        @extend .tag-icon;
+
+        &:before {
+            @include ui-icon(plus);
+        }
+        &:hover:before {
+            @include ui-icon(plus_white);
+        }
+    }
+    &.edit {
+        @extend .tag-icon;
+
+        &:before {
+            @include ui-icon(edit, 16px, 16px);
+        }
+        &:hover:before {
+            @include ui-icon(edit_white);
+        }
+    }
+    &.small {
+        @extend .bg-none;
+        @extend .h30;
+        border-color:$grayLight;
+        padding:0 9px;
+
+        &:before {
+            width:17px;
+            height:17px;
+            margin-right:6px;
+        }
+    }
+    &:hover {
+        @extend .c-white;
+        @extend .borderColor-blue;
+        @extend .bg-blue;
+
+        &:before {
+            @include ui-icon(tag_white);
+        }
+        .tag-remove {
+            @include ui-icon(remove_white);
+        }
+    }
+    &:active {
+        transform:translate3d(0, 1px, 0) scale(0.85);
+    }
+}

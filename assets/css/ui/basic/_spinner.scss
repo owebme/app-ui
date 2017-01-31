@@ -1,0 +1,37 @@
+.spinner {
+    @extend .display-block;
+
+    &:after {
+        @extend .content-empty;
+        @extend .display-block;
+        @include ui-icon(loading, 48px, 48px);
+    }
+    &-anim {
+        @extend .spinner;
+
+        &:after {
+            @extend .willChange-transform;
+            @include animation(spinner, linear, 1s, 0s, infinite);
+        }
+    }
+}
+.spinner-mini {
+    @extend .display-block;
+
+    &:after {
+        @extend .content-empty;
+        @extend .display-block;
+        @include ui-icon(loading_mini, 22px, 22px);
+    }
+    &-white:after {
+        @include ui-icon(loading_mini_white);
+    }
+    &-anim {
+        @extend .spinner-mini;
+
+        &:after {
+            @extend .willChange-transform;
+            @include animation(spinner, linear, .7s, 0s, infinite);
+        }
+    }
+}

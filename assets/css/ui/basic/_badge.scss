@@ -1,0 +1,33 @@
+.badge {
+    display:inline-block;
+    vertical-align:bottom;
+    height:19px;
+    padding:0 9px;
+    font-family:$roboto;
+    font-weight:400;
+    font-size:10px;
+    line-height:18px;
+    border-radius:10px;
+    background-color:rgba($blue,.1);
+    // background-color:#ddebfa;
+    color:$grayDark;
+}
+.badge-circle {
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    background:$red;
+    text-align:center;
+    color:#fff;
+    font-size:15px;
+    line-height:20px;
+    font-family:$roboto;
+    font-weight:bold;
+
+    &--more {
+        top:-12px;
+        width:24px;
+        height:24px;
+        line-height:24px;
+    }
+}
