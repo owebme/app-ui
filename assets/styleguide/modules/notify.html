@@ -7,7 +7,7 @@
     var $ = this;
 
     $.active = false;
-    $.timeout = 2;
+    $.timeout = 1.5;
     $.interval = null;
 
     $.opts = {
@@ -21,12 +21,9 @@
     });
 
     $.show = function(opts){
-        clearTimeout($.interval);
+        if ($.active) return;
 
-        if (typeof opts.timeout === "undefined"){
-            if (!opts.color) opts.timeout = 1;
-        }
-        if ($.active) $.autoHide(opts);
+        clearTimeout($.interval);
 
         if (opts.pos != $.opts.pos){
             $.update({

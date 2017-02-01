@@ -19,11 +19,16 @@
     </aside>
     <section-content class="content col-xs-offset-0 col-sm-offset-7 col-md-offset-6 col-lg-offset-5 col-sm-17 col-md-18 col-lg-19"></section-content>
 
+    <section-alert></section-alert>
+    <section-notify></section-notify>
+    <section-tutorial></section-tutorial>
+
 <script>
 
     window.$$ = window.jQuery || window.Zepto;
 
     var $ = this;
+    $root = $;
 
     $.parentSection = null;
     $.section = null;
@@ -31,8 +36,10 @@
 
     this.on("mount", function(){
 
-        var $body = $$("body"),
-            content = $$($.root)[0];
+        var content = $$($.root)[0];
+
+        $.sidebar = app.$dom.body.find(".sidebar")[0];
+        $.content = content;
 
         var router = {
 
@@ -64,7 +71,7 @@
                     riot.mount("section-content", "section-404");
                 }
                 content.scrollTop = 0;
-                $body.scrollTop(0);
+                app.$dom.body.scrollTop(0);
             }
         };
 
@@ -82,7 +89,11 @@
         },
         {
             title: 'Components',
-            items: ['Buttons', 'Form elements', 'Datepicker', 'Clockpicker', 'Grid', 'Links', 'Lists', 'Popups', 'Dropmenu']
+            items: ['Buttons', 'Form elements', 'Grid', 'Links', 'Lists', 'Alerts', 'Notify', 'Tooltips', 'Dropmenu']
+        },
+        {
+            title: 'Modules',
+            items: ['Datepicker', 'Clockpicker', 'Tutorial']
         },
         {
             title: 'Utility',
@@ -118,6 +129,21 @@
     $.hideMenu = function(e){
         $.openMenu = false;
     };
+
+    $.on("scrollTop", function(elem){
+        if (elem === true){
+            $.sidebar.scrollTop = 0;
+            $.content.scrollTop = 0;
+            app.$dom.body.scrollTop(0);
+        }
+        else if (elem == "sidebar"){
+            $.sidebar.scrollTop = 0;
+        }
+        else if (elem == "content"){
+            $.content.scrollTop = 0;
+            app.$dom.body.scrollTop(0);
+        }
+    });
 
 </script>
 

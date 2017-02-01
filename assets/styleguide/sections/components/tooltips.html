@@ -1,0 +1,234 @@
+<components-tooltips>
+
+    <h2 class="mb-xl">Tooltips</h2>
+
+    <h4 class="mb-xxs">Basic tooltip structure</h4>
+    <p class="fontSize-16 mb-m">Popovers are used for any contextual content that shouldn't block the the user. Some common uses are dropdown link menus, hovercards, complex tooltips etc. Below are some guidelines for usage and structure:</p>
+
+    <ul class="list list-unorder mb-l lineHeight-m">
+        <li>Only shared styles are componentised globally. Variable styles are applied with additional classes.</li>
+        <li>Padding size can vary. Padding can either be applied to a <span class="text-code">&lt;div&gt;</span> inside the popover element or can be applied directly to children of the popover element. The best approach depends on the structure of the content inside the popover component.</li>
+        <li>Popover content can vary, there are no strict dos and don'ts.</li>
+        <li>Popover max-widths and max-heights usually vary on a case-by-case basis. These properties are not shared globally, therefore, we set the max-width and max-height inline.</li>
+        <li>The caret is optional.</li>
+    </ul>
+
+    <div class="rows borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button data-balloon="Lorem ipsum dolor sit amet" class="btn btn-m btn-link-dark">Tooltip hover</button>
+                </div>
+                <p class="fontSize-14 lineHeight-s fontWeight-3 c-grayLight">Show up</p>
+            </div>
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button data-balloon="Lorem ipsum dolor sit amet" data-balloon-pos="left" class="btn btn-m btn-link-dark">Tooltip hover</button>
+                </div>
+                <p class="fontSize-14 fontWeight-3 c-grayLight">Show left</p>
+            </div>
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button data-balloon="Lorem ipsum dolor sit amet" data-balloon-pos="down" class="btn btn-m btn-link-dark">Tooltip hover</button>
+                </div>
+                <p class="fontSize-14 fontWeight-3 c-grayLight">Show down</p>
+            </div>
+            <div class="col-md-6 text-center p-m">
+                <div class="flex-centered h100">
+                    <button data-balloon="Lorem ipsum dolor sit amet" data-balloon-pos="up" class="btn btn-m btn-link-dark">Tooltip hover</button>
+                </div>
+                <p class="fontSize-14 fontWeight-3 c-grayLight">Show up</p>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ tooltipCode() }</code></pre>
+        <script>
+            this.tooltipCode = function(){
+                return '<div data-balloon="..." data-balloon-pos="up">...</div>\n'+
+                '<div data-balloon="..." data-balloon-pos="left">...</div>\n'+
+                '<div data-balloon="..." data-balloon-pos="right">...</div>\n'+
+                '<div data-balloon="..." data-balloon-pos="down">...</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Tooltips styles</h4>
+    <p class="fontSize-16 mb-l">There are five tooltip styles: default, primary, success, water and danger. Apply data-attribute <span class="text-code">data-balloon-color="..."</span>.</p>
+
+    <div class="rows borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button data-balloon="Lorem ipsum dolor sit amet" data-balloon-color="primary" data-balloon-pos="left" class="btn btn-m btn-link-primary">Tooltip hover</button>
+                </div>
+                <p class="fontSize-14 lineHeight-s fontWeight-3 c-grayLight">Primary</p>
+            </div>
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button data-balloon="Lorem ipsum dolor sit amet" data-balloon-color="success" data-balloon-pos="down" class="btn btn-m btn-link-success">Tooltip hover</button>
+                </div>
+                <p class="fontSize-14 lineHeight-s fontWeight-3 c-grayLight">Success</p>
+            </div>
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button data-balloon="Lorem ipsum dolor sit amet" data-balloon-color="water" class="btn btn-m btn-link-primary">Tooltip hover</button>
+                </div>
+                <p class="fontSize-14 lineHeight-s fontWeight-3 c-grayLight">Water</p>
+            </div>
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button data-balloon="Lorem ipsum dolor sit amet" data-balloon-color="danger" data-balloon-pos="down" class="btn btn-m btn-link-danger">Tooltip hover</button>
+                </div>
+                <p class="fontSize-14 lineHeight-s fontWeight-3 c-grayLight">Danger</p>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ tooltipStyles() }</code></pre>
+        <script>
+            this.tooltipStyles = function(){
+                return '<div data-balloon="..." data-balloon-color="default">...</div>\n'+
+                '<div data-balloon="..." data-balloon-color="primary">...</div>\n'+
+                '<div data-balloon="..." data-balloon-color="success">...</div>\n'+
+                '<div data-balloon="..." data-balloon-color="water">...</div>\n'+
+                '<div data-balloon="..." data-balloon-color="danger">...</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Tooltips sizes</h4>
+    <p class="fontSize-16 mb-l">There are three tooltip sizes: small, medium and large. Those don't apply inner padding, but instead change caret size, border radius and distance between the element and the popover. They also adjust its default width (which can be overriden with inline style). Apply data-attribute <span class="text-code">data-balloon-length="..."</span>.</p>
+
+    <div class="rows borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button data-balloon="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." data-balloon-length="l" class="btn btn-m btn-link-dark">Tooltip hover</button>
+                </div>
+                <p class="fontSize-14 lineHeight-s fontWeight-3 c-grayLight">Size L</p>
+            </div>
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button data-balloon="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor." data-balloon-length="m" class="btn btn-m btn-link-dark">Tooltip hover</button>
+                </div>
+                <p class="fontSize-14 lineHeight-s fontWeight-3 c-grayLight">Size M</p>
+            </div>
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button data-balloon="Lorem ipsum dolor sit amet, consectetur adipisicing elit." data-balloon-length="s" class="btn btn-m btn-link-dark">Tooltip hover</button>
+                </div>
+                <p class="fontSize-14 lineHeight-s fontWeight-3 c-grayLight">Size S</p>
+            </div>
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button data-balloon="Lorem ipsum" data-balloon-length="xs" class="btn btn-m btn-link-dark">Tooltip hover</button>
+                </div>
+                <p class="fontSize-14 lineHeight-s fontWeight-3 c-grayLight">Size XS</p>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ tooltipSizes() }</code></pre>
+        <script>
+            this.tooltipSizes = function(){
+                return '<div data-balloon="..." data-balloon-length="l">...</div>\n'+
+                '<div data-balloon="..." data-balloon-length="m">...</div>\n'+
+                '<div data-balloon="..." data-balloon-length="s">...</div>\n'+
+                '<div data-balloon="..." data-balloon-length="xs">...</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Tooltips font sizes</h4>
+    <p class="fontSize-16 mb-l">There are three tooltip sizes: medium, large and extra large. Apply data-attribute <span class="text-code">data-balloon-fontSize="..."</span>.</p>
+
+    <div class="rows borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-8 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button data-balloon="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." data-balloon-color="primary" data-balloon-length="l" data-balloon-fontSize="xl" class="btn btn-m btn-link-primary">Tooltip hover</button>
+                </div>
+                <p class="fontSize-14 lineHeight-s fontWeight-3 c-grayLight">Font size XL</p>
+            </div>
+            <div class="col-md-8 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button data-balloon="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor." data-balloon-color="primary" data-balloon-length="m" data-balloon-fontSize="l" class="btn btn-m btn-link-primary">Tooltip hover</button>
+                </div>
+                <p class="fontSize-14 lineHeight-s fontWeight-3 c-grayLight">Font size L</p>
+            </div>
+            <div class="col-md-8 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button data-balloon="Lorem ipsum dolor sit amet, consectetur adipisicing elit." data-balloon-color="primary" data-balloon-length="s" data-balloon-fontSize="m" class="btn btn-m btn-link-primary">Tooltip hover</button>
+                </div>
+                <p class="fontSize-14 lineHeight-s fontWeight-3 c-grayLight">Font size M</p>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ tooltipsFonts() }</code></pre>
+        <script>
+            this.tooltipsFonts = function(){
+                return '<div data-balloon="..." data-balloon-fontSize="m">...</div>\n'+
+                '<div data-balloon="..." data-balloon-fontSize="l">...</div>\n'+
+                '<div data-balloon="..." data-balloon-fontSize="xl">...</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Tooltips border radius</h4>
+    <p class="fontSize-16 mb-l">There are four tooltip border radius sizes: small, medium, large and extra large. Apply data-attribute <span class="text-code">data-balloon-borderRadius="..."</span>.</p>
+
+    <div class="rows borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button data-balloon="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor." data-balloon-color="primary" data-balloon-length="l" data-balloon-fontSize="l" data-balloon-borderRadius="s" class="btn btn-m btn-link-primary">Tooltip hover</button>
+                </div>
+                <p class="fontSize-14 lineHeight-s fontWeight-3 c-grayLight">Border radius S</p>
+            </div>
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button data-balloon="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor." data-balloon-color="primary" data-balloon-length="l" data-balloon-fontSize="l" data-balloon-borderRadius="m" class="btn btn-m btn-link-primary">Tooltip hover</button>
+                </div>
+                <p class="fontSize-14 lineHeight-s fontWeight-3 c-grayLight">Border radius M</p>
+            </div>
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button data-balloon="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor." data-balloon-color="primary" data-balloon-length="l" data-balloon-fontSize="l" data-balloon-borderRadius="l" class="btn btn-m btn-link-primary">Tooltip hover</button>
+                </div>
+                <p class="fontSize-14 lineHeight-s fontWeight-3 c-grayLight">Border radius L</p>
+            </div>
+            <div class="col-md-6 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
+                <div class="flex-centered h100">
+                    <button data-balloon="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor." data-balloon-color="primary" data-balloon-length="l" data-balloon-fontSize="l" data-balloon-borderRadius="xl" class="btn btn-m btn-link-primary">Tooltip hover</button>
+                </div>
+                <p class="fontSize-14 lineHeight-s fontWeight-3 c-grayLight">Border radius XL</p>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ tooltipsBorderRadius() }</code></pre>
+        <script>
+            this.tooltipsBorderRadius = function(){
+                return '<div data-balloon="..." data-balloon-borderRadius="xl">...</div>\n'+
+                '<div data-balloon="..." data-balloon-borderRadius="l">...</div>\n'+
+                '<div data-balloon="..." data-balloon-borderRadius="m">...</div>\n'+
+                '<div data-balloon="..." data-balloon-borderRadius="s">...</div>';
+            };
+        </script>
+    </div>
+
+<script>
+
+    var $ = this;
+
+    $.on("mount", function(){
+        $$('pre > code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+
+</script>
+
+</components-tooltips>

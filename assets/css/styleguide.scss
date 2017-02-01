@@ -7,6 +7,7 @@
 @import 'base/mixins';
 @import 'base/responsive';
 @import 'base/main';
+@import 'base/config';
 
 // UI elements
 @import 'ui/basic/highlight';
@@ -25,12 +26,14 @@
 @import 'ui/basic/datepicker';
 @import 'ui/basic/clockpicker';
 @import 'ui/basic/pagination';
+@import 'ui/basic/alert';
+@import 'ui/basic/notify';
+@import 'ui/basic/tutorial';
 @import 'ui/basic/typography';
+@import 'ui/basic/balloon';
 // @import 'ui/badge';
 // @import 'ui/dropmenu';
 // @import 'ui/filter';
-// @import 'ui/balloon';
-// @import 'ui/balloonError';
 
 // styleguide
 @import 'styleguide/main';

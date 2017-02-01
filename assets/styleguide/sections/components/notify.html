@@ -1,0 +1,62 @@
+<components-notify>
+
+    <h2 class="mb-xl">Notify</h2>
+
+    <h4 class="mb-xxs">Default notify</h4>
+    <p class="fontSize-16 mb-l">There are two modal sizes which can be triggered with classes .modal--s and .modal--m. All modals should be placed in a wrapper component that has classes .modal-overlay and .zi-overlay.</p>
+
+    <div class="rows borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="row">
+            <div class="hidden-xs col-sm-12 col-md-6 flex-centered p-m">
+                <button onClick={ open.notify } data-pos="top-left" data-color="primary" class="btn btn-m btn-primary" type="button">Notify left</button>
+            </div>
+            <div class="col-xs-24 col-sm-12 col-md-6 flex-centered p-m">
+                <button onClick={ open.notify } data-pos="top-center" data-color="success" class="btn btn-m btn-success" type="button">Notify center</button>
+            </div>
+            <div class="hidden-xs col-sm-12 col-md-6 flex-centered p-m">
+                <button onClick={ open.notify } data-pos="top-right" data-color="danger" class="btn btn-m btn-danger" type="button">Notify right</button>
+            </div>
+            <div class="col-xs-24 col-sm-12 col-md-6 flex-centered p-m">
+                <button onClick={ open.notify } data-pos="bottom-center" data-color="info" class="btn btn-m btn-info" type="button">Notify bottom</button>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ notifyCode() }</code></pre>
+        <script>
+            this.notifyCode = function(){
+                return '$.notify.show({\n'
+                            +'    color: "...",\n'
+                            +'    pos: "...",\n'
+                            +'    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit"\n'
+                        +'})';
+            };
+        </script>
+    </div>
+
+<script>
+
+    var $ = this;
+
+    $.on("mount", function(){
+        $$('pre > code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+        $.notify = $root.tags["section-notify"];
+    });
+
+    $.open = {
+        notify: function(e){
+            var $target = $$(e.currentTarget);
+
+            $.notify.show({
+                color: $target.attr("data-color"),
+                pos: $target.attr("data-pos"),
+                text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+            })
+        }
+    }
+
+</script>
+
+</components-notify>

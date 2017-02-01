@@ -4,7 +4,7 @@
 
     <div name="msgBox" class="tutorial__message__wrapper" style="{ message.style }">
         <div name="msgElem" class="tutorial__message" data-position="{ message.position }" data-active="false">
-            <p class="pos-tr p-m c-grayLight fontSize-m { display-none : !nav.steps }">Шаг { num } из { steps.get().length }</p>
+            <p class="tutorial__message__steps { display-none : !nav.steps }">Шаг { num } из { steps.get().length }</p>
             <div class="tutorial__message__title">{ message.title ? message.title : 'Lorem ipsum dolor sit amet' }</div>
             <p class="tutorial__message__text">{ message.text ? message.text : 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.' }</p>
             <div class="fontSize-0 nowrap { display-none : !nav.buttons }">
@@ -12,9 +12,9 @@
                     <svg if={ endShow && nav.buttons.success === true } class="btn-svg btn-svg-repeat" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
                         <path class="fill-white" d="M 39.78125 5.96875 A 2.0002 2.0002 0 0 0 38 8 L 38 12.5625 C 34.722701 9.1373523 30.10346 7 25 7 C 15.082241 7 7 15.082241 7 25 A 2.0002 2.0002 0 1 0 11 25 C 11 17.243759 17.243759 11 25 11 C 28.816123 11 32.256876 12.535728 34.78125 15 L 31 15 A 2.0002 2.0002 0 1 0 31 19 L 40 19 L 42 19 L 42 17 L 42 8 A 2.0002 2.0002 0 0 0 39.96875 5.96875 A 2.0002 2.0002 0 0 0 39.78125 5.96875 z M 40.78125 22.96875 A 2.0002 2.0002 0 0 0 39 25 C 39 32.757363 32.756392 39 25 39 C 21.184399 39 17.742551 37.46305 15.21875 35 L 19 35 A 2.0002 2.0002 0 1 0 19 31 L 10 31 L 8 31 L 8 33 L 8 42 A 2.0002 2.0002 0 1 0 12 42 L 12 37.4375 C 15.276425 40.860887 19.895994 43 25 43 C 34.917608 43 43 34.918637 43 25 A 2.0002 2.0002 0 0 0 40.96875 22.96875 A 2.0002 2.0002 0 0 0 40.78125 22.96875 z"></path>
                     </svg>
-                    { nav.buttons.success.title ? nav.buttons.success.title : (endShow ? 'Повторить' : 'Далее') }
+                    { nav.buttons.success.title ? nav.buttons.success.title : (endShow ? 'Repeat' : 'Next step') }
                 </button>
-                <button onClick={ hide } onUpdate="none" class="btn btn-m btn-primary-hover { display-none : nav.buttons.cancel === false }">{ endShow ? 'Перейти к интерфейсу' : 'Закрыть помощник' }</button>
+                <button onClick={ hide } onUpdate="none" class="btn btn-m btn-primary-hover { display-none : nav.buttons.cancel === false }">{ endShow ? 'Go to the interface' : 'Close tour' }</button>
             </div>
         </div>
     </div>
@@ -26,10 +26,13 @@
     $.active = false;
     $.ready = false;
     $.steps = new Baobab([]).root;
-    $.borderColor = "#265cdc";
 
     $.on("before-mount", function(){
         $.reset();
+    });
+
+    $.on("mount", function(){
+        $.borderColor = $$($.root).find(".tutorial__shape").css("backgroundColor");
     });
 
     $.on("messageShow", function(){
@@ -122,13 +125,13 @@
     };
 
     $.show = function(scope, tutorial, options){
-        if (app.device.isPhone) return;
+        if ($.active || app.device.isPhone) return;
 
-        if (app.plugins.tutorial[tutorial]){
+        if (_.isArray(tutorial) || app.plugins.tutorial[tutorial]){
 
             $.start = true;
 
-            $.steps.set(app.plugins.tutorial[tutorial]);
+            $.steps.set(_.isArray(tutorial) ? tutorial : app.plugins.tutorial[tutorial]);
             $.scope = $$(scope);
 
             if (options) _.extend($.options, options);
@@ -242,11 +245,13 @@
         var _width = $.target.data("width") || $.step.width,
             _height = $.target.data("height") || $.step.height;
 
-        if (_height){
-            $.offset.top -= (parseInt(_height) - $.target.outerHeight()) / 2;
-        }
-        if (_width){
-            $.offset.left -= (parseInt(_width) - $.target.outerWidth()) / 2;
+        if ($.step.centered){
+            if (_height){
+                $.offset.top -= (parseInt(_height) - $.target.outerHeight()) / 2;
+            }
+            if (_width){
+                $.offset.left -= (parseInt(_width) - $.target.outerWidth()) / 2;
+            }
         }
 
         var _zoom = $.target.data("zoom") || $.step.zoom,
@@ -254,7 +259,7 @@
             width = _width ? parseInt(_width) : (padding ? $.target.outerWidth() + parseInt(padding) * 2 : $.target.outerWidth()),
             height = _height ? parseInt(_height) : (padding ? $.target.outerHeight() + parseInt(padding) * 2 : $.target.outerHeight()),
             zoom = _zoom ? parseFloat(_zoom) : 1,
-            arbitrarySize = 300,
+            arbitrarySize = 150,
             halfSize = arbitrarySize / 2,
             centerX = (padding ? $.offset.left - parseInt(padding) : $.offset.left) + width / 2,
             centerY = (padding ? $.offset.top - parseInt(padding) : $.offset.top) + height / 2,
@@ -269,7 +274,7 @@
 
         if ($.step.figure == "square"){
             centerYMinusHalfSize = centerY - rectangleHeight / 2;
-            style = "-webkit-transform: translateX(" + centerXMinusHalfSize + "px) translateY(" + centerYMinusHalfSize + "px) translateZ(0) scale(" + rectangleScaleFactor + "); transform: translateX(" + centerXMinusHalfSize + "px) translateY(" + centerYMinusHalfSize + "px) translateZ(0) scale(" + rectangleScaleFactor + "); width: " + arbitrarySize + "px; height: " + rectangleHeight + "px; box-shadow: inset 0 0 0 " + borderSize + "px " + $.borderColor + ", inset 0 0 " + shadowSize + "px rgba(0,0,0,0.4); border-radius: " + rectangleBorderRadius + "px";
+            style = "background:none; -webkit-transform: translateX(" + centerXMinusHalfSize + "px) translateY(" + centerYMinusHalfSize + "px) translateZ(0) scale(" + rectangleScaleFactor + "); transform: translateX(" + centerXMinusHalfSize + "px) translateY(" + centerYMinusHalfSize + "px) translateZ(0) scale(" + rectangleScaleFactor + "); width: " + arbitrarySize + "px; height: " + rectangleHeight + "px; box-shadow: inset 0 0 0 " + borderSize + "px " + $.borderColor + ", inset 0 0 " + shadowSize + "px rgba(0,0,0,0.4); border-radius: " + rectangleBorderRadius + "px";
         }
         else if ($.step.figure == "circle"){
             var radius = Math.sqrt(2) * Math.max(width, height) / 2,
@@ -278,7 +283,7 @@
                 borderSize = Math.ceil(5 / scaleFactor),
                 shadowSize = 5 * borderSize;
 
-            style = "-webkit-transform: translateX(" + centerXMinusHalfSize + "px) translateY(" + centerYMinusHalfSize + "px) translateZ(0) scale(" + scaleFactor + "); transform: translateX(" + centerXMinusHalfSize + "px) translateY(" + centerYMinusHalfSize + "px) translateZ(0) scale(" + scaleFactor + "); width: " + arbitrarySize + "px; height: " + arbitrarySize + "px; box-shadow: inset 0 0 0 " + borderSize + "px " + $.borderColor + ", inset 0 0 " + shadowSize + "px rgba(0,0,0,0.4); border-radius: 50%";
+            style = "background:none; -webkit-transform: translateX(" + centerXMinusHalfSize + "px) translateY(" + centerYMinusHalfSize + "px) translateZ(0) scale(" + scaleFactor + "); transform: translateX(" + centerXMinusHalfSize + "px) translateY(" + centerYMinusHalfSize + "px) translateZ(0) scale(" + scaleFactor + "); width: " + arbitrarySize + "px; height: " + arbitrarySize + "px; box-shadow: inset 0 0 0 " + borderSize + "px " + $.borderColor + ", inset 0 0 " + shadowSize + "px rgba(0,0,0,0.4); border-radius: 50%";
         }
 
         $.navigate.render();
@@ -293,22 +298,40 @@
     };
 
     $.cordsMsg = function(){
-        var offsetY = $.offset.top;
+        var offset = {},
+            offsetY = $.offset.top;
 
         if (offsetY + $.msgBox.scrollHeight > app.sizes.height - 40){
             offsetY = $.offset.top + (app.sizes.height - 40) - (offsetY + $.msgBox.scrollHeight);
         }
         if (offsetY < 40) offsetY = 40;
 
+        offset.top = offsetY;
+
         if ($.step.position == "right"){
-            $.message.style = "top:" + offsetY + "px; left:" + ($.offset.left + $.targetWidth) + "px";
+            offset.left = $.offset.left + $.targetWidth;
+            offset = $.offsetMsg(offset);
+            $.message.style = "top:" + offset.top + "px; left:" + offset.left + "px";
         }
         else if ($.step.position == "left" || $.step.position == "up"){
-            $.message.style = "top:" + offsetY + "px; left:" + $.offset.left + "px";
+            offset.left = $.offset.left;
+            offset = $.offsetMsg(offset);
+            $.message.style = "top:" + offset.top + "px; left:" + offset.left + "px";
         }
         else if ($.step.position == "down"){
-            $.message.style = "top:" + ($.offset.top + $.targetHeight) + "px; left:" + $.offset.left + "px";
+            offset.top = $.offset.top + $.targetHeight;
+            offset.left = $.offset.left;
+            offset = $.offsetMsg(offset);
+            $.message.style = "top:" + offset.top + "px; left:" + offset.left + "px";
         }
+    };
+
+    $.offsetMsg = function(offset){
+        if ($.step.message && $.step.message.offset){
+            if ($.step.message.offset.top) offset.top += $.step.message.offset.top;
+            if ($.step.message.offset.left) offset.left += $.step.message.offset.left;
+        }
+        return offset;
     };
 
     $.actions = function(step, $target, force){

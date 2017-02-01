@@ -1,0 +1,126 @@
+<modules-tutorial>
+
+    <h2 class="mb-xl tutorial-header">Tutorial</h2>
+
+    <div class="tutorial-text">
+        <h4 class="mb-xxs">Default tutorial</h4>
+        <p class="fontSize-16 mb-l">There are two modal sizes which can be triggered with classes .modal--s and .modal--m. All modals should be placed in a wrapper component that has classes .modal-overlay and .zi-overlay.</p>
+    </div>
+
+    <div class="tutorial-code">
+        <div class="rows borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+            <div class="row">
+                <div class="col-md-24 p-m">
+                    <button onClick={ open.tutorial } class="btn btn-m btn-primary" type="button">Start Tour</button>
+                </div>
+            </div>
+        </div>
+        <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+            <pre><code class="hljs">{ tutorialCode() }</code></pre>
+            <script>
+                this.tutorialCode = function(){
+                    return '$.tutorial.show(\'scope\', \'params\')';
+                };
+            </script>
+        </div>
+    </div>
+
+<script>
+
+    var $ = this;
+
+    $.on("mount", function(){
+        $$('pre > code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+        $.tutorial = $root.tags["section-tutorial"];
+    });
+
+    $.open = {
+        tutorial: function(){
+            $root.trigger("scrollTop", true);
+            $.tutorial.show(app.$dom.body, $.help);
+        }
+    }
+
+    $.help = [
+        function(){
+            return {
+                activeZone: true,
+                figure: "square",
+                target: ".tutorial-header",
+                position: "down",
+                padding: 20,
+                width: 300,
+                offset: {
+                    top: -2,
+                    left: -5
+                },
+                title: "Excepteur sint occaecat",
+                text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
+            }
+        },
+        function(){
+            return {
+                activeZone: true,
+                figure: "square",
+                target: ".tutorial-text",
+                position: "down",
+                padding: 25,
+                message: {
+                    offset: {
+                        top: -240,
+                        left: 400
+                    }
+                },
+                title: "Excepteur sint occaecat",
+                text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
+            }
+        },
+        function(){
+            return {
+                activeZone: true,
+                figure: "square",
+                target: ".tutorial-code",
+                position: "up",
+                padding: 20,
+                message: {
+                    offset: {
+                        top: 180,
+                        left: 300
+                    }
+                },
+                title: "Excepteur sint occaecat",
+                text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
+            }
+        },
+        function(){
+            return {
+                activeZone: true,
+                figure: "square",
+                target: ".nav",
+                position: "right",
+                offset: {
+                    top: -10
+                },
+                height: 280,
+                title: "Excepteur sint occaecat",
+                text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
+            }
+        },
+        function(){
+            return {
+                activeZone: true,
+                figure: "circle",
+                target: ".sidebar__header",
+                position: "right",
+                zoom: 0.6,
+                title: "Excepteur sint occaecat",
+                text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
+            }
+        }
+    ];
+
+</script>
+
+</modules-tutorial>

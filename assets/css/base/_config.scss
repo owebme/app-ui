@@ -1,0 +1,114 @@
+// ---------- ** Tooltips ** ---------- //
+
+@mixin tooltip() {
+    @extend .bg-blackLight;
+    @extend .c-white;
+    @extend .fontFamily-helvetica;
+    @extend .fontWeight-normal;
+    font-size:14px;
+    line-height:22px;
+    padding:.6em 1em;
+    border-radius:6px;
+}
+@mixin tooltip-larger() {
+    padding:0.85em 1.25em 1.15em;
+}
+@mixin tooltip-border-xl() {
+    padding:1em 1.25em 1.15em;
+}
+@mixin tooltip-xl() {
+    font-size:16px;
+    line-height:26px;
+}
+@mixin tooltip-l() {
+    font-size:15px;
+    line-height:24px;
+}
+
+
+// ---------- ** Notify ** ---------- //
+
+@mixin notify() {
+    @extend .c-white;
+    @extend .borderRadius-l;
+    @extend .fontWeight-normal;
+    font-size:16px;
+    line-height:24px;
+    min-width:280px;
+    max-width:364px;
+    padding:30px 25px 35px 75px;
+}
+@mixin notify-icon() {
+    @include ui-icon("info_white", 28px, 28px);
+    transform:translate3d(25px, 22px, 0);
+}
+
+
+// ---------- ** Alert ** ---------- //
+
+@mixin alert-overlay() {
+    background:rgba(darken($grayDark,15%),.7);
+}
+@mixin alert-wrapper() {
+    width:528px;
+    height:295px;
+    border-radius:12px;
+    @extend .bg-snow;
+    @extend .boxShadow-dark;
+}
+@mixin alert-title() {
+    @extend .c-blue;
+    @extend .fontFamily-helvetica;
+    @extend .fontWeight-5;
+    @extend .fontSize-28;
+    @extend .mb-m;
+    @extend .plr-l;
+    @extend .pt-xs;
+}
+@mixin alert-subtitle() {
+    @extend .c-gray;
+    @extend .fontSize-18;
+    @extend .fontWeight-normal;
+    @extend .pl60;
+    @extend .pr60;
+}
+@mixin alert-button() {
+    @extend .c-blue;
+    @extend .fontSize-20;
+    padding-bottom:3px;
+}
+@mixin alert-button-hover() {
+    @extend .bg-smoke;
+}
+@mixin alert-button-active() {
+    @extend .c-white;
+    @extend .bg-blue;
+}
+$alertButtonBorderColor: darken($smoke,1.5%);
+
+
+// ---------- ** Tutorial ** ---------- //
+
+@mixin tutorial-color() {
+    border-color:rgba(#fcfcfc,.8); // overlay color
+    @extend .bg-blueLight; // border color for shape
+}
+@mixin tutorial-message() {
+    @extend .c-gray;
+}
+@mixin tutorial-message-steps() {
+    @extend .c-grayLight;
+    @extend .fontSize-15;
+}
+@mixin tutorial-message-title() {
+    @extend .c-blue;
+    @extend .fontFamily-helvetica;
+    @extend .fontSize-22;
+    @extend .fontWeight-5;
+    @extend .mb-s;
+}
+@mixin tutorial-message-text() {
+    @extend .fontSize-16;
+    @extend .lineHeight-l;
+    @extend .mb-l;
+}

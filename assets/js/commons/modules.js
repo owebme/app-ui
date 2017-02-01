@@ -1,17 +1,33 @@
-(function($){
+(function(sizes, $dom){
+	// {fn} update sizes
+	var updateSizes = function(){
+		sizes.width = $dom.window.width();
+		sizes.height = parseInt(window.innerHeight,10);
+	};
+	// {event} window resize
+	$dom.window.on('resize.app', updateSizes);
+	// init
+	updateSizes();
+})(app.sizes, app.$dom);
 
-	var device = {},
-		$dom = {
-			body: $('body'),
-			html: $('html'),
-			window: $(window)
-		};
+(function(device, $dom, _){
 
 	/* --- Mobile --- */
 	device.support = Modernizr;
 
 	/* --- Mobile --- */
 	device.isMobile = device.support.touch;
+
+	var params = window.Url && Url.parseQuery();
+
+	if (params && params.demo){
+		app.demo = params.demo;
+
+		if ($dom.window.width() < 1025){
+			device.isMobile = true;
+			$dom.html.removeClass("m-no-touch").addClass("m-touch");
+		}
+	}
 	$dom.html.addClass(device.isMobile ? 'd-mobile' : 'd-no-mobile');
 
 	/* --- Retina --- */
@@ -31,9 +47,12 @@
 		.removeClass(device.isTablet ? 'd-no-tablet' : 'd-tablet')
 		.addClass(device.orientation === "landscape" ? 'r-landscape' : 'r-portrait')
 		.removeClass(device.orientation !== "landscape" ? 'r-landscape' : 'r-portrait');
+		device.is = device.isPhone ? 'phone' : (device.isTablet ? 'tablet' : 'desktop');
 	};
 	$dom.window.on('resize.sizeCheck', sizeCheck);
 	sizeCheck();
+
+	device.ua = navigator.userAgent;
 
 	if (navigator.userAgent.match(/(iPhone)/i)) device.isPhone = true;
 
@@ -49,6 +68,8 @@
 	if (navigator.userAgent.match(/(iPad|iPhone|iPod touch)/i)) {
 		$dom.html.addClass('d-ios');
 		device.isIOS = true;
+		var expr = navigator.userAgent.match(/.*CPU.*OS (\d)_(\d)/i);
+		device.verOS = expr && expr[1] ? expr[1] + (expr[2] ? "." + expr[2] : "") : false;
 	}
 	else {
 		$dom.html.addClass('d-no-ios');
@@ -57,6 +78,16 @@
 		$dom.html.addClass('d-ios7');
 		device.isIOS7 = true;
 	};
+	if (navigator.userAgent.match(/Android/i)) {
+		$dom.html.addClass('d-android');
+		device.isAndroid = true;
+		var expr = navigator.userAgent.match(/Android (\d)\.(\d)/i);
+		device.verOS = expr && expr[1] ? expr[1] + (expr[2] ? "." + expr[2] : "") : false;
+	};
+
+	if (app.device.isMobile){
+		device.os = device.isAndroid ? 'android' : (device.isIOS ? 'ios' : 'unknown');
+	}
 
 	/* --- iPad (for fix wrong window height) --- */
 	if ($dom.html.hasClass('d-ipad d-ios7')) {
@@ -70,6 +101,8 @@
 	device.isLinux = navigator.platform.indexOf("Linux") > -1;
 
 	$dom.html.addClass(device.isMac ? 'd-macOS' : 'd-no-macOS');
+
+	device.platform = device.isWin ? 'win' : (device.isMac ? 'mac' : (device.isLinux ? 'linux' : 'unknown'));
 
 	/* --- Safari --- */
 	device.isSafari = /constructor/i.test(window.HTMLElement);
@@ -86,18 +119,24 @@
 		}, false);
 	}
 
-	if (!device.isMobile){
-		var timer, body = $dom.body[0];
-		$dom.window[0].addEventListener('scroll', function(){
-			clearTimeout(timer);
-			if (!body.getAttribute("class") || !body.getAttribute("class").match(/disable__hover/)){
-				body.classList.add('disable__hover');
-			}
+	// if (!device.isMobile){
+	// 	var timer, body = $dom.body[0];
+	// 	$dom.window[0].addEventListener('scroll', function(){
+	// 		clearTimeout(timer);
+	// 		if (!body.getAttribute("class") || !body.getAttribute("class").match(/disable__hover/)){
+	// 			body.classList.add('disable__hover');
+	// 		}
+	//
+	// 		timer = setTimeout(function(){
+	// 			body.classList.remove('disable__hover')
+	// 		}, 300);
+	// 	}, false);
+	// }
 
-			timer = setTimeout(function(){
-				body.classList.remove('disable__hover')
-			}, 300);
-		}, false);
+	app.device.get = function(){
+		return _.extend(_.omit(app.device, ['get', 'support']), {
+			screen: app.sizes
+		});
 	}
 
-})(window.jQuery || window.Zepto);
+})(app.device, app.$dom, app.utils);

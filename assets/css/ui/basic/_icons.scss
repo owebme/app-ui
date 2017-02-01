@@ -13,7 +13,7 @@
     sortUp, sortUp_muted, sortDown, sortDown_muted,
     phone, messenger, reviews, userAdd, tag, tag_white, tagAdd, tagAdd_white,
     facebook_white, vkontakte_white, odnoklassniki_white, twitter_white,
-    yandex, google, rambler, mailru, yahoo, bing
+    yandex, google, rambler, mailru, yahoo, bing, info_white
 ){
     .ui-icon-#{$icon} {
         @if $icon == 'rambler' or $icon == 'mailru' {

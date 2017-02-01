@@ -16,20 +16,26 @@
 </head>
 <body>
 
-    <root-main></root-main>
+    <root-main id="app"></root-main>
 
     <!--/ VENDORS /-->
     <script src="/assets/js/libs/jquery.min.js"></script>
     <script src="/assets/js/libs/jquery.mobile.custom.min.js"></script>
     <script src="/assets/js/libs/modernizr.custom.js"></script>
     <script src="/assets/js/libs/fastclick.min.js"></script>
-    <script src="/assets/js/libs/device.js"></script>
     <script src="/assets/js/libs/riot/riot+compiler.min.js"></script>
+    <script src="/assets/js/libs/afterlag.min.js"></script>
+    <script src="/assets/js/libs/baobab.js"></script>
     <script src="/assets/js/libs/highlight.pack.js"></script>
     <script src="/assets/js/libs/daterangepicker/moment.min.js"></script>
     <script src="/assets/js/libs/daterangepicker/daterangepicker.js"></script>
     <script src="/assets/js/libs/clockpicker/dist/bootstrap-clockpicker.js"></script>
     <script src="/assets/js/libs/underscore-min.js"></script>
+    <script src="/assets/js/commons/app.js"></script>
+    <script src="/assets/js/commons/common.js"></script>
+    <script src="/assets/js/commons/modules.js"></script>
+    <script src="/assets/js/commons/utils.js"></script>
+    <script src="/assets/js/commons/afterlag.js"></script>
 
     <!--/ Root /-->
     <script src="/assets/styleguide/root.html" type="riot/tag"></script>
@@ -55,21 +61,17 @@
     <!--/ Components /-->
     <script src="/assets/styleguide/sections/components/buttons.html" type="riot/tag"></script>
     <script src="/assets/styleguide/sections/components/form-elements.html" type="riot/tag"></script>
-    <script src="/assets/styleguide/sections/components/datepicker.html" type="riot/tag"></script>
-    <script src="/assets/styleguide/sections/components/clockpicker.html" type="riot/tag"></script>
     <script src="/assets/styleguide/sections/components/grid.html" type="riot/tag"></script>
     <script src="/assets/styleguide/sections/components/links.html" type="riot/tag"></script>
     <script src="/assets/styleguide/sections/components/lists.html" type="riot/tag"></script>
-
-    <!--/ UI components /-->
-    <script src="/assets/styleguide/ui/dropMenu.html" type="riot/tag"></script>
-    <script src="/assets/styleguide/ui/switcher.html" type="riot/tag"></script>
+    <script src="/assets/styleguide/sections/components/alerts.html" type="riot/tag"></script>
+    <script src="/assets/styleguide/sections/components/notify.html" type="riot/tag"></script>
+    <script src="/assets/styleguide/sections/components/tooltips.html" type="riot/tag"></script>
 
     <!--/ Modules /-->
-    <script src="/assets/styleguide/modules/alert.html" type="riot/tag"></script>
-    <script src="/assets/styleguide/modules/notify.html" type="riot/tag"></script>
-    <script src="/assets/styleguide/modules/photoUpload.html" type="riot/tag"></script>
-    <script src="/assets/styleguide/modules/tutorial.html" type="riot/tag"></script>
+    <script src="/assets/styleguide/sections/modules/datepicker.html" type="riot/tag"></script>
+    <script src="/assets/styleguide/sections/modules/clockpicker.html" type="riot/tag"></script>
+    <script src="/assets/styleguide/sections/modules/tutorial.html" type="riot/tag"></script>
 
     <!--/ Utility /-->
     <script src="/assets/styleguide/sections/utility/aspect-ratio.html" type="riot/tag"></script>
@@ -77,6 +79,16 @@
     <script src="/assets/styleguide/sections/utility/flexbox.html" type="riot/tag"></script>
     <script src="/assets/styleguide/sections/utility/layout.html" type="riot/tag"></script>
     <script src="/assets/styleguide/sections/utility/text-operations.html" type="riot/tag"></script>
+
+    <!--/ UI components (tags) /-->
+    <script src="/assets/styleguide/ui/dropMenu.html" type="riot/tag"></script>
+    <script src="/assets/styleguide/ui/switcher.html" type="riot/tag"></script>
+
+    <!--/ Modules (tags) /-->
+    <script src="/assets/styleguide/modules/alert.html" type="riot/tag"></script>
+    <script src="/assets/styleguide/modules/notify.html" type="riot/tag"></script>
+    <script src="/assets/styleguide/modules/photoUpload.html" type="riot/tag"></script>
+    <script src="/assets/styleguide/modules/tutorial.html" type="riot/tag"></script>
 
     <script>
         riot.compile(function(){

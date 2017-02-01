@@ -10,7 +10,7 @@ $i:0;
         }
     }
 }
-@each $title, $color in (white: $white, blue: $blue, blueLight: $blueLight, blueLighten: $blueLighten, blueDark: $blueDark, blueDarken: $blueDarken, water: $water, waterLight: $waterLight, waterDark: $waterDark, brown: $brown, red: $red, redDark: $redDark, yellow: $yellow, yellowDark: $yellowDark, orange: $orange, orangeDark: $orangeDark, violet: $violet, violetDark: $violetDark, green: $green, greenLight: $greenLight, greenDark: $greenDark, black: $black, blackDark: $blackDark, blackLight: $blackLight, gray: $gray, grayDark: $grayDark, grayLight: $grayLight, grayLighten: $grayLighten, smoke: $smoke, smokeLight: $smokeLight, smokeDark: $smokeDark, smokeDarken: $smokeDarken, snow: $snow, snowDark: $snowDark){
+@each $title, $color in (white: $white, primary: $primary, blue: $blue, blueLight: $blueLight, blueLighten: $blueLighten, blueDark: $blueDark, blueDarken: $blueDarken, water: $water, waterLight: $waterLight, waterDark: $waterDark, brown: $brown, red: $red, redDark: $redDark, yellow: $yellow, yellowDark: $yellowDark, orange: $orange, orangeDark: $orangeDark, violet: $violet, violetDark: $violetDark, green: $green, greenLight: $greenLight, greenDark: $greenDark, black: $black, blackDark: $blackDark, blackLight: $blackLight, gray: $gray, grayDark: $grayDark, grayLight: $grayLight, grayLighten: $grayLighten, smoke: $smoke, smokeLight: $smokeLight, smokeDark: $smokeDark, smokeDarken: $smokeDarken, snow: $snow, snowDark: $snowDark){
     .bg-#{$title},
     .text-strike[data-color=#{$title}]:after {
         background-color:$color;
@@ -53,7 +53,7 @@ $i:0;
 .btn-link-underline:hover {
     text-decoration:underline;
 }
-@each $title, $color in (primary: $primary, info: $blueLight, success: $green, danger: $red, warning: $yellow, dark: $black){
+@each $title, $color in (primary: $primary, info: $waterDark, success: $green, danger: $red, warning: $yellow, dark: $black){
     .btn-#{$title} {
         color:$white;
         background-color:$color;
@@ -138,6 +138,29 @@ $i:0;
     }
     input.range-#{$title}[type=range]::-ms-thumb {
         background-color:$color;
+    }
+}
+@each $title, $color in (primary: $primary, danger: $red, success: $green, water: $water){
+    [data-balloon-color="#{$title}"] {
+        &:after {
+            background-color:$color;
+
+            @if $title == 'water' {
+                color:$blueDark;
+            }
+        }
+        &:before {
+            background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="36px" height="12px"><path fill="#{$color}" transform="rotate(0)" d="M2.658,0.000 C-13.615,0.000 50.938,0.000 34.662,0.000 C28.662,0.000 23.035,12.002 18.660,12.002 C14.285,12.002 8.594,0.000 2.658,0.000 Z"/></svg>');
+        }
+        &[data-balloon-pos="left"]:before {
+            background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12px" height="36px"><path fill="#{$color}" transform="rotate(-90 18 18)" d="M2.658,0.000 C-13.615,0.000 50.938,0.000 34.662,0.000 C28.662,0.000 23.035,12.002 18.660,12.002 C14.285,12.002 8.594,0.000 2.658,0.000 Z"/></svg>');
+        }
+        &[data-balloon-pos="right"]:before {
+            background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12px" height="36px"><path fill="#{$color}" transform="rotate(90 6 6)" d="M2.658,0.000 C-13.615,0.000 50.938,0.000 34.662,0.000 C28.662,0.000 23.035,12.002 18.660,12.002 C14.285,12.002 8.594,0.000 2.658,0.000 Z"/></svg>');
+        }
+        &[data-balloon-pos="down"]:before {
+            background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="36px" height="12px"><path fill="#{$color}" transform="rotate(180 18 6)" d="M2.658,0.000 C-13.615,0.000 50.938,0.000 34.662,0.000 C28.662,0.000 23.035,12.002 18.660,12.002 C14.285,12.002 8.594,0.000 2.658,0.000 Z"/></svg>');
+        }
     }
 }
 .btn-default {
