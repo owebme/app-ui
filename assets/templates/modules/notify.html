@@ -1,0 +1,77 @@
+<section-notify class="notify-wrapper" data-active={ active } data-pos={ pos }>
+
+    <div onClick={ hide } onUpdate="none" ref="notify" class="notify { 'notify-' + size }" data-color={ color } style="{ width ? 'width:' + width : null }">{ text }</div>
+
+<script>
+
+    var $ = this;
+
+    $.active = false;
+    $.interval = null;
+
+    $.default = function(){
+        return {
+            active: true,
+            timeout: 1.5,
+            pos: "top-left",
+            size: "m",
+            color: "primary"
+        }
+    };
+
+    $.on("mount", function(){
+        $.notify = $.refs.notify;
+
+        $afterlag.run(function(){
+            $.update(
+                _.extend($.default(), {
+                    active: false
+                })
+            );
+        });
+    });
+
+    $.show = function(options){
+        if ($.active) return;
+
+        $.active = true;
+
+        clearTimeout($.interval);
+
+        $.root.style.display = "block";
+
+        $afterlag.run(function(){
+            $.update(_.extend($.default(), options));
+        })
+
+        return new Promise(function(resolve, reject){
+            _.onEndTransition($.notify, function(){
+                $.autoHide();
+                return resolve();
+            });
+        });
+    };
+
+    $.autoHide = function(){
+        if ($.timeout !== false){
+            $.interval = setTimeout(function(){
+                $.hide();
+            }, $.timeout * 1000);
+        }
+    };
+
+    $.hide = function(){
+        clearTimeout($.interval);
+
+        $.update({
+            active: false
+        });
+
+        _.onEndTransition($.notify, function(){
+            $.root.style.display = "none";
+        });
+    };
+
+</script>
+
+</section-notify>

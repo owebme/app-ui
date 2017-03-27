@@ -1,0 +1,87 @@
+body {
+	&:before {
+		@extend .content-empty;
+		@include abs();
+		@include accelerate(true);
+		@extend .bg-white;
+		@extend .willChange-opacity;
+		transition:opacity 0.6s $cubic2501, visibility 0s 0.6s;
+		@extend .zIndex-1000;
+	}
+	&:after {
+		@extend .content-empty;
+		@include abs_50(240, 90);
+		@include accelerate(true);
+		@extend .willChange-tp;
+		transform:translate3d(0, 0, 0) scale3d(0.52, 0.52, 1);
+		transition:transform 0.65s $cubic272;
+		background:url('/assets/images/logotype.png') no-repeat 0 0 / cover;
+		@extend .zIndex-1001;
+	}
+	&.appAuth {
+		&:after {
+			transform:translate3d(0, -222px, 0) scale3d(0.7, 0.7, 1);
+		}
+		#auth {
+			@extend .opacity-100;
+			transform:translate3d(0, 0, 0) scale3d(1, 1, 1);
+		}
+	}
+	&.appAuthShow {
+		#auth {
+			@extend .pointerEvents-all;
+			animation:authShowForm 0.65s $bounceSoft forwards;
+		}
+		#submit {
+			@include animation(rubberBand, linear, 0.65s, 0.65s);
+		}
+		&:after {
+			animation:authShowLogo 0.65s $bounceSoft forwards;
+		}
+	}
+	&.appLoading {
+        .modal,
+        .popup,
+		.sidebar {
+    		@extend .transitionAll-none;
+    		@extend .pointerEvents-none;
+        }
+	}
+	&.isLoading {
+		&:before,
+		&:after {
+			@extend .opacity-0;
+			@extend .visibility-hidden;
+		}
+		&:after {
+			transition:opacity 0.4s $cubic32, transform 0.6s $cubic60, margin-left 0s 0.6s;
+			transform:translate3d(0, 0, 0) scale3d(0.95, 0.95, 1);
+		}
+	}
+}
+#auth {
+	@include accelerate();
+	@extend .willChange-tp;
+	@extend .opacity-0;
+	transform:translate3d(0, 400px, 0) scale3d(0.4, 0.4, 1);
+	transition:opacity 0.45s $cubic272, transform 0.45s $cubic272;
+	@extend .zIndex-1002;
+}
+@keyframes authShowForm {
+	from {
+		opacity:0;
+		transform:translate3d(0, 400px, 0) scale3d(0.4, 0.4, 1);
+	}
+    to {
+		opacity:1;
+		transform:translate3d(0, 0, 0) scale3d(1, 1, 1);
+    }
+}
+@keyframes authShowLogo {
+	from {
+		transform:translate3d(0, -422px, 0) scale3d(1, 1, 1);
+	}
+    to {
+		transform:translate3d(0, -222px, 0) scale3d(0.7, 0.7, 1);
+    }
+}

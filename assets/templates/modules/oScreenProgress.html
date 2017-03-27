@@ -1,0 +1,73 @@
+<section-progress class="oScreen oScreen__progress { showAnim : animate }" data-color="blue" data-open={ active }>
+
+    <div onClick={ hide } class="pos-centered">
+        <div class="anim anim-scale" duration-show={ none : app.device.isPhone }>
+            <div name="circuful" class="oScreen__progress__circuful"></div>
+        </div>
+    </div>
+
+<script>
+
+    var $ = this;
+
+    $.active = false;
+    $.animate = false;
+    $.circuful = $$($["circuful"]);
+
+    $.show = function(callback){
+        $.update({
+            active: true
+        })
+        _.onEndTransition($.root, function(){
+            $.update({
+                animate: true
+            })
+            $.chartRadial();
+
+            if (_.isFunction(callback)){
+                $afterlag.run(function(){
+                    callback();
+                });
+            }
+        });
+    };
+
+    $.chartRadial = function(){
+        $.circuful.empty().circliful({
+            animation: 1,
+            animationStep: 2.25,
+            foregroundBorderWidth: app.device.isPhone ? 10.5 : 9.5,
+            backgroundBorderWidth: app.device.isPhone ? 5 : 5,
+            percentageTextSize: 28,
+            percent: 100,
+            backgroundColor: 'rgba(255,255,255,.2)',
+            foregroundColor: '#68fb98',
+            fontColor: '#fff'
+        }, function(){
+            $.trigger('loaded');
+        });
+    };
+
+    $.hide = function(callback){
+        if (_.isFunction(callback)){
+            $.one('loaded', function() {
+                $.update({
+                    active: false,
+                    animate: false
+                })
+                _.onEndTransition($.root, function(){
+                    callback();
+                });
+            })
+        }
+        else {
+            $.update({
+                active: false,
+                animate: false
+            })
+        }
+    };
+
+</script>
+
+</section-progress>

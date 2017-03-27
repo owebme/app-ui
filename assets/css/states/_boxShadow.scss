@@ -7,6 +7,9 @@
 .boxShadow-dark {
     box-shadow:0 6px 22px -6px rgba(0,0,0,.25);
 }
+.boxShadow-larger {
+    box-shadow:0 0 40px 0 rgba(0,0,0,.1), 0 1px 4px 0 rgba(0,0,0,.06);
+}
 .boxShadow-distant {
     box-shadow:0 2px 8px rgba(31,45,61,.05);
 }

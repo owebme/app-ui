@@ -1,4 +1,4 @@
-@for $i from 1 through 20 {
+@for $i from 2 through 20 {
     .w#{$i * 5} {
         width:$i * 5px;
     }
@@ -28,16 +28,30 @@
         height:$i * 5vh;
     }
 }
-@for $i from 1 through 4 {
+@for $i from 1 through 5 {
     .w#{$i}px {
         width:#{$i}px;
     }
     .h#{$i}px {
         height:#{$i}px;
     }
+    .w#{$i}p {
+        width:$i * 1%;
+    }
+    .h#{$i}p {
+        height:$i * 1%;
+    }
+}
+@each $size in (16, 18, 22, 24, 26, 28, 32, 34, 36, 38, 42, 44, 46, 48, 52, 54, 56, 58, 62, 64, 96){
+    .w#{$size} {
+        width:#{$size}px;
+    }
+    .h#{$size} {
+        height:#{$size}px;
+    }
 }
 .w16p {
-    width:16.33%;
+    width:16.66%;
 }
 .w33p {
     width:33.33%;
@@ -46,7 +60,7 @@
     width:66.66%;
 }
 .h16p {
-    height:16.33%;
+    height:16.66%;
 }
 .h33p {
     height:33.33%;
@@ -100,6 +114,10 @@
     @extend .maxW-auto;
     @extend .maxH-auto;
 }
+.minWH-auto {
+    @extend .minW-auto;
+    @extend .minH-auto;
+}
 .w16v {
     width:16.33vw;
 }
@@ -141,6 +159,12 @@
 }
 .maxH-auto {
     max-height:auto;
+}
+.minW-auto {
+    min-width:auto;
+}
+.minH-auto {
+    min-height:auto;
 }
 .w-auto {
     width:auto;

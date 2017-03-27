@@ -1,0 +1,12 @@
+.dataTable--print {
+    h1 {
+        font-size:24px;
+        text-align:left;
+    }
+    th {
+        &:before,
+        &:after {
+            display:none;
+        }
+    }
+}

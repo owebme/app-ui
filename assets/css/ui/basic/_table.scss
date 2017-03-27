@@ -1,9 +1,9 @@
 .table {
     @extend .w100p;
-    @extend .c-gray;
+    @extend .c-silver;
 
     &-header {
-        border-bottom:solid $smokeLight;
+        border-bottom:solid $smoke;
 
         &-item {
             @extend .plr-xs;
@@ -26,7 +26,7 @@
         @extend .plr-xs;
         @extend .vAlign-middle;
         @extend .transition-default;
-        border-bottom:1px solid $smokeLight;
+        border-bottom:1px solid $smoke;
     }
     &[first-cell="text-left"]{
         .table-header-item,

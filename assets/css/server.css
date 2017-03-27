@@ -1,0 +1,83 @@
+body {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    font-family:-apple-system,BlinkMacSystemFont,Roboto,Open Sans,Helvetica Neue,Arial,sans-serif;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding:0;
+    margin:0;
+    line-height:1.8;
+    text-align:center;
+}
+.blue {
+    color:#1FB6FF;
+}
+h1, h2 {
+    display:block;
+    font-weight:800;
+    padding-left:10vw;
+    padding-right:10vw;
+}
+h1 {
+    color:#1FB6FF;
+    font-size:240px;
+    line-height:1;
+    letter-spacing:-.02em;
+    margin:0;
+}
+h2 {
+    color:#3C4858;
+    font-size:62px;
+    line-height:1.2;
+    margin:1em 0 0;
+}
+p {
+    color:#8492A6;
+    font-size:30px;
+    margin-bottom:0;
+}
+a {
+    display:inline-block;
+    position:relative;
+    color:#1FB6FF;
+    text-decoration:none;
+    margin:0 auto;
+}
+a:before {
+    content:"";
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:9px;
+    background-color:#E0E6ED;
+    transform:translateY(-10px) scale3d(1.05, 1, 1);
+    z-index:-1;
+}
+
+@font-face {
+  font-family: 'Futura';
+  src: url('/assets/css/fonts/Futura/FuturaPTBook.otf');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Futura';
+  src: url('/assets/css/fonts/Futura/FuturaPTHeavy.eot'); /* IE9 Compat Modes */
+  src: url('/assets/css/fonts/Futura/FuturaPTHeavy.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('/assets/css/fonts/Futura/FuturaPTHeavy.woff2') format('woff2'), /* Modern Browsers */
+    url('/assets/css/fonts/Futura/FuturaPTHeavy.woff') format('woff'), /* Modern Browsers */
+    url('/assets/css/fonts/Futura/FuturaPTHeavy.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('/assets/css/fonts/Futura/FuturaPTHeavy.svg') format('svg'); /* Legacy iOS */
+  font-weight: 800;
+  font-style: normal;
+}

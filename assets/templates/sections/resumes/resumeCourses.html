@@ -1,0 +1,52 @@
+<section-resume-courses class="section mb-l">
+
+    <div class="row mb30">
+        <div class="col-md-24">
+            <h3 class="c-blue">{ editing ? 'Редактирование' : 'Курсы' }</h3>
+        </div>
+    </div>
+    <section-resume-courses-item each={ item, i in _.sortArray(opts.cursor.get("items"), "year", "desc") } no-reorder cursor={ parent.opts.cursor.select("items", {"id": item.id}) } active={ parent.editing && parent.editing == item.id }></section-resume-courses-item>
+    <div if={ !editing } class="row">
+        <div class="col-md-24 text-center ptb-m mb-m">
+            <btn-plus onClick={ create } color="success" text="Добавить курсы" size="l"></btn-plus>
+        </div>
+    </div>
+
+    <div class="h1px bg-smoke"></div>
+
+<script>
+
+    var $ = this;
+
+    $.editing = null;
+
+    $.build = function(){
+        $.opts.cursor.set({
+            title: null,
+            text: null,
+            items: []
+        });
+
+        $.create();
+    };
+
+    $.create = function(){
+        if (!$.opts.cursor.get()){
+            $.build();
+            return;
+        }
+        $.editing = _.newId();
+
+        $.opts.cursor.select("items").push(
+            {
+                id: $.editing,
+                name: null,
+                title: null,
+                year: "2000"
+            }
+        );
+    };
+
+</script>
+
+</section-resume-courses>

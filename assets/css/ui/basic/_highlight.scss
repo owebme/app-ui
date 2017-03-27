@@ -1,7 +1,9 @@
 .code-preview {
-    background-color:#fbfbfc;
-    border:1px solid $smoke;
-    overflow:auto;
+    @extend .bg-snow;
+    @extend .borderWidth-1;
+    @extend .borderStyle-solid;
+    @extend .borderColor-smoke;
+    @extend .overflow-auto;
     font-size:13px;
     line-height:22px;
     @extend .w100p;
@@ -17,15 +19,15 @@ pre {
     white-space:nowrap;
 }
 code {
-	color:$gray;
+	color:$silver;
 	white-space:pre-wrap;
 }
 .hljs {
     display:block;
-    color:$gray;
+    color:$silver;
 
     &-comment {
-        color:$grayLighten;
+        color:$silver;
         font-style:italic;
     }
     &-addition,
@@ -46,7 +48,7 @@ code {
     &-regexp,
     &-string,
     &-value {
-        color:$redDark;
+        color:$cherry;
     }
     &-class,
     &-name,
@@ -54,6 +56,6 @@ code {
     &-selector-class,
     &-selector-id,
     &-title {
-        color:$blackLight;
+        color:$black;
     }
 }

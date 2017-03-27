@@ -78,7 +78,7 @@
         @extend .h4px;
     }
     &[data-size="xl"]{
-        @extend .h5;
+        @extend .h5px;
     }
 }
 .text-code {
@@ -88,7 +88,7 @@
     @extend .bg-smoke;
     @extend .fontWeight-normal;
     @extend .borderRadius-m;
-    color:$linkDark;
+    @extend .c-cherry;
     font-size:0.9em;
     margin-left:3px;
     margin-top:-1px;

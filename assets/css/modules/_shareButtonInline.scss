@@ -1,0 +1,45 @@
+.shareButton__inline {
+    @extend .flex-centered;
+    @extend .display-block;
+
+    &__item {
+        @extend .pos-rel;
+        @extend .borderRadius-circle;
+        @extend .btn-active;
+
+        .icon {
+            @extend .pos-centered;
+            padding-top:3px;
+        }
+    }
+    &[data-size="l"]{
+        .shareButton__inline__item {
+            width:70px;
+            height:70px;
+        }
+    }
+    &[data-size="m"]{
+        .shareButton__inline__item {
+            width:60px;
+            height:60px;
+        }
+    }
+    &[data-size="s"]{
+        .shareButton__inline__item {
+            width:46px;
+            height:46px;
+        }
+        .icon {
+            @extend .pt-xxs;
+        }
+    }
+    &[data-size="xs"]{
+        .shareButton__inline__item {
+            width:36px;
+            height:36px;
+        }
+        .icon {
+            @extend .pt-xxs;
+        }
+    }
+}

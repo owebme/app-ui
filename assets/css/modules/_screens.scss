@@ -1,0 +1,118 @@
+.screens {
+    @extend .display-block;
+
+    .d-safari & {
+        perspective:none !important;
+    }
+    .horizontal__space ~ .screen {
+        transform-origin:100% 50%;
+
+        &:not(.screen--active){
+            @extend .display-none;
+        }
+    }
+}
+.d-mobile .screens-mobile,
+.d-phone .screens-phone,
+.d-tablet .screens-tablet,
+.d-no-mobile .screens-desktop,
+.screens-every {
+    &.screens {
+        @include abs();
+        @include accelerate(true);
+        @extend .overflow-hidden;
+        background-color:#171719;
+        @extend .perspective-500;
+        @extend .willChange-tp;
+        transform-origin:0% 50%;
+        transition:transform 0.5s $cubic40, opacity 0.5s $cubic40;
+        @extend .zIndex-1;
+
+        &[data-hidden="true"] {
+            @extend .opacity-50;
+            transform:perspective(500px) scale(.96) translateX(4%) rotateY(4deg);
+            transition:transform 0.42s $cubic645, opacity 0.42s $cubic645;
+        }
+    }
+    .screen {
+        @include abs();
+        @include accelerate(true);
+        opacity:0;
+        @extend .bg-white;
+        @extend .willChange-tp;
+        @extend .overflow-hidden;
+
+        &--long {
+            @extend .h-auto;
+            @extend .minH-100p;
+        }
+        &--active {
+            @extend .display-block;
+            @extend .opacity-100;
+        }
+    }
+    &[data-static="true"] {
+        .screen {
+            @extend .display-block;
+            @extend .pos-rel;
+            @extend .opacity-100;
+            // @extend .minH-100v;
+        }
+    }
+    &[data-fixed="true"] {
+        .screen {
+            @extend .display-block;
+            @extend .pos-rel;
+            @extend .opacity-100;
+            @extend .h100v;
+            @extend .overflow-hidden;
+        }
+    }
+    .screens__content {
+        @extend .backVisible-hidden;
+        @extend .willChange-transform;
+    }
+    .screen__content {
+        @extend .display-block;
+        @extend .pos-rel;
+    }
+    .vertical__space,
+    .horizontal__space {
+        @extend .pos-tl;
+        width:100%;
+    }
+    .horizontal__space {
+        top:-200%;
+        width:20000%;
+
+        &__screen {
+            @extend .float-left;
+        }
+    }
+    .iScrollVerticalScrollbar,
+    .ui-scroll {
+        @extend .pos-tr;
+        @extend .h100p;
+        width:4px;
+        transition:width .175s;
+        @extend .overflow-visible;
+    }
+    .ui-scroll__bar,
+    .ui-scroll__handle {
+        @extend .pos-tl;
+        @extend .w100p;
+    }
+    .ui-scroll__bar {
+        @extend .content-empty;
+        @extend .h100p;
+        @extend .opacity-10;
+    }
+    .ui-scroll__handle__inner {
+        @include abs();
+        @extend .opacity-95;
+    }
+    .ui-scroll__bar,
+    .ui-scroll__handle__inner {
+        transition:background-color .2s;
+    }
+}

@@ -1,0 +1,193 @@
+<section-pointer class="oScreen__pointer" data-color={ state.color } data-open="{ active }" active-zone="{ state.activeZone }">
+
+    <div class="oScreen__pointer__shape" style="{ state.shape.style }" data-figure={ state.figure }></div>
+
+    <div name="msgBox" class="oScreen__pointer__message__wrapper" style="{ state.message.style }">
+        <div class="oScreen__pointer__message fontWeight-{ state.fontWeight }" data-position="{ state.position }" data-size={ state.size } data-active={ state.message.active } style="width:{ state.message.width }px">{ state.text }</div>
+    </div>
+
+<script>
+
+    var $ = this;
+
+    $.active = false;
+
+    $.on("before-mount", function(){
+        $.state = $.reset();
+    });
+
+    $.reset = function(){
+        return {
+            scope: null,
+            shape: {
+                style: null
+            },
+            message: {
+                active: false,
+                width: 480,
+                style: "clear:both"
+            },
+            color: "white",
+            borderColor: "#265cdc",
+            figure: "square",
+            size: "m",
+            fontWeight: "normal",
+            position: null,
+            target: null,
+            text: null,
+            offset: {},
+            width: null,
+            height: null,
+            zoom: null,
+            padding: null,
+            timeout: 2,
+            activeZone: false
+        }
+    };
+
+    $.on("messageShow", function(){
+        if ($.state.message.active) return;
+
+        $.state.message.active = true;
+
+        _.onEndTransition($.root, function(){
+
+            $.update();
+
+            setTimeout(function(){
+                $.hide();
+            }, $.state.timeout * 1000);
+        });
+    });
+
+    $.show = function(options){
+        if (!options.phone && app.device.isPhone && window.$Notify && options.text){
+            $Notify.show({
+                color: "danger",
+                text: options.text
+            })
+            return;
+        }
+        if ($.active || !options || options && !options.target) return;
+
+        _.extend($.state, options);
+
+        $.target = $.state.scope ? $.state.scope.find($.state.target) : app.$dom.body.find($.state.target);
+        $.offset = $.target.offset();
+
+        if ($.state.color != "white" && !options.borderColor){
+            $.state.borderColor = "white";
+        }
+
+        if ($.offset){
+            $.offset.top += $.state.offset.top ? $.state.offset.top : 0;
+            $.offset.left += $.state.offset.left ? $.state.offset.left : 0;
+        }
+        var _width = $.target.data("width") || $.state.width,
+            _height = $.target.data("height") || $.state.height;
+
+        if (_height){
+            $.offset.top -= (parseInt(_height) - $.target.outerHeight()) / 2;
+        }
+        if (_width){
+            $.offset.left -= (parseInt(_width) - $.target.outerWidth()) / 2;
+        }
+
+        var _zoom = $.target.data("zoom") || $.state.zoom,
+            padding = $.target.data("padding") || $.state.padding,
+            width = _width ? parseInt(_width) : (padding ? $.target.outerWidth() + parseInt(padding) * 2 : $.target.outerWidth()),
+            height = _height ? parseInt(_height) : (padding ? $.target.outerHeight() + parseInt(padding) * 2 : $.target.outerHeight()),
+            zoom = _zoom ? parseFloat(_zoom) : 1,
+            arbitrarySize = app.device.isPhone ? 200 : 300,
+            halfSize = arbitrarySize / 2,
+            centerX = (padding ? $.offset.left - parseInt(padding) : $.offset.left) + width / 2,
+            centerY = (padding ? $.offset.top - parseInt(padding) : $.offset.top) + height / 2,
+            centerXMinusHalfSize = centerX - halfSize,
+            centerYMinusHalfSize = centerY - halfSize,
+            rectangleScaleFactor = (width / arbitrarySize) * zoom,
+            rectangleHeight = (height / width * arbitrarySize) * zoom,
+            borderSize = Math.ceil(5 / rectangleScaleFactor),
+            shadowSize = 5 * borderSize,
+            rectangleBorderRadius = 1e4 + 20 / rectangleScaleFactor,
+            style = null;
+
+        if ($.state.figure == "square"){
+            if (app.device.isPhone) rectangleBorderRadius = rectangleBorderRadius / 1.05;
+            centerYMinusHalfSize = centerY - rectangleHeight / 2;
+            style = "-webkit-transform: translateX(" + centerXMinusHalfSize + "px) translateY(" + centerYMinusHalfSize + "px) translateZ(0) scale(" + rectangleScaleFactor + "); transform: translateX(" + centerXMinusHalfSize + "px) translateY(" + centerYMinusHalfSize + "px) translateZ(0) scale(" + rectangleScaleFactor + "); width: " + arbitrarySize + "px; height: " + rectangleHeight + "px; box-shadow: inset 0 0 0 " + borderSize + "px " + $.state.borderColor + ", inset 0 0 " + shadowSize + "px rgba(0,0,0,0.4); border-radius: " + rectangleBorderRadius + "px";
+        }
+        else if ($.state.figure == "circle"){
+            var radius = Math.sqrt(2) * Math.max(width, height) / 2,
+                diametr = radius * 2,
+                scaleFactor = (diametr / arbitrarySize) * zoom,
+                borderSize = Math.ceil(5 / scaleFactor),
+                shadowSize = 5 * borderSize;
+
+            style = "-webkit-transform: translateX(" + centerXMinusHalfSize + "px) translateY(" + centerYMinusHalfSize + "px) translateZ(0) scale(" + scaleFactor + "); transform: translateX(" + centerXMinusHalfSize + "px) translateY(" + centerYMinusHalfSize + "px) translateZ(0) scale(" + scaleFactor + "); width: " + arbitrarySize + "px; height: " + arbitrarySize + "px; box-shadow: inset 0 0 0 " + borderSize + "px " + $.state.borderColor + ", inset 0 0 " + shadowSize + "px rgba(0,0,0,0.4); border-radius: 50%";
+        }
+
+        $.state.shape.style = style;
+        $.targetWidth = width;
+        $.targetHeight = height;
+
+        $.cordsMsg();
+
+        $.update({
+            active: true
+        })
+
+        $.trigger("messageShow");
+    };
+
+    $.cordsMsg = function(){
+        var offsetY = $.offset.top;
+
+        if (offsetY + $.msgBox.scrollHeight > app.sizes.height - 40){
+            offsetY = $.offset.top + (app.sizes.height - 40) - (offsetY + $.msgBox.scrollHeight);
+        }
+        if (offsetY < 40) offsetY = 40;
+
+        if (app.device.isPhone){
+            $.state.message.width = app.sizes.width - 40;
+
+            if ($.state.position == "up"){
+                $.state.message.style = "top:" + (offsetY + 20) + "px; left:20px";
+            }
+            else if ($.state.position == "down"){
+                $.state.message.style = "top:" + ($.offset.top + 20 + $.targetHeight) + "px; left:20px";
+            }
+        }
+        else {
+            if ($.state.position == "right"){
+                $.state.message.style = "top:" + offsetY + "px; left:" + ($.offset.left + $.targetWidth) + "px";
+                var delta = app.sizes.width - ($.offset.left + $.targetWidth);
+
+                $.state.message.width = delta < $.state.message.width + 70 ? delta - 70 : $.state.message.width;
+            }
+            else if ($.state.position == "left" || $.state.position == "up"){
+                $.state.message.style = "top:" + offsetY + "px; left:" + $.offset.left + "px";
+
+                if ($.state.position == "left"){
+                    $.state.message.width = $.offset.left < $.state.message.width + 105 ? $.offset.left - 105 : $.state.message.width;
+                }
+            }
+            else if ($.state.position == "down"){
+                $.state.message.style = "top:" + ($.offset.top + $.targetHeight) + "px; left:" + $.offset.left + "px";
+            }
+        }
+    };
+
+    $.hide = function(){
+        $.update({
+            active: false
+        })
+        _.onEndTransition($.root, function(){
+            $.update({
+                state: $.reset()
+            })
+        });
+    };
+
+</script>
+
+</section-pointer>

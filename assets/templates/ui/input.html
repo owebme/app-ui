@@ -1,0 +1,208 @@
+<ui-input class={ opts.autosuggestsize ? 'display-block input-autosuggest input-autosuggest-' + opts.autosuggestsize : 'display-block input-autosuggest input-autosuggest-m' }>
+
+    <input ref="input" onInput={ onInput } onKeyDown={ opts.autosuggest ? autosuggest.navigate : false } onUpdate={ opts.onupdate ? opts.onupdate : "none" } class="input input-{ opts.size ? opts.size : 'm' } { opts.color } { opts.align ? 'text-' + opts.align : '' } { input-rounded : opts.rounded }" riot-value={ value } placeholder={ opts.placeholder } disabled={ typeof opts.disabled !== 'undefined' } type="text" autocomplete="off" spellcheck="false">
+
+    <div if={ opts.autosuggest } class="input-autosuggest-items"><div onClick={ autosuggest.select } onUpdate="none" each={ item in autosuggest.items } no-reorder class="input-autosuggest-item" data-active={ item.active }>
+        <div class="input-autosuggest-item-title">{ item.text }</div>
+    </div></div>
+
+<script>
+
+    var $ = this,
+    clicked = false;
+
+    $.on("before-mount", function(){
+        if ($.opts.update && $.opts.cursor){
+            $.value = $.opts.cursor.get($.opts.update);
+        }
+        else {
+            $.value = $.opts.value;
+        }
+        if ($.opts.autosuggest){
+            $.suggest = _.debounce($.autosuggest.request, app.device.isMobile ? 300 : 150);
+        }
+    });
+
+    $.on("mount", function(){
+        $.input = $.refs.input;
+
+        if (!window.$$ || window.$$ && !$$.fn.mask) return;
+        if ($.opts.pattern || $.opts.mask){
+            var $input = $$($.input);
+            if ($.opts.pattern){
+                $input.mask($.opts.pattern);
+            }
+            else if ($.opts.mask){
+                if ($.opts.mask == "phone"){
+                    $input.mask("(000) 000-0000");
+                }
+            }
+        }
+    });
+
+    $.on("update", function(){
+        if (!clicked){
+            if ((!$.opts.value || !$.opts.onupdate) && $.opts.update && $.opts.cursor){
+                $.value = $.opts.cursor.get($.opts.update);
+                $.input.value = $.value;
+            }
+            else if ($.opts.value && $.opts.value !== $.value){
+                $.value = $.opts.value;
+                $.input.value = $.value;
+            }
+        }
+    });
+
+    $.onInput = function(e){
+        var value = e.target.value;
+
+        $.onUpdate(this, value);
+
+        if ($.opts.autosuggest && value){
+            $.autosuggest.el = e.target;
+            $.suggest($.opts.autosuggest, value);
+            document.removeEventListener('click', $.autosuggest.handleClickOutside);
+            document.addEventListener('click', $.autosuggest.handleClickOutside);
+        }
+    };
+
+    $.onUpdate = function(_this, value){
+        if ($.opts.update && $.opts.cursor){
+            $.opts.cursor.set($.opts.update, value);
+        }
+        if ($.opts.commit === true || $.opts.commit == "true") $.parent.update();
+        else if (_.isFunction($.opts.commit)) {
+            $.opts.commit.call(_this, value, $.opts.i);
+        }
+        else if ($.opts.commit && $.parent[$.opts.commit]){
+            $.parent[$.opts.commit](value, $.opts.i);
+        }
+        $.value = value;
+    };
+
+    $.autosuggest = {
+
+        el: null,
+
+        value: "",
+
+        items: [],
+
+        autoselect: {
+            interval: null,
+            timeout: 300
+        },
+
+        select: function(){
+            clicked = true;
+            $.autosuggest.update([], this.item);
+            setTimeout(function(){
+                clicked = false;
+            }, 5);
+        },
+
+        request: function(method, value){
+            if (value.length > 1){
+                app.request(method, value, {
+                    notify: false,
+                    loader: false
+                }).then(function(data){
+                    if (data.items){
+                        if (data.items.length == "1"){
+                            if (value == data.items[0].text){
+                                $.autosuggest.items = [];
+                                return;
+                            }
+                            else {
+                                $.autosuggest.autoselect.interval = setTimeout(function(){
+                                    $.autosuggest.select.call({
+                                        item: data.items[0]
+                                    })
+                                }, $.autosuggest.autoselect.timeout);
+                            }
+                        }
+                        $.autosuggest.update(data.items);
+                    }
+                })
+            }
+            else {
+                $.autosuggest.update([]);
+            }
+        },
+
+        update: function(items, item){
+            $.autosuggest.items = items;
+            if (item){
+                $.value = item.text;
+                $.update({
+                    id: item.id,
+                    value: item.text
+                })
+                $.trigger("autocomplete.select", item);
+                $.onUpdate(this, item.text);
+            }
+            else {
+                $.update();
+            }
+        },
+
+        navigate: function(e){
+            clearTimeout($.autosuggest.autoselect.interval);
+            if ([13, 38, 40].indexOf(e.keyCode) > -1 && _.isEmpty($.autosuggest.items)) {
+                e.preventDefault();
+                return true;
+            }
+            var items = $.autosuggest.items,
+                length = items.length;
+            if (length > 0 && [13, 38, 40].indexOf(e.keyCode) > -1) {
+                e.preventDefault();
+                // Get the currently selected item
+                var activeIndex = null;
+                for (var i = 0; i < length; i++) {
+                    var item = items[i];
+                    if (item.active) {
+                        activeIndex = i;
+                        break;
+                    }
+                }
+
+                // We're leaving this item
+                if (activeIndex != null) items[activeIndex].active = false;
+
+                if (e.keyCode == 38) {
+                    // Move the active state to the next item lower down the index
+                    if (activeIndex == null || activeIndex == 0) items[length - 1].active = true;else items[activeIndex - 1].active = true;
+                } else if (e.keyCode == 40) {
+                    // Move the active state to the next item higher up the index
+                    if (activeIndex == null || activeIndex == length - 1) items[0].active = true;else items[activeIndex + 1].active = true;
+                } else if (e.keyCode == 13 && activeIndex != null) {
+                    $.autosuggest.select.call({
+                        item: items[activeIndex]
+                    })
+                }
+                $.update();
+            }
+            return true;
+        },
+
+        handleClickOutside: function(e){
+            if ($.autosuggest.el && !$.autosuggest.el.contains(e.target)){
+                setTimeout(function(){
+                    if ($.autosuggest.items && $.autosuggest.items.length){
+                        $.autosuggest.update([]);
+                    }
+                }, 20);
+            }
+            document.removeEventListener('click', $.autosuggest.handleClickOutside);
+        }
+    };
+
+    $.on("unmount", function(){
+        if ($.opts.pattern || $.opts.mask){
+            $$($.input).unmask();
+        }
+    });
+
+</script>
+
+</ui-input>

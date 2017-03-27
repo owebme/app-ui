@@ -1,0 +1,98 @@
+.shareButton {
+    @extend .display-block;
+    @extend .pos-abs;
+    @extend .zIndex-5;
+
+    &[data-pos="bottom-right"]{
+        @extend .b-l;
+        @extend .r-l;
+
+        .d-tablet.r-portrait & {
+            @extend .r-m;
+        }
+    }
+    &:before {
+        @extend .content-empty;
+        @extend .pos-br;
+        @extend .visibility-hidden;
+        @extend .zIndex--1;
+    }
+    &__opener {
+        @extend .pos-rel;
+        @extend .flex-centered;
+        @extend .w70;
+        @extend .h70;
+        @extend .cursor-pointer;
+        // @extend .bg-white;
+        @extend .borderRadius-circle;
+        @extend .pointerEvents-none;
+        will-change:transform, box-shadow;
+        transition:transform .3s $cubic28, box-shadow .3s $cubic28;
+        // box-shadow:0 20px 25px rgba(31,35,37,.1);
+        @extend .zIndex-1;
+
+        &:after {
+            @extend .content-empty;
+            @extend .display-block;
+            will-change:transform;
+            @include ui-icon(share, 58px, 58px);
+        }
+    }
+    &:hover {
+        &:before {
+            width:250px;
+            height:250px;
+            @extend .visibility-visible;
+        }
+        .shareButton__opener {
+            @extend .pointerEvents-all;
+            transform:translateY(-7px);
+            // box-shadow:0 25px 30px rgba(31,35,37,.2);
+
+            &:after {
+                animation:spinner 0.6s;
+                @include ui-icon(share_white);
+            }
+        }
+        .shareButton__item {
+            @extend .pointerEvents-all;
+            @extend .opacity-100;
+
+            &:nth-child(1){
+                transform:translate3d(0, -175px, 0);
+            }
+            &:nth-child(2){
+                transform:translate3d(-75px, -135px, 0);
+            }
+            &:nth-child(3){
+                transform:translate3d(-135px, -75px, 0);
+            }
+            &:nth-child(4){
+                transform:translate3d(-175px, 0, 0);
+            }
+        }
+    }
+    &__item {
+        @include accelerate(true);
+        @extend .flex-centered;
+        @extend .pos-br;
+        @extend .bg-white;
+        @extend .w70;
+        @extend .h70;
+        @extend .opacity-0;
+        @extend .pointerEvents-none;
+        @extend .cursor-pointer;
+        padding-top:2px;
+        @extend .willChange-tp;
+        transition:transform .5s $cubic075, opacity .5s $cubic075, background-color .2s;
+        @extend .borderRadius-circle;
+
+        &:hover {
+            @extend .bg-blue;
+
+            path {
+                @extend .fill-white;
+            }
+        }
+    }
+}

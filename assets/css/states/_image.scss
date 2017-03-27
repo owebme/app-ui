@@ -1,41 +1,5 @@
-.image {
-    &-hover {
-        &-ring {
-        	@extend .pos-rel;
-
-        	&:before {
-        		content:"";
-        		@include abs();
-        		border-radius:50%;
-        		background-color:rgba($blue,.3);
-        		will-change:transform;
-        		@extend .transition-default;
-        		z-index:-1;
-        	}
-        	&:hover {
-        		&:before {
-        			transform:scale(1.1);
-        		}
-        	}
-        }
-    }
-    &-checked {
-        @extend .pos-rel;
-
-        &:before {
-            content:"";
-            @include abs();
-            background-color:rgba($snow,.8);
-            z-index:1;
-        }
-        &.image-checked-circle:before {
-            border-radius:50%;
-        }
-        &:after {
-            content:"";
-            @include abs_50(35, 35);
-            @include ui-icon(check, 35px, 35px);
-            z-index:2;
-        }
+body#renderSide {
+    .progressive-image {
+        background-image:none !important;
     }
 }

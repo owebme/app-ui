@@ -1,0 +1,57 @@
+<section-resume-education class="section mb-l">
+
+    <div class="row mb30">
+        <div class="col-md-14">
+            <h3 class="c-blue">{ editing ? 'Редактирование' : 'Образование' }</h3>
+        </div>
+        <div if={ !editing } class="col-md-10 mt--xss">
+            <ui-select update="level" cursor={ opts.cursor } items={ $store.education.getItems("ru") } size="l"></ui-select>
+        </div>
+    </div>
+    <section-resume-education-item each={ item, i in _.sortArray(opts.cursor.get("items"), "year", "desc") } no-reorder cursor={ parent.opts.cursor.select("items", {"id": item.id}) } active={ parent.editing && parent.editing == item.id }></section-resume-education-item>
+    <div if={ !editing } class="row">
+        <div class="col-md-24 text-center ptb-m mb-m">
+            <btn-plus onClick={ create } color="success" text="Добавить место обучения" size="l"></btn-plus>
+        </div>
+    </div>
+
+    <div class="h1px bg-smoke"></div>
+
+<script>
+
+    var $ = this;
+
+    $.editing = null;
+
+    $.build = function(){
+        $.opts.cursor.set({
+            title: null,
+            text: null,
+            level: "1",
+            items: []
+        });
+
+        $.create();
+    };
+
+    $.create = function(){
+        if (!$.opts.cursor.get()){
+            $.build();
+            return;
+        }
+        $.editing = _.newId();
+
+        $.opts.cursor.select("items").push(
+            {
+                id: $.editing,
+                title: null,
+                faculty: null,
+                speciality: null,
+                year: "2000"
+            }
+        );
+    };
+
+</script>
+
+</section-resume-education>

@@ -1,0 +1,449 @@
+<section-tutorial class="tutorial" data-open="{ active }" data-animate={ false : app.device.isMobile || options.animate === false } active-zone="{ step.activeZone }" style="display:none">
+
+    <div class="tutorial__shape" name="shape" style="{ step.style }" data-figure={ step.figure }></div>
+
+    <div name="msgBox" class="tutorial__message__wrapper" style="{ message.style }">
+        <div name="msgElem" class="tutorial__message" data-position="{ message.position }" data-active="false">
+            <p class="pos-tr p-m c-grayLight fontSize-m { display-none : !nav.steps }">Шаг { num } из { steps.get().length }</p>
+            <div class="tutorial__message__title">{ message.title ? message.title : 'Lorem ipsum dolor sit amet' }</div>
+            <p class="tutorial__message__text">{ message.text ? message.text : 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.' }</p>
+            <div class="fontSize-0 nowrap { display-none : !nav.buttons }">
+                <button onClick={ nextStep } onUpdate="none" class="btn btn-{ nav.buttons.success.size ?  nav.buttons.success.size : 'm' } { nav.buttons.success.title ? 'btn-success' : (endShow ? 'btn-success' : 'btn-default-hover-success') } { display-none : nav.buttons.success === false } mr-xs">
+                    <svg if={ endShow && nav.buttons.success === true } class="btn-svg btn-svg-repeat" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                        <path class="fill-white" d="M 39.78125 5.96875 A 2.0002 2.0002 0 0 0 38 8 L 38 12.5625 C 34.722701 9.1373523 30.10346 7 25 7 C 15.082241 7 7 15.082241 7 25 A 2.0002 2.0002 0 1 0 11 25 C 11 17.243759 17.243759 11 25 11 C 28.816123 11 32.256876 12.535728 34.78125 15 L 31 15 A 2.0002 2.0002 0 1 0 31 19 L 40 19 L 42 19 L 42 17 L 42 8 A 2.0002 2.0002 0 0 0 39.96875 5.96875 A 2.0002 2.0002 0 0 0 39.78125 5.96875 z M 40.78125 22.96875 A 2.0002 2.0002 0 0 0 39 25 C 39 32.757363 32.756392 39 25 39 C 21.184399 39 17.742551 37.46305 15.21875 35 L 19 35 A 2.0002 2.0002 0 1 0 19 31 L 10 31 L 8 31 L 8 33 L 8 42 A 2.0002 2.0002 0 1 0 12 42 L 12 37.4375 C 15.276425 40.860887 19.895994 43 25 43 C 34.917608 43 43 34.918637 43 25 A 2.0002 2.0002 0 0 0 40.96875 22.96875 A 2.0002 2.0002 0 0 0 40.78125 22.96875 z"></path>
+                    </svg>
+                    { nav.buttons.success.title ? nav.buttons.success.title : (endShow ? 'Повторить' : 'Далее') }
+                </button>
+                <button onClick={ hide } onUpdate="none" class="btn btn-m btn-primary-hover { display-none : nav.buttons.cancel === false }">{ endShow ? 'Перейти к интерфейсу' : 'Закрыть помощник' }</button>
+            </div>
+        </div>
+    </div>
+
+<script>
+
+    var $ = this;
+
+    $.active = false;
+    $.ready = false;
+    $.steps = new Baobab([]).root;
+
+    $.on("before-mount", function(){
+        $.reset();
+    });
+
+    $.on("mount", function(){
+        $.borderColor = $$($.root).find(".tutorial__shape").css("backgroundColor");
+    });
+
+    $.on("messageShow", function(){
+        if ($.message.active) return;
+
+        $.message.active = true;
+
+        _.onEndTransition($["shape"], function(){
+
+            $.cordsMsg();
+
+            if ($.step.target) $.update();
+
+            $.msgElem.setAttribute("data-active", true);
+
+            _.onEndTransition($.msgElem, function(){
+                $.ready = true;
+            });
+        });
+    });
+
+    $.on("messageHide", function(){
+        $.message.active = false;
+
+        $.msgElem.setAttribute("data-active", false);
+
+        _.onEndTransition($.msgElem, function(){
+            $.message.position = $.step.position;
+            $.message.title = $.step.title;
+            $.message.text = $.step.text;
+            if ($.step.target) $.update();
+        });
+    });
+
+    $.on("show", function(){
+        $.update({
+            active: true
+        })
+    });
+
+    $.on("hide", function(){
+        $.update({
+            active: false
+        })
+    });
+
+    $.reset = function(){
+        $.start = false;
+        $.scope = null;
+        $.message = {
+            active: false,
+            style: "clear:both",
+            position: null,
+            title: null,
+            text: null
+        };
+        $.nav = {
+            steps: true,
+            buttons: {
+                success: true,
+                cancel: true
+            }
+        };
+        $.cursor = null;
+        $.target = null;
+        $.beforeTarget = false;
+        $.num = 0;
+        $.step = {
+            activeZone: false,
+            style: "clear:both"
+        };
+        $.arrow = null;
+        $.endShow = false;
+        $.options = {
+            animate: true,
+            keyboard: true
+        };
+
+        if ($.actions.events){
+            _.each($.actions.events, function(item){
+                if (item.event && item.elem){
+                    item.elem.off(item.event);
+                }
+            });
+            $.actions.events = [];
+        }
+        else {
+            $.actions.events = [];
+        }
+    };
+
+    $.show = function(scope, tutorial, options){
+        if ($.active || app.device.isPhone) return;
+
+        if (_.isArray(tutorial) || app.tutorial[tutorial]){
+
+            $.start = true;
+
+            $.steps.set(_.isArray(tutorial) ? tutorial : app.tutorial[tutorial]);
+            $.scope = $$(scope);
+
+            if (options) _.extend($.options, options);
+
+            $.active = true;
+
+            $.trigger("messageHide");
+
+            $.root.style.display = "block";
+
+            $.afterlag(function(){
+
+                $.nextStep();
+
+                var reRender = _.debounce($.render, 100);
+
+                app.$dom.window.on("resize.tutorial", function(){
+                    reRender(true);
+                });
+
+                if ($.options.keyboard) $.navigate.init();
+            });
+        }
+        else {
+            console.log("Not found tutorial: " + tutorial);
+        }
+    };
+
+    $.nextStep = function(){
+        if (_.isFunction($.nav.buttons.success.callback)){
+            $.nav.buttons.success.callback($, $.target);
+        }
+        else {
+            $.changeStep("right");
+        }
+    };
+
+    $.prevStep = function(){
+        if ($.num > 1){
+            $.changeStep("left");
+        }
+    };
+
+    $.changeStep = function(arrow){
+        $.ready = false;
+        $.arrow = arrow;
+
+        if (!$.cursor) $.trigger("messageShow");
+        else $.trigger("messageHide");
+
+        if ($.endShow && $.step.actions){
+            if ($.step.actions.toggle){
+                $.step.actions.toggle($.target);
+            }
+        }
+        if (!$.cursor || !$.cursor[arrow]()) {
+            $.cursor = $.steps.down();
+        }
+        else {
+            if ($.step.actions && $.step.actions.toggle){
+                $.actions($.step, $.target, true);
+            }
+            $.cursor = $.cursor[arrow]();
+        }
+
+        $.step = $.cursor.get().call();
+        $.target = $.scope.find($.step.target);
+
+        if ($.step.target && !$.target.length){
+            $.changeStep("right");
+            return;
+        }
+        if ($.start || !$.start && !$.beforeTarget){
+            $.message.position = $.step.position;
+            $.message.title = $.step.title;
+            $.message.text = $.step.text;
+        }
+        $.beforeTarget = $.step.target;
+
+        $.render();
+
+        $.afterlag(function(){
+
+            $.trigger("messageShow");
+
+            if (!$.cursor[arrow]() && arrow == "right"){
+                _.onEndTransition($.msgElem, function(){
+                    $.endShow = true;
+                    $.trigger("success");
+                });
+            }
+            else {
+                $.endShow = false;
+            }
+
+            if ($.step.target && !$.step.nav) $.update();
+            else if (!$.start) $.ready = true;
+
+            if ($.start || $.steps.get().length == $.num && arrow == "right") $.num = 1;
+            else {
+                if (arrow == "right") $.num++;
+                if (arrow == "left") $.num--;
+                // console.log(arrow, $.num);
+            }
+
+            $.actions($.step, $.target);
+
+            $.start = false;
+
+        });
+    };
+
+    $.render = function(update){
+        if (!$.step.target) return;
+
+        $.offset = $.target.offset();
+
+        if ($.step.offset){
+            $.offset.top += $.step.offset.top ? $.step.offset.top : 0;
+            $.offset.left += $.step.offset.left ? $.step.offset.left : 0;
+        }
+        var _width = $.target.data("width") || $.step.width,
+            _height = $.target.data("height") || $.step.height;
+
+        if ($.step.centered){
+            if (_height){
+                $.offset.top -= (parseInt(_height) - $.target.outerHeight()) / 2;
+            }
+            if (_width){
+                $.offset.left -= (parseInt(_width) - $.target.outerWidth()) / 2;
+            }
+        }
+
+        var _zoom = $.target.data("zoom") || $.step.zoom,
+            padding = $.target.data("padding") || $.step.padding,
+            width = _width ? parseInt(_width) : (padding ? $.target.outerWidth() + parseInt(padding) * 2 : $.target.outerWidth()),
+            height = _height ? parseInt(_height) : (padding ? $.target.outerHeight() + parseInt(padding) * 2 : $.target.outerHeight()),
+            zoom = _zoom ? parseFloat(_zoom) : 1,
+            arbitrarySize = 150,
+            halfSize = arbitrarySize / 2,
+            centerX = (padding ? $.offset.left - parseInt(padding) : $.offset.left) + width / 2,
+            centerY = (padding ? $.offset.top - parseInt(padding) : $.offset.top) + height / 2,
+            centerXMinusHalfSize = centerX - halfSize,
+            centerYMinusHalfSize = centerY - halfSize,
+            rectangleScaleFactor = (width / arbitrarySize) * zoom,
+            rectangleHeight = (height / width * arbitrarySize) * zoom,
+            borderSize = Math.ceil(5 / rectangleScaleFactor),
+            shadowSize = 5 * borderSize,
+            rectangleBorderRadius = 1e4 + 20 / rectangleScaleFactor,
+            style = null;
+
+        if ($.step.figure == "square"){
+            centerYMinusHalfSize = centerY - rectangleHeight / 2;
+            style = "background:none; -webkit-transform: translateX(" + centerXMinusHalfSize + "px) translateY(" + centerYMinusHalfSize + "px) translateZ(0) scale(" + rectangleScaleFactor + "); transform: translateX(" + centerXMinusHalfSize + "px) translateY(" + centerYMinusHalfSize + "px) translateZ(0) scale(" + rectangleScaleFactor + "); width: " + arbitrarySize + "px; height: " + rectangleHeight + "px; box-shadow: inset 0 0 0 " + borderSize + "px " + $.borderColor + ", inset 0 0 " + shadowSize + "px rgba(0,0,0,0.4); border-radius: " + rectangleBorderRadius + "px";
+        }
+        else if ($.step.figure == "circle"){
+            var radius = Math.sqrt(2) * Math.max(width, height) / 2,
+                diametr = radius * 2,
+                scaleFactor = (diametr / arbitrarySize) * zoom,
+                borderSize = Math.ceil(5 / scaleFactor),
+                shadowSize = 5 * borderSize;
+
+            style = "background:none; -webkit-transform: translateX(" + centerXMinusHalfSize + "px) translateY(" + centerYMinusHalfSize + "px) translateZ(0) scale(" + scaleFactor + "); transform: translateX(" + centerXMinusHalfSize + "px) translateY(" + centerYMinusHalfSize + "px) translateZ(0) scale(" + scaleFactor + "); width: " + arbitrarySize + "px; height: " + arbitrarySize + "px; box-shadow: inset 0 0 0 " + borderSize + "px " + $.borderColor + ", inset 0 0 " + shadowSize + "px rgba(0,0,0,0.4); border-radius: 50%";
+        }
+
+        $.navigate.render();
+
+        $.step.style = style;
+        $.targetWidth = width;
+        $.targetHeight = height;
+
+        if (update === true){
+            $.update();
+        }
+    };
+
+    $.cordsMsg = function(){
+        var offset = {},
+            offsetY = $.offset.top;
+
+        if (offsetY + $.msgBox.scrollHeight > app.sizes.height - 40){
+            offsetY = $.offset.top + (app.sizes.height - 40) - (offsetY + $.msgBox.scrollHeight);
+        }
+        if (offsetY < 40) offsetY = 40;
+
+        offset.top = offsetY;
+
+        if ($.step.position == "right"){
+            offset.left = $.offset.left + $.targetWidth;
+            offset = $.offsetMsg(offset);
+            $.message.style = "top:" + offset.top + "px; left:" + offset.left + "px";
+        }
+        else if ($.step.position == "left" || $.step.position == "up"){
+            offset.left = $.offset.left;
+            offset = $.offsetMsg(offset);
+            $.message.style = "top:" + offset.top + "px; left:" + offset.left + "px";
+        }
+        else if ($.step.position == "down"){
+            offset.top = $.offset.top + $.targetHeight;
+            offset.left = $.offset.left;
+            offset = $.offsetMsg(offset);
+            $.message.style = "top:" + offset.top + "px; left:" + offset.left + "px";
+        }
+    };
+
+    $.offsetMsg = function(offset){
+        if ($.step.message && $.step.message.offset){
+            if ($.step.message.offset.top) offset.top += $.step.message.offset.top;
+            if ($.step.message.offset.left) offset.left += $.step.message.offset.left;
+        }
+        return offset;
+    };
+
+    $.actions = function(step, $target, force){
+        if (step.actions){
+            if (step.actions.toggle){
+                $.afterlag(function(){
+                    step.actions.toggle($target, force);
+                }, {
+                    delay: force ? 0 : 650,
+                    iterations: force ? 0 : 5,
+                });
+            }
+            if (step.actions.click){
+                var $elem = step.actions.click.elem == "self" ? $target : $target.find(step.actions.click.elem);
+                if ($elem && _.isFunction(step.actions.click.callback)){
+                    $elem.one("click.tutorial", function(){
+                        step.actions.click.callback($, $target);
+                    });
+                    $.actions.events.push({
+                        event: "click.tutorial",
+                        elem: $elem
+                    });
+                }
+            }
+            if (step.actions.callback){
+                step.actions.callback($, $target, $.arrow);
+            }
+        }
+    };
+
+    $.navigate = {
+        init: function(){
+            app.$dom.document.on("keydown.tutorial", function(e){
+                if ($.ready){
+                    if (e.which == KEY.RIGHT && !$.endShow) $.nextStep();
+                    else if (e.which == KEY.LEFT) $.prevStep();
+                    else if (e.which == KEY.ESC) $.hide();
+                }
+            });
+        },
+        render: function(){
+            $.nav = {
+                steps: true,
+                buttons: {
+                    success: true,
+                    cancel: true
+                }
+            };
+
+            if ($.step.nav){
+                _.extend($.nav, $.step.nav);
+            }
+            else if ($.step.nav === false){
+                $.nav = {
+                    steps: false,
+                    buttons: false
+                };
+            }
+        },
+        destroy: function(){
+            app.$dom.document.off("keydown.tutorial");
+        }
+    };
+
+    $.hide = function(){
+        if (!$.endShow){
+            $.trigger("close");
+        }
+        $.update({
+            active: false
+        })
+        _.onEndTransition($.root, function(){
+            $.reset();
+            $.update();
+            $.trigger("hideAfterAnimate");
+            $.root.style.display = "none";
+        });
+        $.afterlag(function(){
+            $.actions($.step, $.target, true);
+        });
+
+        $.navigate.destroy();
+
+        $.trigger("hide");
+
+        app.$dom.window.off("resize.tutorial");
+    };
+
+    $.afterlag = function(callback, options){
+        var opt = {
+            delay: 0,
+            iterations: 1
+        };
+
+        if (options) _.extend(opt, options);
+
+        var afterlag = new Afterlag(opt);
+
+        afterlag.run(callback);
+    };
+
+</script>
+
+</section-tutorial>

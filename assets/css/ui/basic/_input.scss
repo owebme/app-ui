@@ -1,20 +1,19 @@
 .input {
+    @extend .c-slate;
     @extend .fontFamily-default;
-    @extend .c-black;
-    @extend .fontWeight-normal;
     @extend .border-none;
     @extend .borderRadius-m;
     @extend .w100p;
     @extend .vAlign-middle;
     @extend .lineHeight-1;
     @extend .transition-default;
-    box-shadow:inset 0 0 0 1px $smokeDark;
+    @extend .boxShadowInset-smoke;
 
     &:hover {
-        box-shadow:inset 0 0 0 1px $smokeDark;
+        @extend .boxShadowInset-smokeDarken;
     }
     &:focus {
-        box-shadow:inset 0 0 0 1px darken($smokeDark,3%);
+        @extend .boxShadowInset-blue;
 
         + .input-icon .input-svg-color {
             @extend .fill-blueLight;
@@ -22,24 +21,24 @@
     }
     &::-webkit-input-placeholder {
         line-height:normal;
-        color:$grayLighten;
+        color:$silver;
     }
     &::-moz-input-placeholder {
         line-height:normal;
-        color:$grayLighten;
+        color:$silver;
     }
     &:disabled {
         @extend .pointerEvents-none;
         @extend .userSelect-none;
         @extend .bg-snow;
-        @extend .c-gray;
-        box-shadow:inset 0 0 0 1px $smokeDark;
+        @extend .c-silver;
+        @extend .boxShadowInset-smoke;
         @extend .cursor-default;
     }
     &-error,
     &-error:hover,
     &-error:focus {
-        box-shadow:inset 0 0 0 1px $red;
+        @extend .boxShadowInset-red;
     }
     &-icon {
         @extend .pos-tl;
@@ -53,7 +52,7 @@
         height:24px;
 
         &-color {
-            @extend .fill-smokeDark;
+            @extend .fill-smokeDarken;
             @extend .transition-default;
         }
         &-active {
@@ -200,7 +199,8 @@
     }
     &-context {
         @extend .display-inlineBlock;
-        @extend .c-gray;
+        @extend .pointerEvents-none;
+        @extend .c-silver;
         @extend .bg-snow;
         @extend .cursor-default;
         width:5px !important;
@@ -228,9 +228,6 @@
             @extend .input-s;
             @extend .input-context;
             line-height:30px !important;
-        }
-        &:hover {
-            box-shadow:inset 0 0 0 1px #d9e2e9;
         }
     }
     &-transparent {
@@ -315,6 +312,107 @@
                 }
                 &::-moz-input-placeholder {
                     font-size:16.5px;
+                }
+            }
+        }
+    }
+    &-autosuggest {
+        @extend .pos-rel;
+
+        input[type="text"]:focus {
+            @extend .pos-rel;
+            @extend .zIndex-102;
+        }
+        &-items {
+            @extend .pos-abs;
+            @extend .t100p;
+            @extend .l0;
+            @extend .w100p;
+            @extend .bg-white;
+            @extend .ptb-xxs;
+            @extend .borderRadiusBottom-l;
+
+            &:empty {
+                @extend .opacity-0;
+                @extend .pointerEvents-none;
+            }
+            &:not(:empty) {
+                @extend .boxShadow-larger;
+                @extend .zIndex-101;
+            }
+            &[data-image="true"]{
+                .input-autosuggest-item-title {
+                    @extend .maxW-85p;
+                }
+            }
+        }
+        &-item {
+            @extend .pos-rel;
+            @extend .c-slate;
+            @extend .fontFamily-helvetica;
+            @extend .cursor-pointer;
+            @extend .plr-m;
+            @extend .ptb-xss;
+            border-bottom:1px solid $snowDark;
+
+            .m-no-touch &:hover,
+            &[data-active="true"] {
+                @extend .c-black;
+                @extend .bg-water;
+            }
+            &-title {
+                @extend .text-truncate;
+                @extend .maxW-95p;
+            }
+            &-image {
+                @extend .flex-centered;
+                @extend .pos-tr;
+                @extend .w15p;
+                @extend .h100p;
+                @extend .plr-s;
+                @extend .bg-white;
+            }
+            &-logo {
+                @extend .display-block;
+                @extend .maxW-100p;
+                @extend .maxH-45p;
+            }
+        }
+        &-xl {
+            .input-autosuggest-item {
+                font-size:17px;
+            }
+        }
+        &-l {
+            .input-autosuggest-item {
+                font-size:16px;
+            }
+        }
+        &-m {
+            .input-autosuggest-item {
+                font-size:15px;
+                @extend .plr-s;
+                @extend .ptb-xxs;
+            }
+        }
+        &-s {
+            .input-autosuggest-item {
+                font-size:14px;
+                @extend .plr-s;
+                @extend .ptb-xxs;
+            }
+        }
+        .d-phone & {
+            .input-autosuggest-item {
+                font-size:18px;
+                @extend .plr-m;
+                @extend .ptb-xss;
+
+                &-image {
+                    @extend .w20p;
+                }
+                &-logo {
+                    @extend .maxH-60p;
                 }
             }
         }

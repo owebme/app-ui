@@ -1,0 +1,173 @@
+.editable__photo {
+    @extend .pos-rel;
+    @extend .display-inlineBlock;
+    @extend .overflow-hidden;
+    @extend .fontSize-0;
+    @extend .borderRadius-xl;
+    cursor:grab;
+    width:440px;
+    height:620px;
+    border:3px dashed $white;
+
+    .d-phone & {
+        @extend .l50;
+        @extend .border-none;
+        transform:translateX(-50%);
+        width:440px;
+        height:620px;
+    }
+    .d-phone &[data-uploaded="true"]{
+        @extend .bg-black;
+
+        .image-editor {
+            @extend .bg-black;
+        }        
+    }
+    &__wrapper {
+        @extend .pos-centered;
+
+        .d-phone & {
+            @include abs();
+            @extend .transform-none;
+        }
+        .container {
+            .d-phone & {
+                @include abs();
+            }
+        }
+    }
+    &__container {
+        .d-phone & {
+            @include abs();
+            @extend .overflow-hidden;
+            @extend .m0;
+            @extend .p0;
+
+            &[data-uploaded="true"]{
+                @extend .bg-black;
+            }
+        }
+    }
+    &.cropit-image-loading {
+        &:before {
+            @extend .content-empty;
+            @include abs();
+            background:rgba($white,.2);
+            @extend .zIndex-1;
+
+            .d-phone & {
+                @extend .h100v;
+            }
+        }
+        .d-phone & {
+            overflow:visible !important;
+        }
+    }
+    &--empty img {
+        @extend .display-none;
+    }
+    &__input {
+        @include abs();
+        @extend .cursor-pointer;
+        @extend .opacity-0;
+        @extend .zIndex-1;
+    }
+    &__text {
+        @extend .pos-centered;
+        @extend .c-white;
+        @extend .letterSpacing--m;
+        font-size:30px;
+        line-height:38px;
+        width:300px;
+
+        .d-phone & {
+            top:50vh;
+            @extend .fontSize-32;
+            transform:translate3d(-50%, -50vh);
+        }
+        &:before {
+            @extend .content-empty;
+            @extend .display-block;
+            @include ui-icon(upload_white, 100px, 100px);
+            margin:-2px auto 7px;
+
+            .d-phone & {
+                width:125px;
+                height:125px;
+                margin:-30px auto 8px;
+            }
+        }
+        &__or {
+            @extend .pos-rel;
+            @extend .w40;
+            @extend .h40;
+            @extend .mlr-auto;
+            @extend .mt-xs;
+            @extend .mb-xxs;
+            @extend .text-center;
+            font-size:24px;
+            line-height:40px;
+
+            &:before {
+                @extend .content-empty;
+                @extend .pos-tr;
+                @extend .w100;
+                @extend .h1px;
+                @extend .bg-white;
+                @extend .opacity-70;
+                transform:translate3d(-50px, 22px, 0);
+            }
+            &:after {
+                @extend .content-empty;
+                @extend .pos-tl;
+                @extend .w100;
+                @extend .h1px;
+                @extend .bg-white;
+                @extend .opacity-70;
+                transform:translate3d(50px, 22px, 0);
+            }
+        }
+    }
+    &__slider {
+        @extend .cursor-pointer;
+        @extend .h10;
+        @extend .bg-white;
+        @extend .outline-none;
+        appearance:none;
+        border-radius:5px;
+        width:220px;
+
+        .d-phone & {
+            width:62vw;
+        }
+        &::-webkit-slider-thumb {
+            appearance:none;
+            width:18px;
+            height:18px;
+            background:$yellow;
+            @extend .border-none;
+            @extend .borderRadius-circle;
+            @extend .transition-default;
+            @extend .cursor-pointer;
+
+            .d-mobile & {
+                width:26px;
+                height:26px;
+            }
+        }
+        &::-webkit-slider-thumb:active,
+        &::-webkit-slider-thumb:focus {
+            background:rgba($yellow,.8);
+        }
+    }
+    &__control {
+        .d-phone & {
+            @extend .pos-bl;
+            @extend .plr0;
+            @extend .pb-m;
+            @extend .text-center;
+            @extend .w100v;
+            background:linear-gradient(to top, #000, rgba(#000,0));
+        }
+    }
+}

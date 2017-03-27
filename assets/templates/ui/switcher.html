@@ -1,0 +1,71 @@
+<ui-switcher onClick={ onClick } onUpdate={ opts.onupdate ? opts.onupdate : "self" } class="switcher { small : typeof opts.small !== 'undefined' } { disabled : typeof opts.disabled !== 'undefined' } { opts.color ? opts.color : null }" active="{ value }">
+
+    <div class="switch">
+        <input class="switch-input" type="checkbox" checked="">
+        <span class="switch-left">ON</span>
+        <label class="switch-label">&nbsp;</label>
+        <span class="switch-right">OFF</span>
+    </div>
+
+<script>
+
+    var $ = this,
+    $scope = $$($.root),
+    clicked = false;
+
+    $.on("before-mount", function(){
+        if ($.opts.update && $.opts.cursor){
+            $.value = $.opts.cursor.get($.opts.update);
+        }
+        else if (!$.opts.update){
+            if ($.opts.value === undefined) $.opts.value = $.value = false;
+            else $.value = $.opts.value;
+        }
+    });
+
+    $.on("mount", function(){
+        $scope.on('swipeLeft swipeRight', function(e){
+            e.stopPropagation();
+            $scope.trigger("click");
+        });
+    });
+
+    $.on("update", function(){
+        if (!clicked){
+            if (!_.isBoolean($.opts.value) && $.opts.update && $.opts.cursor){
+                $.value = $.opts.cursor.get($.opts.update);
+            }
+            else if (_.isBoolean($.opts.value) && $.opts.value !== $.value){
+                $.value = $.opts.value;
+            }
+        }
+    });
+
+    $.onClick = function(){
+        clicked = true;
+        $.value = !$.value;
+
+        if ($.opts.update && $.opts.cursor){
+            $.opts.cursor.set($.opts.update, $.value);
+        }
+        if ($.opts.commit === true || $.opts.commit == "true"){
+            $.parent.update();
+        }
+        if (_.isFunction($.opts.commit)) {
+            $.opts.commit.call(this, $.value, $.opts.i);
+        }
+        else if ($.opts.commit && $.parent[$.opts.commit]){
+            $.parent[$.opts.commit]($.value, $.opts.i);
+        }
+        setTimeout(function(){
+            clicked = false;
+        }, 5);
+    };
+
+    $.on("unmount", function(){
+        $scope.off();
+    });
+
+</script>
+
+</ui-switcher>

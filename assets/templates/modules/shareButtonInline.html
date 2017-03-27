@@ -1,0 +1,37 @@
+<share-button-inline class="shareButton__inline" data-size={ opts.size }>
+
+    <div class="shareButton__inline__item { opts.bgcolor ? 'bg-' + opts.bgcolor : '' } { opts.margin ? 'mlr-' + opts.margin : '' }" data-social="fb" data-balloon={ 'Поделиться в Facebook' : opts.tooltip } data-balloon-pos="up">
+        <icon-fb color={ opts.color } size={ opts.size }></icon-fb>
+    </div>
+    <div class="shareButton__inline__item { opts.bgcolor ? 'bg-' + opts.bgcolor : '' } { opts.margin ? 'mlr-' + opts.margin : '' }" data-social="vk" data-balloon={ 'Поделиться в ВКонтакте' : opts.tooltip } data-balloon-pos="up">
+        <icon-vk color={ opts.color } size={ opts.size }></icon-vk>
+    </div>
+    <div class="shareButton__inline__item { opts.bgcolor ? 'bg-' + opts.bgcolor : '' } { opts.margin ? 'mlr-' + opts.margin : '' }" data-social="tw" data-balloon={ 'Поделиться в Twitter' : opts.tooltip } data-balloon-pos="up">
+        <icon-tw color={ opts.color } size={ opts.size }></icon-tw>
+    </div>
+    <div class="shareButton__inline__item { opts.bgcolor ? 'bg-' + opts.bgcolor : '' } { opts.margin ? 'mlr-' + opts.margin : '' }" data-social="dk" data-balloon={ 'Поделиться в Одноклассниках' : opts.tooltip } data-balloon-pos="up">
+        <icon-dk color={ opts.color } size={ opts.size }></icon-dk>
+    </div>
+    <div class="shareButton__inline__item { opts.bgcolor ? 'bg-' + opts.bgcolor : '' } { opts.margin ? 'mlr-' + opts.margin : '' }" data-social="gl" data-balloon={ 'Поделиться в Google+' : opts.tooltip } data-balloon-pos="up">
+        <icon-gl color={ opts.color } size={ opts.size }></icon-gl>
+    </div>
+
+<script>
+
+    this.on("mount", function(){
+        this.share = new app.plugins.share(this.root, {
+            buttons: ".shareButton__inline__item",
+            url: this.opts.url,
+            share: {
+                title: this.opts.title
+            }
+        })
+    });
+
+    this.on("unmount", function(){
+        this.share.destroy();
+    });
+
+</script>
+
+</share-button-inline>

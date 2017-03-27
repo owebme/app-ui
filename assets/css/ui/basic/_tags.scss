@@ -9,8 +9,8 @@
     @extend .bg-snow;
     @extend .borderWidth-1;
     @extend .borderStyle-solid;
-    @extend .borderColor-smokeDark;
-    @extend .c-grayDark;
+    @extend .borderColor-smoke;
+    @extend .c-slate;
     @extend .fontFamily-default;
     @extend .fontWeight-normal;
     @extend .userSelect-none;
@@ -97,7 +97,7 @@
     &.small {
         @extend .bg-none;
         @extend .h30;
-        border-color:$grayLight;
+        border-color:$silver;
         padding:0 9px;
 
         &:before {

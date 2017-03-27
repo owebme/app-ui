@@ -1,0 +1,26 @@
+{
+  "name": "ResumeKraft",
+  "short_name": "ResumeKraft",
+  "icons": [{
+    "src": "/assets/images/logotype.svg",
+    "sizes": "32x32",
+    "type": "xml/svg"
+  }, {
+    "src": "/assets/images/logotype.svg",
+    "sizes": "60x60",
+    "type": "xml/svg"
+  }, {
+    "src": "/assets/images/logotype.svg",
+    "sizes": "76x76",
+    "type": "xml/svg"
+  }, {
+    "src": "/assets/images/logotype.svg",
+    "sizes": "120x120",
+    "type": "xml/svg"
+  }],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#3C4858",
+  "orientation": "portrait"
+}

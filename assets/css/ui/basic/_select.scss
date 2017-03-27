@@ -7,7 +7,7 @@
     select {
         @extend .display-block;
         @extend .fontFamily-default;
-        @extend .c-black;
+        @extend .c-slate;
         @extend .fontWeight-normal;
         @extend .border-none;
         @extend .borderRadius-m;
@@ -17,12 +17,13 @@
         @extend .w100p;
         @extend .transition-default;
         @extend .appearance-none;
-        box-shadow:inset 0 0 0 1px $smokeDark;
+        @extend .boxShadowInset-smoke;
 
         &:hover {
-            box-shadow:inset 0 0 0 1px $smokeDark;
+            @extend .boxShadowInset-smokeDarken;
         }
         &:focus {
+            @extend .boxShadowInset-smokeDarken;
             @extend .outline-none;
         }
         &:focus:-moz-focusring {
@@ -39,9 +40,9 @@
         }
         &:disabled {
             @extend .pointerEvents-none;
-            @extend .c-gray;
-            @extend .bg-snow;
-            box-shadow:inset 0 0 0 1px $smokeDark;
+            @extend .c-silver;
+            @extend .bg-snowDark;
+            @extend .boxShadowInset-smoke;
             @extend .cursor-default;
         }
     }
@@ -64,7 +65,7 @@
 
         select {
             @extend .bg-snow;
-            @extend .c-gray;
+            @extend .c-silver;
         }
     }
     &-xl {

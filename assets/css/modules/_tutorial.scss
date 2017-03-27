@@ -1,0 +1,112 @@
+.tutorial {
+    @include accelerate(true);
+    @include abs();
+    @extend .display-block;
+    @extend .opacity-0;
+    @extend .overflow-hidden;
+    @extend .visibility-hidden;
+    @extend .pointerEvents-none;
+    @extend .zIndex-10;
+    transition:opacity 0.4s $cubic40, visibility 0s 0.4s;
+
+    &[data-open="true"]{
+        @extend .opacity-100;
+        @extend .visibility-visible;
+        transition:opacity 0.4s $cubic2501, visibility 0s;
+
+        &:not([active-zone="true"]){
+            @extend .pointerEvents-all;
+        }
+    }
+    &__shape {
+        @include accelerate();
+        @extend .pos-abs;
+        @extend .bg-blue;
+        box-sizing:content-box;
+        border:10000px solid rgba(#fcfcfc,.8);
+        margin-left:-10000px;
+        margin-top:-10000px;
+        width:0;
+        height:0;
+        will-change:transform, height, box-shadow, border-radius;
+        transition:transform .6s ease .3s, height .6s ease .3s, box-shadow .6s ease .3s, border-radius .3s ease;
+        // border-radius:50%;
+    }
+    &__message {
+        @include accelerate(true);
+        @extend .pos-abs;
+        @extend .p-l;
+        @extend .bg-white;
+        @extend .borderWidth-1;
+        @extend .borderStyle-solid;
+        @extend .borderColor-smoke;
+        @extend .borderRadius-m;
+        @extend .c-grayDark;
+        @extend .opacity-0;
+        @extend .willChange-opacity;
+        @extend .pointerEvents-all;
+        box-shadow:0 20px 25px rgba(31,35,37,.15);
+        transition:opacity .3s ease;
+        width:440px;
+
+        &[data-active="true"]{
+            @extend .opacity-100;
+            transition:opacity .5s ease 0.65s;
+        }
+        &[data-position="right"]{
+            @extend .t0;
+            @extend .l0;
+            transform:translate3d(20px, -20px, 0);
+        }
+        &[data-position="left"]{
+            @extend .t0;
+            @extend .r0;
+            transform:translate3d(-40px, -20px, 0);
+        }
+        &[data-position="up"]{
+            @extend .b0;
+            @extend .l0;
+            transform:translate3d(20px, -30px, 0);
+        }
+        &[data-position="down"]{
+            @extend .t0;
+            @extend .l0;
+            transform:translate3d(20px, 20px, 0);
+        }
+        &__wrapper {
+            @include accelerate(true);
+            @extend .pos-abs;
+            transition:all .0s 0.3s;
+        }
+        &__title {
+            @extend .c-blue;
+            @extend .fontSize-28;
+            @extend .fontWeight-bold;
+            @extend .mb-s;
+        }
+        &__text {
+            @extend .fontSize-18;
+            @extend .lineHeight-l;
+            @extend .mb-l;
+            @extend .whiteSpace-preLine;
+        }
+    }
+    &[data-animate="false"]{
+        .tutorial {
+            &__shape {
+                transition:transform 0s .3s, height 0s .3s, box-shadow 0s .3s, border-radius 0s .3s;
+
+                &[data-figure="circle"]{
+                    @extend .borderRadius-circle;
+                }
+            }
+            &__message {
+                transition:opacity .2s ease;
+
+                &[data-active="true"]{
+                    transition:opacity .4s ease 0.3s;
+                }
+            }
+        }
+    }
+}

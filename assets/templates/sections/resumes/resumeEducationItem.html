@@ -1,0 +1,103 @@
+<section-resume-education-item class="row mb-m { parent.editing && parent.editing != opts.cursor.get('id') ? 'display-none' : 'display-block' }">
+
+    <div class="col-md-24">
+        <div class="{ opts.active ? 'display-block mb-l' : 'display-none' }">
+            <div onClick={ close } onUpdate="none" class="pos-abs t--60 r-xs w28 h28 ui-icon-close btn-active"></div>
+            <div class="row mb-m">
+                <div class="col-md-24">
+                    <ui-input update="title" cursor={ opts.cursor } placeholder="Учебное заведение" autosuggest="getSuggestEducation" autosuggestSize="l" size="l"></ui-input>
+                </div>
+            </div>
+            <div class="row mb-m">
+                <div class="col-md-24">
+                    <ui-input update="faculty" cursor={ opts.cursor } placeholder="Факультет" size="l"></ui-input>
+                </div>
+            </div>
+            <div class="row mb-m">
+                <div class="col-md-16">
+                    <ui-input update="speciality" cursor={ opts.cursor } placeholder="Специальность" autosuggest="getSuggestSpeciality" autosuggestSize="l" size="l"></ui-input>
+                </div>
+                <div class="col-md-8">
+                    <ui-select update="year" cursor={ opts.cursor } items={ _.range(1940, new Date().getFullYear() + 1) } size="l"></ui-select>
+                </div>
+            </div>
+            <div class="row pt-m">
+                <div class="col-md-24 text-center">
+                    <button onClick={ remove } class="btn btn-l btn-danger mr-s">Удалить</button>
+                    <button onClick={ saved } onUpdate="none" class="btn btn-l btn-success">Сохранить</button>
+                </div>
+            </div>
+        </div>
+        <div class="{ opts.active ? 'display-none' : 'display-block' }">
+            <div class="row">
+                <div class="col-md-20">
+                    <h5 class="text-truncate pr-m">
+                        <span class="c-silver">{ opts.cursor.get("year") },</span> { opts.cursor.get("title") }
+                    </h5>
+                </div>
+                <div class="col-md-4">
+                    <span onClick={ edit } class="link link-primary text-underline">редактировать</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+
+    var $ = this;
+
+    $.edit = function(){
+        if ($.parent.editing){
+            $Alert.show({
+                title: "Вы не закончили редактирование",
+                subtitle: "Закончите пожалуйста"
+            });
+        }
+        else {
+            app.$dom.document.one("keydown.closeEditingEducation", function(e){
+                if (e.which == KEY.ESC && $.parent.editing && !$Sections.sample.closed){
+                    $.parent.editing = null;
+                    $.parent.update();
+                }
+            });
+            $.parent.editing = $.opts.cursor.get("id");
+            $.parent.update();
+        }
+    };
+
+    $.saved = function(){
+        if (!_.clean($.opts.cursor.get("title"))){
+            $Alert.show({
+                title: "Вы не заполнили поля",
+                subtitle: "Заполните пожалуйста"
+            });
+        }
+        else {
+            $.hide();
+        }
+    };
+
+    $.close = function(){
+        if (!_.clean($.opts.cursor.get("title"))){
+            $.remove.call(this);
+        }
+        $.hide();
+    };
+
+    $.remove = function(){
+        $.parent.opts.cursor.select("items", {id: $.opts.cursor.get("id")}).unset();
+        if (!$.parent.opts.cursor.get("items").length){
+            $.parent.opts.cursor.set(null);
+        }
+        $.hide();
+    };
+
+    $.hide = function(){
+        app.$dom.document.off("keydown.closeEditingEducation");
+        $.parent.editing = null;
+        $.parent.update();
+    };
+
+</script>
+
+</section-resume-education-item>

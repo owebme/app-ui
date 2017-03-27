@@ -1,0 +1,84 @@
+.share__panel {
+    @include accelerate();
+    @extend .display-block;
+    @extend .pos-bl;
+    @extend .w100p;
+    height:62px;
+    @extend .flex-centered;
+    @extend .zIndex-7;
+    @extend .pointerEvents-none;
+    @extend .visibility-hidden;
+    transition:visibility .65s 0s;
+
+    &[data-open="true"]{
+        @extend .pointerEvents-all;
+        @extend .visibility-visible;
+        @extend .transition-none;
+
+        .share__panel__item {
+            @extend .transform-default;
+        }
+    }
+    &__item {
+        @extend .pos-rel;
+        @extend .h100p;
+        @extend .w20p;
+        @extend .cursor-pointer;
+        @extend .willChange-transform;
+        transform:translate3d(0, 62px, 0);
+        transition:transform .3s $cubic28;
+
+        @for $i from 1 through 5 {
+            &:nth-child(#{$i}){
+                transition-delay:#{($i / 15)}s;
+            }
+        }
+        .icon {
+            @extend .pos-centered;
+            padding-top:3px;
+        }
+        &[data-social="fb"]{
+            background-color:#3b5998;
+
+            .share__panel__item__button {
+                background-color:#3b5998;
+            }
+        }
+        &[data-social="vk"]{
+            background-color:#4d76a1;
+
+            .share__panel__item__button {
+                background-color:#4d76a1;
+            }
+        }
+        &[data-social="tw"]{
+            background-color:#00aced;
+
+            .share__panel__item__button {
+                background-color:#00aced;
+            }
+        }
+        &[data-social="dk"]{
+            background-color:#f38230;
+
+            .share__panel__item__button {
+                background-color:#f38230;
+            }
+        }
+        &[data-social="gl"]{
+            background-color:#dd4b39;
+
+            .share__panel__item__button {
+                background-color:#dd4b39;
+            }
+        }
+        &__button {
+            @extend .h100p;
+            transition:transform 0.35s $cubic215;
+
+            &:hover {
+                transform:translateY(-10px);
+            }
+        }
+    }
+}

@@ -15,13 +15,14 @@
         @extend .pointerEvents-none;
         @extend .opacity-100;
         @extend .bg-snow;
-        @extend .c-gray;
-        box-shadow:inset 0 0 0 1px $smokeDark;
+        @extend .c-silver;
+        @extend .boxShadowInset-smoke;
         @extend .cursor-default;
     }
     &-loading {
-        @extend .c-grayDark;
-        @extend .bg-smoke;
+        @extend .bg-snow;
+        @extend .c-silver;
+        @extend .boxShadowInset-smoke;
         @extend .opacity-100;
         @extend .cursor-default;
         @extend .pointerEvents-none;
@@ -233,10 +234,10 @@
     }
     &-active {
         @extend .cursor-pointer;
-        transition:all 0.2s $cubic215;
+        transition:all 0.15s;
 
         &:active {
-            transform:translate3d(0, 1px, 0) scale(0.8);
+            transform:translate3d(0, 1px, 0) scale(0.85);
         }
     }
     &-hover {

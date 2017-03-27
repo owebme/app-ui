@@ -1,0 +1,5 @@
+.sortable {
+    &__item {
+        @extend .userSelect-none;
+    }
+}

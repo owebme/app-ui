@@ -10,7 +10,7 @@ $i:0;
         }
     }
 }
-@each $title, $color in (white: $white, primary: $primary, blue: $blue, blueLight: $blueLight, blueLighten: $blueLighten, blueDark: $blueDark, blueDarken: $blueDarken, water: $water, waterLight: $waterLight, waterDark: $waterDark, brown: $brown, red: $red, redDark: $redDark, yellow: $yellow, yellowDark: $yellowDark, orange: $orange, orangeDark: $orangeDark, violet: $violet, violetDark: $violetDark, green: $green, greenLight: $greenLight, greenDark: $greenDark, black: $black, blackDark: $blackDark, blackLight: $blackLight, gray: $gray, grayDark: $grayDark, grayLight: $grayLight, grayLighten: $grayLighten, smoke: $smoke, smokeLight: $smokeLight, smokeDark: $smokeDark, smokeDarken: $smokeDarken, snow: $snow, snowDark: $snowDark){
+@each $title, $color in (primary: $blue, black: $black, steel: $steel, slate: $slate, white: $white, silver: $silver, smoke: $smoke, smokeDark: $smokeDark, smokeDarken: $smokeDarken, snow: $snow, snowDark: $snowDark, snowDarken: $snowDarken, blue: $blue, blueLight: $blueLight, blueDark: $blueDark, water: $water, yellow: $yellow, yellowLight: $yellowLight, yellowDark: $yellowDark, red: $red, redDark: $redDark, cherry: $cherry, pink: $pink, pinkLight: $pinkLight, pinkDark: $pinkDark, orange: $orange, orangeLight: $orangeLight, orangeDark: $orangeDark, violet: $violet, violetLight: $violetLight, violetDark: $violetDark, green: $green, greenLight: $greenLight, greenDark: $greenDark){
     .bg-#{$title},
     .text-strike[data-color=#{$title}]:after {
         background-color:$color;
@@ -30,13 +30,19 @@ $i:0;
     .borderColor-#{$title}-transparent {
         border-color:rgba($color,.1);
     }
+    .boxShadow-#{$title} {
+        box-shadow:0 0 0 1px $color;
+    }
+    .boxShadowInset-#{$title} {
+        box-shadow:inset 0 0 0 1px $color;
+    }
     svg[fill-color="#{$title}"]{
         path, rect, polygon, circle {
             fill:$color;
         }
     }
 }
-@each $title, $color, $hover in (primary, $link, $linkDark), (info, $blueLight, $blue), (success, $green, $greenDark), (danger, $red, $redDark), (warning, $yellow, $yellowDark), (gray, $gray, $grayDark), (white, rgba($white,.7), $white){
+@each $title, $color, $hover in (primary, $blue, $blueDark), (info, $blueLight, $blue), (success, $green, $greenDark), (danger, $red, $redDark), (warning, $yellow, $yellowDark), (silver, $silver, $slate), (white, rgba($white,.7), $white){
     .link-#{$title} {
 		color:$color;
 
@@ -45,7 +51,7 @@ $i:0;
             color:$hover;
 	    }
         &-hover {
-            color:$gray;
+            color:$silver;
         }
     }
 }
@@ -53,7 +59,7 @@ $i:0;
 .btn-link-underline:hover {
     text-decoration:underline;
 }
-@each $title, $color in (primary: $primary, info: $waterDark, success: $green, danger: $red, warning: $yellow, dark: $black){
+@each $title, $color in (primary: $blue, success: $green, danger: $red, warning: $yellow, dark: $black){
     .btn-#{$title} {
         color:$white;
         background-color:$color;
@@ -74,11 +80,11 @@ $i:0;
         }
     }
     .btn-link-#{$title}-hover {
-        color:$gray;
+        color:$silver;
         @extend .bg-none;
 
         .btn-svg-color {
-            fill:$gray;
+            fill:$silver;
         }
         &:hover {
             color:$color;
@@ -89,20 +95,20 @@ $i:0;
         }
     }
     .btn-#{$title}-hover {
-        color:$color;
-        background-color:transparent;
-        box-shadow:inset 0 0 0 1px $color;
+        color:$slate;
+        background-color:$white;
+        box-shadow:inset 0 0 0 1px $smoke;
 
         .btn-svg-color {
-            fill:$color;
+            fill:$silver;
         }
         &:hover {
-            color:#fff;
+            color:$white;
             background-color:$color;
             box-shadow:none;
 
             .btn-svg-color {
-                fill:#fff;
+                fill:$white;
             }
         }
     }
@@ -124,12 +130,12 @@ $i:0;
         border-color:$color;
     }
 }
-@each $title, $color in (info: $waterDark, success: $green, danger: $orange, warning: $yellow){
+@each $title, $color in (info: $blue, success: $green, danger: $orange, warning: $yellow){
     .btn-badge-#{$title} {
         background-color:$color;
     }
 }
-@each $title, $color in (primary: $primary, green: $green, red: $red){
+@each $title, $color in (primary: $blue, green: $green, red: $red){
     input.range-#{$title}[type=range]::-webkit-slider-thumb {
         background-color:$color;
     }
@@ -140,13 +146,13 @@ $i:0;
         background-color:$color;
     }
 }
-@each $title, $color in (primary: $primary, danger: $red, success: $green, water: $water){
+@each $title, $color in (primary: $blue, danger: $red, success: $green, water: $water){
     [data-balloon-color="#{$title}"] {
         &:after {
             background-color:$color;
 
             @if $title == 'water' {
-                color:$blueDark;
+                color:$slate;
             }
         }
         &:before {
@@ -190,7 +196,7 @@ $i:0;
     }
     &:hover {
         color:$blue;
-        background-color:$snow;
+        background-color:$snowDark;
     }
 }
 .btn-white-hover {

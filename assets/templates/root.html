@@ -1,0 +1,41 @@
+<root-main id="app">
+
+    <section-header></section-header>
+
+    <section-content id="content"></section-content>
+
+    <section-loader></section-loader>
+    <section-loader-ajax></section-loader-ajax>
+    <section-alert></section-alert>
+    <section-notify></section-notify>
+    <ui-dropmenu></ui-dropmenu>
+
+<script>
+
+    window.$root = this;
+
+    this.on("mount", function(){
+
+        app.$dom.root = $$($root.root);
+        app.$dom.content = app.$dom.root.find("#content");
+
+        $Loader = $root.tags["section-loader"];
+        $LoaderAjax = $root.tags["section-loader-ajax"];
+        $Alert = $root.tags["section-alert"];
+        $Notify = $root.tags["section-notify"];
+        $DropMenu = $root.tags["ui-dropmenu"];
+
+        $Sections = {
+            header: {
+                section: $root.tags["section-header"]
+            }
+        };
+
+        $Sections = new app.plugins.define("$Sections");
+
+        app.router.init();
+    });
+
+</script>
+
+</root-main>

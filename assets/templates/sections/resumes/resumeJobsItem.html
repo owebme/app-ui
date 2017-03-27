@@ -1,0 +1,128 @@
+<section-resume-jobs-item class="row mb-m { parent.editing && parent.editing != opts.cursor.get('id') ? 'display-none' : 'display-block' }">
+
+    <div class="col-md-24">
+        <div class="{ opts.active ? 'display-block mb-l' : 'display-none' }">
+            <div onClick={ close } onUpdate="none" class="pos-abs t--60 r-xs w28 h28 ui-icon-close btn-active"></div>
+            <div class="row mb-m">
+                <div class="col-md-14">
+                    <ui-input update="title" cursor={ opts.cursor } placeholder="Компания" autosuggest="getSuggestCompanies" autosuggestSize="l" size="l"></ui-input>
+                </div>
+                <div class="col-md-10">
+                    <ui-input update="city" cursor={ opts.cursor } placeholder="Регион" autosuggest="getSuggestCity" autosuggestSize="l" size="l"></ui-input>
+                </div>
+            </div>
+            <div class="row mb-m">
+                <div class="col-md-14">
+                    <div class="row mb-m">
+                        <div class="col-md-24">
+                            <ui-input update="post" cursor={ opts.cursor } placeholder="Должность"  autosuggest="getSuggestPositions" autosuggestSize="l" size="l"></ui-input>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-24 flex-row-right-center h50 pr-s">
+                            <ui-checkbox onUpdate="parent" update="last" cursor={ opts.cursor } title="По настоящее" size="18"></ui-checkbox>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div class="row mb-m">
+                        <div class="col-md-14">
+                            <ui-select update="month" cursor={ opts.cursor.select("from") } items={ $store.month.getItems() } size="l"></ui-select>
+                        </div>
+                        <div class="col-md-10">
+                            <ui-select update="year" cursor={ opts.cursor.select("from") } items={ _.range(1940, new Date().getFullYear() + 1) } size="l"></ui-select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-14">
+                            <ui-select update="month" cursor={ opts.cursor.select("to") } items={ $store.month.getItems() } size="l" disable={ opts.cursor.get('last') }></ui-select>
+                        </div>
+                        <div class="col-md-10">
+                            <ui-select update="year" cursor={ opts.cursor.select("to") } items={ _.range(1940, new Date().getFullYear() + 1) } size="l" disable={ opts.cursor.get('last') }></ui-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-m">
+                <div class="col-md-24">
+                    <ui-textarea update="text" cursor={ opts.cursor } placeholder="Обязанности, функции" size="l" height="280"></ui-textarea>
+                </div>
+            </div>
+            <div class="row pt-m">
+                <div class="col-md-24 text-center">
+                    <button onClick={ remove } class="btn btn-l btn-danger mr-s">Удалить</button>
+                    <button onClick={ saved } onUpdate="none" class="btn btn-l btn-success">Сохранить</button>
+                </div>
+            </div>
+        </div>
+        <div class="{ opts.active ? 'display-none' : 'display-block' }">
+            <div class="row">
+                <div class="col-md-20">
+                    <h4 class="text-truncate pr-m"><span class="c-silver">{ opts.cursor.get("city") },</span> { opts.cursor.get("title") }</h4>
+                </div>
+                <div class="col-md-4">
+                    <span onClick={ edit } class="link link-primary text-underline">редактировать</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+
+    var $ = this;
+
+    $.edit = function(){
+        if ($.parent.editing){
+            $Alert.show({
+                title: "Вы не закончили редактирование",
+                subtitle: "Закончите пожалуйста"
+            });
+        }
+        else {
+            app.$dom.document.one("keydown.closeEditingJobs", function(e){
+                if (e.which == KEY.ESC && $.parent.editing && !$Sections.sample.closed){
+                    $.parent.editing = null;
+                    $.parent.update();
+                }
+            });
+            $.parent.editing = $.opts.cursor.get("id");
+            $.parent.update();
+        }
+    };
+
+    $.saved = function(){
+        if (!_.clean($.opts.cursor.get("title"))){
+            $Alert.show({
+                title: "Вы не заполнили поля",
+                subtitle: "Заполните пожалуйста"
+            });
+        }
+        else {
+            $.hide();
+        }
+    };
+
+    $.close = function(){
+        if (!_.clean($.opts.cursor.get("title"))){
+            $.remove.call(this);
+        }
+        $.hide();
+    };
+
+    $.remove = function(){
+        $.parent.opts.cursor.select("items", {id: $.opts.cursor.get("id")}).unset();
+        if (!$.parent.opts.cursor.get("items").length){
+            $.parent.opts.cursor.set(null);
+        }
+        $.hide();
+    };
+
+    $.hide = function(){
+        app.$dom.document.off("keydown.closeEditingJobs");
+        $.parent.editing = null;
+        $.parent.update();
+    };
+
+</script>
+
+</section-resume-jobs-item>

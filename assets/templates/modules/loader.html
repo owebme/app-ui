@@ -1,0 +1,28 @@
+<section-loader class="loader" data-show="{ active }">
+
+<script>
+
+    var $ = this;
+
+    $.active = false;
+
+    $.show = function(){
+        $.update({
+            active: true
+        })
+        return new Promise(function(resolve, reject){
+            _.onEndTransition($.root, function(){
+                return resolve();
+            });
+        });
+    };
+
+    $.hide = function(){
+        $.update({
+            active: false
+        })
+    };
+
+</script>
+
+</section-loader>

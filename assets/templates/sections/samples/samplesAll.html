@@ -1,0 +1,48 @@
+<section-samples-all>
+
+    <div class="page__navbar">
+        <div class="page__navbar__container">
+            <div class="page__navbar__right w100p">
+                <btn-plus color="success-hover zIndex-1" text="Добавить резюме"></btn-plus>
+            </div>
+        </div>
+    </div>
+
+    <div class="page__container">
+        <section-samples-table></section-samples-table>
+    </div>
+
+    <section-sample-edit></section-sample-edit>
+
+<script>
+
+    var $ = this;
+
+    $Samples = {
+        tag: $,
+        el: $$($.root),
+        config: $store.samples.dataTable
+    };
+
+    $.on("mount", function(){
+        $Samples.table = $.tags["section-samples-table"];
+        $Samples.table.init($store.samples.get());
+
+        // Auto update data items
+        $store.samples.on('write', function(e){
+            if (e && e.data && e.data.path && e.data.path.length){
+                var item = $store.samples.get(e.data.path[0]);
+                //     prop = e.data.path[1];
+
+                $Samples.table.refresh.item(item._id);
+
+                // if (prop == "tags"){
+                //     $Contact.tagItems.init();
+                // }
+            }
+        });
+    });
+
+</script>
+
+</section-samples-all>

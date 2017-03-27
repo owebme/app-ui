@@ -1,0 +1,7 @@
+html,
+body {
+	@extend .bg-snowDark;
+}
+#app {
+	@extend .display-block;
+}

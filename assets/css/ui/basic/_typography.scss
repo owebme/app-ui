@@ -1,6 +1,6 @@
 h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
-	@extend .c-blueLight;
-	@extend .fontFamily-helvetica;
+	@extend .c-blue;
+	@extend .fontFamily-default;
 	@extend .fontWeight-bold;
 }
 h1, .h1 {
@@ -14,6 +14,12 @@ h3, .h3 {
 }
 h4, .h4 {
 	@extend .fontSize-20;
+}
+h5, .h5 {
+	@extend .fontSize-18;
+}
+h6, .h6 {
+	@extend .fontSize-16;
 }
 sup, sub {
 	font-size:75%;

@@ -1,0 +1,212 @@
+.dataTable {
+    &__filters {
+        &__top {
+            @extend .flex-row-right-center;
+            @extend .pos-abs;
+            @extend .t--xl;
+            @extend .r0;
+            @extend .userSelect-none;
+        }
+        &__bottom {
+            @extend .flex-row-right-center;
+            @extend .mt-m;
+        }
+    }
+    &__filterColumn {
+        @extend .pos-abs;
+        @extend .t50p;
+        right:0.5em;
+        transform:translate3d(0, -30%, 0);
+        line-height:22px;
+        @extend .zIndex-1;
+
+        &__button {
+            @include ui-icon(cog, 16px, 16px);
+            @extend .cursor-pointer;
+        }
+        &__wrapper {
+            @extend .dropmenu;
+            @extend .t100p;
+            @extend .fontFamily-helvetica;
+            text-transform:none;
+            margin:4px 0 0 8px;
+
+            &.active {
+                @extend .dropmenu[data-active="true"];
+            }
+        }
+    }
+    &__total__records {
+        @extend .c-silver;
+
+        span {
+            @extend .c-slate;
+        }
+    }
+}
+#datatable-buttons_info {
+    @include flex("row", "flex-start", "center");
+    @extend .mr-s;
+}
+#datatable-buttons_filter {
+    label {
+        @extend .flex-row-left-center;
+        @extend .ml-s;
+    }
+    .dataTable__search__icon {
+        @extend .display-block;
+        @extend .pos-rel;
+        @extend .w25;
+        @extend .h28;
+
+        &:after {
+            @extend .content-empty;
+            @extend .pos-centered;
+            @include ui-icon(search, 25px, 25px);
+        }
+    }
+    input {
+        @extend .bg-none;
+        @extend .w200;
+        @extend .h28;
+        @extend .ml-xs;
+        @extend .c-slate;
+        @extend .plr-xxs;
+        border:none;
+        border-bottom:1px solid $smokeDark;
+        transition:border-color 0.15s;
+
+        &:focus,
+        &:hover {
+            border-bottom-color:$blue;
+        }
+    }
+}
+#datatable-buttons_length {
+    @extend .c-silver;
+    @extend .mr-s;
+
+    select {
+        @extend .display-inlineBlock;
+        @extend .outline-none;
+        @extend .cursor-pointer;
+        @extend .appearance-none;
+        @extend .border-none;
+        @extend .c-slate;
+        @extend .fontWeight-bold;
+        @extend .fontSize-16;
+        @extend .m0;
+        @extend .bg-none;
+    }
+}
+#datatable-buttons_wrapper {
+    .dt-buttons {
+        margin-left:35px;
+        transform:translate3d(0, -2px, 0);
+
+        .btn-print {
+            position:relative;
+            padding:5px 15px;
+            border-left-top:none;
+
+            &:after {
+                content:"";
+                @include abs_50(18, 18);
+                @include ui-icon(print, 18px, 18px);
+            }
+            &:hover:after {
+                @include ui-icon(print_white);
+            }
+        }
+    }
+}
+
+/*
+ * DataTables ColVis Setting
+ */
+
+.ColVis {
+    &_Button {
+        @extend .flex-centered;
+        @extend .btn;
+        @extend .btn-m;
+        @extend .btn-primary-hover;
+        @extend .p0;
+
+        &:after {
+            @extend .content-empty;
+            @extend .display-block;
+            @extend .centered;
+            @include ui-icon(columns, 22px, 22px);
+        }
+        &:hover:after,
+        &.active:after {
+            @include ui-icon(columns_white);
+        }
+        &.active {
+            @extend .bg-blue;
+        }
+    }
+    &_collectionBackground {
+    	@include abs(fixed);
+        @extend .bg-black;
+        @extend .zIndex-1000;
+    }
+    &_collection {
+        @extend .bg-white;
+    	min-width:157px;
+        @extend .borderRadius-xl;
+        @extend .overflow-hidden;
+        transform:translate3d(-12px, 2px, 0px);
+        box-shadow:0 20px 25px rgba(31,35,37,.15), 1px 0 0 0 rgba(31,45,61,.08), 0 1px 0 0 rgba(31,45,61,.08), -1px 0 0 0 rgba(31,45,61,.08), 0 -1px 0 0 rgba(31,45,61,.08);
+    	@extend .zIndex-1001;
+
+        li {
+            @extend .fontSize-14;
+            min-height:35px;
+            padding:0 38px 0 13px;
+            @extend .text-left;
+            @extend .cursor-pointer;
+            @extend .userSelect-none;
+            @extend .text-truncate;
+            border-bottom:1px solid $snowDark;
+
+            &:hover {
+                @extend .c-black;
+                @extend .bg-snowDark;
+
+                input {
+                    @include ui-icon(check_gray);
+
+                    &:checked {
+                        @include ui-icon(check);
+                    }
+                }
+            }
+            &:first-child {
+                padding-top:4px;
+            }
+            &:last-child {
+                padding-bottom:5px;
+            }
+        }
+        label {
+            @extend .flex-row-left-center;
+            @extend .h35;
+            @extend .cursor-pointer;
+        }
+        input {
+            @extend .display-inlineBlock;
+            @extend .cursor-pointer;
+            @include ui-icon(check_muted, 20px, 20px);
+
+            &:checked {
+                @include ui-icon(check);
+            }
+        }
+        span {
+            @extend .pl-xs;
+            @extend .cursor-pointer;
+        }
+    }
+}

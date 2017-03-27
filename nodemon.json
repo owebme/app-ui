@@ -1,0 +1,12 @@
+{
+  "watch" : [
+      "/SERVER.js",
+      "/config.json",
+      "/libs/*.*",
+      "/router/*.*",
+      "/views/*.*",
+      "/assets/app.build.js",
+      "/assets/API/*.*",
+      "/assets/API/**/*.*"
+  ]
+}

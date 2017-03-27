@@ -104,7 +104,7 @@
 	cursor: pointer;
 }
 .clockpicker-popover .popover-content {
-	background-color: #f8f8f8;
+	background-color: $snow;
 	padding: 12px;
 }
 .popover-content:last-child {
@@ -113,7 +113,7 @@
 }
 .clockpicker-plate {
 	background-color: #fff;
-	border: 1px solid #c9d7df;
+	border: 1px solid $smokeDark;
 	border-radius: 50%;
 	width: 200px;
 	height: 200px;

@@ -1,0 +1,64 @@
+<share-panel onClick={ hide } onUpdate="none" class="share__panel" data-open={ active }>
+
+    <div class="share__panel__item" data-social="gl">
+        <div class="share__panel__item__button" data-balloon={ 'Поделиться в Google+' : opts.tooltip } data-balloon-pos="up">
+            <icon-gl color={ opts.color } size={ opts.size }></icon-gl>
+        </div>
+    </div>
+    <div class="share__panel__item" data-social="vk">
+        <div class="share__panel__item__button" data-balloon={ 'Поделиться в ВКонтакте' : opts.tooltip } data-balloon-pos="up">
+            <icon-vk color={ opts.color } size={ opts.size }></icon-vk>
+        </div>
+    </div>
+    <div class="share__panel__item" data-social="fb">
+        <div class="share__panel__item__button" data-balloon={ 'Поделиться в Facebook' : opts.tooltip } data-balloon-pos="up">
+            <icon-fb color={ opts.color } size={ opts.size }></icon-fb>
+        </div>
+    </div>
+    <div class="share__panel__item" data-social="dk">
+        <div class="share__panel__item__button" data-balloon={ 'Поделиться в Одноклассниках' : opts.tooltip } data-balloon-pos="up">
+            <icon-dk color={ opts.color } size={ opts.size }></icon-dk>
+        </div>
+    </div>
+    <div class="share__panel__item" data-social="tw">
+        <div class="share__panel__item__button" data-balloon={ 'Поделиться в Twitter' : opts.tooltip } data-balloon-pos="up">
+            <icon-tw color={ opts.color } size={ opts.size }></icon-tw>
+        </div>
+    </div>
+
+<script>
+
+    var $ = this;
+
+    $.active = false;
+
+    $.on("mount", function(){
+        $.share = new app.plugins.share($.root, {
+            buttons: ".share__panel__item",
+            url: $.opts.url,
+            share: {
+                title: $.opts.title
+            }
+        })
+    });
+
+    $.show = function(){
+        $.update({
+            active: true
+        })
+    };
+
+    $.hide = function(){
+        $.active = false;
+        $.parent.update({
+            overlay: false
+        })
+    };
+
+    $.on("unmount", function(){
+        $.share.destroy();
+    });
+
+</script>
+
+</share-panel>

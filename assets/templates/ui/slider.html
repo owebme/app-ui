@@ -1,0 +1,93 @@
+<ui-slider class="display-block pos-rel">
+
+    <span if={ opts.title } class="input-title">{ opts.title }</span>
+    <input class="display-none" name="slider_input" type="range" value={ opts.value } min="{ opts.min }" max="{ opts.max }" step="{ opts.step }">
+    <input class="input input-{ opts.size ? opts.size : 'm' }" onBlur={ onBlur } name="slider_data" type="number" autocomplete="off" value={ opts.value }>
+    <div if={ opts.ed && !app.device.isPhone } class="pos-tr fontSize-20 fontWeight-5 fontFamily-roboto c-white flex-centered w40 h100p">{ opts.ed }</div>
+
+<script>
+
+    var $ = this;
+
+    $.input = $["slider_data"];
+
+    $.on("before-mount", function(){
+        if ($.opts.update && $.opts.cursor){
+            $.opts.value = $.opts.cursor.get($.opts.update);
+        }
+    });
+
+    $.on("mount", function(){
+        if (!$.opts.phone && app.device.isPhone) return;
+
+        $.slider = $$($["slider_input"]);
+
+        $.value = $.opts.value;
+
+        setTimeout(function(){
+            $.slider.rangeslider({
+                polyfill: false,
+                orientation: 'horizontal',
+                rangeClass: 'rangeslider' + (typeof opts.small !== 'undefined' ? ' small' : '') + (opts.color ? ' rangeslider-color-' + opts.color : ''),
+                horizontalClass: 'rangeslider--horizontal',
+                fillClass: 'rangeslider-track',
+                handleClass: 'rangeslider-handle',
+                onSlide: function(position, value) {
+                    $.input.value = value;
+                    $.value = value;
+                    $.fnCommit(value);
+                }
+            });
+        }, 5);
+
+        $.slider.val($.value);
+        $.commit = $.opts.commit ? $.opts.commit : null;
+    });
+
+    $.change = function(value){
+        $.changed = true;
+        if ($.slider) {
+            $.slider.val(value).change();
+        }
+        else {
+            $.input.value = value;
+        }
+        $.value = value;
+        $.fnCommit(value);
+        $.changed = false;
+    };
+
+    $.onBlur = function(e){
+        if (!$.opts.phone && app.device.isPhone) return;
+        var value = e.target.value;
+        $.value = value;
+        $.fnCommit(value);
+    };
+
+    $.fnCommit = function(value){
+        if ($.commit === true || $.commit == "true") $.parent.update();
+        else if (_.isFunction($.commit)){
+            $.commit.call(this, value, $.opts.i);
+        }
+        else if ($.commit && $.parent[$.commit]){
+            $.parent[$.commit](value, $.opts.i);
+        }
+        if ($.opts.update && $.opts.cursor){
+            $.opts.cursor.set($.opts.update, value);
+        }
+    };
+
+    $.refresh = function(options){
+        if (!_.isEmpty(options)){
+            $.slider.attr(options)
+            .rangeslider('update', true);
+        }
+    };
+
+    this.on("unmount", function(){
+        if ($.slider) $.slider.rangeslider('destroy');
+    });
+
+</script>
+
+</ui-slider>

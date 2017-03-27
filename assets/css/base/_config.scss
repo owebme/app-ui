@@ -1,7 +1,9 @@
 // ---------- ** Tooltips ** ---------- //
 
+$tooltipDefaultColor: $slate;
+
 @mixin tooltip() {
-    @extend .bg-blackLight;
+    background-color:$tooltipDefaultColor;
     @extend .c-white;
     @extend .fontFamily-helvetica;
     @extend .fontWeight-normal;
@@ -47,26 +49,26 @@
 // ---------- ** Alert ** ---------- //
 
 @mixin alert-overlay() {
-    background:rgba(darken($grayDark,15%),.7);
+    @extend .bg-overlay;
 }
 @mixin alert-wrapper() {
     width:528px;
     height:295px;
     border-radius:12px;
     @extend .bg-snow;
-    @extend .boxShadow-dark;
+    @extend .boxShadow-larger;
 }
 @mixin alert-title() {
     @extend .c-blue;
     @extend .fontFamily-helvetica;
-    @extend .fontWeight-5;
+    @extend .fontWeight-normal;
     @extend .fontSize-28;
     @extend .mb-m;
     @extend .plr-l;
     @extend .pt-xs;
 }
 @mixin alert-subtitle() {
-    @extend .c-gray;
+    @extend .c-silver;
     @extend .fontSize-18;
     @extend .fontWeight-normal;
     @extend .pl60;
@@ -78,26 +80,26 @@
     padding-bottom:3px;
 }
 @mixin alert-button-hover() {
-    @extend .bg-smoke;
+    @extend .bg-snowDark;
 }
 @mixin alert-button-active() {
     @extend .c-white;
     @extend .bg-blue;
 }
-$alertButtonBorderColor: darken($smoke,1.5%);
+$alertButtonBorderColor: $smoke;
 
 
 // ---------- ** Tutorial ** ---------- //
 
 @mixin tutorial-color() {
     border-color:rgba(#fcfcfc,.8); // overlay color
-    @extend .bg-blueLight; // border color for shape
+    @extend .bg-blueDark; // border color for shape
 }
 @mixin tutorial-message() {
-    @extend .c-gray;
+    @extend .c-silver;
 }
 @mixin tutorial-message-steps() {
-    @extend .c-grayLight;
+    @extend .c-smokeDarken;
     @extend .fontSize-15;
 }
 @mixin tutorial-message-title() {

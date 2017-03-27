@@ -7,7 +7,7 @@
 
     <h3 class="letterSpacing-0 mb-m">Default font-family</h3>
     <div class="inline borderWidth-1 p-m borderStyle-solid borderColor-smoke borderRadiusTop-m">
-        <div class="fontFamily-default fontSize-20 lineHeight-xl c-blackLight pl-xxs">
+        <div class="fontFamily-default fontSize-20 lineHeight-xl c-black pl-xxs">
             <div class="mb-xs">
                 <div each={ alpha in alphabet } no-reorder class="display-inlineBlock mr-xs">
                     { alpha }
@@ -36,7 +36,7 @@
 
     <h3 class="fontFamily-helvetica fontWeight-5 letterSpacing-0 mb-m">Helvetica Neue font-family</h3>
     <div class="inline borderWidth-1 p-m borderStyle-solid borderColor-smoke borderRadiusTop-m">
-        <div class="fontFamily-helvetica fontSize-20 lineHeight-xl c-blackLight pl-xxs">
+        <div class="fontFamily-helvetica fontSize-20 lineHeight-xl c-black pl-xxs">
             <div class="mb-xs">
                 <div each={ alpha in alphabet } no-reorder class="display-inlineBlock mr-xs">
                     { alpha }
@@ -67,12 +67,12 @@
     <p class="fontSize-16 mb-l">The font scale consists of 9 different font sizes. The default size applied to the <span class="text-code">body</span> is Medium.</p>
 
     <div each={ item, i in sizes } no-reorder class="fontFamily-default verflow-hidden borderWidth-1 borderStyle-solid borderColor-smoke { i == 0 ? 'borderRadiusTop-m' : 'mt--1' }">
-        <div class="c-blackLight p-m pr0">
+        <div class="c-black p-m pr0">
             <div class="p-xxs pr0 w100p overflow-hidden">
                 <div class="mb-s mr0 nowrap">
                     <p class="fontSize-{ item.size }">The quick brown fox jumps over the lazy dog</p>
                 </div>
-                <p class="fontSize-14 fontWeight-3 c-grayLight">{ item.title }</p>
+                <p class="fontSize-14 fontWeight-3 c-silverLight">{ item.title }</p>
             </div>
         </div>
     </div>
@@ -96,20 +96,20 @@
         <div class="row">
             <div class="col-md-8 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
                 <div class="p-xs">
-                    <div class="fontSize-64 fontWeight-3 c-blackLight mb-xxs">Aa</div>
-                    <p class="fontSize-14 lineHeight-s fontWeight-3 c-grayLight">Helvetica Neue Light</p>
+                    <div class="fontSize-64 fontWeight-3 c-black mb-xxs">Aa</div>
+                    <p class="fontSize-14 lineHeight-s fontWeight-3 c-silverLight">Helvetica Neue Light</p>
                 </div>
             </div>
             <div class="col-md-8 borderStyle-solid d-borderRightWidth-1 xs-borderBottomWidth-1 borderColor-smoke text-center p-m">
                 <div class="p-xs">
-                    <div class="fontSize-64 fontWeight-4 c-blackLight mb-xxs">Aa</div>
-                    <p class="fontSize-14 fontWeight-3 c-grayLight">Helvetica Neue Regular</p>
+                    <div class="fontSize-64 fontWeight-4 c-black mb-xxs">Aa</div>
+                    <p class="fontSize-14 fontWeight-3 c-silverLight">Helvetica Neue Regular</p>
                 </div>
             </div>
             <div class="col-md-8 text-center p-m">
                 <div class="p-xs">
-                    <div class="fontSize-64 fontWeight-5 c-blackLight mb-xxs">Aa</div>
-                    <p class="fontSize-14 fontWeight-3 c-grayLight">Helvetica Neue Medium</p>
+                    <div class="fontSize-64 fontWeight-5 c-black mb-xxs">Aa</div>
+                    <p class="fontSize-14 fontWeight-3 c-silverLight">Helvetica Neue Medium</p>
                 </div>
             </div>
         </div>
@@ -128,7 +128,7 @@
     <h4 class="mb-xxs">Type tags</h4>
     <p class="fontSize-16 mb-l">Text can be set in a number of different html tags — <span class="text-code">&lt;p&gt;</span>, <span class="text-code">&lt;small&gt;</span>, <span class="text-code">&lt;strong&gt;</span>, <span class="text-code">&lt;time&gt;</span>, etc. Each tag communicates a different semantic meaning but tags don't carry any aesthetic value. To order the appearance of a string of text, add additional classes for font size or font weight.</p>
 
-    <div class="p-m c-blackLight borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+    <div class="p-m c-black borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
         <div class="p-xxs">
             <div class="mb-m">
                 <strong class="fontSize-18 lineHeight-l fontWeight-5">This is semantically emphasized text which is also bold.</strong>
@@ -149,9 +149,9 @@
     <h4 class="mb-xxs">Alignment classes</h4>
     <p class="fontSize-16 mb-l">Left, right or center align text with text alignment classes.</p>
 
-    <div class="p-m c-blackLight borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+    <div class="p-m c-black borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
         <div class="p-xxs">
-            <div class="row c-blackLight">
+            <div class="row c-black">
                 <div class="col-md-8 text-left xs-pb-m">
                     Left aligned text
                 </div>
@@ -178,9 +178,9 @@
     <h4 class="mb-xxs">Transformation classes</h4>
     <p class="fontSize-16 mb-l">Transform text with text transformation classes.</p>
 
-    <div class="p-m c-blackLight borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+    <div class="p-m c-black borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
         <div class="p-xxs">
-            <div class="row c-blackLight">
+            <div class="row c-black">
                 <div class="col-md-8 text-center text-lowercase xs-pb-m">
                     Lowercased text
                 </div>
@@ -207,9 +207,9 @@
     <h4 class="mb-xxs">Strike out class</h4>
     <p class="fontSize-16 mb-l">Strike out text with text transformation classes.</p>
 
-    <div class="p-m c-blackLight borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+    <div class="p-m c-black borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
         <div class="p-xxs">
-            <div class="row c-blackLight">
+            <div class="row c-black">
                 <div class="col-md-8 text-center xs-pb-m">
                     <span class="text-strike" data-color="red">Strike out red</span>
                 </div>

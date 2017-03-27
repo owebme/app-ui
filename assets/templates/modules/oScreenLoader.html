@@ -1,0 +1,169 @@
+<oScreen-loader class="oScreen__loader">
+
+    <div class="oScreen__loader__progress" style="width:{ status }%" data-anim={ animate }></div>
+
+    <div class="oScreen__loader__spinner"></div>
+
+<script>
+
+    var $ = this;
+
+    $.status = 0;
+
+    $.animate = false;
+
+    $.progress = null;
+
+    $.show = function(options){
+        if (!options) return;
+
+        if (options.forceShow){
+            $.html = options.tag();
+            if (options.mount){
+                $.html.one("updated", function(){
+                    options.mount($.html);
+                });
+            }
+            $$($.parent.scroll).css("transition", "none");
+            $.parent.active = true;
+            $.parent.update();
+            return;
+        }
+
+        $.options = options;
+        $.start = options.start || $$.noop;
+        $.end = options.end || $$.noop;
+        $.callMount = options.mount || $$.noop;
+        $.callBeforeUnmount = options.beforeUnmount || $$.noop;
+        $.callUnmount = options.unmount || $$.noop;
+        $.scope = $$(options.scope)[0];
+
+        $.reset();
+
+        $.parent.update({
+            loading: true
+        })
+
+        if (app.device.isMobile){
+            $.update({
+                animate: true
+            })
+        }
+
+        $.start();
+
+        _.onEndTransition($.scope, function(){
+            if (options.resources){
+                app.loader.resources(options.resources, $.onResourcesLoaded, function(){
+        			$.status += 25 / options.resources.length;
+        			$.updateLoading();
+        		});
+            }
+            else {
+                $.status += 25;
+                $.onResourcesLoaded();
+                $.updateLoading();
+            }
+        });
+    };
+
+    $.init = function(){
+        if (!$.progress.resources || !$.progress.images || !$.progress.html) return;
+
+        $.status = 100;
+
+        $.updateLoading();
+
+        setTimeout($.hide, 175);
+    };
+
+    $.onImagesLoaded = function(){
+        $.progress.images = true;
+        $.init();
+    };
+
+    $.onImagesItemLoaded = function(ready, total){
+        $.status += 25 / total;
+        $.updateLoading();
+    };
+
+    $.onResourcesLoaded = function(){
+        $.progress.resources = true;
+
+        if (app.device.isMobile){
+            $.animate = true;
+        }
+        $afterlag.run(function(){
+            if (_.isFunction($.options.tag)){
+                $.html = $.options.tag();
+                if ($.html){
+                    $.html.one("updated", function(){
+                        $afterlag.run(function(){
+                            $.onHtmlLoaded($.options.content);
+                        });
+                    });
+                    if ($.refs) $.html.update();
+                }
+                else {
+                    $.parent.update({
+                        loading: false,
+                        animate: false,
+                        active: false
+                    })
+                }
+            }
+            else {
+                $.onHtmlLoaded($.options.content);
+            }
+        });
+
+        $.init();
+    };
+
+    $.onHtmlLoaded = function(html){
+        $.progress.html = true;
+        $.status += 50;
+        $.animate = false;
+        $.updateLoading();
+        app.loader.images($$(html), $.onImagesLoaded, $.onImagesItemLoaded);
+        $.init();
+    };
+
+    $.hide = function(){
+        $.parent.loading = false;
+        $.parent.active = true;
+        $.parent.update();
+        $.end();
+        _.onEndTransition($.scope, function(){
+            $.callMount($.html);
+
+            $.html.one("before-unmount", function(){
+                $.callBeforeUnmount($.html);
+            });
+
+            $.html.one("unmount", function(){
+                $.callUnmount($.html);
+            });
+
+        });
+        $.reset();
+    };
+
+	$.reset = function(){
+        $.progress = {
+            resources: false,
+            images: false,
+            html: false
+        }
+		$.update({
+            status: 0
+        })
+	};
+
+	$.updateLoading = function(){
+        $.update();
+	};
+
+</script>
+
+</oScreen-loader>

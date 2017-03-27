@@ -1,9 +1,9 @@
 body {
-	color:$gray;
-	font-family:$default;
+	@extend .c-slate;
+	@extend .fontFamily-default;
 }
 .app {
-	display:block;
+	@extend .display-block;
 }
 
 /* All phones besides iPhone and all tablet devices */

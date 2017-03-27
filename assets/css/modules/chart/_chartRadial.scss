@@ -1,0 +1,79 @@
+.chart__radial {
+    .d-phone & {
+        @extend .flex-row-left-center;
+        @extend .w100p;
+        @extend .h140;
+    }
+    &__graph {
+        @extend .pos-rel;
+        @extend .display-inlineBlock;
+        @extend .borderRadius-circle;
+        @extend .w200;
+        @extend .h200;
+
+        &1 {
+            @extend .pos-centered;
+            @extend .w200;
+            @extend .h200;
+        }
+        &2 {
+            @extend .pos-centered;
+            @extend .w150;
+            @extend .h150;
+        }
+        &3 {
+            @extend .pos-centered;
+            @extend .w100;
+            @extend .h100;
+        }
+        .d-phone & {
+            @extend .flex-centered;
+            @extend .w140;
+            @extend .h100p;
+
+            .chart__radial__graph {
+                &1 {
+                    @extend .w140;
+                    @extend .h140;
+                }
+                &2 {
+                    width:105px;
+                    height:105px;
+                }
+                &3 {
+                    @extend .w70;
+                    @extend .h70;
+                }
+            }
+        }
+    }
+    &__labels {
+        @extend .text-left;
+
+        .d-phone & {
+            @include flex("column", "center", "flex-start");
+            width:calc(100% - 140px);
+            @extend .h100p;
+        }
+    }
+    &__label {
+        @extend .fontSize-20;
+
+        .d-phone & {
+            @extend .fontFamily-helvetica;
+            @extend .fontSize-16;
+        }
+        &__color {
+            @extend .display-inlineBlock;
+            @extend .vAlign-middle;
+            @extend .borderRadius-circle;
+            @extend .w15;
+            @extend .h15;
+
+            .d-phone & {
+                width:13px;
+                height:13px;
+            }
+        }
+    }
+}

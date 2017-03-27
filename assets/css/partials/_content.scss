@@ -1,0 +1,24 @@
+#content {
+    @extend .display-block;
+}
+.page {
+    &__navbar {
+        @extend .pos-rel;
+        @extend .mt-m;
+        @extend .mb--m;
+
+        &__container {
+            @include flex("row", "space-between", "center");
+            @extend .w100p;
+        }
+        &__left {
+            @extend .flex-row-left-center;
+        }
+        &__right {
+            @extend .flex-row-right-center;
+        }
+    }
+    &__container {
+        @extend .mtb-l;
+    }
+}

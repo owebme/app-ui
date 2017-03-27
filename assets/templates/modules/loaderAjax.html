@@ -1,0 +1,34 @@
+<section-loader-ajax class="loader-ajax" data-color={ state.color } data-show={ state.active }>
+
+    <div class="loader-ajax-spinner"></div>
+
+<script>
+
+    var $ = this;
+
+    $.default = function(){
+        return {
+            active: true,
+            color: null
+        }
+    };
+    $.state = $.default();
+    $.state.active = false;
+
+    $.show = function(options){
+        $.state = $.default();
+
+        if (options) _.extend($.state, options);
+
+        $.update($.state);
+    };
+
+    $.hide = function(){
+        $.state.active = false;
+
+        $.update($.state);
+    };
+
+</script>
+
+</section-loader-ajax>

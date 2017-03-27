@@ -1,0 +1,79 @@
+<section-resume-jobs class="section mb-l">
+
+    <div class="row mb30">
+        <div class="col-md-24">
+            <h3 class="c-blue">{ editing ? 'Редактирование' : 'Место работы' }</h3>
+        </div>
+    </div>
+    <section-resume-jobs-item each={ item, i in sort(opts.cursor.get("items")) } no-reorder cursor={ parent.opts.cursor.select("items", {"id": item.id}) } active={ parent.editing && parent.editing == item.id }></section-resume-jobs-item>
+    <div if={ !editing } class="row">
+        <div class="col-md-24 text-center ptb-m mb-m">
+            <btn-plus onClick={ create } color="success" text="Добавить место работы" size="l"></btn-plus>
+        </div>
+    </div>
+
+    <div class="h1px bg-smoke"></div>
+
+<script>
+
+    var $ = this;
+
+    $.editing = null;
+
+    $.build = function(){
+        $.opts.cursor.set({
+            title: null,
+            text: null,
+            items: []
+        });
+
+        $.create();
+    };
+
+    $.create = function(){
+        if (!$.opts.cursor.get()){
+            $.build();
+            return;
+        }
+        $.editing = _.newId();
+
+        $.opts.cursor.select("items").push(
+            {
+                id: $.editing,
+                title: null,
+                city: null,
+                post: null,
+                from: {
+                    month: "1",
+                    year: "2000"
+                },
+                to: {
+                    month: "1",
+                    year: "2000"
+                },
+                text: null,
+                last: false
+            }
+        );
+    };
+
+    $.sort = function(items){
+        return _.sortBy(items, function(item){
+			return $.get.year(item);
+		}).reverse();
+    };
+
+    $.get = {
+        year: function(item){
+            if (item.last){
+                return new Date().getFullYear();
+            }
+            else {
+                return item.to.year;
+            }
+        }
+    };
+
+</script>
+
+</section-resume-jobs>

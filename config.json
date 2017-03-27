@@ -1,0 +1,46 @@
+{
+    "port": 8090,
+    "security": {
+        "tokenLife" : 3600
+    },
+    "mysql": {
+        "host"     : "localhost",
+        "port"     : "8889",
+        "user"     : "root",
+        "password" : "root",
+        "database" : "resumekraft"
+    },
+    "mongodb": {
+        "uri": "mongodb://localhost/resumekraft",
+		"options": {
+			"server": {
+				"socketOptions": {
+					"keepAlive": 1
+				}
+			}
+		}
+    },
+    "session": {
+        "secret": "irishka",
+        "key": "sid",
+        "cookie": {
+            "path": "/",
+            "httpOnly": true,
+            "maxAge": null
+        }
+    },
+    "path": {
+        "photo": "/public/files/photo/",
+        "pdf": "/public/files/pdf/",
+        "template": {
+            "basic": "/public/templates/default/resume/basic/index.html"
+        }
+    },
+    "jobs": {
+        "cache": true,
+        "cacheLife": 86400
+    },
+    "hh": {
+        "api": "https://api.hh.ru"
+    }
+}

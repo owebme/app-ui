@@ -1,0 +1,105 @@
+.buttons-angle {
+    @extend .inline;
+
+    div[class^="button"]{
+        @extend .pos-rel;
+        @extend .btn-hover;
+        @extend .btn-active;
+        @extend .cursor-pointer;
+        margin:5px -5px 20px 25px;
+    }
+    &-tr, &[data-pos="top-right"] {
+        @extend .pos-tr;
+        transform:translate3d(-41px, 25px, 0);
+
+        .d-phone & {
+            transform:translate3d(-10px, 12px, 0);
+        }
+    }
+    &-tl, &[data-pos="top-left"] {
+        @extend .pos-tl;
+        transform:translate3d(17px, 15px, 0);
+
+        .d-phone & {
+            transform:translate3d(10px, 12px, 0);
+        }
+    }
+    &-bl, &[data-pos="bottom-left"] {
+        @extend .pos-bl;
+        transform:translate3d(17px, -15px, 0);
+
+        .d-phone & {
+            transform:translate3d(10px, -12px, 0);
+        }
+    }
+    &-br, &[data-pos="bottom-right"] {
+        @extend .pos-br;
+        transform:translate3d(-17px, -15px, 0);
+
+        .d-phone & {
+            transform:translate3d(-10px, -12px, 0);
+        }
+    }
+    &.zIndex-0 {
+        @extend .zIndex-0;
+    }
+}
+.oScreen__buttons {
+    @extend .flex-column-centered;
+
+    .button {
+        &__close {
+            @extend .cursor-pointer;
+            @extend .btn-hover;
+            @extend .btn-active;
+            @extend .zIndex-2;
+            @extend .w35;
+            @extend .h35;
+            @include ui-icon(close);
+
+            &[data-color="white"]{
+                @extend .w30;
+                @extend .h30;
+                @include ui-icon(close_white);
+            }
+            &[data-color="gray"]{
+                @extend .w24;
+                @extend .h24;
+                margin:15px 17px 0 0;
+                @include ui-icon(close_fill_gray, 38px, 38px);
+            }
+            .oScreen__scroll & {
+                @extend .pos-fixed;
+            }
+            &.small {
+                width:32px;
+                height:32px;
+            }
+            .d-phone & {
+                width:24px;
+                height:24px;
+                margin:17px 10px 0 0;
+            }
+        }
+        &__save {
+            @extend .cursor-pointer;
+            @extend .btn-hover;
+            @extend .btn-active;
+            @extend .zIndex-2;
+            @extend .w44;
+            @extend .h44;
+
+            &[data-color="white"]{
+                @include ui-icon(save_white);
+            }
+        }
+        &__help {
+            width:32px;
+            height:32px;
+            @include ui-icon(help);
+            @extend .borderRadius-circle;
+            border:1px solid $blue;
+            transform:translate3d(0, -3px, 0);
+        }
+    }
+}

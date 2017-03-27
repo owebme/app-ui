@@ -1,0 +1,130 @@
+<section-sample-edit class="oScreen text-left zIndex-2" data-open={ active } data-show="modal">
+
+    <div class="oScreen__buttons" data-pos="top-right">
+        <div onClick={ hide } onUpdate="none" class="button__close" data-color="white"></div>
+        <div onClick={ save } onUpdate="none" class="button__save" data-color="white"></div>
+    </div>
+
+    <div ref="content" class="oScreen__content">
+        <div class="oScreen__modal mt-l p-l minH-100v bg-white" style="width:940px">
+            <div class="rows">
+                <div class="row mb-m">
+                    <div class="col-md-14">
+                        <ui-input update="post" cursor={ cursor } placeholder="Должность" size="xl"></ui-input>
+                    </div>
+                    <div class="col-md-10">
+                        <ui-select update="_status" cursor={ cursor } items={ $store.samples.status.get() } size="xl"></ui-select>
+                    </div>
+                </div>
+                <div class="row mb-l">
+                    <div class="col-md-24">
+                        <ui-input update="tags" cursor={ cursor } placeholder="Ключевые навыки" size="l"></ui-input>
+                    </div>
+                </div>
+                <section-resume-education cursor={ cursor.select("education") }></section-resume-education>
+                <section-resume-courses cursor={ cursor.select("courses") }></section-resume-courses>
+                <section-resume-jobs cursor={ cursor.select("jobs") }></section-resume-jobs>
+            </div>
+        </div>
+    </div>
+
+<script>
+
+    var $ = this,
+    $scope = $$($.root);
+
+    $.on("mount", function(){
+        $Sections.module("sample", $);
+        $.sections = {
+            education: $.tags["section-resume-education"],
+            courses: $.tags["section-resume-courses"],
+            jobs: $.tags["section-resume-jobs"]
+        }
+    });
+
+    $.on("update", function(){
+        app.$dom.document.off("keydown");
+    });
+
+    $.show = function(id){
+        if ($.active) return;
+
+        $.refs.content.scrollTop = 0;
+
+        var item = new Baobab(_.copyArray($store.samples.get({"_id": id})));
+
+        $.update({
+            active: true,
+            item: item,
+            cursor: item.select()
+        })
+        app.$dom.body.addClass("overflow-hidden");
+        app.$dom.document.on("keydown.closeModal", function(e){
+            if (e.which == KEY.ESC && $.active){
+                if (!_.some(_.map($.sections, function(item){
+                    return item.editing ? true : false;
+                }))){
+                    $.closed = true;
+                    $.hide();
+                }
+            }
+        });
+    };
+
+    $.save = function(){
+        app.request("setSamples", {
+            data: $.item.get()
+        })
+        .then(function(){
+            $store.samples.select({"_id": $.item.get("_id")}).set($.item.get());
+            $afterlag.run(function(){
+                $.hide(true);
+            });
+        });
+    };
+
+    $.hide = function(save){
+        if (save !== true){
+            var item = JSON.stringify($store.samples.select({"_id": $.item.get("_id")}))
+            if (item !== JSON.stringify($.item.get())){
+                $Alert.show({
+                    title: "Сохранить изменения?",
+                    subtitle: "Вы внесли изменения",
+                    cancel: {
+                        title: "Не нужно",
+                        color: "red",
+                        callback: function(){
+                            $afterlag.run(function(){
+                                $.hide(true);
+                            });
+                        }
+                    },
+                    success: {
+                        title: "Сохранить",
+                        color: "green",
+                        callback: function(){
+                            $.save();
+                        }
+                    }
+                });
+                return;
+            }
+        }
+        $.update({
+            active: false
+        })
+        app.$dom.body.removeClass("overflow-hidden");
+        app.$dom.document.off("keydown.closeModal");
+        document.removeEventListener('click', $.handleClickOutside);
+
+        _.onEndTransition($.refs.content, function(){
+            _.each($.sections, function(item){
+                item.editing = null;
+            })
+        });
+        $.closed = false;
+    };
+
+</script>
+
+</section-sample-edit>

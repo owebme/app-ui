@@ -1,8 +1,8 @@
 .content {
-    display:block;
+    @extend .display-block;
+    @extend .c-silver;
+    @extend .maxW-100p;
     padding:102px 80px 80px 100px;
-    color:$gray;
-    max-width:100%;
 }
 
 @media screen and (min-width: $w1200) {

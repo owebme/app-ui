@@ -22,9 +22,9 @@
 
         &:before {
             @extend .content-empty;
-            width:64px;
-            height:64px;
-            background:url(/assets/images/logotype.png);
+            width:80px;
+            height:34px;
+            background:url(/assets/images/logotype.svg);
             // width:64px;
             // height:36px;
             // background:url(/assets/images/logotype.svg);
@@ -32,7 +32,7 @@
             @extend .mb-m;
         }
         &__title {
-            @extend .c-gray;
+            @extend .c-silver;
             @extend .text-uppercase;
             @extend .fontSize-xxs;
             @extend .letterSpacing-xxl;

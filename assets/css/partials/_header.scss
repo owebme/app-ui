@@ -1,0 +1,8 @@
+.header__wrapper {
+    @extend .display-block;
+    @extend .bg-white;
+}
+#header {
+    @extend .pos-rel;
+    @extend .h180;
+}

@@ -8,7 +8,7 @@
     @extend .willChange-tp;
     transition:opacity 0.2s $cubic215, transform 0.25s $bounceForce, visibility 0s 0.25s;
     @extend .scale-0;
-    @extend .zIndex-2;
+    @extend .zIndex-101;
 
     &__wrapper {
         @include accelerate();
@@ -17,16 +17,18 @@
         @extend .bg-white;
         @extend .fontSize-0;
         @extend .mt-xs;
-        box-shadow:0 20px 25px rgba(31,35,37,.15);
         background-clip:padding-box;
+        padding:3px 0 6px 0;
         min-width:160px;
 
+        .d-no-phone & {
+            box-shadow:0 20px 25px rgba(31,35,37,.15), 1px 0 0 0 rgba(31,45,61,.08), 0 1px 0 0 rgba(31,45,61,.08), -1px 0 0 0 rgba(31,45,61,.08), 0 -1px 0 0 rgba(31,45,61,.08);
+        }
         .d-phone & {
             @extend .bg-blue;
             @extend .maxW-85v;
             padding:6px 0 10px 0;
             box-shadow:0 13px 35px -6px rgba(31,35,37,.5);
-            // border:1px solid rgba(31,35,37,.076);
         }
         &:after {
             @include accelerate();
@@ -53,7 +55,7 @@
         @extend .fontSize-16;
         @extend .fontFamily-default;
         @extend .cursor-pointer;
-        padding:8px 38px 8px 20px;
+        padding:6px 38px 6px 20px;
 
         .d-phone & {
             @extend .c-white;
@@ -112,7 +114,8 @@
                 }
             }
             &:hover:after {
-                @include ui-icon(check_gray);
+                @include ui-icon(check_white);
+                @extend .opacity-70;
             }
             &.selected {
                 &:after {
@@ -128,6 +131,7 @@
 
                     &:after {
                         @include ui-icon(check_white);
+                        @extend .opacity-100;
                     }
                 }
             }
@@ -190,7 +194,7 @@
 
             &:after {
                 opacity:1;
-                border-color:$gray;
+                border-color:$silver;
             }
         }
     }

@@ -1,0 +1,11 @@
+<section-navbar class="navbar">
+
+    <div class="navbar__title">{ $Nav.get({"section": $Router.section}, "title") }</div>
+
+    <div class="navbar__menu">
+        <a each={ item in $Nav.get({'section': $Router.section}, 'items') } no-reorder href="#{ item.url }" class="navbar__menu__item" data-active={ $Router.url == item.url }>
+            <span>{ item.title }</span>
+        </a>
+    </div>
+
+</section-navbar>

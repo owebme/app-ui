@@ -13,7 +13,7 @@
     @extend .link;
     @extend .text-uppercase;
     @extend .transition-default;
-    color:$gray;
+    @extend .c-silver;
 
     &:after {
         @extend .content-empty;

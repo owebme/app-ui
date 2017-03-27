@@ -1,0 +1,81 @@
+<ui-checkbox>
+
+    <label onClick={ onClick } onUpdate={ opts.onupdate ? opts.onupdate : "self" } class="checkbox { small : typeof opts.small !== 'undefined' }" data-color={ opts.theme }>
+        <input type="checkbox" checked={ value }>
+        <span class="checkbox-control"></span>
+        <span class="checkbox-text fontSize-{ opts.size ? opts.size : 'm' } { opts.color ? 'c-' + opts.color : null }">{ opts.title }</span>
+    </label>
+
+<script>
+
+    var $ = this,
+    clicked = false;
+
+    $.on("before-mount", function(){
+        if ($.opts.update && $.opts.cursor){
+            if ($.opts.group){
+                var value = $.opts.cursor.get($.opts.update);
+                $.value = value == $.opts.value ? true : false;
+            }
+            else {
+                $.value = $.opts.cursor.get($.opts.update);
+            }
+        }
+        else if (!$.opts.update){
+            if ($.opts.value === undefined) $.opts.value = $.value = false;
+            else $.value = $.opts.value;
+        }
+    });
+
+    $.on("update", function(){
+        if (!clicked){
+            if (!$.opts.group && !_.isBoolean($.opts.value) && $.opts.update && $.opts.cursor){
+                $.value = $.opts.cursor.get($.opts.update);
+            }
+            else if (_.isBoolean($.opts.value) && $.opts.value !== $.value){
+                $.value = $.opts.value;
+            }
+        }
+    });
+
+    $.onClick = function(e){
+        e.preventDefault();
+        clicked = true;
+        if ($.opts.group){
+            if (!$.value){
+                _.each($.parent.tags, function(item, key){
+                    if (key == "ui-checkbox"){
+                        _.each(item, function(tag){
+                            if (tag.opts.group == $.opts.group){
+                                tag.update({
+                                    value: false
+                                })
+                            }
+                        });
+                    }
+                });
+                $.value = !$.value;
+            }
+        }
+        else {
+            $.value = !$.value;
+        }
+        if ($.opts.update && $.opts.cursor){
+            if ($.opts.group) $.opts.cursor.set($.opts.update, $.opts.value);
+            else $.opts.cursor.set($.opts.update, $.value);
+        }
+        if ($.opts.commit === true || $.opts.commit == "true") $.parent.update();
+        else if (_.isFunction($.opts.commit)) {
+            $.opts.commit.call(this, $.value, $.opts.i);
+        }
+        else if ($.opts.commit && $.parent[$.opts.commit]){
+            $.parent[$.opts.commit]($.value, $.opts.i);
+        }
+        setTimeout(function(){
+            clicked = false;
+        }, 5);
+    };
+
+</script>
+
+</ui-checkbox>

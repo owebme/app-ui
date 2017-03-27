@@ -1,0 +1,12 @@
+<section-nav class="nav">
+
+    <div class="nav__logo"></div>
+
+    <div class="nav__items">
+        <a each={ item in $Nav.get() } no-reorder href="#{ item.url }" class="nav__item" data-active={ $Router.section == item.section }>
+            <span>{ item.title }</span>
+        </a>
+        <a href="#/" class="nav__profile"></a>
+    </div>
+
+</section-nav>

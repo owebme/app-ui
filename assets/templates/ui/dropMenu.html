@@ -1,0 +1,98 @@
+<ui-dropmenu class="dropmenu" data-pos="{ pos }" data-active={ active } data-select={ isSelect }>
+
+    <div if={ items && items.length } class="dropmenu__wrapper">
+        <virtual each={ item in items } no-reorder>
+            <div if={ item && !item.divider && !item.hidden } onClick={ onSelect } class="dropmenu__item { selected : isSelect && parent._id !== 'undefined' && item._id == parent._id }">
+                { item.title ? item.title : item }
+            </div>
+            <div if={ item && item.divider } class="dropmenu__item divider"></div>
+        </virtual>
+    </div>
+
+<script>
+
+    var $ = this,
+    $scope = $$($.root);
+
+    $.active = false;
+
+    $.item = null;
+    $.items = [];
+
+    $.rootScroll = null;
+
+    $.show = function(params){
+        if (params && params.elem){
+            if (!params.id) params.id = "0";
+            if ($._id && $._id === params.id){
+                $.hide();
+                return;
+            }
+            if ($.active) $.hide();
+            if (params.id) $._id = params.id;
+            if (params.item) $.item = params.item;
+            $.pos = params.pos ? params.pos : "center";
+            $.items = params.menu;
+            $.callback = params.callback;
+            $.isSelect = params.isSelect;
+            $.active = true;
+
+            var offset = params.elem.offset(),
+                marginLeft = 0, marginTop = 0;
+
+            if ($.pos === "center"){
+                marginLeft = params.elem.outerWidth() / 2;
+            }
+            else if ($.pos === "left" || $.pos === "down-left"){
+                marginTop = -(params.elem.outerHeight() / 2);
+            }
+            else if ($.pos === "right" || $.pos === "down-right"){
+                marginLeft = params.elem.outerWidth();
+                marginTop = -(params.elem.outerHeight() / 2);
+            }
+
+            $.rootScroll = params.rootScroll ? params.rootScroll : app.$dom.root;
+
+            setTimeout(function(){
+                app.$dom.body.on("click.dropdown", function(e){
+                    $.hide();
+                });
+            }, 5);
+
+            $.update();
+
+            if (params.offset){
+                offset.top += params.offset.top ? params.offset.top : 0;
+                offset.left += params.offset.left ? params.offset.left : 0;
+            }
+            $scope.css({
+                top: ($.rootScroll[0].scrollTop + offset.top + params.elem.outerHeight()) + "px",
+                left: offset.left + "px",
+                marginLeft: marginLeft + "px",
+                marginTop: marginTop + "px"
+            });
+        }
+    };
+
+    $.hide = function(){
+        app.$dom.body.off("click.dropdown");
+        $.active = false;
+        if ($._id) $._id = null;
+        if ($.item) $.item = null;
+        $.update();
+    };
+
+    $.onSelect = function(){
+        var id = this.item._id || $._id || this.item;
+        $.value = id;
+        if (this.item && _.isFunction(this.item.callback)) {
+            this.item.callback($.value, $.item);
+        }
+        if ($.callback){
+            $.callback($.value, $.item);
+        }
+    };
+
+</script>
+
+</ui-dropmenu>

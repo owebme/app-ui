@@ -1,0 +1,50 @@
+.navbar {
+    &__title {
+        @extend .h3;
+        @extend .h100;
+        @extend .flex-row-left-center;
+    }
+    &__menu {
+        @extend .flex-row-right-center;
+        @extend .pos-abs;
+        @extend .b0;
+        left:180px;
+
+        &__item {
+            @extend .pos-rel;
+            @extend .flex-row-left-center;
+            @extend .h32;
+            @extend .c-silver;
+            @extend .fontSize-13;
+            @extend .text-uppercase;
+            @extend .mr-l;
+            padding:0 2px;
+            margin:0 -2px;
+
+            span {
+                @extend .btn-active;
+            }
+            &:before {
+                @extend .content-empty;
+                @extend .pos-bl;
+                @extend .w100p;
+                @extend .h1px;
+                @extend .bg-blue;
+                @extend .willChange-transform;
+                transform:scale3d(0, 0, 1);
+                transition:transform 0.2s $cubic645;
+            }
+            &[data-active="true"]{
+                @extend .c-blue;
+                @extend .pointerEvents-none;
+
+                &:before {
+                    transform:scale3d(1, 1, 1);
+                }
+            }
+            &:hover {
+                @extend .c-blue;
+            }
+        }
+    }
+}

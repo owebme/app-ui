@@ -12,7 +12,7 @@
             <g id="spinner" sketch:type="MSLayerGroup" transform="translate(238.000000, 286.000000)">
                 <circle id="Oval-2" stroke="url(#linearGradient-1)" stroke-width="4" sketch:type="MSShapeGroup" cx="10" cy="12" r="10"/>
                 <path d="M10,2 C4.4771525,2 0,6.4771525 0,12" id="Oval-2" stroke="#007aff" stroke-width="4" sketch:type="MSShapeGroup"/>
-                <rect id="Rectangle-1" fill="#577ca1" sketch:type="MSShapeGroup" x="8" y="0" width="4" height="4" rx="8"/>
+                <rect id="Rectangle-1" fill="#1FB6FF" sketch:type="MSShapeGroup" x="8" y="0" width="4" height="4" rx="8"/>
             </g>
         </g>
     </g>

@@ -1,0 +1,47 @@
+<ui-textarea>
+
+    <textarea ref="textarea" onInput={ onInput } onUpdate={ opts.onupdate ? opts.onupdate : "none" } class="textarea textarea-{ opts.size ? opts.size : 'm' }" placeholder={ opts.placeholder } disabled={ typeof opts.disabled !== 'undefined' } autocomplete="off" spellcheck="false" style={ opts.height ? 'height: ' + opts.height + "px" : null }>{ value }</textarea>
+
+<script>
+
+    var $ = this;
+
+    $.on("before-mount", function(){
+        if ($.opts.update && $.opts.cursor){
+            $.value = $.opts.cursor.get($.opts.update);
+        }
+        else {
+            $.value = $.opts.value;
+        }
+    });
+
+    $.on("update", function(){
+        if ((!$.opts.value || !$.opts.onupdate) && $.opts.update && $.opts.cursor){
+            $.value = $.opts.cursor.get($.opts.update);
+            $.refs.textarea.value = $.value;
+        }
+        else if ($.opts.value && $.opts.value !== $.value){
+            $.value = $.opts.value;
+            $.refs.textarea.value = $.value;
+        }
+    });
+
+    $.onInput = function(e){
+        var value = e.target.value;
+
+        if ($.opts.update && $.opts.cursor){
+            $.opts.cursor.set($.opts.update, value);
+        }
+        if ($.opts.commit === true || $.opts.commit == "true") $.parent.update();
+        else if (_.isFunction($.opts.commit)) {
+            $.opts.commit.call(this, value, $.opts.i);
+        }
+        else if ($.opts.commit && $.parent[$.opts.commit]){
+            $.parent[$.opts.commit](value, $.opts.i);
+        }
+        $.value = value;
+    };
+
+</script>
+
+</ui-textarea>

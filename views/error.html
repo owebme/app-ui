@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Resumekraft</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta property="og:image" content="/assets/images/favicons/120.png" />
+    <meta property="og:title" content="Создать крутое резюме самому!" />
+	<meta property="og:description" content="ResumeKraft - сервис создания премиальных резюме с продающим дизайном." />
+    <link rel="icon" type="image/png" href="/assets/images/favicons/32.png">
+    <link rel="apple-touch-icon" href="/assets/images/favicons/60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/images/favicons/76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/images/favicons/120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/favicons/152.png">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="width" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+	<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="format-detection" content="telephone=no" />
+	<meta name="google" content="notranslate" />
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="/assets/css/server.css">
+</head>
+<body>
+
+    {% if message %}
+        <h1>{{ message }}</h1>
+    {% endif %}
+    {% if error.status %}
+        <h2>{{ error.status | safe }}</h2>
+    {% endif %}
+
+    {% if message == "404" %}
+        <p>К сожалению эта страница не может быть найдена.</p>
+    {% elseif error.text %}
+        <p>{{ error.text }}</p>
+    {% endif %}
+
+    {% if error.back %}
+        <p><a href="{{ error.back.url }}">{{ error.back.title }}</a></p>
+    {% else %}
+        <p><a href="/">Перейти на главную</a></p>
+    {% endif %}
+
+</body>
+</html>
