@@ -18,6 +18,7 @@
 @import 'ui/basic/select';
 @import 'ui/basic/list';
 @import 'ui/basic/range';
+@import 'ui/basic/tags';
 @import 'ui/basic/checkbox';
 @import 'ui/basic/switcher';
 @import 'ui/basic/dropmenu';
@@ -27,7 +28,7 @@
 @import 'ui/basic/spinner';
 @import 'ui/basic/loader';
 @import 'ui/basic/loaderAjax';
-@import 'ui/typography';
+@import 'ui/basic/typography';
 @import 'ui/button';
 @import 'ui/sortable';
 
@@ -47,6 +48,10 @@
 
 // Sections
 @import 'sections/sections';
+@import 'sections/table/table';
+@import 'sections/samples/samples';
+@import 'sections/jptest/jptest';
+@import 'sections/options/panel';
 
 // states
 @import 'states/states';

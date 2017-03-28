@@ -1,0 +1,126 @@
+<section-samples-parsing class="oScreen zIndex-2" data-open={ active } data-show="modal">
+
+    <div class="oScreen__buttons" data-pos="top-right">
+        <div class="button__close" data-color="white"></div>
+    </div>
+
+    <div class="oScreen__content">
+        <div ref="content" class="oScreen__modal pos-centered p-l bg-white" style="width:640px;">
+            <div if={ !result }>
+                <textarea ref="textarea" class="textarea textarea-l mb-m" style="height:280px" placeholder="Вставьте ссылки"></textarea>
+                <div onClick={ onSuccess } onUpdate="none" class="btn btn-success { 'btn-loading' : loading } btn-l">Получить резюме</div>
+            </div>
+            <div if={ result }>
+                <h3 class="mb-l c-green">Получено успешно: <strong>{ result.all }</strong></h3>
+                <h3 class="mb-l c-blue">Добавлены резюме: <strong>{ result.insert }</strong></h3>
+                <h3 class="mb-l c-orange">Обновлены резюме: <strong>{ result.update }</strong></h3>
+                <h3 class="c-red">Ошибка получения: <strong>{ result.errors }</strong></h3>
+            </div>
+        </div>
+    </div>
+
+<script>
+
+    var $ = this;
+
+    $.on("mount", function(){
+        $Sections.module("samples.parsing", $);
+    });
+
+    $.show = function(){
+        $.update({
+            result: false,
+            active: true
+        })
+    };
+
+    $.onSuccess = function(){
+        var text = $.refs.textarea.value;
+        if (text.length){
+            var links = text.match(/resume\/.{38}/gi);
+
+            if (links && links.length){
+                $.update({
+                    loading: true
+                })
+                app.request("addSamplesGethh", {
+                    ids: _.map(links, function(link){
+                        return link.replace(/resume\//gi, "");
+                    })
+                }, {
+                    loader: false,
+                    notify: false
+                })
+                .then(function(result){
+                    if (result.all > 0){
+                        $Notify.show({
+                            text: "Резюме успешно получены",
+                            color: "success"
+                        })
+                        if (result.data){
+                            _.each(result.data, function(item){
+                                if (item._id){
+                                    $store.samples.push(item);
+                                }
+                                else {
+                                    var cursor = $store.samples.select({"idhh": item.idhh});
+                                    if (cursor){
+                                        item._id = cursor.get("_id");
+                                        cursor.set(item);
+                                    }
+                                }
+                            });
+                            if ($Sections.table){
+                                $Sections.table.refresh.all();
+                            }
+                        }
+                    }
+                    $.update({
+                        result: result,
+                        loading: false
+                    })
+                }, function(err){
+                    $Notify.show({
+                        text: "Ошибка получения резюме, проверьте правильность написания",
+                        color: "danger"
+                    })
+                    $.update({loading: false})
+                });
+            }
+            else {
+                $Alert.show({
+                    title: "Ошибка распознавания ссылок",
+                    subtitle: "Проверьте правильность написания",
+                    afterHide: function(){
+                        $.alertShow = false;
+                    }
+                })
+                $.alertShow = true;
+            }
+        }
+    };
+
+    $.hide = function(){
+        $.update({
+            active: false
+        })
+    };
+
+    $.handleClickOutside = function(e){
+        if (!$.refs.content.contains(e.target) && !$.alertShow) $.hide();
+    };
+
+    $.on("updated", function(){
+        if ($.active){
+            setTimeout(function(){
+                document.addEventListener('click', $.handleClickOutside);
+            }, 0);
+        }
+        else {
+            document.removeEventListener('click', $.handleClickOutside)
+        }
+    });
+
+</script>
+
+</section-samples-parsing>

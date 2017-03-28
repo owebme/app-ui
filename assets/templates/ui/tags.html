@@ -1,0 +1,125 @@
+<ui-tags class="tag-list" data-size="{ opts.size ? opts.size : 'm' }">
+
+    <div class="tag-input" style="width:{ opts.width || '280px' }">
+        <ui-input placeholder={ opts.placeholder || "Наименование" } autosuggest={ opts.autosuggest } autoselect={ opts.autoselect || false } autosuggestSize={ opts.autosuggestsize } size="{ opts.size ? opts.size : 'm' }"></ui-input>
+        <div onClick={ addTag } class="btn btn-{ opts.size ? opts.size : 'm' } btn-icon">
+            <svg class="btn-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><path class="btn-svg-color" d="M87.754,45.284H54.716V12.246c0-2.605-2.111-4.716-4.716-4.716c-1.302,0-2.481,0.528-3.334,1.382 c-0.853,0.853-1.381,2.032-1.382,3.334v33.038l-33.038,0c-1.302,0-2.481,0.528-3.334,1.382C8.058,47.519,7.53,48.698,7.53,50 c0,2.605,2.111,4.716,4.716,4.716l33.038,0l0,33.038c0,2.605,2.111,4.716,4.716,4.716c2.604,0,4.716-2.112,4.716-4.716l0-33.038 h33.038c2.604,0,4.716-2.112,4.716-4.716C92.47,47.395,90.359,45.284,87.754,45.284z"></path></svg>
+        </div>
+    </div>
+    <div each={ item, i in items } no-reorder class="tag-item input-{ parent.opts.size ? parent.opts.size : 'm' }">
+        { item }<span onClick={ removeTag } class="tag-item-remove"></span>
+    </div>
+
+<script>
+
+    var $ = this,
+    $scope = $$($.root),
+    clicked = false;
+
+    $.on("mount", function(){
+        $.elem = $.tags["ui-input"];
+        $.elem.on("autocomplete.select", function(item){
+            $._addTag(item.text);
+        })
+        if (!$.opts.autosuggest){
+            setTimeout(function(){
+                $.elem.$input = $$($.elem.input);
+                $.elem.$input.on("keydown", function(e){
+                    if (!app.device.isMobile && e.which === KEY.ENTER){
+                        e.preventDefault();
+                        $.addTag();
+                        $.update();
+                    }
+                });
+            }, 5);
+        }
+        $scope.on("click", function(){
+            clicked = true;
+            setTimeout(function(){
+                clicked = false;
+            }, 5);
+        });
+    });
+
+    $.on("update", function(){
+        if (!clicked){
+            if ($.opts.update && $.opts.cursor){
+                $.items = $.opts.cursor.get($.opts.update);
+            }
+            else {
+                $.items = $.opts.items;
+            }
+        }
+    });
+
+    $.addTag = function(){
+        var value = _.clean($.elem.value),
+            length = value && value.length;
+
+        if (value && value.length){
+            $.checkAndInsert(value);
+        }
+    };
+
+    $._addTag = function(value){
+        $.elem.value = value;
+        $.addTag();
+        $.update();
+        setTimeout(function(){
+            $.elem.update({
+                value: ""
+            })
+        }, 5);
+    };
+
+    $.removeTag = function(){
+        if ($.opts.update && $.opts.cursor){
+            $.opts.cursor.select($.opts.update).select(this.i).unset();
+        }
+        else {
+            $.items.splice(this.i, 1);
+        }
+    };
+
+    $.checkAndInsert = function(value){
+        var _value = value.toLowerCase(),
+            _items = _.map($.items, function(item){
+                return item.toLowerCase();
+            });
+
+        if (_.inArray(_items, _value)){
+            if (app.device.isPhone){
+                alert('"'+ value +'" уже был добавлен');
+            }
+            else {
+                $scope.find(".tag-item").each(function(){
+                    var $tag = $$(this);
+                    if ($tag.text().toLowerCase().trim() == _value){
+                        $tag.attr("data-avail", true);
+                        _.onEndAnimation(this, function(){
+                            $tag.removeAttr("data-avail");
+                        });
+                    }
+                });
+            }
+        }
+        else {
+            $.items.push(value);
+            $.elem.update({
+                value: null
+            })
+            $.elem.input.focus();
+        }
+    };
+
+    $.on("before-unmount", function(){
+        $scope.off();
+        if (!$.opts.autosuggest){
+            $.elem.$input.off();
+        }
+        $.elem.off("autocomplete.select");
+    });
+
+</script>
+
+</ui-tags>

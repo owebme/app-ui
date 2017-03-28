@@ -16,9 +16,11 @@ module.exports = function(){
 
 	API.gethh = function(id, callback){
         handlerRequest(app.config.get('hh:api') + "/resumes/" + id, function(err, data){
-            if (data){
+            if (data && !data.errors){
 				data = resumeBuild.get(data);
-				data._status = "1";
+			}
+			else {
+				data = null;
 			}
 			callback(err, data);
         });

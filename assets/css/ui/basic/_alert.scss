@@ -1,5 +1,5 @@
 .alert {
-    @include abs();
+    @include abs("fixed");
     @include flex("row", "center", "center");
     @include accelerate();
     @extend .visibility-hidden;
@@ -72,11 +72,21 @@
         .d-phone & {
             @extend .h30p;
         }
+        &[data-two="true"]{
+            .alert__button {
+                @extend .w50p;
+            }
+        }
+        &:not([data-two="true"]){
+            .alert__button {
+                @extend .border-none;
+            }
+        }
     }
     &__button {
         @include alert-button();
         @include flex("row", "center", "center");
-        @extend .w50p;
+        @extend .w100p;
         @extend .h100p;
         @extend .cursor-pointer;
         transition:all 0.12s $cubic645;

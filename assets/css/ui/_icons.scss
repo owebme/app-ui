@@ -1,5 +1,5 @@
 @each $icon in (
-    loading, loading_mini, loading_mini_white, check, more_v, close_fill, close_fill_gray, close_strong, close_strong_white, minus, minus_white, menu, menu_white, more_v_white, back_white, help, info_white, check_black, check_white, check_gray, check_muted, edit, close, close_white, profile, sortUp, sortDown, sortUp_muted, sortDown_muted, userAdd, cog, search, print, print_white, columns, columns_white, save_white
+    loading, loading_mini, loading_mini_white, check, more_v, close_fill, close_fill_gray, close_strong, close_strong_white, minus, minus_white, menu, menu_white, more_v_white, back_white, help, info_white, check_black, check_white, check_gray, check_muted, edit, close, close_white, profile, sortUp, sortDown, sortUp_muted, sortDown_muted, userAdd, cog, search, print, print_white, columns, columns_white, save_white, remove_fill, device_desktop_silver, device_tablet_silver, device_phones_silver
 ){
     .ui-icon-#{$icon} {
         background:url('/assets/images/ui/ui-#{$icon}.svg') no-repeat 0 0 / cover;

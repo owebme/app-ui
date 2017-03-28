@@ -1,7 +1,6 @@
-h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
-	@extend .c-blue;
-	@extend .fontFamily-default;
-	@extend .fontWeight-bold;
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+	@extend .fontFamily-helvetica;
+	@extend .fontWeight-normal;
 }
 h1, .h1 {
 	@extend .fontSize-32;

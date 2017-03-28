@@ -20,7 +20,7 @@ input:focus:-ms-input-placeholder {
     color: transparent !important;
 }
 
-a, a:hover, input, textarea, button, select {
+a, a:hover, input[type="text"], input[type="checkbox"], input[type="range"], textarea, button, select {
 	-webkit-tap-highlight-color:rgba(0,0,0,0);
 	-webkit-touch-callout:none;
 	appearance:none;

@@ -50,7 +50,7 @@
         }
         else {
             app.$dom.document.one("keydown.closeEditingCourses", function(e){
-                if (e.which == KEY.ESC && $.parent.editing && !$Sections.sample.closed){
+                if (e.which == KEY.ESC && $.parent.editing && !$Sections.samples.edit.closed){
                     $.parent.editing = null;
                     $.parent.update();
                 }

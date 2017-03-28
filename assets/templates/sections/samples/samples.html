@@ -1,0 +1,72 @@
+<section-samples>
+
+    <div class="page__navbar">
+        <div class="page__navbar__container">
+            <div class="page__navbar__right w100p">
+                <btn-plus onClick={ open.parsing } onUpdate="none" color="success-hover zIndex-1" text="Добавить резюме"></btn-plus>
+            </div>
+        </div>
+    </div>
+
+    <div class="page__container">
+        <table ref="dataTable" id="datatable-buttons" class="dataTable mt--60">
+            <thead>
+                <th></th>
+                <th></th>
+                <th>Должность</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <section-samples-options></section-samples-options>
+
+<script>
+
+    var $ = this;
+
+    $.on("mount", function(){
+        $Sections.module("samples.section", $);
+        $.status = $.opts.status;
+
+        $Sections.table = new app.plugins.dataTable({
+            tag: $,
+            scope: $.refs.dataTable,
+            settings: $store.samples.dataTable,
+            store: $store.samples,
+            items: function(self){
+                return $store.samples.getItemsByStatus(self.props.status);
+            },
+            shouldRemove: function(self, item){
+                return item._status != self.props.status;
+            },
+            editItem: function(item){
+                $Sections.samples.edit.show(item._id);
+            },
+            select: function(self){
+                $Sections.samples.options.show(self.select.get());
+            },
+            props: {
+                status: $.opts.status
+            }
+        });
+        $Sections.table.init();
+    });
+
+    $.open = {
+        parsing: function(){
+            $Sections.samples.parsing.show();
+        }
+    }
+
+    $.on("before-unmount", function(){
+        $Sections.table.destroy();
+    });
+
+</script>
+
+</section-samples>

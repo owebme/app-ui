@@ -1,10 +1,65 @@
 <section-users>
 
-    
+    <div class="page__navbar">
+        <div class="page__navbar__container">
+            <div class="page__navbar__right w100p">
+                <btn-plus onClick={ open.createUser } onUpdate="none" color="success-hover zIndex-1" text="Создать аккаунт"></btn-plus>
+            </div>
+        </div>
+    </div>
+
+    <div class="page__container">
+        <table ref="dataTable" id="datatable-buttons" class="dataTable mt--60">
+            <thead>
+                <th></th>
+                <th></th>
+                <th>Имя</th>
+                <th>Активность</th>
+                <th>Резюме</th>
+                <th>Девайс</th>
+                <th>Тариф</th>
+                <th>Баланс</th>
+                <th></th>
+                <th></th>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- <section-samples-options></section-samples-options> -->
 
 <script>
 
     var $ = this;
+
+    $.on("mount", function(){
+        $Sections.module("users.section", $);
+        $Sections.table = new app.plugins.dataTable({
+            tag: $,
+            scope: $.refs.dataTable,
+            settings: $store.users.dataTable,
+            store: $store.users,
+            items: $store.users.get(),
+            editItem: function(item){
+                $Sections.users.edit.show(item._id);
+            },
+            // select: function(self){
+            //     $Sections.users.options.show(self.select.get());
+            // }
+        });
+        $Sections.table.init();
+    });
+
+    $.open = {
+        createUser: function(){
+            //$Sections.samples.parsing.show();
+        }
+    }
+
+    $.on("before-unmount", function(){
+        $Sections.table.destroy();
+    });
 
 </script>
 

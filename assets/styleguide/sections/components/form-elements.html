@@ -1,6 +1,6 @@
 <components-form-elements>
 
-    <h2 class="mb-xl">Form Elements</h2>
+    <h1 class="mb-xl">Form Elements</h1>
 
     <h4 class="mb-xxs">Input sizes</h4>
     <p class="fontSize-16 mb-l">Input fields come in four sizes which can be applied with <span class="text-code">.input-xl</span>, <span class="text-code">.input-l</span>, <span class="text-code">.input-m</span> and <span class="text-code">.input-s</span> on the <span class="text-code">.input</span> component itself.</p>
@@ -642,19 +642,24 @@
     <div class="borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
         <div class="row">
             <div class="col-md-24">
-                <div class="p-m clear">
-                    <div class="tag xs-mb-s xs-mr-m">
-                        <span class="tag-text">Tag one</span>
+                <div class="tag-list p-m" data-size="m">
+                    <div class="tag-input">
+                        <input class="input input-m" type="text" placeholder="Placeholder text">
+                        <div class="btn btn-m btn-icon">
+                            <svg class="btn-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><path class="btn-svg-color" d="M87.754,45.284H54.716V12.246c0-2.605-2.111-4.716-4.716-4.716c-1.302,0-2.481,0.528-3.334,1.382 c-0.853,0.853-1.381,2.032-1.382,3.334v33.038l-33.038,0c-1.302,0-2.481,0.528-3.334,1.382C8.058,47.519,7.53,48.698,7.53,50 c0,2.605,2.111,4.716,4.716,4.716l33.038,0l0,33.038c0,2.605,2.111,4.716,4.716,4.716c2.604,0,4.716-2.112,4.716-4.716l0-33.038 h33.038c2.604,0,4.716-2.112,4.716-4.716C92.47,47.395,90.359,45.284,87.754,45.284z"></path></svg>
+                        </div>
                     </div>
-                    <div class="tag xs-mb-s">
-                        <span class="tag-text">Tag two</span>
+                    <div class="tag-item input-m">
+                        Tag one
+                        <span class="tag-item-remove"></span>
                     </div>
-                    <div class="tag xs-mr-m">
-                        <span class="tag-text">Tag three</span>
+                    <div class="tag-item input-m">
+                        Tag two
+                        <span class="tag-item-remove"></span>
                     </div>
-                    <div class="tag add"></div>
-                    <div class="tag edit">
-                        <span class="tag-count">3</span>
+                    <div class="tag-item input-m">
+                        Tag three
+                        <span class="tag-item-remove"></span>
                     </div>
                 </div>
             </div>

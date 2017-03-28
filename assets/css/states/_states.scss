@@ -5,7 +5,7 @@
 	-webkit-overflow-scrolling:touch;
 }
 .backVisible-hidden {
-	backface-visibility:hidden;
+	-webkit-backface-visibility:hidden;
 }
 .accelerate {
     // transform-style:preserve-3d;
@@ -25,6 +25,9 @@
 }
 .cursor-default {
     cursor:default;
+}
+.cursor-text {
+    cursor:text;
 }
 .userSelect-none {
     user-select:none;

@@ -1,7 +1,7 @@
 <ui-select class="select select-{ opts.size ? opts.size : 'm' } { short : typeof opts.short !== 'undefined' }">
 
     <select ref="select" onChange={ onChange } onUpdate={ opts.onupdate ? opts.onupdate : "none" } disabled={ disable }>
-        <option each={ item in opts.items } selected={ item._id == value || item == value } value={ item._id ? item._id : item }>{ item.title ? item.title : item }</option>
+        <option each={ item in opts.items } selected={ item._id == value || item == value } riot-value={ item._id ? item._id : item }>{ item.title ? item.title : item }</option>
     </select>
 
 <script>

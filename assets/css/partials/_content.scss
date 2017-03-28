@@ -5,7 +5,6 @@
     &__navbar {
         @extend .pos-rel;
         @extend .mt-m;
-        @extend .mb--m;
 
         &__container {
             @include flex("row", "space-between", "center");
@@ -19,6 +18,7 @@
         }
     }
     &__container {
-        @extend .mtb-l;
+        @extend .mt30;
+        @extend .mb-l;
     }
 }

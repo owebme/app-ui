@@ -4,8 +4,9 @@
         <div class="col-md-14">
             <h3 class="c-blue">{ editing ? 'Редактирование' : 'Образование' }</h3>
         </div>
-        <div if={ !editing } class="col-md-10 mt--xss">
-            <ui-select update="level" cursor={ opts.cursor } items={ $store.education.getItems("ru") } size="l"></ui-select>
+        <div if={ !editing } class="col-md-10 mt--xss text-right">
+            <btn-plus if={ !opts.cursor.get("level") } onClick={ addLevel } size="l" color="primary-hover" text="Уровень образования"></btn-plus>
+            <ui-select if={ opts.cursor.get("level") } update="level" cursor={ opts.cursor } items={ $store.education.getItems("ru") } size="l"></ui-select>
         </div>
     </div>
     <section-resume-education-item each={ item, i in _.sortArray(opts.cursor.get("items"), "year", "desc") } no-reorder cursor={ parent.opts.cursor.select("items", {"id": item.id}) } active={ parent.editing && parent.editing == item.id }></section-resume-education-item>
@@ -27,7 +28,6 @@
         $.opts.cursor.set({
             title: null,
             text: null,
-            level: "1",
             items: []
         });
 
@@ -50,6 +50,10 @@
                 year: "2000"
             }
         );
+    };
+
+    $.addLevel = function(){
+        $.opts.cursor.select("level").set("1");
     };
 
 </script>

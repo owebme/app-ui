@@ -18,8 +18,20 @@
                 Router.routes.users();
             });
 
-            riot.route('/samples/*', function(section){
-                Router.routes.samples(section);
+            riot.route('/samples/*', function(status){
+                Router.routes.samples(status);
+            });
+
+            riot.route('/jp-test', function(){
+                Router.routes.jptest();
+            });
+
+            riot.route('/jp-test/*', function(section){
+                Router.routes.jptest(section);
+            });
+
+            riot.route('/blog', function(){
+                Router.routes.blog();
             });
 
             riot.route('/orders', function(){
@@ -53,25 +65,41 @@
                         items: [
                             {
                                 url: "/samples/all",
-                                section: "all",
                                 title: "Все резюме"
                             },
                             {
                                 url: "/samples/preready",
-                                section: "ready",
                                 title: "Обработанные"
                             },
                             {
                                 url: "/samples/ready",
-                                section: "ready",
                                 title: "Готовые"
                             },
                             {
                                 url: "/samples/public",
-                                section: "public",
                                 title: "Опубликованные"
                             }
                         ]
+                    },
+                    {
+                        url: "/jp-test/stars",
+                        section: "jp-test",
+                        title: "JP-тест 2.0",
+                        items: [
+                            {
+                                url: "/jp-test",
+                                title: "Контент"
+                            },
+                            {
+                                url: "/jp-test/stars",
+                                title: "Оценки"
+                            }
+                        ]
+                    },
+                    {
+                        url: "/jp-test/blog",
+                        section: "blog",
+                        title: "Блог"
                     },
                     {
                         url: "/orders",
@@ -89,9 +117,24 @@
                 Router.section = "users";
                 Router.mount('section-users');
             },
-            samples: function(section){
+            samples: function(status){
                 Router.section = "samples";
-                Router.mount('section-samples-' + section);
+                Router.mount('section-samples', {
+                    status: status
+                });
+            },
+            jptest: function(section){
+                Router.section = "jp-test";
+                if (section){
+                    Router.mount('section-jptest' + '-' + section);
+                }
+                else {
+                    Router.mount('section-jptest');
+                }
+            },
+            blog: function(){
+                Router.section = "blog";
+                Router.mount('section-blog');
             },
             orders: function(){
                 Router.section = "orders";
@@ -108,17 +151,17 @@
         },
 
         getUrl: function(){
-            return location.hash.match(/#(.+)/)[1];
+            return location.hash && location.hash.match(/#(.+)/)[1] || "/";
         },
 
         nav: function(url){
             riot.route(url);
         },
 
-        mount: function(tag){
+        mount: function(tag, options){
             if (Router.url){
                 $Loader.show().then(function(){
-                    var section = riot.mount("section-content", tag)[0];
+                    var section = riot.mount("section-content", tag, options)[0];
                     section.one("updated", function(){
                         $Sections.header.section.update();
                         $Loader.hide();
@@ -128,7 +171,7 @@
             }
             else {
                 Router.setUrl();
-                var section = riot.mount("section-content", tag)[0];
+                var section = riot.mount("section-content", tag, options)[0];
                 section.one("updated", function(){
                     $Sections.header.section.update();
                     $afterlag.run(function(){

@@ -1,18 +1,18 @@
 $store.samples.status = _.extend(new Baobab([
     {
-        _id: "1",
+        _id: "all",
         title: "Новый"
     },
     {
-        _id: "2",
+        _id: "preready",
         title: "Обработанный"
     },
     {
-        _id: "3",
+        _id: "ready",
         title: "Готовый"
     },
     {
-        _id: "4",
+        _id: "public",
         title: "Опубликованный"
     }
 ]), {

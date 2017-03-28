@@ -45,7 +45,7 @@
             </div>
             <div class="row mb-m">
                 <div class="col-md-24">
-                    <ui-textarea update="text" cursor={ opts.cursor } placeholder="Обязанности, функции" size="l" height="280"></ui-textarea>
+                    <ui-textarea update="text" cursor={ opts.cursor } placeholder="Обязанности, функции" size="l" height="350"></ui-textarea>
                 </div>
             </div>
             <div class="row pt-m">
@@ -58,7 +58,9 @@
         <div class="{ opts.active ? 'display-none' : 'display-block' }">
             <div class="row">
                 <div class="col-md-20">
-                    <h4 class="text-truncate pr-m"><span class="c-silver">{ opts.cursor.get("city") },</span> { opts.cursor.get("title") }</h4>
+                    <h5 class="text-truncate pr-m">
+                        <span if={ opts.cursor.get("city") } class="c-silver">{ opts.cursor.get("city") },</span><span if={ !opts.cursor.get("city") } class="c-red">не указан,</span> { opts.cursor.get("title") }
+                    </h5>
                 </div>
                 <div class="col-md-4">
                     <span onClick={ edit } class="link link-primary text-underline">редактировать</span>
@@ -80,7 +82,7 @@
         }
         else {
             app.$dom.document.one("keydown.closeEditingJobs", function(e){
-                if (e.which == KEY.ESC && $.parent.editing && !$Sections.sample.closed){
+                if (e.which == KEY.ESC && $.parent.editing && !$Sections.samples.edit.closed){
                     $.parent.editing = null;
                     $.parent.update();
                 }

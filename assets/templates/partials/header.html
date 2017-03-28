@@ -1,11 +1,21 @@
 <section-header class="header__wrapper">
 
-    <div id="header">
+    <div id="header" class="app-container">
 
         <section-nav></section-nav>
 
         <section-navbar></section-navbar>
 
     </div>
+
+<script>
+
+    var $ = this;
+
+    $.on("before-mount", function(){
+        $Sections.module("header.section", $);
+    });
+
+</script>
 
 </section-header>

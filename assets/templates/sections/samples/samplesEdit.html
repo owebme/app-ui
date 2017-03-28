@@ -1,4 +1,4 @@
-<section-sample-edit class="oScreen text-left zIndex-2" data-open={ active } data-show="modal">
+<section-samples-edit class="oScreen text-left zIndex-2" data-open={ active } data-show="modal">
 
     <div class="oScreen__buttons" data-pos="top-right">
         <div onClick={ hide } onUpdate="none" class="button__close" data-color="white"></div>
@@ -6,9 +6,9 @@
     </div>
 
     <div ref="content" class="oScreen__content">
-        <div class="oScreen__modal mt-l p-l minH-100v bg-white" style="width:940px">
+        <div class="oScreen__modal mt-l p-l minH-100v bg-white" style="width:71vw; max-width:1080px;">
             <div class="rows">
-                <div class="row mb-m">
+                <div class="row mb-l">
                     <div class="col-md-14">
                         <ui-input update="post" cursor={ cursor } placeholder="Должность" size="xl"></ui-input>
                     </div>
@@ -16,14 +16,12 @@
                         <ui-select update="_status" cursor={ cursor } items={ $store.samples.status.get() } size="xl"></ui-select>
                     </div>
                 </div>
-                <div class="row mb-l">
-                    <div class="col-md-24">
-                        <ui-input update="tags" cursor={ cursor } placeholder="Ключевые навыки" size="l"></ui-input>
-                    </div>
-                </div>
+                <section-resume-tags cursor={ cursor }></section-resume-tags>
                 <section-resume-education cursor={ cursor.select("education") }></section-resume-education>
                 <section-resume-courses cursor={ cursor.select("courses") }></section-resume-courses>
                 <section-resume-jobs cursor={ cursor.select("jobs") }></section-resume-jobs>
+                <section-resume-about cursor={ cursor }></section-resume-about>
+                <section-resume-seo cursor={ cursor.select("_seo") }></section-resume-seo>
             </div>
         </div>
     </div>
@@ -34,16 +32,12 @@
     $scope = $$($.root);
 
     $.on("mount", function(){
-        $Sections.module("sample", $);
+        $Sections.module("samples.edit", $);
         $.sections = {
             education: $.tags["section-resume-education"],
             courses: $.tags["section-resume-courses"],
             jobs: $.tags["section-resume-jobs"]
         }
-    });
-
-    $.on("update", function(){
-        app.$dom.document.off("keydown");
     });
 
     $.show = function(id){
@@ -72,6 +66,7 @@
     };
 
     $.save = function(){
+        $.item.select("update").set(moment().format());
         app.request("setSamples", {
             data: $.item.get()
         })
@@ -127,4 +122,4 @@
 
 </script>
 
-</section-sample-edit>
+</section-samples-edit>

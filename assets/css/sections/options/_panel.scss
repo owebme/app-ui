@@ -1,0 +1,21 @@
+.options__panel {
+    @extend .pos-bl-fixed;
+    @extend .w100p;
+    @extend .h75;
+    @extend .bg-white;
+    @extend .boxShadow-distant;
+    @extend .pointerEvents-none;
+    @extend .trY-xl;
+    @extend .willChange-transform;
+    transition:transform 0.3s $cubic215;
+    @extend .zIndex-1;
+
+    &[data-open="true"]{
+        @extend .pointerEvents-all;
+        @extend .transform-default;
+    }
+    div[class^="col-"]{
+        @extend .flex-row-left-center;
+        @extend .h70;
+    }
+}

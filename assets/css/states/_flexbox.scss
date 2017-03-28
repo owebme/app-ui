@@ -1,6 +1,9 @@
 .flex {
     display:flex;
 }
+.display-inlineFlex {
+    display:inline-flex;
+}
 .flexDirection-row {
     flex-direction:row;
 }
@@ -36,6 +39,15 @@
 }
 .alignItems-stretch {
     align-items:stretch;
+}
+.alignContent-flex-start {
+    align-content:flex-start;
+}
+.alignContent-center {
+    align-content:center;
+}
+.flexWrap-wrap {
+    flex-wrap:wrap;
 }
 .flex-row-centered {
     @extend .flex;
@@ -87,4 +99,14 @@
     @extend .flexDirection-column;
     @extend .justifyContent-center;
     @extend .alignItems-center;
+}
+.flex-oneByOne {
+    @extend .flex;
+    @extend .flexWrap-wrap;
+    @extend .alignContent-flex-start;
+}
+.flex-oneByOne-centered {
+    @extend .flex;
+    @extend .flexWrap-wrap;
+    @extend .alignContent-center;
 }

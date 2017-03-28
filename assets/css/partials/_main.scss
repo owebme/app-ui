@@ -1,5 +1,4 @@
-#header,
-#content {
+.app-container {
     @extend .centered;
     @extend .plr-l;
     max-width:1400px;

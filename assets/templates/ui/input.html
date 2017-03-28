@@ -20,6 +20,9 @@
         }
         if ($.opts.autosuggest){
             $.suggest = _.debounce($.autosuggest.request, app.device.isMobile ? 300 : 150);
+            if ($.opts.autoselect === false){
+                $.autosuggest.autoselect = false;
+            }
         }
     });
 
@@ -114,11 +117,13 @@
                                 return;
                             }
                             else {
-                                $.autosuggest.autoselect.interval = setTimeout(function(){
-                                    $.autosuggest.select.call({
-                                        item: data.items[0]
-                                    })
-                                }, $.autosuggest.autoselect.timeout);
+                                if ($.autosuggest.autoselect){
+                                    $.autosuggest.autoselect.interval = setTimeout(function(){
+                                        $.autosuggest.select.call({
+                                            item: data.items[0]
+                                        })
+                                    }, $.autosuggest.autoselect.timeout);
+                                }
                             }
                         }
                         $.autosuggest.update(data.items);
@@ -147,7 +152,9 @@
         },
 
         navigate: function(e){
-            clearTimeout($.autosuggest.autoselect.interval);
+            if ($.autosuggest.autoselect){
+                clearTimeout($.autosuggest.autoselect.interval);
+            }
             if ([13, 38, 40].indexOf(e.keyCode) > -1 && _.isEmpty($.autosuggest.items)) {
                 e.preventDefault();
                 return true;

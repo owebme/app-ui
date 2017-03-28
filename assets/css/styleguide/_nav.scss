@@ -48,10 +48,10 @@
         }
     }
     &__close {
-        position:absolute;
-        top:15px;
-        right:15px;
-        @include ui-icon(close_strong, 48px, 48px);
+        @extend .pos-abs;
+        @extend .t-s;
+        @extend .r-s;
+        @include ui-icon(close_strong, 36px, 36px);
     }
 }
 

@@ -1,0 +1,22 @@
+.dataTable {
+    &__device {
+        @extend .pos-rel;
+        @extend .w48;
+        @extend .h32;
+
+        &:after {
+            @extend .content-empty;
+            @extend .pos-centered;
+            @extend .bg-cover;
+        }
+        &[data-device="desktop"]:after {
+            @include ui-icon("device_desktop_silver", 34px, 18px);
+        }
+        &[data-device="tablet"]:after {
+            @include ui-icon("device_tablet_silver", 16px, 24px);
+        }
+        &[data-device="phone"]:after {
+            @include ui-icon("device_phones_silver", 20px, 24px);
+        }
+    }
+}

@@ -5,7 +5,6 @@
     }
     &_wrapper {
         @extend .pos-rel;
-        @extend .mt--70;
 
         .pagination {
             @extend .btn-group;
@@ -112,6 +111,24 @@
     td.col-photo {
         @extend .fontSize-0;
     }
+    &__photo__blank {
+        @extend .w34;
+    }
+    td.col-photo:empty,
+    &__photo__blank {
+        @extend .pos-rel;
+
+        &:after {
+            @extend .content-empty;
+            @extend .display-block;
+            @extend .w34;
+            @extend .h34;
+            background-image:url(/assets/images/user.png);
+            @extend .opacity-90;
+            @extend .borderRadius-circle;
+            @extend .bg-cover;
+        }
+    }
     &__photo {
         @extend .display-inlineBlock;
         @extend .w34;
@@ -121,6 +138,11 @@
         @extend .opacity-90;
         border:1px solid $smoke;
         transform:translate3d(0, 1px, 0);
+    }
+    &__stars {
+        @extend .c-blue;
+        @extend .fontSize-20;
+        @extend .letterSpacing-xxxl;
     }
     tbody {
         background-color:rgba(#fff,.35);
@@ -152,7 +174,8 @@
         @include ui-icon(check_muted, 22px, 22px);
 
         &:hover,
-        .selected & {
+        .selected &,
+        &[data-checked="true"]{
             @include ui-icon(check);
         }
         &:after {

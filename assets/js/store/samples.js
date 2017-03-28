@@ -1,6 +1,9 @@
 $store.samples = _.extend(new Baobab([]),
     {
-        dataTable: function($, data, callback){
+        getItemsByStatus: function(status){
+            return _.where($store.samples.get(), {"_status": status});
+        },
+        dataTable: function($, self, data, callback){
         return {
             data: data,
             rowId: "_id",
@@ -9,7 +12,7 @@ $store.samples = _.extend(new Baobab([]),
             stateSaveParams: function(settings, data){
                 data.search.search = "";
             },
-            autoWidth: false,
+            autoWidth: true,
             order: [[ 2, "desc" ]],
             dom: '<"dataTable__filters__top"iCf>rt<"dataTable__filters__bottom"lp>',
             colVis: {
@@ -43,7 +46,7 @@ $store.samples = _.extend(new Baobab([]),
                     // visible: false,
                     render: function(value, type, row){
                         if (value && value.length){
-                            return '<span style="background-image:url('+ value +')" class="dataTable__photo"></span>';
+                            return '<img src="'+ value +'" class="dataTable__photo" onerror="this.remove()">';
                         }
                         else {
                             return value;
@@ -93,30 +96,24 @@ $store.samples = _.extend(new Baobab([]),
                     className: "col-city",
                     orderable: false,
                     searchable: true
-                }
-            ],
-            language: {
-                "sProcessing":   "Подождите...",
-                "sLengthMenu":   "На странице: _MENU_",
-                "sZeroRecords":  '<div class="text-center"><h3 class="mb-xs">Нет подходящих результатов</h3><p class="mb-m">попробуйте смягчить условия поиска</p><span class="dataTables__reset btn btn-l btn-primary-hover">Сбросить фильтры</span></div>',
-                "sInfo":         '<span class="dataTable__total__records">Записей: <span class="fontWeight-bold">_TOTAL_</span></span>',
-                "sInfoEmpty":    '<span class="dataTable__total__records">Записей: <span class="fontWeight-bold">0</span></span>',
-                "sInfoFiltered": "",
-                "sInfoPostFix":  "",
-                "sSearch":       '<span class="dataTable__search__icon"></span>',
-                "sUrl":          "",
-                "oPaginate": {
-                    "sFirst": "Первая",
-                    "sPrevious": "Предыдущая",
-                    "sNext": "Следующая",
-                    "sLast": "Последняя"
                 },
-                "oAria": {
-                    "sSortAscending":  ": активировать для сортировки столбца по возрастанию",
-                    "sSortDescending": ": активировать для сортировки столбцов по убыванию"
-                }
-                // http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Russian.json
-            },
+                // {
+                //     targets: 6,
+                //     data: 'update',
+                //     className: "col-date",
+                //     searchable: false,
+                //     visible: false,
+                //     render: function(data, type, row){
+                //         if (type === "sort"){
+                //             return moment(data).unix();
+                //         }
+                //         else {
+                //             return moment(data).format('D/MM');
+                //         }
+                //     }
+                // }
+            ],
+            language: self.language,
             initComplete: function(){
                 setTimeout(function(){
                     callback();

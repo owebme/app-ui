@@ -4,6 +4,10 @@
     @extend .maxW-100p;
     padding:102px 80px 80px 100px;
 }
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+    @extend .c-slate;
+    @extend .fontWeight-5;
+}
 
 @media screen and (min-width: $w1200) {
     .content {

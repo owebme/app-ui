@@ -5,9 +5,9 @@
             <h3 class="alert__title">{ data.title }</h3>
             <p if={ data.subtitle } class="alert__subtitle">{ data.subtitle }</p>
         </div>
-        <div class="alert__buttons">
-            <div onClick={ onCancel } onUpdate="none" class="alert__button { alert__button--active : data.button === 'cancel' }{ data.cancel && data.cancel.color ? 'c-' + data.cancel.color : null }">{ data.cancel && data.cancel.title ? data.cancel.title : "Отмена" }</div>
-            <div onClick={ onSuccess } onUpdate="none" class="alert__button { alert__button--active : data.button === 'success' }{ data.success && data.success.color ? 'c-' + data.success.color : null }">{ data.success && data.success.title ? data.success.title : "OK" }</div>
+        <div class="alert__buttons" data-two={ data.cancel && data.success ? "true" : null }>
+            <div if={ data.cancel } onClick={ onCancel } onUpdate="none" class="alert__button { alert__button--active : data.button === 'cancel' }{ data.cancel && data.cancel.color ? 'c-' + data.cancel.color : null }">{ data.cancel && data.cancel.title ? data.cancel.title : "Отмена" }</div>
+            <div onClick={ onSuccess } onUpdate="none" class="alert__button { alert__button--active : data.button === 'success' }{ data.success && data.success.color ? 'c-' + data.success.color : null }">{ data.success && data.success.title ? data.success.title : data.cancel ? "OK" : "Закрыть" }</div>
         </div>
     </div>
 
@@ -18,16 +18,18 @@
 
     $.active = false;
 
-    $.data = {
-        title: null,
-        subtitle: null
+    $.default = function(){
+        return {
+            title: null,
+            subtitle: null
+        }
     };
 
     $.show = function(data){
         if (data){
+            $.data = _.extend($.default(), data);
             $.update({
-                active: true,
-                data: data
+                active: true
             })
         }
     };
@@ -49,6 +51,11 @@
     };
 
     $.hide = function(){
+        if ($.data.afterHide && _.isFunction($.data.afterHide)){
+            _.onEndTransition($.refs.wrapper, function(){
+                $.data.afterHide();
+            });
+        }
         $.update({
             active: false
         })

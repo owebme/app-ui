@@ -206,6 +206,10 @@
         vertical-align:middle;
         margin:0 5px 0 -3px;
 
+        &-color {
+            @extend .transition-default;
+            fill:$slate;
+        }
         .btn-l & {
             width:18px;
             height:18px;

@@ -18,7 +18,7 @@ gulp.task('css', function() {
 	return combiner(
 		gulp.src('assets/css/style.scss'),
 		sass(),
-		csso(),
+		// csso(),
 		autoprefixer({
 			browsers: ['last 2 versions'],
 			cascade: false
@@ -40,17 +40,17 @@ gulp.task('styleguide', function() {
 	return combiner(
 		gulp.src('assets/css/styleguide.scss'),
 		sass(),
-		csso(),
+		//csso(),
 		autoprefixer({
 			browsers: ['last 2 versions'],
 			cascade: false
 		}),
-        base64({
-            baseDir: './',
-            extensions: ['svg', 'png', 'jpg'],
-            maxImageSize: 16*1024, // bytes
-            debug: false
-        }),
+        // base64({
+        //     baseDir: './',
+        //     extensions: ['svg', 'png', 'jpg'],
+        //     maxImageSize: 16*1024, // bytes
+        //     debug: false
+        // }),
 		gulp.dest('assets/css'),
 		browserSync.stream()
 	).on('error', notify.onError({
@@ -87,25 +87,7 @@ gulp.task('watch', function() {
 	], gulp.parallel('css'));
 });
 
-gulp.task('watchStyleguide', function() {
-	browserSync.watch([
-		'assets/styleguide/**/*.html',
-		'assets/styleguide/root.html',
-		'styleguide.html'
-	]).on('change', reload);
-
-	gulp.watch([
-		'assets/css/styleguide.scss',
-		'assets/css/**/*.scss'
-	], gulp.parallel('styleguide'));
-});
-
-gulp.task('styleguide', gulp.series(
-	gulp.parallel('styleguide'),
-	gulp.parallel('serve', 'watchStyleguide')
-));
-
 gulp.task('dev', gulp.series(
-	gulp.parallel('css'),
+	gulp.parallel('styleguide', 'css'),
 	gulp.parallel('serve', 'watch')
 ));

@@ -1,6 +1,6 @@
 .input {
     @extend .c-slate;
-    @extend .fontFamily-default;
+    @extend .fontFamily-helvetica;
     @extend .border-none;
     @extend .borderRadius-m;
     @extend .w100p;
@@ -16,7 +16,7 @@
         @extend .boxShadowInset-blue;
 
         + .input-icon .input-svg-color {
-            @extend .fill-blueLight;
+            @extend .fill-blue;
         }
     }
     &::-webkit-input-placeholder {
