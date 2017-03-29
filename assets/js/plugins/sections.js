@@ -119,6 +119,7 @@
                 options = options || {};
 
             this.scope.setAttribute("data-open", false);
+            this.scope.setAttribute("data-loading", false);
 
             if (_.isFunction(options.beforeHide)){
                 options.beforeHide();

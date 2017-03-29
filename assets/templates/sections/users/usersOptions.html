@@ -1,0 +1,78 @@
+<section-users-options class="options__panel" data-open={ active }>
+
+    <div class="app-container">
+        <div class="rows">
+            <div class="row">
+                <div class="col-md-offset-1 col-md-4">
+                    <div class="options__panel__counter">Выбрано: <strong>{ counts }</strong></div>
+                </div>
+                <div class="col-md-17">
+                    <div class="select select-m w200 mr-m">
+                        <select ref="select">
+                            <option value="free">Free</option>
+                            <option value="premium">Premium</option>
+                        </select>
+                    </div>
+                    <div onClick={ onChangePlan } onUpdate="none" class="btn btn-m btn-success-hover mr-m">Изменить тариф</div>
+                    <div onClick={ onCancel } onUpdate="none" class="btn btn-m btn-primary-hover mr-m">Отменить</div>
+                    <div onClick={ onSelectAll } onUpdate="none" class="btn btn-m btn-primary">Выбрать все</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+
+    var $ = this;
+
+    $.on("mount", function(){
+        $Sections.module("users.options", $);
+    });
+
+    $.show = function(ids){
+        if (ids && ids.length) $.active = true;
+        else $.active = false;
+
+        $.counts = ids && ids.length;
+        $.ids = ids;
+        $.update();
+    };
+
+    $.onChangePlan = function(){
+        var plan = $.refs.select.value;
+
+        _.each($.ids, function(id){
+            $store.users.select({"_id": id}, "plan").set(plan);
+        });
+        app.request("setUsersPlan", {
+            ids: $.ids,
+            plan: plan
+        });
+        $.unSelect();
+    };
+
+    $.onCancel = function(){
+        $.unSelect();
+    };
+
+    $.onSelectAll = function(){
+        $Sections.table.select.all();
+        var ids = $Sections.table.select.get();
+        $.update({
+            counts: ids.length,
+            ids: ids
+        });
+    };
+
+    $.unSelect = function(){
+        $.update({
+            active: false,
+            counts: 0,
+            ids: null
+        });
+        $Sections.table.select.unset();
+    };
+
+</script>
+
+</section-users-options>

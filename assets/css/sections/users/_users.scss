@@ -1,0 +1,32 @@
+section-content {
+    &[data-is="section-users"]{
+        .dataTables_wrapper {
+            .col-title {
+                max-width:120px;
+            }
+            .col-fidelity,
+            .col-activity {
+                @extend .w120;
+                @extend .pr-s;
+            }
+            .col-resume,
+            .col-visits,
+            .col-device {
+                @extend .w70;
+                @extend .plr-xxs;
+            }
+            .col-plan {
+                @extend .w100;
+            }
+            .col-balance {
+                @extend .w80;
+            }
+            .col-city {
+                max-width:120px;
+            }
+            .col-date {
+                @extend .w60;
+            }
+        }
+    }
+}

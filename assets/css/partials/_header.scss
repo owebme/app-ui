@@ -4,5 +4,5 @@
 }
 #header {
     @extend .pos-rel;
-    @extend .h180;
+    min-height:180px;
 }

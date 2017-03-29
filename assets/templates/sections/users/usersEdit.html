@@ -1,0 +1,89 @@
+<section-users-edit class="oScreen section text-left zIndex-2" data-open="false" data-show="modal" data-loading="false" data-inner="hidden">
+
+    <div ref="content" class="oScreen__content">
+        <div class="oScreen__modal modal modal-xl">
+            <div onClick={ hide } onUpdate="none" class="modal-close"></div>
+            <div class="section__loading"></div>
+            <div class="section__inner rows user__container">
+                <div class="row">
+                    <div class="col-md-10">
+
+                        <div class="user__tabs">
+
+                        </div>
+                    </div>
+                    <div class="col-md-14">
+                        <div class="mb-m">
+                            <ui-input update="login" cursor={ cursor } placeholder="Имя" size="xl"></ui-input>
+                        </div>
+                        <div class="mb-m">
+                            <ui-input update="surname" cursor={ cursor } placeholder="Фамилия" size="xl"></ui-input>
+                        </div>
+                        <div class="mb-m">
+                            <ui-input update="email" cursor={ cursor } placeholder="Логин" size="l"></ui-input>
+                        </div>
+                        <div class="mb-m">
+                            <ui-input update="phone" cursor={ cursor } placeholder="Телефон" size="l"></ui-input>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+
+    var $ = this;
+
+    $.on("mount", function(){
+        $Sections.module("users.edit", $);
+        $.section = new app.plugins.sections($.root, {
+            content: $.refs.content
+        });
+    });
+
+    $.show = function(id){
+        if ($.active) return;
+
+        $.active = true;
+
+        if ($.refs.content.scrollTop > 0){
+            $.refs.content.scrollTop = 0;
+        }
+        $.section.show({
+            callback: function(next, back){
+                app.request("getUsers", id).then(function(data){
+                    $.init();
+                    $.one("updated", function(){
+                        $afterlag.run(function(){
+                            next();
+                        })
+                    })
+                    var item = new Baobab(data);
+                    $.update({
+                        item: item,
+                        cursor: item.select()
+                    })
+                }, function(){
+                    back();
+                    $.active = false;
+                });
+            }
+        });
+    };
+
+    $.init = function(){
+
+    };
+
+    $.hide = function(){
+        $.section.hide({
+            afterHide: function(){
+                $.active = false;
+            }
+        });
+    };
+
+</script>
+
+</section-users-edit>

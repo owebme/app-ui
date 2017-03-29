@@ -519,7 +519,7 @@ div, a, p, span, strong, th, td {
   font-weight: 700;
   font-style: normal; }
 
-.fontFamily-helvetica, .btn, .dataTables_wrapper .pagination li, .ColVis_Button, .input, .input-context-xl, .input-context-l, .input-context-m, .input-context-s, .tag-item, .input-autosuggest-item, .textarea, .select select, .switch, [data-balloon]:after, .d-phone .alert__wrapper, .alert__title, h1, .h1, h2, .h2, h3, .h3, .navbar__title, h4, .h4, h5, .h5, h6, .h6, .dataTable__filterColumn__wrapper {
+.fontFamily-helvetica, .btn, .dataTables_wrapper .pagination li, .ColVis_Button, .input, .input-context-xl, .input-context-l, .input-context-m, .input-context-s, .tag-item, .input-autosuggest-item, .textarea, .select select, .switch, [data-balloon]:after, .d-phone .alert__wrapper, .alert__title, h1, .h1, h2, .h2, .user__title, h3, .h3, .navbar__title, h4, .h4, h5, .h5, h6, .h6, .dataTable__filterColumn__wrapper {
   font-family: "HelveticaNeue", sans-serif; }
 
 .fontFamily-roboto, .input-white.input, .input-white.input-context-xl, .input-white.input-context-l, .input-white.input-context-m, .input-white.input-context-s, .input-white.tag-item, .dataTable th {
@@ -731,22 +731,22 @@ div, a, p, span, strong, th, td {
   .hidden-print {
     display: none !important; } }
 
-.container {
+.container, .modal-xl {
   margin-right: auto;
   margin-left: auto;
   padding-left: 7.5px;
   padding-right: 7.5px; }
 
 @media (min-width: 768px) {
-  .container {
+  .container, .modal-xl {
     width: 735px; } }
 
 @media (min-width: 992px) {
-  .container {
+  .container, .modal-xl {
     width: 955px; } }
 
 @media (min-width: 1200px) {
-  .container {
+  .container, .modal-xl {
     width: 1155px; } }
 
 .container-fluid {
@@ -1675,7 +1675,9 @@ div, a, p, span, strong, th, td {
 .clearfix:before,
 .clearfix:after,
 .container:before,
+.modal-xl:before,
 .container:after,
+.modal-xl:after,
 .container-fluid:before,
 .container-fluid:after,
 .row:before,
@@ -1685,6 +1687,7 @@ div, a, p, span, strong, th, td {
 
 .clearfix:after,
 .container:after,
+.modal-xl:after,
 .container-fluid:after,
 .row:after {
   clear: both; }
@@ -1862,6 +1865,12 @@ body {
 .ui-icon-device_phones_silver, .dataTable__device[data-device="phone"]:after {
   background: url("/assets/images/ui/ui-device_phones_silver.svg") no-repeat 0 0/cover; }
 
+.ui-icon-play, .dataTable__welcome[data-icon="play"]:after {
+  background: url("/assets/images/ui/ui-play.svg") no-repeat 0 0/cover; }
+
+.ui-icon-break_silver, .dataTable__welcome[data-icon="break"]:after {
+  background: url("/assets/images/ui/ui-break_silver.svg") no-repeat 0 0/cover; }
+
 .btn-loading:before {
   width: 14px;
   height: 14px;
@@ -2013,10 +2022,10 @@ body {
   right: 2px;
   box-shadow: 0 2px 2px rgba(31, 35, 37, 0.2); }
 
-.btn-active, .buttons-angle div[class^="button"], .oScreen__buttons div[class^="button"],
+.btn-active, .modal-close, .buttons-angle div[class^="button"], .oScreen__buttons div[class^="button"],
 .oScreen__section__buttons div[class^="button"], .oScreen__buttons .button__close, .oScreen__buttons .button__save, .nav__item span, .navbar__menu__item span {
   transition: all 0.15s; }
-  .btn-active:active, .buttons-angle div[class^="button"]:active, .oScreen__buttons div[class^="button"]:active,
+  .btn-active:active, .modal-close:active, .buttons-angle div[class^="button"]:active, .oScreen__buttons div[class^="button"]:active,
   .oScreen__section__buttons div[class^="button"]:active, .oScreen__buttons .button__close:active, .oScreen__buttons .button__save:active, .nav__item span:active, .navbar__menu__item span:active {
     transform: translate3d(0, 1px, 0) scale(0.85); }
 
@@ -3078,6 +3087,27 @@ input.range[type=range]::-ms-track {
   100% {
     transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); } }
 
+.modal-l {
+  width: 71vw;
+  max-width: 1080px; }
+
+.modal-m {
+  width: 640px; }
+
+.modal-s {
+  width: 480px; }
+
+.modal-close:before, .modal-close:after {
+  width: 16px;
+  height: 2px;
+  margin: -1px 0 0 -8px; }
+
+.modal-close:before {
+  transform: rotate(45deg); }
+
+.modal-close:after {
+  transform: rotate(-45deg); }
+
 .notify {
   font-size: 16px;
   line-height: 24px;
@@ -3504,8 +3534,6 @@ sup, sub {
       cursor: pointer; }
   .dataTable td.dataTables_empty {
     height: calc(100vh - 286px); }
-  .dataTable .text-truncate, .dataTable .input-autosuggest-item-title, .dataTable .dropmenu__item, .dataTable .ColVis_collection li, .ColVis_collection .dataTable li {
-    max-width: 40em; }
   .dataTable td.col-photo:empty:after, .dataTable__photo__blank:after {
     background-image: url(/assets/images/user.png); }
   .dataTable__photo {
@@ -3651,6 +3679,9 @@ body.isLoading:after {
 
 .app-container {
   max-width: 1400px; }
+
+#header {
+  min-height: 180px; }
 
 .nav__logo:after {
   width: 90px;
@@ -3854,12 +3885,32 @@ body.isLoading:after {
   height: 18px; }
 
 .dataTable__device[data-device="tablet"]:after {
-  width: 16px;
-  height: 24px; }
+  width: 17px;
+  height: 25px; }
 
 .dataTable__device[data-device="phone"]:after {
-  width: 20px;
-  height: 24px; }
+  width: 21px;
+  height: 26px; }
+
+.dataTable__welcome[data-icon="play"]:after {
+  width: 15px;
+  height: 17px; }
+
+.dataTable__welcome[data-icon="pause"]:before {
+  margin-left: -4px; }
+
+.dataTable__welcome[data-icon="pause"]:after {
+  margin-right: 9px; }
+
+.dataTable__welcome[data-icon="break"]:after {
+  width: 22px;
+  height: 22px; }
+
+section-content[data-is="section-users"] .dataTables_wrapper .col-title {
+  max-width: 120px; }
+
+section-content[data-is="section-users"] .dataTables_wrapper .col-city {
+  max-width: 120px; }
 
 .options__panel {
   transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1); }
@@ -3874,27 +3925,26 @@ body.isLoading:after {
 .oScreen__section, .oScreen__buttons,
 .oScreen__section__buttons, .oScreen__content,
 .oScreen__section__content, .oScreen:before,
-.oScreen__section:before, .oScreen__pointer, .oScreen__pointer__shape, .oScreen__pointer__message, .oScreen__pointer__message__wrapper, body:before, body:after, #auth, .section-hidden, .section[data-hidden="false"] .section__content, [data-hidden="false"].oScreen__section .section__content, .section[data-hidden="true"] .section__content, [data-hidden="true"].oScreen__section .section__content, .section__loading, .section__slider__navbar, .section__slider__container, .anim, .anim-group1, .anim-group2, .anim-group3, .anim-group4, .anim-group5, .transition-xxs, .transition-xs, .transition-s, .transition-m, .transition-l, .transition-xl, .transition-xxl, .transition-xxxl {
+.oScreen__section:before, .oScreen__pointer, .oScreen__pointer__shape, .oScreen__pointer__message, .oScreen__pointer__message__wrapper, body:before, body:after, #auth, .section-hidden, .section[data-hidden="false"] .section__content, [data-hidden="false"].oScreen__section .section__content, .section[data-hidden="true"] .section__content, [data-hidden="true"].oScreen__section .section__content, .section__loading, .section__slider__navbar, .section__slider__container, .anim, .anim-group1, .anim-group2, .anim-group3, .anim-group4, .anim-group5, .transition-xxs, .transition-xs, .modal-close:before, .modal-close:after, .transition-s, .transition-m, .transition-l, .transition-xl, .transition-xxl, .transition-xxxl {
   -webkit-backface-visibility: hidden; }
 
 .accelerate, .btn, .dataTables_wrapper .pagination li, .ColVis_Button, .checkbox, .checkbox .checkbox-control, .checkbox .checkbox-control:after, .checkbox-control:before, .switcher, .switch, .switch-label, .dropmenu, .dataTable__filterColumn__wrapper, .dropmenu__wrapper, .dropmenu__wrapper:after, .alert, .alert:before, .alert__wrapper, .notify, .oScreen,
 .oScreen__section, .oScreen__buttons,
 .oScreen__section__buttons, .oScreen__content,
 .oScreen__section__content, .oScreen:before,
-.oScreen__section:before, .oScreen__pointer, .oScreen__pointer__shape, .oScreen__pointer__message, .oScreen__pointer__message__wrapper, body:before, body:after, #auth, .section-hidden, .section[data-hidden="false"] .section__content, [data-hidden="false"].oScreen__section .section__content, .section[data-hidden="true"] .section__content, [data-hidden="true"].oScreen__section .section__content, .section__loading, .section__slider__navbar, .section__slider__container, .anim, .anim-group1, .anim-group2, .anim-group3, .anim-group4, .anim-group5, .transition-xxs, .transition-xs, .transition-s, .transition-m, .transition-l, .transition-xl, .transition-xxl, .transition-xxxl {
+.oScreen__section:before, .oScreen__pointer, .oScreen__pointer__shape, .oScreen__pointer__message, .oScreen__pointer__message__wrapper, body:before, body:after, #auth, .section-hidden, .section[data-hidden="false"] .section__content, [data-hidden="false"].oScreen__section .section__content, .section[data-hidden="true"] .section__content, [data-hidden="true"].oScreen__section .section__content, .section__loading, .section__slider__navbar, .section__slider__container, .anim, .anim-group1, .anim-group2, .anim-group3, .anim-group4, .anim-group5, .transition-xxs, .transition-xs, .modal-close:before, .modal-close:after, .transition-s, .transition-m, .transition-l, .transition-xl, .transition-xxl, .transition-xxxl {
   transform-style: flat; }
 
-.content-empty, .btn-loading:before, .select:after, .tag-item-remove:after, .checkbox-control:before, .checkbox-control:after, .dropmenu__wrapper:after, .dropmenu__item:after, .alert:before, .notify:before, .spinner:after, .spinner-anim:after, .oScreen[data-loader="true"] .oScreen__loader__spinner:after, .oScreen__section[data-loader="true"] .oScreen__loader__spinner:after, .oScreen__loader__spinner:after, .spinner-mini:after, .spinner-mini-anim:after, .loader-ajax[data-show="true"] .loader-ajax-spinner:after, .loader-ajax-spinner:after, .oScreen:before,
-.oScreen__section:before, .dataTable th:before, .dataTable th:after, .dataTable td.col-photo:empty:after, .dataTable__photo__blank:after, .dataTable__checkbox:after, #datatable-buttons_filter .dataTable__search__icon:after, .ColVis_Button:after, body:before, body:after, .nav__logo:after, .nav__item:before, .nav__profile:after, .navbar__menu__item:before, .section__loading:after, .section-scroll .iScrollIndicator:before, .section__slider__item .iScrollIndicator:before, .section__slider__navbar[data-select="true"]:after, .dataTable__device:after, .aspectRatio-100:before, .aspectRatio-75:before, .aspectRatio-60:before, .aspectRatio-169:before, .text-strike:after {
+.content-empty, .btn-loading:before, .select:after, .tag-item-remove:after, .checkbox-control:before, .checkbox-control:after, .dropmenu__wrapper:after, .dropmenu__item:after, .alert:before, .modal-close:before, .modal-close:after, .notify:before, .spinner:after, .spinner-anim:after, .oScreen[data-loader="true"] .oScreen__loader__spinner:after, .oScreen__section[data-loader="true"] .oScreen__loader__spinner:after, .oScreen__loader__spinner:after, .spinner-mini:after, .spinner-mini-anim:after, .loader-ajax[data-show="true"] .loader-ajax-spinner:after, .loader-ajax-spinner:after, .oScreen:before,
+.oScreen__section:before, .dataTable th:before, .dataTable th:after, .dataTable td.col-photo:empty:after, .dataTable__photo__blank:after, .dataTable__checkbox:after, #datatable-buttons_filter .dataTable__search__icon:after, .ColVis_Button:after, body:before, body:after, .nav__logo:after, .nav__item:before, .nav__profile:after, .navbar__menu__item:before, .section__loading:after, .section-scroll .iScrollIndicator:before, .section__slider__item .iScrollIndicator:before, .section__slider__navbar[data-select="true"]:after, .dataTable__device:after, .dataTable__welcome:after, .dataTable__welcome[data-icon="pause"]:before, .aspectRatio-100:before, .aspectRatio-75:before, .aspectRatio-60:before, .aspectRatio-169:before, .text-strike:after {
   content: ""; }
 
-.centered, .oScreen__modal,
-.oScreen__section__modal, .ColVis_Button:after, .app-container, .pageWrap, .rows {
+.centered, .modal:not([centered="true"]), .ColVis_Button:after, .app-container, .pageWrap, .rows {
   float: none;
   margin-left: auto;
   margin-right: auto; }
 
-.cursor-pointer, .btn, .dataTables_wrapper .pagination li, .ColVis_Button, .btn-active, .buttons-angle div[class^="button"], .oScreen__buttons div[class^="button"],
+.cursor-pointer, .btn, .dataTables_wrapper .pagination li, .ColVis_Button, .btn-active, .modal-close, .buttons-angle div[class^="button"], .oScreen__buttons div[class^="button"],
 .oScreen__section__buttons div[class^="button"], .oScreen__buttons .button__close, .oScreen__buttons .button__save, .nav__item span, .navbar__menu__item span, .input-autosuggest-item, .select select, input.range[type=range], input.range[type=range]::-webkit-slider-thumb, .tag-item-remove, .checkbox, .switcher, .switch-label, .dropmenu__item, .alert__button, .dataTable tbody tr, .dataTable__checkbox, .dataTable__filterColumn__button, #datatable-buttons_length select, .ColVis_collection li, .ColVis_collection label, .ColVis_collection input, .ColVis_collection span, .link {
   cursor: pointer; }
 
@@ -3972,21 +4022,6 @@ body.appLoading .sidebar, .nav__item[data-active="true"], .navbar__menu__item[da
   -webkit-appearance: none;
   appearance: none; }
 
-.bg-none, .switcher.white .switch-left,
-.switcher.white .switch-right, .switcher.white:not([active="true"]) .switch-left,
-.switcher.white:not([active="true"]) .switch-right, .dataTable td.dataTables_empty:hover, #datatable-buttons_filter input, #datatable-buttons_length select, .btn-link-primary, .btn-link-primary-hover, .btn-link-success, .btn-link-success-hover, .btn-link-danger, .btn-link-danger-hover, .btn-link-warning, .btn-link-warning-hover, .btn-link-dark, .btn-link-dark-hover {
-  background: none; }
-
-.bg-cover, .tag-item-remove:after, .dataTable td.col-photo:empty:after, .dataTable__photo__blank:after, .dataTable__photo, .nav__logo:after, .dataTable__device:after {
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-size: cover; }
-
-.bg-cover-center {
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover; }
-
 .float-left, .tag-input, .switch-label, .switch-left, .switch-right {
   float: left; }
 
@@ -4024,7 +4059,7 @@ body.appLoading .sidebar, .nav__item[data-active="true"], .navbar__menu__item[da
 
 .display-block, #app, .input-svg, .input-group, .input-autosuggest-item-logo, .select select, .select:after, input.range[type=range], .dropmenu__item.selected:after, .dropmenu[data-select="true"] .dropmenu__item:after, [data-select="true"].dataTable__filterColumn__wrapper .dropmenu__item:after, .spinner, .spinner-anim, .oScreen[data-loader="true"] .oScreen__loader__spinner, .oScreen__section[data-loader="true"] .oScreen__loader__spinner, .oScreen__loader__spinner, .spinner:after, .spinner-anim:after, .oScreen[data-loader="true"] .oScreen__loader__spinner:after, .oScreen__section[data-loader="true"] .oScreen__loader__spinner:after, .oScreen__loader__spinner:after, .spinner-mini, .spinner-mini-anim, .loader-ajax[data-show="true"] .loader-ajax-spinner, .loader-ajax-spinner, .spinner-mini:after, .spinner-mini-anim:after, .loader-ajax[data-show="true"] .loader-ajax-spinner:after, .loader-ajax-spinner:after, .loader, .oScreen,
 .oScreen__section, .oScreen__buttons,
-.oScreen__section__buttons, .oScreen__pointer, .dataTable .text-truncate, .dataTable .input-autosuggest-item-title, .dataTable .dropmenu__item, .dataTable .ColVis_collection li, .ColVis_collection .dataTable li, .dataTable td.col-photo:empty:after, .dataTable__photo__blank:after, #datatable-buttons_filter .dataTable__search__icon, .ColVis_Button:after, .header__wrapper, .nav__logo:after, .nav__profile:after, #content, .section, .section-hidden, .section__slider__navbar[data-select="true"]:after, .section__slider__item, .aspectRatio-100:before, .aspectRatio-75:before, .aspectRatio-60:before, .aspectRatio-169:before {
+.oScreen__section__buttons, .oScreen__pointer, .dataTable td.col-photo:empty:after, .dataTable__photo__blank:after, #datatable-buttons_filter .dataTable__search__icon, .ColVis_Button:after, .header__wrapper, .nav__logo:after, .nav__profile:after, #content, .section, .section-hidden, .section__slider__navbar[data-select="true"]:after, .section__slider__item, .aspectRatio-100:before, .aspectRatio-75:before, .aspectRatio-60:before, .aspectRatio-169:before {
   display: block; }
 
 .display-listItem {
@@ -4197,10 +4232,10 @@ body.appLoading .sidebar, .nav__item[data-active="true"], .navbar__menu__item[da
 .b-xs {
   bottom: 10px; }
 
-.l-xs {
+.l-xs, .dataTable th[data-hidden="true"]:before {
   left: 10px; }
 
-.r-xs, .dropmenu__item:after {
+.r-xs, .dropmenu__item:after, .dataTable th[data-hidden="true"]:after {
   right: 10px; }
 
 .t--xs {
@@ -4407,7 +4442,7 @@ body.appLoading .sidebar, .nav__item[data-active="true"], .navbar__menu__item[da
 .r--20 {
   right: -20px; }
 
-.t25 {
+.t25, .modal-close {
   top: 25px; }
 
 .b25 {
@@ -4416,7 +4451,7 @@ body.appLoading .sidebar, .nav__item[data-active="true"], .navbar__menu__item[da
 .l25 {
   left: 25px; }
 
-.r25 {
+.r25, .modal-close {
   right: 25px; }
 
 .t--25 {
@@ -4791,17 +4826,17 @@ body.appLoading .sidebar, .nav__item[data-active="true"], .navbar__menu__item[da
 .r--100 {
   right: -100px; }
 
-.pos-rel, .btn-group > .btn, .dataTables_wrapper .pagination > .btn, .dataTables_wrapper .pagination .btn-group > li, .dataTables_wrapper .pagination > li, .btn-group > .ColVis_Button, .dataTables_wrapper .pagination > .ColVis_Button, .input-group, .input-autosuggest, .input-autosuggest input[type="text"]:focus, .input-autosuggest-item, .input-group:not(.input-group-icon) > .input, .input-group:not(.input-group-icon) > .input-context-xl, .input-group:not(.input-group-icon) > .input-context-l, .input-group:not(.input-group-icon) > .input-context-m, .input-group:not(.input-group-icon) > .input-context-s, .input-group:not(.input-group-icon) > .tag-item, .select, .tag-input, .tag-item, .checkbox, .switcher, .switch, .switch-label, .switch-left, .switch-right, .dropmenu__item, .alert__wrapper, .buttons-angle div[class^="button"], .oScreen__buttons div[class^="button"],
-.oScreen__section__buttons div[class^="button"], .oScreen__modal,
-.oScreen__section__modal, .dataTables_wrapper, .dataTable th, .dataTable td.col-photo:empty, .dataTable__photo__blank, .dataTable__checkbox, #datatable-buttons_filter .dataTable__search__icon, #header, .nav__item, .navbar__menu__item, .page__navbar, .dataTable__device, .aspectRatio, .aspectRatio-100, .aspectRatio-75, .aspectRatio-60, .aspectRatio-169, .text-strike {
+.pos-rel, .btn-group > .btn, .dataTables_wrapper .pagination > .btn, .dataTables_wrapper .pagination .btn-group > li, .dataTables_wrapper .pagination > li, .btn-group > .ColVis_Button, .dataTables_wrapper .pagination > .ColVis_Button, .input-group, .input-autosuggest, .input-autosuggest input[type="text"]:focus, .input-autosuggest-item, .input-group:not(.input-group-icon) > .input, .input-group:not(.input-group-icon) > .input-context-xl, .input-group:not(.input-group-icon) > .input-context-l, .input-group:not(.input-group-icon) > .input-context-m, .input-group:not(.input-group-icon) > .input-context-s, .input-group:not(.input-group-icon) > .tag-item, .select, .tag-input, .tag-item, .checkbox, .switcher, .switch, .switch-label, .switch-left, .switch-right, .dropmenu__item, .alert__wrapper, .modal:not([centered="true"]), .buttons-angle div[class^="button"], .oScreen__buttons div[class^="button"],
+.oScreen__section__buttons div[class^="button"], .dataTables_wrapper, .dataTable th, .dataTable td.col-photo:empty, .dataTable__photo__blank, .dataTable__progress, .dataTable__checkbox, #datatable-buttons_filter .dataTable__search__icon, #header, .nav__item, .navbar__menu__item, .page__navbar, .dataTable__device, .dataTable__welcome, .aspectRatio, .aspectRatio-100, .aspectRatio-75, .aspectRatio-60, .aspectRatio-169, .text-strike {
   position: relative; }
 
-.pos-abs, .btn-badge, .input-autosuggest-items, .select:after, .checkbox input, .dropmenu__wrapper:after, .dropmenu__item:after, .oScreen__pointer__shape, .oScreen__pointer__message, .oScreen__pointer__message__wrapper, .dataTable th:before, .dataTable th:after, .dataTable__filters__top, .dataTable__filterColumn, .navbar__menu, .section-scroll .iScrollIndicator:before, .section__slider__item .iScrollIndicator:before, .section__slider__navbar__select, .svg-filter, .pos-abs-full, .checkbox-control:before, .alert:before, .loader, .oScreen,
+.pos-abs, .btn-badge, .input-autosuggest-items, .select:after, .checkbox input, .dropmenu__wrapper:after, .dropmenu__item:after, .modal-close, .modal-close:before, .modal-close:after, .oScreen__pointer__shape, .oScreen__pointer__message, .oScreen__pointer__message__wrapper, .dataTable th:before, .dataTable th:after, .dataTable__filters__top, .dataTable__filterColumn, .navbar__menu, .section-scroll .iScrollIndicator:before, .section__slider__item .iScrollIndicator:before, .section__slider__navbar__select, .svg-filter, .pos-abs-full, .checkbox-control:before, .alert:before, .loader, .oScreen,
 .oScreen__section, .oScreen__content,
 .oScreen__section__content, .oScreen:before,
 .oScreen__section:before, .oScreen__pointer, .dataTable__checkbox:after, body:before, .section__loading, .section__content, .section__slider__container, .section__slider__item, .aspectRatio-content, .pos-abs-half, .oScreen__loader__spinner, #datatable-buttons_wrapper .dt-buttons .btn-print:after, body:after, .section__loading:after, .pos-tl, .input-icon, .checkbox-control, .dropmenu, .dataTable__filterColumn__wrapper, .notify:before, .buttons-angle-tl, .buttons-angle[data-pos="top-left"], [data-pos="top-left"].oScreen__buttons,
-[data-pos="top-left"].oScreen__section__buttons, .oScreen__loader, .oScreen__loader__progress, .section-scroll .iScrollIndicator, .section__slider__item .iScrollIndicator, .section__slider__navbar[data-pos="top"], .pos-tl-50, .pos-centered, .tag-item-remove:after, #datatable-buttons_filter .dataTable__search__icon:after, .dataTable__device:after, .pos-centered-h, .dropmenu__wrapper, .pos-centered-v, .text-strike:after, .pos-tr, .input-group-addon, .input-autosuggest-item-image, .tag-input .btn, .tag-input .dataTables_wrapper .pagination li, .dataTables_wrapper .pagination .tag-input li, .tag-input .ColVis_Button, .tag-item-remove, .buttons-angle-tr, .buttons-angle[data-pos="top-right"], [data-pos="top-right"].oScreen__buttons,
-[data-pos="top-right"].oScreen__section__buttons, .section-scroll .iScrollVerticalScrollbar, .section__slider__item .iScrollVerticalScrollbar, .pos-bl, .buttons-angle-bl, .buttons-angle[data-pos="bottom-left"], [data-pos="bottom-left"].oScreen__buttons,
+[data-pos="top-left"].oScreen__section__buttons, .oScreen__loader, .oScreen__loader__progress, .dataTable__progress__line, .section-scroll .iScrollIndicator, .section__slider__item .iScrollIndicator, .section__slider__navbar[data-pos="top"], .pos-tl-50, .pos-centered, .tag-item-remove:after, .modal[centered="true"], #datatable-buttons_filter .dataTable__search__icon:after, .dataTable__device:after, .dataTable__welcome:after, .dataTable__welcome[data-icon="pause"]:before, .pos-centered-h, .dropmenu__wrapper, .pos-centered-v, .text-strike:after, .pos-tr, .input-group-addon, .input-autosuggest-item-image, .tag-input .btn, .tag-input .dataTables_wrapper .pagination li, .dataTables_wrapper .pagination .tag-input li, .tag-input .ColVis_Button, .tag-item-remove, .buttons-angle-tr, .buttons-angle[data-pos="top-right"], [data-pos="top-right"].oScreen__buttons,
+[data-pos="top-right"].oScreen__section__buttons, .section-scroll .iScrollVerticalScrollbar, .section__slider__item .iScrollVerticalScrollbar, .pos-bl, .buttons-angle-bl, .oScreen__buttons[data-pos="bottom-right"],
+.oScreen__section__buttons[data-pos="bottom-right"], .buttons-angle[data-pos="bottom-left"], [data-pos="bottom-left"].oScreen__buttons,
 [data-pos="bottom-left"].oScreen__section__buttons, .nav__item:before, .navbar__menu__item:before, .section__slider__navbar[data-pos="bottom"], .pos-br, .buttons-angle-br, .buttons-angle[data-pos="bottom-right"], [data-pos="bottom-right"].oScreen__buttons,
 [data-pos="bottom-right"].oScreen__section__buttons {
   position: absolute; }
@@ -4816,7 +4851,7 @@ body.appLoading .sidebar, .nav__item[data-active="true"], .navbar__menu__item[da
 .pos-tl-50 {
   transform: translateY(-50%); }
 
-.pos-centered, .tag-item-remove:after, #datatable-buttons_filter .dataTable__search__icon:after, .dataTable__device:after {
+.pos-centered, .tag-item-remove:after, .modal[centered="true"], #datatable-buttons_filter .dataTable__search__icon:after, .dataTable__device:after, .dataTable__welcome:after, .dataTable__welcome[data-icon="pause"]:before {
   transform: translate3d(-50%, -50%, 0); }
 
 .pos-centered-h, .dropmenu__wrapper {
@@ -4832,7 +4867,7 @@ body.appLoading .sidebar, .nav__item[data-active="true"], .navbar__menu__item[da
 .oScreen__section, .oScreen__content,
 .oScreen__section__content, .oScreen:before,
 .oScreen__section:before, .oScreen__pointer, .dataTable__checkbox:after, body:before, .section__loading, .section__content, .section__slider__container, .section__slider__item, .aspectRatio-content, .pos-fixed-full, .alert, .ColVis_collectionBackground, .section__overlay, .pos-tl, .input-icon, .checkbox-control, .dropmenu, .dataTable__filterColumn__wrapper, .notify:before, .buttons-angle-tl, .buttons-angle[data-pos="top-left"], [data-pos="top-left"].oScreen__buttons,
-[data-pos="top-left"].oScreen__section__buttons, .oScreen__loader, .oScreen__loader__progress, .section-scroll .iScrollIndicator, .section__slider__item .iScrollIndicator, .section__slider__navbar[data-pos="top"], .pos-tr, .input-group-addon, .input-autosuggest-item-image, .tag-input .btn, .tag-input .dataTables_wrapper .pagination li, .dataTables_wrapper .pagination .tag-input li, .tag-input .ColVis_Button, .tag-item-remove, .buttons-angle-tr, .buttons-angle[data-pos="top-right"], [data-pos="top-right"].oScreen__buttons,
+[data-pos="top-left"].oScreen__section__buttons, .oScreen__loader, .oScreen__loader__progress, .dataTable__progress__line, .section-scroll .iScrollIndicator, .section__slider__item .iScrollIndicator, .section__slider__navbar[data-pos="top"], .pos-tr, .input-group-addon, .input-autosuggest-item-image, .tag-input .btn, .tag-input .dataTables_wrapper .pagination li, .dataTables_wrapper .pagination .tag-input li, .tag-input .ColVis_Button, .tag-item-remove, .buttons-angle-tr, .buttons-angle[data-pos="top-right"], [data-pos="top-right"].oScreen__buttons,
 [data-pos="top-right"].oScreen__section__buttons, .section-scroll .iScrollVerticalScrollbar, .section__slider__item .iScrollVerticalScrollbar, .pos-tl-fixed, .pos-tr-fixed {
   top: 0; }
 
@@ -4844,22 +4879,22 @@ body.appLoading .sidebar, .nav__item[data-active="true"], .navbar__menu__item[da
 [data-pos="bottom-right"].oScreen__section__buttons, .pos-bl-fixed, .options__panel, .pos-br-fixed {
   bottom: 0; }
 
-.l-auto, .dropmenu[data-pos="left"] .dropmenu__wrapper, [data-pos="left"].dataTable__filterColumn__wrapper .dropmenu__wrapper, .dropmenu[data-pos="left"] .dropmenu__wrapper:after, [data-pos="left"].dataTable__filterColumn__wrapper .dropmenu__wrapper:after, .dropmenu[data-pos="down-left"] .dropmenu__wrapper, [data-pos="down-left"].dataTable__filterColumn__wrapper .dropmenu__wrapper, .dropmenu[data-pos="down-left"] .dropmenu__wrapper:after, [data-pos="down-left"].dataTable__filterColumn__wrapper .dropmenu__wrapper:after {
+.l-auto, .dropmenu[data-pos="left"] .dropmenu__wrapper, [data-pos="left"].dataTable__filterColumn__wrapper .dropmenu__wrapper, .dropmenu[data-pos="left"] .dropmenu__wrapper:after, [data-pos="left"].dataTable__filterColumn__wrapper .dropmenu__wrapper:after, .dropmenu[data-pos="down-left"] .dropmenu__wrapper, [data-pos="down-left"].dataTable__filterColumn__wrapper .dropmenu__wrapper, .dropmenu[data-pos="down-left"] .dropmenu__wrapper:after, [data-pos="down-left"].dataTable__filterColumn__wrapper .dropmenu__wrapper:after, .dataTable__welcome[data-icon="pause"]:after {
   left: auto; }
 
-.l0, .input-autosuggest-items, .d-phone .notify-wrapper[data-pos="top-center"], .notify-wrapper[data-pos="top-left"], .d-phone .notify-wrapper[data-pos="bottom-center"], .notify-wrapper[data-pos="bottom-left"], .loader-ajax, .oScreen__pointer__message[data-position="right"], .oScreen__pointer__message[data-position="up"], .oScreen__pointer__message[data-position="down"], .d-mobile .section__slider__navbar__select, .pos-abs-full, .checkbox-control:before, .alert:before, .loader, .oScreen,
+.l0, .input-autosuggest-items, .d-phone .notify-wrapper[data-pos="top-center"], .notify-wrapper[data-pos="top-left"], .d-phone .notify-wrapper[data-pos="bottom-center"], .notify-wrapper[data-pos="bottom-left"], .loader-ajax, .oScreen__pointer__message[data-position="right"], .oScreen__pointer__message[data-position="up"], .oScreen__pointer__message[data-position="down"], .d-mobile .section__slider__navbar__select, .dataTable__welcome[data-icon="pause"]:before, .pos-abs-full, .checkbox-control:before, .alert:before, .loader, .oScreen,
 .oScreen__section, .oScreen__content,
 .oScreen__section__content, .oScreen:before,
 .oScreen__section:before, .oScreen__pointer, .dataTable__checkbox:after, body:before, .section__loading, .section__content, .section__slider__container, .section__slider__item, .aspectRatio-content, .pos-fixed-full, .alert, .ColVis_collectionBackground, .section__overlay, .pos-tl, .input-icon, .checkbox-control, .dropmenu, .dataTable__filterColumn__wrapper, .notify:before, .buttons-angle-tl, .buttons-angle[data-pos="top-left"], [data-pos="top-left"].oScreen__buttons,
-[data-pos="top-left"].oScreen__section__buttons, .oScreen__loader, .oScreen__loader__progress, .section-scroll .iScrollIndicator, .section__slider__item .iScrollIndicator, .section__slider__navbar[data-pos="top"], .pos-tl-50, .pos-bl, .buttons-angle-bl, .oScreen__buttons[data-pos="bottom-right"],
+[data-pos="top-left"].oScreen__section__buttons, .oScreen__loader, .oScreen__loader__progress, .dataTable__progress__line, .section-scroll .iScrollIndicator, .section__slider__item .iScrollIndicator, .section__slider__navbar[data-pos="top"], .pos-tl-50, .pos-bl, .buttons-angle-bl, .oScreen__buttons[data-pos="bottom-right"],
 .oScreen__section__buttons[data-pos="bottom-right"], .buttons-angle[data-pos="bottom-left"], [data-pos="bottom-left"].oScreen__buttons,
 [data-pos="bottom-left"].oScreen__section__buttons, .nav__item:before, .navbar__menu__item:before, .section__slider__navbar[data-pos="bottom"], .pos-tl-fixed, .pos-bl-fixed, .options__panel, .text-strike:after {
   left: 0; }
 
-.r-auto, .dropmenu[data-select="true"] .dropmenu__item:after, [data-select="true"].dataTable__filterColumn__wrapper .dropmenu__item:after {
+.r-auto, .dropmenu[data-select="true"] .dropmenu__item:after, [data-select="true"].dataTable__filterColumn__wrapper .dropmenu__item:after, .dataTable th[data-hidden="true"]:before {
   right: auto; }
 
-.r0, .notify-wrapper[data-pos="top-right"], .notify-wrapper[data-pos="bottom-right"], .oScreen__pointer__message[data-position="left"], .dataTable__filters__top, .section-scroll .iScrollIndicator:before, .section__slider__item .iScrollIndicator:before, .pos-tr, .input-group-addon, .input-autosuggest-item-image, .tag-input .btn, .tag-input .dataTables_wrapper .pagination li, .dataTables_wrapper .pagination .tag-input li, .tag-input .ColVis_Button, .tag-item-remove, .buttons-angle-tr, .buttons-angle[data-pos="top-right"], [data-pos="top-right"].oScreen__buttons,
+.r0, .notify-wrapper[data-pos="top-right"], .notify-wrapper[data-pos="bottom-right"], .oScreen__pointer__message[data-position="left"], .dataTable__filters__top, .section-scroll .iScrollIndicator:before, .section__slider__item .iScrollIndicator:before, .dataTable__welcome[data-icon="pause"]:after, .pos-tr, .input-group-addon, .input-autosuggest-item-image, .tag-input .btn, .tag-input .dataTables_wrapper .pagination li, .dataTables_wrapper .pagination .tag-input li, .tag-input .ColVis_Button, .tag-item-remove, .buttons-angle-tr, .buttons-angle[data-pos="top-right"], [data-pos="top-right"].oScreen__buttons,
 [data-pos="top-right"].oScreen__section__buttons, .section-scroll .iScrollVerticalScrollbar, .section__slider__item .iScrollVerticalScrollbar, .pos-br, .buttons-angle-br, .buttons-angle[data-pos="bottom-right"], [data-pos="bottom-right"].oScreen__buttons,
 [data-pos="bottom-right"].oScreen__section__buttons, .pos-tr-fixed, .pos-br-fixed {
   right: 0; }
@@ -4972,13 +5007,13 @@ body.appLoading .sidebar, .nav__item[data-active="true"], .navbar__menu__item[da
 .r45p {
   right: 45%; }
 
-.t50p, .select:after, .dropmenu__item:after, .dropmenu[data-pos="left"] .dropmenu__wrapper, [data-pos="left"].dataTable__filterColumn__wrapper .dropmenu__wrapper, .dropmenu[data-pos="left"] .dropmenu__wrapper:after, [data-pos="left"].dataTable__filterColumn__wrapper .dropmenu__wrapper:after, .dropmenu[data-pos="right"] .dropmenu__wrapper, [data-pos="right"].dataTable__filterColumn__wrapper .dropmenu__wrapper, .dropmenu[data-pos="right"] .dropmenu__wrapper:after, [data-pos="right"].dataTable__filterColumn__wrapper .dropmenu__wrapper:after, .dataTable th:before, .dataTable th:after, .dataTable__filterColumn, .pos-abs-half, .oScreen__loader__spinner, #datatable-buttons_wrapper .dt-buttons .btn-print:after, body:after, .section__loading:after, .pos-tl-50, .pos-centered, .tag-item-remove:after, #datatable-buttons_filter .dataTable__search__icon:after, .dataTable__device:after, .pos-centered-v, .text-strike:after {
+.t50p, .select:after, .dropmenu__item:after, .dropmenu[data-pos="left"] .dropmenu__wrapper, [data-pos="left"].dataTable__filterColumn__wrapper .dropmenu__wrapper, .dropmenu[data-pos="left"] .dropmenu__wrapper:after, [data-pos="left"].dataTable__filterColumn__wrapper .dropmenu__wrapper:after, .dropmenu[data-pos="right"] .dropmenu__wrapper, [data-pos="right"].dataTable__filterColumn__wrapper .dropmenu__wrapper, .dropmenu[data-pos="right"] .dropmenu__wrapper:after, [data-pos="right"].dataTable__filterColumn__wrapper .dropmenu__wrapper:after, .modal-close:before, .modal-close:after, .dataTable th:before, .dataTable th:after, .dataTable__filterColumn, .pos-abs-half, .oScreen__loader__spinner, #datatable-buttons_wrapper .dt-buttons .btn-print:after, body:after, .section__loading:after, .pos-tl-50, .pos-centered, .tag-item-remove:after, .modal[centered="true"], #datatable-buttons_filter .dataTable__search__icon:after, .dataTable__device:after, .dataTable__welcome:after, .dataTable__welcome[data-icon="pause"]:before, .pos-centered-v, .text-strike:after {
   top: 50%; }
 
 .b50p {
   bottom: 50%; }
 
-.l50p, .dropmenu__wrapper:after, .notify-wrapper[data-pos="top-center"], .notify-wrapper[data-pos="bottom-center"], .pos-abs-half, .oScreen__loader__spinner, #datatable-buttons_wrapper .dt-buttons .btn-print:after, body:after, .section__loading:after, .pos-centered, .tag-item-remove:after, #datatable-buttons_filter .dataTable__search__icon:after, .dataTable__device:after, .pos-centered-h, .dropmenu__wrapper {
+.l50p, .dropmenu__wrapper:after, .modal-close:before, .modal-close:after, .notify-wrapper[data-pos="top-center"], .notify-wrapper[data-pos="bottom-center"], .pos-abs-half, .oScreen__loader__spinner, #datatable-buttons_wrapper .dt-buttons .btn-print:after, body:after, .section__loading:after, .pos-centered, .tag-item-remove:after, .modal[centered="true"], #datatable-buttons_filter .dataTable__search__icon:after, .dataTable__device:after, .dataTable__welcome:after, .dataTable__welcome[data-icon="pause"]:before, .pos-centered-h, .dropmenu__wrapper {
   left: 50%; }
 
 .r50p {
@@ -5092,7 +5127,7 @@ body.appLoading .sidebar, .nav__item[data-active="true"], .navbar__menu__item[da
 .r95p {
   right: 95%; }
 
-.t100p, .input-autosuggest-items, .dataTable__filterColumn__wrapper {
+.t100p, .input-autosuggest-items, .dataTable th[data-hidden="true"]:before, .dataTable th[data-hidden="true"]:after, .dataTable__filterColumn__wrapper {
   top: 100%; }
 
 .b100p, .dropmenu[data-pos="up"] .dropmenu__wrapper, [data-pos="up"].dataTable__filterColumn__wrapper .dropmenu__wrapper {
@@ -5333,7 +5368,7 @@ svg[fill-color="steel"] path, svg[fill-color="steel"] rect, svg[fill-color="stee
 svg[fill-color="slate"] path, svg[fill-color="slate"] rect, svg[fill-color="slate"] polygon, svg[fill-color="slate"] circle {
   fill: #3C4858; }
 
-.bg-white, .input-autosuggest-items, .input-autosuggest-item-image, .select select, .checkbox-control, .checkbox[data-color="white"] input:checked ~ .checkbox-control:before, .switch-label, .dropmenu__wrapper, .loader-ajax, .oScreen[data-color="white"][data-open="true"]:before,
+.bg-white, .input-autosuggest-items, .input-autosuggest-item-image, .select select, .checkbox-control, .checkbox[data-color="white"] input:checked ~ .checkbox-control:before, .switch-label, .dropmenu__wrapper, .modal, .modal-close:hover:before, .modal-close:hover:after, .loader-ajax, .oScreen[data-color="white"][data-open="true"]:before,
 .oScreen__section[data-color="white"][data-open="true"]:before, .ColVis_collection, body:before, .header__wrapper, .section__loading, .section__slider__navbar, .section__slider__item, .options__panel, .btn-badge-white,
 .text-strike[data-color=white]:after {
   background-color: #ffffff; }
@@ -5363,7 +5398,7 @@ svg[fill-color="slate"] path, svg[fill-color="slate"] rect, svg[fill-color="slat
 svg[fill-color="white"] path, svg[fill-color="white"] rect, svg[fill-color="white"] polygon, svg[fill-color="white"] circle {
   fill: #ffffff; }
 
-.bg-silver,
+.bg-silver, .modal-close:before, .modal-close:after, .dataTable__welcome[data-icon="pause"]:after, .dataTable__welcome[data-icon="pause"]:before,
 .text-strike[data-color=silver]:after {
   background-color: #8492A6; }
 
@@ -5423,7 +5458,7 @@ svg[fill-color="silver"] path, svg[fill-color="silver"] rect, svg[fill-color="si
 svg[fill-color="smoke"] path, svg[fill-color="smoke"] rect, svg[fill-color="smoke"] polygon, svg[fill-color="smoke"] circle {
   fill: #E0E6ED; }
 
-.bg-smokeDark,
+.bg-smokeDark, .dataTable th[data-hidden="true"]:before, .dataTable th[data-hidden="true"]:after, .dataTable__progress, .dataTable__welcome[data-icon="stop"]:after,
 .text-strike[data-color=smokeDark]:after {
   background-color: #D3DCE6; }
 
@@ -5536,7 +5571,7 @@ body, .select select:disabled, .alert__button:hover, .ColVis_collection li:hover
 svg[fill-color="snowDark"] path, svg[fill-color="snowDark"] rect, svg[fill-color="snowDark"] polygon, svg[fill-color="snowDark"] circle {
   fill: #EFF2F7; }
 
-.bg-snowDarken,
+.bg-snowDarken, .modal-close,
 .text-strike[data-color=snowDarken]:after {
   background-color: #E5E9F2; }
 
@@ -5564,7 +5599,7 @@ svg[fill-color="snowDark"] path, svg[fill-color="snowDark"] rect, svg[fill-color
 svg[fill-color="snowDarken"] path, svg[fill-color="snowDarken"] rect, svg[fill-color="snowDarken"] polygon, svg[fill-color="snowDarken"] circle {
   fill: #E5E9F2; }
 
-.bg-blue, .checkbox input:checked ~ .checkbox-control:before, .d-phone .dropmenu__wrapper, .dropmenu__item:hover, .alert__button:active, .oScreen__loader__progress, .dataTables_wrapper .pagination li.active, .ColVis_Button.active, .nav__item:before, .navbar__menu__item:before,
+.bg-blue, .checkbox input:checked ~ .checkbox-control:before, .d-phone .dropmenu__wrapper, .dropmenu__item:hover, .alert__button:active, .modal-close:hover, .oScreen__loader__progress, .dataTables_wrapper .pagination li.active, .dataTable th[data-hidden="true"].sorting_asc:before, .dataTable th[data-hidden="true"].sorting_desc:after, .ColVis_Button.active, .nav__item:before, .navbar__menu__item:before,
 .text-strike[data-color=blue]:after {
   background-color: #1FB6FF; }
 
@@ -6658,7 +6693,7 @@ a {
 .w15p, .input-autosuggest-item-image {
   width: 15%; }
 
-.h15 {
+.h15, .dataTable__welcome[data-icon="pause"]:after, .dataTable__welcome[data-icon="pause"]:before {
   height: 15px; }
 
 .h15p {
@@ -6712,13 +6747,13 @@ a {
 .h35p {
   height: 35%; }
 
-.w40, .input-group-addon, .tag-list[data-size="m"] .tag-item-remove {
+.w40, .input-group-addon, .tag-list[data-size="m"] .tag-item-remove, .modal-close {
   width: 40px; }
 
 .w40p {
   width: 40%; }
 
-.h40 {
+.h40, .modal-close {
   height: 40px; }
 
 .h40p {
@@ -6760,7 +6795,7 @@ a {
 .h55p {
   height: 55%; }
 
-.w60, .switcher, .dataTable td.col-check {
+.w60, .switcher, .dataTable td.col-check, section-content[data-is="section-users"] .dataTables_wrapper .col-date {
   width: 60px; }
 
 .w60p {
@@ -6784,7 +6819,9 @@ a {
 .h65p {
   height: 65%; }
 
-.w70 {
+.w70, section-content[data-is="section-users"] .dataTables_wrapper .col-resume,
+section-content[data-is="section-users"] .dataTables_wrapper .col-visits,
+section-content[data-is="section-users"] .dataTables_wrapper .col-device {
   width: 70px; }
 
 .w70p {
@@ -6808,7 +6845,7 @@ a {
 .h75p {
   height: 75%; }
 
-.w80, section-content[data-is="section-jptest-stars"] .dataTable .col-photo {
+.w80, section-content[data-is="section-users"] .dataTables_wrapper .col-balance, section-content[data-is="section-jptest-stat"] .dataTable .col-photo {
   width: 80px; }
 
 .w80p {
@@ -6856,10 +6893,10 @@ a {
 .h95p {
   height: 95%; }
 
-.w100, .switch {
+.w100, .switch, section-content[data-is="section-users"] .dataTables_wrapper .col-plan {
   width: 100px; }
 
-.w100p, .input, .input-context-xl, .input-context-l, .input-context-m, .input-context-s, .tag-item, .input-group, .input-autosuggest-items, .textarea, .select, .select select, input.range[type=range], .d-phone .alert__wrapper, .alert__header, .alert__buttons, .alert__button, .oScreen__loader, .oScreen__loader__progress, .dataTables_wrapper, .dataTables_scroll, .dataTable, .nav__item:before, .navbar__menu__item:before, .page__navbar__container, .section-scroll .iScrollIndicator, .section__slider__item .iScrollIndicator, .section__slider__navbar, .d-mobile .section__slider__navbar__select, .options__panel, .pos-abs-full, .checkbox-control:before, .alert:before, .loader, .oScreen,
+.w100p, .input, .input-context-xl, .input-context-l, .input-context-m, .input-context-s, .tag-item, .input-group, .input-autosuggest-items, .textarea, .select, .select select, input.range[type=range], .d-phone .alert__wrapper, .alert__header, .alert__buttons, .alert__button, .oScreen__loader, .oScreen__loader__progress, .dataTables_wrapper, .dataTables_scroll, .dataTable, .dataTable__progress, .nav__item:before, .navbar__menu__item:before, .page__navbar__container, .section-scroll .iScrollIndicator, .section__slider__item .iScrollIndicator, .section__slider__navbar, .d-mobile .section__slider__navbar__select, .options__panel, .pos-abs-full, .checkbox-control:before, .alert:before, .loader, .oScreen,
 .oScreen__section, .oScreen__content,
 .oScreen__section__content, .oScreen:before,
 .oScreen__section:before, .oScreen__pointer, .dataTable__checkbox:after, body:before, .section__loading, .section__content, .section__slider__container, .section__slider__item, .aspectRatio-content, .pos-fixed-full, .alert, .ColVis_collectionBackground, .section__overlay, .text-strike:after {
@@ -6868,7 +6905,7 @@ a {
 .h100, .navbar__title {
   height: 100px; }
 
-.h100p, .input-icon, .input-group-addon, .input-autosuggest-item-image, .tag-item-remove, .alert__button, .section-scroll .iScrollVerticalScrollbar, .section__slider__item .iScrollVerticalScrollbar, .section__slider__navbar__select, .pos-abs-full, .checkbox-control:before, .alert:before, .loader, .oScreen,
+.h100p, .input-icon, .input-group-addon, .input-autosuggest-item-image, .tag-item-remove, .alert__button, .dataTable__progress__line, .section-scroll .iScrollVerticalScrollbar, .section__slider__item .iScrollVerticalScrollbar, .section__slider__navbar__select, .pos-abs-full, .checkbox-control:before, .alert:before, .loader, .oScreen,
 .oScreen__section, .oScreen__content,
 .oScreen__section__content, .oScreen:before,
 .oScreen__section:before, .oScreen__pointer, .dataTable__checkbox:after, body:before, .section__loading, .section__content, .section__slider__container, .section__slider__item, .aspectRatio-content, .pos-fixed-full, .alert, .ColVis_collectionBackground, .section__overlay {
@@ -6880,7 +6917,8 @@ a {
 .h110 {
   height: 110px; }
 
-.w120 {
+.w120, section-content[data-is="section-users"] .dataTables_wrapper .col-fidelity,
+section-content[data-is="section-users"] .dataTables_wrapper .col-activity {
   width: 120px; }
 
 .h120 {
@@ -6919,7 +6957,7 @@ a {
 .w180 {
   width: 180px; }
 
-.h180, #header {
+.h180 {
   height: 180px; }
 
 .w190 {
@@ -7069,7 +7107,7 @@ a {
 .w2px {
   width: 2px; }
 
-.h2px, .text-strike:after, .text-strike[data-size="s"] {
+.h2px, .dataTable th[data-hidden="true"]:before, .dataTable th[data-hidden="true"]:after, .text-strike:after, .text-strike[data-size="s"] {
   height: 2px; }
 
 .w2p {
@@ -7090,7 +7128,7 @@ a {
 .h3p {
   height: 3%; }
 
-.w4px {
+.w4px, .dataTable__welcome[data-icon="pause"]:after, .dataTable__welcome[data-icon="pause"]:before {
   width: 4px; }
 
 .h4px, .text-strike[data-size="l"] {
@@ -7114,10 +7152,58 @@ a {
 .h5p {
   height: 5%; }
 
-.w16 {
+.w6px {
+  width: 6px; }
+
+.h6px {
+  height: 6px; }
+
+.w6p {
+  width: 6%; }
+
+.h6p {
+  height: 6%; }
+
+.w7px {
+  width: 7px; }
+
+.h7px {
+  height: 7px; }
+
+.w7p {
+  width: 7%; }
+
+.h7p {
+  height: 7%; }
+
+.w8px {
+  width: 8px; }
+
+.h8px, .dataTable__progress {
+  height: 8px; }
+
+.w8p {
+  width: 8%; }
+
+.h8p {
+  height: 8%; }
+
+.w9px {
+  width: 9px; }
+
+.h9px {
+  height: 9px; }
+
+.w9p {
+  width: 9%; }
+
+.h9p {
+  height: 9%; }
+
+.w16, .dataTable__welcome[data-icon="stop"]:after {
   width: 16px; }
 
-.h16 {
+.h16, .dataTable__welcome[data-icon="stop"]:after {
   height: 16px; }
 
 .w18 {
@@ -7150,10 +7236,10 @@ a {
 .h28, #datatable-buttons_filter .dataTable__search__icon, #datatable-buttons_filter input {
   height: 28px; }
 
-.w32, .loader-ajax {
+.w32, .loader-ajax, .dataTable__welcome {
   width: 32px; }
 
-.h32, .loader-ajax, .navbar__menu__item, .dataTable__device {
+.h32, .loader-ajax, .navbar__menu__item, .dataTable__device, .dataTable__welcome {
   height: 32px; }
 
 .w34, .dataTable__photo__blank, .dataTable td.col-photo:empty:after, .dataTable__photo__blank:after, .dataTable__photo {
@@ -7720,7 +7806,7 @@ a {
 .minW-100p, .minWH-100p {
   min-width: 100%; }
 
-.minH-100v, .minWH-100v {
+.minH-100v, .modal:not([centered="true"]), .minWH-100v {
   min-height: 100vh; }
 
 .minH-100p, .minWH-100p {
@@ -7732,8 +7818,7 @@ a {
 .maxW-100p, .input-autosuggest-item-logo, .dataTable, .maxWH-100p {
   max-width: 100%; }
 
-.maxH-100v, .oScreen__modal .section__loading,
-.oScreen__section__modal .section__loading, .maxWH-100v {
+.maxH-100v, .modal .section__loading, .maxWH-100v {
   max-height: 100vh; }
 
 .maxH-100p, .maxWH-100p {
@@ -7812,7 +7897,7 @@ a {
   padding-top: 56.25%; }
 
 .text-center, .switch-left, .switch-right, .alert__header, .oScreen,
-.oScreen__section, .oScreen__pointer__message[data-position="up"], .oScreen__pointer__message[data-position="down"], .dataTable td.dataTables_empty, .dataTable td.col-check {
+.oScreen__section, .oScreen__pointer__message[data-position="up"], .oScreen__pointer__message[data-position="down"], .dataTable td.text-center, .dataTable th.text-center, .dataTable td.dataTables_empty, .dataTable td.col-check {
   text-align: center; }
 
 .text-left, .input-title, .checkbox, .switcher, .dropmenu__item, .oScreen__pointer__message[data-position="right"], .dataTable td, .dataTable th, .ColVis_collection li {
@@ -7897,7 +7982,9 @@ a {
   padding-top: 5px;
   padding-bottom: 5px; }
 
-.plr-xxs, #datatable-buttons_filter input, .text-code {
+.plr-xxs, #datatable-buttons_filter input, section-content[data-is="section-users"] .dataTables_wrapper .col-resume,
+section-content[data-is="section-users"] .dataTables_wrapper .col-visits,
+section-content[data-is="section-users"] .dataTables_wrapper .col-device, .text-code {
   padding-left: 5px;
   padding-right: 5px; }
 
@@ -7936,7 +8023,7 @@ a {
 .pt-xs, .dropmenu__item:first-child, .alert__title {
   padding-top: 10px; }
 
-.pb-xs, .dropmenu__item:last-child {
+.pb-xs, .dropmenu__item:last-child, .user__container {
   padding-bottom: 10px; }
 
 .ptb-xs {
@@ -7953,7 +8040,8 @@ a {
 .pl-s {
   padding-left: 15px; }
 
-.pr-s {
+.pr-s, section-content[data-is="section-users"] .dataTables_wrapper .col-fidelity,
+section-content[data-is="section-users"] .dataTables_wrapper .col-activity {
   padding-right: 15px; }
 
 .pt-s {
@@ -7993,7 +8081,7 @@ a {
   padding-left: 20px;
   padding-right: 20px; }
 
-.p-l {
+.p-l, .modal {
   padding: 40px; }
 
 .pl-l {
@@ -8228,7 +8316,7 @@ a {
 .pr60, .tag-list[data-size="xl"] .tag-input .input, .tag-list[data-size="xl"] .tag-input .input-context-xl, .tag-list[data-size="xl"] .tag-input .input-context-l, .tag-list[data-size="xl"] .tag-input .input-context-m, .tag-list[data-size="xl"] .tag-input .input-context-s, .tag-list[data-size="xl"] .tag-input .tag-item, .alert__subtitle {
   padding-right: 60px; }
 
-.pt60 {
+.pt60, .user__container {
   padding-top: 60px; }
 
 .pb60 {
@@ -8406,7 +8494,7 @@ a {
 .mr--xxs {
   margin-right: -5px; }
 
-.mt--xxs {
+.mt--xxs, .dataTable th[data-hidden="true"]:before, .dataTable th[data-hidden="true"]:after {
   margin-top: -5px; }
 
 .mb--xxs {
@@ -8561,10 +8649,10 @@ a {
 .mr-l, .navbar__menu__item {
   margin-right: 40px; }
 
-.mt-l {
+.mt-l, .modal:not([centered="true"]) {
   margin-top: 40px; }
 
-.mb-l, .page__container {
+.mb-l, .page__container, .user__title {
   margin-bottom: 40px; }
 
 .mtb-l {
@@ -9279,7 +9367,7 @@ a {
   font-size: 24px;
   line-height: 32px; }
 
-.fontSize-28, .alert__title, h2, .h2, .oScreen__pointer__message[data-size="l"] {
+.fontSize-28, .alert__title, h2, .h2, .user__title, .oScreen__pointer__message[data-size="l"] {
   font-size: 28px;
   line-height: 34px; }
 
@@ -9359,7 +9447,7 @@ a {
   font-size: 24px;
   line-height: 32px; }
 
-.fontSize-0, .input-group-addon, .dropmenu__wrapper, .dataTable td.col-check,
+.fontSize-0, .input-group-addon, .dropmenu__wrapper, .dataTable th[data-hidden="true"], .dataTable td.col-check,
 .dataTable td.col-photo {
   font-size: 0; }
 
@@ -9459,7 +9547,7 @@ a {
 .fontWeight-3 {
   font-weight: 300; }
 
-.fontWeight-4, .fontWeight-normal, .btn, .dataTables_wrapper .pagination li, .ColVis_Button, .select select, .switch-left, .switch-right, [data-balloon]:after, .alert__title, .d-phone .alert__title, .alert__subtitle, .d-phone .alert__subtitle, .notify, h1, .h1, h2, .h2, h3, .h3, .navbar__title, h4, .h4, h5, .h5, h6, .h6, .text-code {
+.fontWeight-4, .fontWeight-normal, .btn, .dataTables_wrapper .pagination li, .ColVis_Button, .select select, .switch-left, .switch-right, [data-balloon]:after, .alert__title, .d-phone .alert__title, .alert__subtitle, .d-phone .alert__subtitle, .notify, h1, .h1, h2, .h2, .user__title, h3, .h3, .navbar__title, h4, .h4, h5, .h5, h6, .h6, .text-code {
   font-weight: 400; }
 
 .fontWeight-5, .input-transparent, .input-white.input, .input-white.input-context-xl, .input-white.input-context-l, .input-white.input-context-m, .input-white.input-context-s, .input-white.tag-item {
@@ -9531,7 +9619,7 @@ a {
 .letterSpacing-5-5 {
   letter-spacing: 5.5px; }
 
-.borderRadius-xs, .input-s, .input-context-s, .input-xs, .textarea-xs {
+.borderRadius-xs, .input-s, .input-context-s, .input-xs, .textarea-xs, .modal-close:before, .modal-close:after {
   border-radius: 2px; }
 
 .borderRadiusTop-xs {
@@ -9593,7 +9681,7 @@ a {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px; }
 
-.borderRadius-m, .btn-s, .input, .input-context-xl, .input-context-l, .input-context-m, .input-context-s, .tag-item, .textarea, .select select, .select:after, .section-scroll .iScrollIndicator, .section__slider__item .iScrollIndicator, .text-code {
+.borderRadius-m, .btn-s, .input, .input-context-xl, .input-context-l, .input-context-m, .input-context-s, .tag-item, .textarea, .select select, .select:after, .section-scroll .iScrollIndicator, .section__slider__item .iScrollIndicator, .dataTable__welcome[data-icon="stop"]:after, .dataTable__welcome[data-icon="pause"]:after, .dataTable__welcome[data-icon="pause"]:before, .text-code {
   border-radius: 4px; }
 
 .borderRadiusTop-m {
@@ -9655,9 +9743,7 @@ a {
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px; }
 
-.borderRadius-xl, .dropmenu__wrapper, .d-phone .alert__wrapper, .oScreen__modal,
-.oScreen__section__modal, .oScreen__modal .section__loading,
-.oScreen__section__modal .section__loading, .ColVis_collection {
+.borderRadius-xl, .dropmenu__wrapper, .d-phone .alert__wrapper, .modal, .modal .section__loading, .ColVis_collection {
   border-radius: 10px; }
 
 .borderRadiusTop-xl, .dropmenu__item:first-child {
@@ -9719,7 +9805,7 @@ a {
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px; }
 
-.borderRadius-xxxl {
+.borderRadius-xxxl, .dataTable__progress, .dataTable__progress__line {
   border-radius: 25px; }
 
 .borderRadiusTop-xxxl {
@@ -9887,7 +9973,7 @@ a {
 .borderBottomWidth-5 {
   border-bottom-width: 5px; }
 
-.borderRadius-circle, .btn-loading:before, .btn-badge, .checkbox-control, .checkbox-control:before, .loader-ajax, .oScreen__buttons .button__help, .dataTable td.col-photo:empty:after, .dataTable__photo__blank:after, .dataTable__photo {
+.borderRadius-circle, .btn-loading:before, .btn-badge, .checkbox-control, .checkbox-control:before, .modal-close, .loader-ajax, .oScreen__buttons .button__help, .dataTable td.col-photo:empty:after, .dataTable__photo__blank:after, .dataTable__photo {
   border-radius: 50%; }
 
 .borderRadiusTop-none {
@@ -9930,8 +10016,7 @@ a {
 .boxShadow-dark {
   box-shadow: 0 6px 22px -6px rgba(0, 0, 0, 0.25); }
 
-.boxShadow-larger, .input-autosuggest-items:not(:empty), .alert__wrapper, .oScreen__modal,
-.oScreen__section__modal {
+.boxShadow-larger, .input-autosuggest-items:not(:empty), .alert__wrapper, .modal {
   box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.1), 0 1px 4px 0 rgba(0, 0, 0, 0.06); }
 
 .boxShadow-distant, .options__panel {
@@ -9985,7 +10070,7 @@ a {
 .opacity-45 {
   opacity: 0.45; }
 
-.opacity-50, .switcher.white.disabled .switch-label, .section[data-hidden="true"] .section__content, [data-hidden="true"].oScreen__section .section__content {
+.opacity-50, .switcher.white.disabled .switch-label, .section[data-hidden="true"] .section__content, [data-hidden="true"].oScreen__section .section__content, .dataTable__welcome[data-icon="pause"]:after, .dataTable__welcome[data-icon="pause"]:before, .dataTable__welcome[data-icon="break"]:after {
   opacity: 0.5; }
 
 .opacity-55 {
@@ -10019,7 +10104,7 @@ a {
 .opacity-100, .btn-disabled, .btn-loading, .checkbox input:checked ~ .checkbox-control:after, .d-phone .dropmenu[data-select="true"] .dropmenu__item.selected:after, .d-phone [data-select="true"].dataTable__filterColumn__wrapper .dropmenu__item.selected:after, .dropmenu[data-select="true"] .dropmenu__item.selected:hover:after, [data-select="true"].dataTable__filterColumn__wrapper .dropmenu__item.selected:hover:after, .dropmenu[data-active="true"], [data-active="true"].dataTable__filterColumn__wrapper, .dataTable__filterColumn__wrapper.active, .alert[data-open="true"]:before, .alert[data-open="true"] .alert__wrapper, .notify-wrapper[data-active="true"] .notify, .loader[data-show="true"], .loader-ajax[data-show="true"], .oScreen[data-open="true"]:before,
 .oScreen__section[data-open="true"]:before, .oScreen[data-open="true"][data-show="modal"] .oScreen__content,
 .oScreen__section[data-open="true"][data-show="modal"] .oScreen__content, .oScreen[data-open="true"][data-show="modal"] .oScreen__buttons,
-.oScreen__section[data-open="true"][data-show="modal"] .oScreen__buttons, .oScreen__pointer[data-open="true"], .oScreen__pointer__message[data-active="true"], .oScreen[data-open="true"][data-show="up"] .oScreen__buttons, .oScreen[data-open="true"][data-show="down"] .oScreen__buttons, .oScreen[data-open="true"][data-show="left"] .oScreen__buttons, .oScreen[data-open="true"][data-show="right"] .oScreen__buttons, .oScreen[data-open="true"] .oScreen__content__fadeIn, .oScreen[data-loader="true"] .oScreen__loader, .oScreen__section[data-open="true"][data-show="up"] .oScreen__section__buttons, .oScreen__section[data-open="true"][data-show="down"] .oScreen__section__buttons, .oScreen__section[data-open="true"][data-show="left"] .oScreen__section__buttons, .oScreen__section[data-open="true"][data-show="right"] .oScreen__section__buttons, .oScreen__section[data-open="true"] .oScreen__section__content__fadeIn, .oScreen__section[data-loader="true"] .oScreen__loader, body.appAuth #auth, .section[data-overlay="true"] .section__overlay, [data-overlay="true"].oScreen__section .section__overlay, .section[data-loading="true"] .section__loading, [data-loading="true"].oScreen__section .section__loading, .d-mobile .section-scroll.i-scrolling .iScrollVerticalScrollbar, .d-mobile .i-scrolling.section__slider__item .iScrollVerticalScrollbar, .showAnim .anim-fadeIn, .anim.animated, .animated.anim-group1, .showAnim-group1 .anim-group1, .animated.anim-group2, .showAnim-group2 .anim-group2, .animated.anim-group3, .showAnim-group3 .anim-group3, .animated.anim-group4, .showAnim-group4 .anim-group4, .animated.anim-group5, .showAnim-group5 .anim-group5, .showAnim .anim:not(.anim-fadeIn), .showAnim .anim-group1:not(.anim-fadeIn), .showAnim .anim-group2:not(.anim-fadeIn), .showAnim .anim-group3:not(.anim-fadeIn), .showAnim .anim-group4:not(.anim-fadeIn), .showAnim .anim-group5:not(.anim-fadeIn),
+.oScreen__section[data-open="true"][data-show="modal"] .oScreen__buttons, .oScreen__pointer[data-open="true"], .oScreen__pointer__message[data-active="true"], .oScreen[data-open="true"][data-show="up"] .oScreen__buttons, .oScreen[data-open="true"][data-show="down"] .oScreen__buttons, .oScreen[data-open="true"][data-show="left"] .oScreen__buttons, .oScreen[data-open="true"][data-show="right"] .oScreen__buttons, .oScreen[data-open="true"] .oScreen__content__fadeIn, .oScreen[data-loader="true"] .oScreen__loader, .oScreen__section[data-open="true"][data-show="up"] .oScreen__section__buttons, .oScreen__section[data-open="true"][data-show="down"] .oScreen__section__buttons, .oScreen__section[data-open="true"][data-show="left"] .oScreen__section__buttons, .oScreen__section[data-open="true"][data-show="right"] .oScreen__section__buttons, .oScreen__section[data-open="true"] .oScreen__section__content__fadeIn, .oScreen__section[data-loader="true"] .oScreen__loader, .dataTable th[data-hidden="true"]:before, .dataTable th[data-hidden="true"]:after, body.appAuth #auth, .section[data-overlay="true"] .section__overlay, [data-overlay="true"].oScreen__section .section__overlay, .section[data-loading="true"] .section__loading, [data-loading="true"].oScreen__section .section__loading, .d-mobile .section-scroll.i-scrolling .iScrollVerticalScrollbar, .d-mobile .i-scrolling.section__slider__item .iScrollVerticalScrollbar, .showAnim .anim-fadeIn, .anim.animated, .animated.anim-group1, .showAnim-group1 .anim-group1, .animated.anim-group2, .showAnim-group2 .anim-group2, .animated.anim-group3, .showAnim-group3 .anim-group3, .animated.anim-group4, .showAnim-group4 .anim-group4, .animated.anim-group5, .showAnim-group5 .anim-group5, .showAnim .anim:not(.anim-fadeIn), .showAnim .anim-group1:not(.anim-fadeIn), .showAnim .anim-group2:not(.anim-fadeIn), .showAnim .anim-group3:not(.anim-fadeIn), .showAnim .anim-group4:not(.anim-fadeIn), .showAnim .anim-group5:not(.anim-fadeIn),
 .animated,
 .notAnim .anim,
 .notAnim .anim-group1,
@@ -10038,6 +10123,27 @@ a {
 .oScreen__section[data-show="modal"] .oScreen__content, .oScreen:before,
 .oScreen__section:before, .oScreen__loader, .oScreen__pointer, body.isLoading:before, body.isLoading:after, #auth, .section__overlay, .section[data-inner="show"] .section__loading:after, [data-inner="show"].oScreen__section .section__loading:after, .section__loading, .d-mobile .section-scroll .iScrollVerticalScrollbar, .d-mobile .section__slider__item .iScrollVerticalScrollbar, .section__slider__navbar__select {
   opacity: 0; }
+
+body#renderSide .progressive-image {
+  background-image: none !important; }
+
+.bg-none, .switcher.white .switch-left,
+.switcher.white .switch-right, .switcher.white:not([active="true"]) .switch-left,
+.switcher.white:not([active="true"]) .switch-right, .dataTable td.dataTables_empty:hover, #datatable-buttons_filter input, #datatable-buttons_length select, .btn-link-primary, .btn-link-primary-hover, .btn-link-success, .btn-link-success-hover, .btn-link-danger, .btn-link-danger-hover, .btn-link-warning, .btn-link-warning-hover, .btn-link-dark, .btn-link-dark-hover {
+  background: none; }
+
+.bg-cover, .tag-item-remove:after, .dataTable td.col-photo:empty:after, .dataTable__photo__blank:after, .dataTable__photo, .nav__logo:after, .dataTable__device:after, .dataTable__welcome:after {
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+.bg-cover-center {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+.bg-image-none, .dataTable th[data-hidden="true"]:before, .dataTable th[data-hidden="true"]:after {
+  background-image: none; }
 
 .anim, .anim-group1, .anim-group2, .anim-group3, .anim-group4, .anim-group5 {
   opacity: 0.0009; }
@@ -10392,8 +10498,8 @@ a {
 .transition-xxs {
   transition: all 0.08s; }
 
-.transition-xs {
-  transition: all 0.2s; }
+.transition-xs, .modal-close:before, .modal-close:after {
+  transition: all 0.15s; }
 
 .transition-s {
   transition: all 0.3s; }
@@ -10417,7 +10523,7 @@ a {
   transition-delay: 0s; }
 
 .transition-delay-xxs {
-  transition-delay: 0.08s; }
+  transition-delay: 0.1s; }
 
 .transition-delay-xs {
   transition-delay: 0.2s; }
@@ -10673,7 +10779,7 @@ body.appLoading .sidebar * {
 .oScreen__section__content, .dataTables_wrapper .pagination li.active, .dataTable__filterColumn, .section-scroll .iScrollIndicator, .section__slider__item .iScrollIndicator, .options__panel {
   z-index: 1; }
 
-.zIndex-2, .switch-label, .oScreen__buttons .button__close, .oScreen__buttons .button__save, .oScreen__buttons,
+.zIndex-2, .switch-label, .modal-close, .oScreen__buttons .button__close, .oScreen__buttons .button__save, .oScreen__buttons,
 .oScreen__section__buttons {
   z-index: 2; }
 

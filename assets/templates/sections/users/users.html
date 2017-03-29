@@ -14,20 +14,23 @@
                 <th></th>
                 <th></th>
                 <th>Имя</th>
+                <th>Лояльность</th>
                 <th>Активность</th>
+                <th data-hidden="true">Приветствие</th>
                 <th>Резюме</th>
+                <th>Визиты</th>
                 <th>Девайс</th>
                 <th>Тариф</th>
                 <th>Баланс</th>
-                <th></th>
-                <th></th>
+                <th data-hidden="true">Город</th>
+                <th data-hidden="true">Дата</th>
             </thead>
             <tbody>
             </tbody>
         </table>
     </div>
 
-    <!-- <section-samples-options></section-samples-options> -->
+    <section-users-options></section-users-options>
 
 <script>
 
@@ -44,12 +47,68 @@
             editItem: function(item){
                 $Sections.users.edit.show(item._id);
             },
-            // select: function(self){
-            //     $Sections.users.options.show(self.select.get());
-            // }
+            select: function(items){
+                $Sections.users.options.show(items);
+            },
+            props: {
+                get: {
+                    fidelity: function(metrika){
+                        var result = _.deepFindWhere(metrika, "success"),
+                            hits = 0,
+                            all = 0;
+
+                        _.each(result, function(prop){
+                            if (prop.show === true){
+                                all += 1;
+                                if (prop.success) hits += 1;
+                            }
+                        });
+
+                        var total = parseInt(100 * (hits / all));
+
+                        return '<div class="dataTable__progress"><div class="dataTable__progress__line bg-' + $Sections.users.section.get.scoreColor(total) + '" style="width:' + total + '%"></div></div>';
+                    },
+                    activity: function(metrika){
+                        var result = _.deepFindWhere(metrika, "show"),
+                            hits = _.reduce(_.pluck(result, "show"), function(memo, value){return memo + (value ? 1 : 0);}, 0);
+
+                        var total = parseInt(100 * (hits / result.length));
+
+                        return '<div class="dataTable__progress"><div class="dataTable__progress__line bg-' + $Sections.users.section.get.scoreColor(total) + '" style="width:' + total + '%"></div></div>';
+                    },
+                    welcome: function(metrika){
+                        var welcome = metrika.offers.welcome,
+                            icon;
+
+                        if (welcome.show){
+                            if (welcome.hide) icon = "break";
+                            else if (welcome.tutorial.show){
+                                if (welcome.tutorial.success) icon = "play";
+                                else if (!welcome.tutorial.success){
+                                    if (welcome.tutorial.hide){
+                                        icon = "stop";
+                                    }
+                                }
+                            }
+                            if (!icon) icon = "pause";
+                            return '<div class="dataTable__welcome" data-icon="' + icon + '"></div>';
+                        }
+                    }
+                }
+            }
         });
         $Sections.table.init();
     });
+
+    $.get = {
+        scoreColor: function(total){
+            if (total > 50 && total < 64) return "orangeLight";
+            else if (total > 33 && total < 51) return "orange";
+            else if (total > 20 && total < 34) return "red";
+            else if (total < 21) return "cherry";
+            else return "green";
+        }
+    };
 
     $.open = {
         createUser: function(){

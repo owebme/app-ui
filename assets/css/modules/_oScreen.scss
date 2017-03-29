@@ -83,17 +83,6 @@
         @extend .overflowY-auto;
         @extend .zIndex-1;
     }
-    &__modal {
-        @extend .pos-rel;
-        @extend .centered;
-        @extend .borderRadius-xl;
-        @extend .boxShadow-larger;
-
-        .section__loading {
-            @extend .borderRadius-xl;
-            @extend .maxH-100v;
-        }
-    }
     &:before {
         @extend .content-empty;
         @include accelerate(true);

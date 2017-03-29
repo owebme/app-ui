@@ -6,6 +6,9 @@ module.exports = function(url){
 	// Initialize
 	app.get(url + '/data/init', app.checkAuth(), require('./data/init')());
 
+	// Users
+	require('./users')(url + '/users');
+
 	// Samples
 	require('./samples')(url + '/samples');
 

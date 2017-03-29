@@ -24,6 +24,7 @@
 @import 'ui/basic/dropmenu';
 @import 'ui/basic/balloon';
 @import 'ui/basic/alert';
+@import 'ui/basic/modal';
 @import 'ui/basic/notify';
 @import 'ui/basic/spinner';
 @import 'ui/basic/loader';
@@ -49,6 +50,8 @@
 // Sections
 @import 'sections/sections';
 @import 'sections/table/table';
+@import 'sections/users/users';
+@import 'sections/user/user';
 @import 'sections/samples/samples';
 @import 'sections/jptest/jptest';
 @import 'sections/options/panel';
@@ -73,6 +76,7 @@
 @import 'states/border';
 @import 'states/boxShadow';
 @import 'states/opacity';
+@import 'states/image';
 @import 'states/animations';
 @import 'states/transition';
 @import 'states/transform';

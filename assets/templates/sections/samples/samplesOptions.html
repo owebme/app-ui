@@ -58,16 +58,12 @@
             cancel: true,
             success: {
                 callback: function(){
-                    $Sections.table.noObservable = true;
-                    _.each($.ids, function(id){
-                        $store.samples.select({"_id": id}).unset();
-                        $Sections.table.refresh.item(id);
+                    $Sections.table.remove.list($.ids, function(){
+                        app.request("delSamples", {
+                            ids: $.ids
+                        });
+                        $.unSelect();
                     });
-                    app.request("delSamples", {
-                        ids: $.ids
-                    });
-                    $.unSelect();
-                    $Sections.table.noObservable = false;
                 }
             }
         });

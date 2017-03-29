@@ -9,8 +9,14 @@ $store.users = _.extend(new Baobab([]),
             stateSaveParams: function(settings, data){
                 data.search.search = "";
             },
+            stateSaveCallback: function(settings, data) {
+                localStorage.setItem('DataTables_users', JSON.stringify(data));
+            },
+            stateLoadCallback: function(settings) {
+                return JSON.parse(localStorage.getItem('DataTables_users'));
+            },
             autoWidth: true,
-            order: [[ 4, "desc" ]],
+            order: [[ 11, "desc" ]],
             dom: '<"dataTable__filters__top"iCf>rt<"dataTable__filters__bottom"lp>',
             colVis: {
                 buttonText: "",
@@ -39,10 +45,10 @@ $store.users = _.extend(new Baobab([]),
                     searchable: false,
                     render: function(value, type, row){
                         if (value && value.length){
-                            return '<img src="http://192.168.1.64:3000'+ value +'" class="dataTable__photo" onerror="this.remove()">';
+                            return '<div class="pos-rel" data-balloon=" ' + row.login + ' "><img src="http://192.168.1.64:3000'+ value +'" class="dataTable__photo" onerror="this.remove()"></div>';
                         }
                         else {
-                            return '<div class="dataTable__photo__blank"></div>';
+                            return '<div class="pos-rel" data-balloon=" ' + row.login + ' "><div class="dataTable__photo__blank"></div></div>';
                         }
                     },
                 },
@@ -50,47 +56,71 @@ $store.users = _.extend(new Baobab([]),
                     targets: 2,
                     data: 'name',
                     defaultContent: "",
-                    className: "col-title",
-                    render: function(value, type, row){
-                        if (value && value.length){
-                            return '<span class="text-truncate">'+ value +'</span>';
-                        }
-                        else {
-                            return value;
-                        }
-                    }
+                    className: "col-title text-truncate"
                 },
                 {
                     targets: 3,
-                    data: null,
-                    className: "col-activity",
+                    data: "metrika",
+                    className: "col-fidelity",
                     orderable: false,
                     searchable: false,
                     render: function(value, type, row){
-                        return '';
+                        return self.props.get.fidelity(value);
                     }
                 },
                 {
                     targets: 4,
-                    data: null,
-                    className: "col-resume",
+                    data: "metrika",
+                    className: "col-activity",
                     orderable: false,
                     searchable: false,
                     render: function(value, type, row){
-                        return '';
+                        return self.props.get.activity(value);
                     }
                 },
                 {
                     targets: 5,
+                    data: "metrika",
+                    defaultContent: "",
+                    className: "col-welcome",
+                    orderable: false,
+                    searchable: false,
+                    render: function(value, type, row){
+                        return self.props.get.welcome(value);
+                    }
+                },
+                {
+                    targets: 6,
+                    data: null,
+                    className: "col-resume text-center",
+                    orderable: false,
+                    searchable: false,
+                    render: function(value, type, row){
+                        return '2';
+                    }
+                },
+                {
+                    targets: 7,
+                    data: null,
+                    className: "col-visits text-center",
+                    orderable: false,
+                    searchable: false,
+                    render: function(value, type, row){
+                        return '1';
+                    }
+                },
+                {
+                    targets: 8,
                     data: 'init.device',
                     className: "col-device",
+                    orderable: false,
                     searchable: false,
                     render: function(value, type, row){
                         return '<div class="dataTable__device" data-device="' + value + '"></div>';
                     }
                 },
                 {
-                    targets: 6,
+                    targets: 9,
                     data: 'plan',
                     className: "col-plan",
                     render: function(value, type, row){
@@ -103,7 +133,7 @@ $store.users = _.extend(new Baobab([]),
                     }
                 },
                 {
-                    targets: 7,
+                    targets: 10,
                     data: 'balance',
                     className: "col-balance",
                     orderable: false,
@@ -113,16 +143,15 @@ $store.users = _.extend(new Baobab([]),
                     }
                 },
                 {
-                    targets: 8,
+                    targets: 11,
                     data: 'init.location.city',
-                    className: "col-city",
+                    className: "col-city text-truncate",
                     orderable: false
                 },
                 {
-                    targets: 9,
+                    targets: 12,
                     data: 'create',
                     className: "col-date",
-                    orderable: false,
                     searchable: false,
                     render: function(value, type, row){
                         if (type === "sort"){

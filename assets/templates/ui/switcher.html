@@ -13,16 +13,6 @@
     $scope = $$($.root),
     clicked = false;
 
-    $.on("before-mount", function(){
-        if ($.opts.update && $.opts.cursor){
-            $.value = $.opts.cursor.get($.opts.update);
-        }
-        else if (!$.opts.update){
-            if ($.opts.value === undefined) $.opts.value = $.value = false;
-            else $.value = $.opts.value;
-        }
-    });
-
     $.on("mount", function(){
         $scope.on('swipeLeft swipeRight', function(e){
             e.stopPropagation();

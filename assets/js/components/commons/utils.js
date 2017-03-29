@@ -345,6 +345,7 @@
 	};
 
 	utils.deepFindWhere = function(obj, p, v, result){
+		if (v === undefined && !result) result = [];
 	    if (obj instanceof Array) {
 	        for (var i = 0; i < obj.length; i++) {
 	            result = utils.deepFindWhere(obj[i], p, v, result);
@@ -353,9 +354,12 @@
 	    else {
 	        for (var prop in obj) {
 	            if (prop == p) {
-	                if (obj[prop] == v) {
+					if (v !== undefined && obj[prop] === v){
 	                    result = obj;
 	                }
+					else if (v === undefined) {
+						result.push(obj);
+					}
 	            }
 	            if (obj[prop] instanceof Object || obj[prop] instanceof Array){
 	                result = utils.deepFindWhere(obj[prop], p, v, result);

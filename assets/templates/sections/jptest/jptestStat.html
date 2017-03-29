@@ -1,0 +1,38 @@
+<section-jptest-stat>
+
+    <div class="page__container">
+        <table ref="dataTable" id="datatable-buttons" class="dataTable">
+            <thead>
+                <th></th>
+                <th>Оценка</th>
+                <th>Девайс</th>
+                <th>Сайт</th>
+                <th>Дата</th>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+<script>
+
+    var $ = this;
+
+    $.on("mount", function(){
+        $Sections.module("jptest.stat", $);
+        $Sections.table = new app.plugins.dataTable({
+            tag: $,
+            scope: $.refs.dataTable,
+            settings: $store.jptestStat.dataTable,
+            items: $store.jptestStat.get()
+        });
+        $Sections.table.init();
+    });
+
+    $.on("before-unmount", function(){
+        $Sections.table.destroy();
+    });
+
+</script>
+
+</section-jptest-stat>

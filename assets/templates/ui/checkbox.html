@@ -11,22 +11,6 @@
     var $ = this,
     clicked = false;
 
-    $.on("before-mount", function(){
-        if ($.opts.update && $.opts.cursor){
-            if ($.opts.group){
-                var value = $.opts.cursor.get($.opts.update);
-                $.value = value == $.opts.value ? true : false;
-            }
-            else {
-                $.value = $.opts.cursor.get($.opts.update);
-            }
-        }
-        else if (!$.opts.update){
-            if ($.opts.value === undefined) $.opts.value = $.value = false;
-            else $.value = $.opts.value;
-        }
-    });
-
     $.on("update", function(){
         if (!clicked){
             if (!$.opts.group && !_.isBoolean($.opts.value) && $.opts.update && $.opts.cursor){

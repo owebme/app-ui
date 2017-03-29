@@ -1,0 +1,10 @@
+.user {
+    &__container {
+        @extend .pt60;
+        @extend .pb-xs;
+    }
+    &__title {
+        @extend .h2;
+        @extend .mb-l;
+    }
+}

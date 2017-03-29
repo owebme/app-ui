@@ -12,6 +12,12 @@ $store.samples = _.extend(new Baobab([]),
             stateSaveParams: function(settings, data){
                 data.search.search = "";
             },
+            stateSaveCallback: function(settings, data) {
+                localStorage.setItem('DataTables_samples', JSON.stringify(data));
+            },
+            stateLoadCallback: function(settings) {
+                return JSON.parse(localStorage.getItem('DataTables_samples'));
+            },
             autoWidth: true,
             order: [[ 2, "desc" ]],
             dom: '<"dataTable__filters__top"iCf>rt<"dataTable__filters__bottom"lp>',

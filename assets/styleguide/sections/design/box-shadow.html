@@ -5,4 +5,92 @@
     <h4 class="mb-xxs">Perspective shadows</h4>
     <p class="fontSize-16 mb-l">Use these shadow effects to give the illusion of perspective. A modal is a good use case for such an effect.</p>
 
+    <div class="p-m borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="inline p-m xs-p-xxs">
+            <div class="pos-rel mr-m xs-mb-m display-inlineBlock bg-white w100 h100 borderRadius-m boxShadow-distant">
+                <div class="pos-centered c-slate fontSize-m">Distant</div>
+            </div>
+            <div class="pos-rel mr-m xs-mb-m display-inlineBlock bg-white w100 h100 borderRadius-m boxShadow-close">
+                <div class="pos-centered c-slate fontSize-m">Close</div>
+            </div>
+            <div class="pos-rel mr-m xs-mb-m display-inlineBlock bg-white w100 h100 borderRadius-m boxShadow-subtle">
+                <div class="pos-centered c-slate fontSize-m">Subtle</div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ perspectiveShadows() }</code></pre>
+        <script>
+            this.perspectiveShadows = function(){
+                return '<div class="boxShadow-distant">...</div>\n'+
+                        '<div class="boxShadow-close">...</div>\n'+
+                        '<div class="boxShadow-subtle">...</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">3D shadows</h4>
+    <p class="fontSize-16 mb-l">These are the available values for box shadow.</p>
+
+    <div class="p-m borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="inline p-m xs-p-xxs">
+            <div class="pos-rel mr-m xs-mb-m display-inlineBlock bg-white borderWidth-1 borderStyle-solid borderColor-smoke w100 h100 borderRadius-m boxShadow-deboss">
+                <div class="pos-centered c-slate fontSize-m">Deboss</div>
+            </div>
+            <div class="pos-rel mr-m xs-mb-m display-inlineBlock bg-white borderWidth-1 borderStyle-solid borderColor-smoke w100 h100 borderRadius-m boxShadow-emboss">
+                <div class="pos-centered c-slate fontSize-m">Emboss</div>
+            </div>
+            <div class="pos-rel mr-m xs-mb-m display-inlineBlock bg-white borderWidth-1 borderStyle-solid borderColor-smoke w100 h100 borderRadius-m boxShadow-raise">
+                <div class="pos-centered c-slate fontSize-m">Raise</div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ shadows() }</code></pre>
+        <script>
+            this.shadows = function(){
+                return '<div class="boxShadow-deboss">...</div>\n'+
+                        '<div class="boxShadow-emboss">...</div>\n'+
+                        '<div class="boxShadow-raise">...</div>';
+            };
+        </script>
+    </div>
+
+    <h4 class="mb-xxs">Large shadows</h4>
+    <p class="fontSize-16 mb-l">These are the available values for box shadow.</p>
+
+    <div class="p-m borderWidth-1 borderStyle-solid borderColor-smoke borderRadiusTop-m">
+        <div class="inline p-m xs-p-xxs">
+            <div class="pos-rel mr-m xs-mb-m display-inlineBlock bg-white w100 h100 borderRadius-m boxShadow-dark">
+                <div class="pos-centered c-slate fontSize-m">Dark</div>
+            </div>
+            <div class="pos-rel mr-m xs-mb-m display-inlineBlock bg-white w100 h100 borderRadius-m boxShadow-larger">
+                <div class="pos-centered c-slate fontSize-m">Larger</div>
+            </div>
+            <div class="pos-rel mr-m xs-mb-m display-inlineBlock bg-white w100 h100 borderRadius-m boxShadow-default">
+                <div class="pos-centered c-slate fontSize-m">Default</div>
+            </div>
+        </div>
+    </div>
+    <div class="code-preview borderRadiusTop-none mt--1 mb-xl">
+        <pre><code class="hljs">{ largeShadows() }</code></pre>
+        <script>
+            this.largeShadows = function(){
+                return '<div class="boxShadow-dark">...</div>\n'+
+                        '<div class="boxShadow-larger">...</div>\n'+
+                        '<div class="boxShadow-default">...</div>';
+            };
+        </script>
+    </div>
+
+<script>
+
+    this.on("mount", function(){
+        $$('pre > code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+
+</script>
+
 </design-box-shadow>

@@ -5,7 +5,7 @@
     </div>
 
     <div class="oScreen__content">
-        <div ref="content" class="oScreen__modal pos-centered p-l bg-white" style="width:640px;">
+        <div ref="content" class="oScreen__modal modal modal-m" centered="true">
             <div if={ !result }>
                 <textarea ref="textarea" class="textarea textarea-l mb-m" style="height:280px" placeholder="Вставьте ссылки"></textarea>
                 <div onClick={ onSuccess } onUpdate="none" class="btn btn-success { 'btn-loading' : loading } btn-l">Получить резюме</div>
@@ -13,7 +13,7 @@
             <div if={ result }>
                 <h3 class="mb-l c-green">Получено успешно: <strong>{ result.all }</strong></h3>
                 <h3 class="mb-l c-blue">Добавлены резюме: <strong>{ result.insert }</strong></h3>
-                <h3 class="mb-l c-orange">Обновлены резюме: <strong>{ result.update }</strong></h3>
+                <h3 class="mb-l c-orangeLight">Обновлены резюме: <strong>{ result.update }</strong></h3>
                 <h3 class="c-red">Ошибка получения: <strong>{ result.errors }</strong></h3>
             </div>
         </div>

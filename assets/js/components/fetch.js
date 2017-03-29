@@ -8,9 +8,7 @@ app.fetch.API.getDataInit = function(){
 
             $store.users.set(res.users ? res.users : []);
             $store.samples.set(res.samples ? res.samples : []);
-            $store.jptestStars.set(res.jptestStars ? res.jptestStars : []);
-
-            console.dir(res.users);
+            $store.jptestStat.set(res.jptestStat ? res.jptestStat : []);
 
             resolve(res);
         });

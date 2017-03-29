@@ -13,10 +13,55 @@
             @include ui-icon("device_desktop_silver", 34px, 18px);
         }
         &[data-device="tablet"]:after {
-            @include ui-icon("device_tablet_silver", 16px, 24px);
+            @include ui-icon("device_tablet_silver", 17px, 25px);
         }
         &[data-device="phone"]:after {
-            @include ui-icon("device_phones_silver", 20px, 24px);
+            @include ui-icon("device_phones_silver", 21px, 26px);
+        }
+    }
+    &__welcome {
+        @extend .pos-rel;
+        @extend .w32;
+        @extend .h32;
+
+        &:after {
+            @extend .content-empty;
+            @extend .pos-centered;
+            @extend .bg-cover;
+        }
+        &[data-icon="play"]:after {
+            @include ui-icon("play", 15px, 17px);
+        }
+        &[data-icon="stop"]:after {
+            @extend .bg-smokeDark;
+            @extend .w16;
+            @extend .h16;
+            @extend .borderRadius-m;
+        }
+        &[data-icon="pause"] {
+            &:after,
+            &:before {
+                @extend .opacity-50;
+                @extend .bg-silver;
+                @extend .w4px;
+                @extend .h15;
+                @extend .borderRadius-m;
+            }
+            &:before {
+                @extend .content-empty;
+                @extend .pos-centered;
+                @extend .l0;
+                margin-left:-4px;
+            }
+            &:after {
+                @extend .l-auto;
+                @extend .r0;
+                margin-right:9px;
+            }
+        }
+        &[data-icon="break"]:after {
+            @extend .opacity-50;
+            @include ui-icon("break_silver", 22px, 22px);
         }
     }
 }

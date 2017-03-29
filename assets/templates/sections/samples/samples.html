@@ -47,8 +47,8 @@
             editItem: function(item){
                 $Sections.samples.edit.show(item._id);
             },
-            select: function(self){
-                $Sections.samples.options.show(self.select.get());
+            select: function(items){
+                $Sections.samples.options.show(items);
             },
             props: {
                 status: $.opts.status

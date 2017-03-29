@@ -33,6 +33,7 @@
 
             this.refresh.self = this;
             this.get.self = this;
+            this.remove.self = this;
             this.select.self = this;
             this.search.self = this;
 
@@ -85,7 +86,7 @@
                         else {
                             _this.selectList.push(item[_this.propId]);
                         }
-                        _this.fnSelect(_this);
+                        _this.fnSelect(_this.select.get());
                     }
                 });
             }
@@ -133,6 +134,19 @@
                 var prop = {};
                 prop[this.self.propId] = id;
                 return prop;
+            }
+        },
+
+        remove: {
+            list: function(ids, callback){
+                var self = this.self;
+                self.noObservable = true;
+                _.each(ids, function(id){
+                    self.store.select(self.get.objPropId(id)).unset();
+                    self.refresh.item(id);
+                });
+                if (_.isFunction(callback)) callback();
+                self.noObservable = false;
             }
         },
 

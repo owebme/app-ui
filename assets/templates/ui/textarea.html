@@ -6,23 +6,14 @@
 
     var $ = this;
 
-    $.on("before-mount", function(){
-        if ($.opts.update && $.opts.cursor){
-            $.value = $.opts.cursor.get($.opts.update);
-        }
-        else {
-            $.value = $.opts.value;
-        }
-    });
-
     $.on("update", function(){
         if ((!$.opts.value || !$.opts.onupdate) && $.opts.update && $.opts.cursor){
             $.value = $.opts.cursor.get($.opts.update);
-            $.refs.textarea.value = $.value;
+            $.refs.textarea.value = $.value || "";
         }
         else if ($.opts.value && $.opts.value !== $.value){
             $.value = $.opts.value;
-            $.refs.textarea.value = $.value;
+            $.refs.textarea.value = $.value || "";
         }
     });
 

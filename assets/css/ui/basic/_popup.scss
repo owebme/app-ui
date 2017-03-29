@@ -1,0 +1,213 @@
+.popup {
+    @include accelerate();
+    @extend .display-block;
+    @extend .pos-fixed;
+    @extend .bg-white;
+    @extend .c-blackLight;
+    @extend .visibility-hidden;
+    @extend .pointerEvents-none;
+    @extend .opacity-0;
+    @extend .scale-80;
+    @extend .willChange-tp;
+    @extend .borderRadius-xl;
+    box-shadow:0 16px 62px -10px rgba(31,35,37,.4), 1px 0 0 0 rgba(31,45,61,.08), 0 1px 0 0 rgba(31,45,61,.08), -1px 0 0 0 rgba(31,45,61,.08), 0 -1px 0 0 rgba(31,45,61,.08);
+    transition:transform 0.3s $cubic68, opacity 0.3s $cubic68, visibility 0s 0.3s;
+    @extend .zIndex-101;
+
+    .d-phone & {
+        box-shadow:0 13px 62px -10px rgba(31,35,37,.6), 1px 0 0 0 rgba(31,45,61,.08), 0 1px 0 0 rgba(31,45,61,.08), -1px 0 0 0 rgba(31,45,61,.08), 0 -1px 0 0 rgba(31,45,61,.08);
+    }
+    &[data-active="true"]{
+        @extend .opacity-100;
+        @extend .pointerEvents-all;
+        @extend .visibility-visible;
+        @extend .transform-default;
+        transition:transform 0.5s $bounceForce, opacity 0.5s $bounceForce;
+    }
+    &__title {
+        @extend .fontFamily-futura;
+    }
+    &__text {
+        @extend .c-gray;
+        @extend .fontFamily-helvetica;
+    }
+    &__inner {
+        @extend .flex-row-left-center;
+    }
+    &__image {
+        @extend .flex-centered;
+        width:37%;
+        @extend .h100p;
+        @extend .p-s;
+        @extend .pr0;
+        @extend .userSelect-none;
+        @extend .overflow-hidden;
+
+        .d-phone & {
+            @extend .pos-centered-h;
+            @extend .t--60;
+            @extend .w85;
+            @extend .h85;
+            @extend .p-xs;
+            @extend .borderRadius-xl;
+            @extend .bg-white;
+            @extend .boxShadow-close;
+            @extend .overflow-hidden;
+        }
+        img {
+            @extend .maxW-100p;
+        }
+    }
+    &__content {
+        @include flex("column", "center", "flex-start");
+        width:63%;
+        @extend .h100p;
+        @extend .p-m;
+        @extend .text-left;
+
+        .d-phone & {
+            @extend .flex-column-centered;
+            @extend .w100p;
+            @extend .text-center;
+            @extend .pt30;
+            @extend .pl25;
+            @extend .pr25;
+            @extend .pb25;
+        }
+        .btn {
+            @extend .mt-xxs;
+        }
+    }
+    &__text {
+        @extend .mt-xxs;
+        @extend .mb-xs;
+    }
+    &__close {
+        @extend .pos-abs;
+        @extend .t--s;
+        @extend .r--s;
+        @extend .w30;
+        @extend .h30;
+        @extend .borderRadius-circle;
+        background-color:lighten($silver,32%);
+        @extend .transition-default;
+        @extend .btn-active;
+
+        .d-phone & {
+            @extend .t--xs;
+            @extend .r--xs;
+            @extend .w34;
+            @extend .h34;
+            background-color:lighten($steel,10%);
+        }
+        &:before,
+        &:after {
+            @extend .content-empty;
+            @extend .borderRadius-xs;
+            @extend .bg-steel;
+            @extend .pos-abs;
+            @extend .t50;
+            @extend .l50;
+            width:12px;
+            height:2px;
+            margin:-1px 0 0 -6px;
+
+            .d-phone & {
+                width:14px;
+                margin-left:-7px;
+                @extend .bg-white;
+            }
+        }
+        &:before {
+            transform:rotate(45deg);
+        }
+        &:after {
+            transform:rotate(-45deg);
+        }
+        .m-no-touch &:hover {
+            @extend .bg-blue;
+
+            &:before,
+            &:after {
+                @extend .bg-white;
+            }
+        }
+    }
+    &[data-pos="centered"]{
+        @extend .t50;
+        @extend .l50;
+        transform:translate3d(-50%, -50%, 0) scale(0.8);
+
+        &[data-active="true"]{
+            transform:translate3d(-50%, -50%, 0);
+        }
+    }
+    &[data-pos="top-right"]{
+        @extend .t-m;
+        @extend .r-m;
+        @extend .xs-t-s;
+        @extend .xs-r-s;
+        transform-origin:right top;
+    }
+    &[data-pos="top-left"]{
+        @extend .t-m;
+        @extend .l-m;
+        @extend .xs-t-s;
+        @extend .xs-l-s;
+        transform-origin:left top;
+    }
+    &[data-pos="bottom-right"]{
+        @extend .b-m;
+        @extend .r-m;
+        @extend .xs-b-s;
+        @extend .xs-r-s;
+        transform-origin:right bottom;
+    }
+    &[data-pos="bottom-left"]{
+        @extend .b-m;
+        @extend .l-m;
+        @extend .xs-b-s;
+        @extend .xs-l-s;
+        transform-origin:left bottom;
+    }
+    .d-phone & {
+        width:calc(100vw - 30px);
+    }
+    &-m {
+        .popup__title {
+            font-size:21px;
+            @extend .letterSpacing--s;
+
+            .d-phone & {
+                @extend .fontSize-26;
+                @extend .ml0;
+            }
+        }
+        .popup__text {
+            @extend .fontSize-16;
+            @extend .lineHeight-24;
+
+            .d-phone & {
+                font-size:18px;
+                @extend .lineHeight-28;
+                @extend .mb-xss;
+            }
+        }
+        .btn {
+            @extend .btn-m;
+        }
+    }
+    .btn {
+        .d-phone & {
+            @extend .btn-l;
+            font-size:18px;
+        }
+    }
+}
+.d-no-phone {
+    .popup {
+        &-m {
+            width:430px;
+        }
+    }
+}

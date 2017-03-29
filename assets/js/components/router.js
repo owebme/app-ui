@@ -56,7 +56,21 @@
                     {
                         url: "/",
                         section: "users",
-                        title: "Пользователи"
+                        title: "Пользователи",
+                        items: [
+                            {
+                                url: "/",
+                                title: "Все"
+                            },
+                            {
+                                url: "/users/active",
+                                title: "Активные"
+                            },
+                            {
+                                url: "/users/passive",
+                                title: "Пасивные"
+                            }
+                        ]
                     },
                     {
                         url: "/samples/all",
@@ -82,7 +96,7 @@
                         ]
                     },
                     {
-                        url: "/jp-test/stars",
+                        url: "/jp-test/stat",
                         section: "jp-test",
                         title: "JP-тест 2.0",
                         items: [
@@ -91,8 +105,8 @@
                                 title: "Контент"
                             },
                             {
-                                url: "/jp-test/stars",
-                                title: "Оценки"
+                                url: "/jp-test/stat",
+                                title: "Статистика"
                             }
                         ]
                     },

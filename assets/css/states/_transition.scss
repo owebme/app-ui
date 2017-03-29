@@ -1,10 +1,10 @@
-@each $title, $time in (xxs: .08s, xs: .2s, s: .3s, m: .5s, l: .7s, xl: 1s, xxl: 1.4s, xxxl: 2s){
+@each $title, $time in (xxs: .08s, xs: .15s, s: .3s, m: .5s, l: .7s, xl: 1s, xxl: 1.4s, xxxl: 2s){
     .transition-#{$title} {
         @include accelerate();
         transition:all $time;
     }
 }
-@each $title, $time in (none: 0s, xxs: .08s, xs: .2s, s: .4s, m: .6s, l: .8s, xl: 1s){
+@each $title, $time in (none: 0s, xxs: .1s, xs: .2s, s: .4s, m: .6s, l: .8s, xl: 1s){
     .transition-delay-#{$title} {
         transition-delay:$time;
     }

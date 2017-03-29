@@ -9,12 +9,6 @@
     var $ = this;
 
     $.on("before-mount", function(){
-        if ($.opts.update && $.opts.cursor){
-            $.value = $.opts.cursor.get($.opts.update);
-        }
-        else {
-            $.value = $.opts.value;
-        }
         $.disable = $.opts.disable;
     });
 
@@ -25,11 +19,11 @@
     $.on("update", function(){
         if ((!$.opts.value || !$.opts.onupdate) && $.opts.update && $.opts.cursor){
             $.value = $.opts.cursor.get($.opts.update);
-            $.select.value = $.value;
+            $.select.value = $.value || "";
         }
         else if ($.opts.value && $.opts.value !== $.value){
             $.value = $.opts.value;
-            $.select.value = $.value;
+            $.select.value = $.value || "";
         }
         if (_.isBoolean($.opts.disable) && $.opts.disable !== $.disable){
             $.disable = $.opts.disable;
